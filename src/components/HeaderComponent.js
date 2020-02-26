@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Tab,Tabs, TabList,TabPanel} from 'react-tabs';
-import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown} from 'react-bootstrap';
-import Signup from './SignUpCentre';
+import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
+import SignupCentre from './SignUpCentre';
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
 class Header extends Component {
@@ -92,20 +91,31 @@ class Header extends Component {
             <ModalBody>
                 <h3>Espace Centre </h3>
                 
-            <Tabs  >
-                <Nav >
-                <Tab type="button" className="btn btn-secondary">Login</Tab>
-                <Tab type="button" className="btn btn-secondary">SignUp</Tab>
-                </Nav>
-
-                <TabPanel><Login/></TabPanel>
-                <TabPanel><Signup/></TabPanel>
-            </Tabs>
+            <Tabs id="controlled-tab" >
+            <Tab  title="Log In" eventKey="Login"> 
+            <div className="col-12">
+                
+                <h3>Log In</h3>
+                <br/>
+            </div>
+            <Login/>
+            </Tab>
+            <Tab  title="Sign Up" eventKey="Signup" >
+            <div className="col-12">
             
+             <h3>Sign Up</h3>
+        </div>
+            <SignupCentre/>
+            </Tab>
+      
+      
+      
+    </Tabs>
                 
             </ModalBody>
          </Modal> 
-         <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>   
+         <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
+   
             <ModalBody>
                 <LoginClient/>
                 

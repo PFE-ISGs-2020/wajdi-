@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import {FormControl} from 'react-bootstrap';
 
 
-class Signup extends Component {
+class SignupCentre extends Component {
 
     constructor(props) {
         super(props);
@@ -41,11 +41,7 @@ class Signup extends Component {
     render(){
         return(
     <div className="row row-content">
-        <div className="col-12">
-            <br/>
-            <hr/>
-             <h3>Sign Up</h3>
-        </div>
+       
         <div className="col-12 col-md-9">
             <Form onSubmit={this.handleSubmit}>
                 <FormGroup row>
@@ -153,4 +149,4 @@ class Signup extends Component {
 
 }
 }
-export default Signup;
+export default SignupCentre;
