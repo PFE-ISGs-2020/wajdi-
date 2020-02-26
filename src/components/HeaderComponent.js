@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import {  NavbarToggler, Collapse} from 'reactstrap';
+import {  NavbarToggler, Collapse,  Button,  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar,NavbarBrand, NavItem, NavDropdown} from 'react-bootstrap';
+import {Tab,Tabs, TabList,TabPanel} from 'react-tabs';
+import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown} from 'react-bootstrap';
+import Signup from './SignUpCentre';
+import Login from './LoginCentre';
+import LoginClient from './LoginClient';
 class Header extends Component {
     constructor(props) {
         super(props);
     
-        this.toggleNav = this.toggleNav.bind(this);
+        
         this.state = {
-          isNavOpen: false
+          isNavOpen: false,
+          isModalOpen: false
         };
+        this.toggleNav = this.toggleNav.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.toggleModalClient = this.toggleModalClient.bind(this);
+                       
       }
 
       toggleNav() {
@@ -17,6 +26,18 @@ class Header extends Component {
           isNavOpen: !this.state.isNavOpen
         });
         this.toggleNav=this.toggleNav.bind(this);
+      }
+      toggleModal() {
+        this.setState({
+          isModalOpen: !this.state.isModalOpen
+        });
+        this.toggleModal = this.toggleModal.bind(this);
+      }
+      toggleModalClient() {
+        this.setState({
+          isModalClientOpen: !this.state.isModalClientOpen
+        });
+        this.toggleModalClient = this.toggleModalClient.bind(this);
       }
 
        
@@ -53,13 +74,43 @@ class Header extends Component {
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink className="nav-link" to=''><span className="fa fa-sign-in fa-lg"/> Log in</NavLink>
+                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/> Log in</Button>
                                 </NavItem>
-                            </Nav>   
+                                <NavItem>
+                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
+                                </NavItem>
+                            </Nav> 
+                           
                             
                         </Collapse> 
                                         
-                </Navbar>                                   
+                </Navbar> 
+
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+               
+                
+            <ModalBody>
+                <h3>Espace Centre </h3>
+                
+            <Tabs  >
+                <Nav >
+                <Tab type="button" className="btn btn-secondary">Login</Tab>
+                <Tab type="button" className="btn btn-secondary">SignUp</Tab>
+                </Nav>
+
+                <TabPanel><Login/></TabPanel>
+                <TabPanel><Signup/></TabPanel>
+            </Tabs>
+            
+                
+            </ModalBody>
+         </Modal> 
+         <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>   
+            <ModalBody>
+                <LoginClient/>
+                
+            </ModalBody>
+         </Modal>                                   
                 
             </div>
             
