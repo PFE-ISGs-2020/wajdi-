@@ -1,6 +1,7 @@
 import React, { Component, mobiscroll } from 'react';
 import { Button, Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import {FormControl} from 'react-bootstrap';
+import axios from 'axios'; 
 
 
 class SignupCentre extends Component {
@@ -34,8 +35,22 @@ class SignupCentre extends Component {
     }
 
     handleSubmit(event) {
-        console.log('Current State is: ' + JSON.stringify(this.state));
-        alert('Current State is: ' + JSON.stringify(this.state));
+        /* console.log('Current State is: ' + JSON.stringify(this.state));
+        alert('Current State is: ' + JSON.stringify(this.state)); */
+        
+            event.preventDefault();
+        
+            const centre = {
+                NomCentre: this.state.NomCentre
+            }
+            console.log(centre);
+
+            axios.post('http://localhost:3000/responsables/add', centre)
+            .then(res => console.log(res.data));
+
+            this.setState({
+           NomCentre: ''
+    })
    
     }
     render(){
@@ -132,9 +147,9 @@ class SignupCentre extends Component {
 
                     <FormGroup row>
                         <Col md={{size: 10, offset: 8}}>
-                            <Button type="submit" color="primary">
-                               Sign Up
-                            </Button>
+                        <div className="form-group">
+            <input type="submit" value="Create User" className="btn btn-primary" />
+          </div>
                         </Col>        
                     </FormGroup>        
                             

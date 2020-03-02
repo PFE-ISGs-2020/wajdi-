@@ -5,6 +5,7 @@ import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bo
 import SignupCentre from './SignUpCentre';
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
+import ResponsablesList from './ResponsablesRequests';
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -51,7 +52,7 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to=''><span className="fa fa-home fa-lg"/> Accueil </NavLink>
+                                <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"/> Accueil </NavLink>
                             </NavItem>
 
                             <NavDropdown  title={<a><span className="fa fa-list fa-lg"/> Centre de formation</a>} id="nav-dropdown-centre_de_formations">
@@ -68,6 +69,10 @@ class Header extends Component {
                             </NavDropdown>
                             <NavItem>
                                 <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
+                            </NavItem>
+
+                            <NavItem>
+                                <NavLink className="nav-link" to='ResponsablesList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
                             </NavItem>
                             
                             </Nav>
@@ -121,8 +126,7 @@ class Header extends Component {
                 
             </ModalBody>
          </Modal>                                   
-                
-            </div>
+         </div>
             
         );
     }
