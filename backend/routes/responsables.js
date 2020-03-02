@@ -8,13 +8,23 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const username = req.body.username;
+  const NomCentre = req.body.NomCentre;
   const password = req.body.password;
+  const Adresse = req.body.Adresse;
+  const Tel = req.body.Tel;
+  const Email= req.body.Email;
+  const Region= req.body.Region;
+  const Description= req.body.Description;
   
 
   const newResponsable = new Responsable({
-    username,
+    NomCentre,
     password,
+    Adresse,
+    Tel,
+    Email,
+    Region,
+    Description,
     
   });
 
@@ -38,9 +48,14 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Responsable.findById(req.params.id)
     .then(responsable => {
-        responsable.username = req.body.username;
-        responsable.password = req.body.password;
-      
+        
+        NomCentre = req.body.NomCentre;
+        password = req.body.password;
+        Adresse = req.body.Adresse;
+        Tel = req.body.Tel;
+        Email= req.body.Email;
+        Region= req.body.Region;
+        Description= req.body.Description;
 
         responsable.save()
         .then(() => res.json('Responsable updated!'))

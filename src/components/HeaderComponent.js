@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {  NavbarToggler, Collapse,  Button,  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
 import SignupCentre from './SignUpCentre';
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
-import ResponsablesList from './ResponsablesRequests';
+
 class Header extends Component {
     constructor(props) {
         super(props);
