@@ -13,7 +13,7 @@ const Responsable = props => (
     <td>{props.responsable.password}</td>
     
     <td>
-      <Link to={"/edit/"+props.responsable._id}>Approve</Link> | <a href="#" onClick={() => { props.deleteResponsable(props.responsable._id) }}>delete</a>
+    <a href="#" onClick={() => { props.approveResponsable(props.responsable._id) }}>Approve</a> | <a href="#" onClick={() => { props.deleteResponsable(props.responsable._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -23,8 +23,11 @@ export default class ResponsablesList extends Component {
     super(props);
 
     this.deleteResponsable = this.deleteResponsable.bind(this)
+    this.approveResponsable = this.approveResponsable.bind(this)
 
-    this.state = {responsables: []};
+    this.state = {responsables: [],
+                  selectedCentre: null};
+
   }
 
   componentDidMount() {
@@ -46,9 +49,25 @@ export default class ResponsablesList extends Component {
     })
   }
 
+  approveResponsable(id) {
+
+    /*  this.setState({
+      selectedCentre: this.state.responsables.filter(centre => centre._id == id)[0]
+    })  */
+  
+    axios.post('http://localhost:5000/centres/add', this.state.responsables.filter(centre => centre._id == id)[0])
+      .then(response => { console.log(response.data)});
+      
+    axios.delete('http://localhost:5000/responsables/'+id)
+      .then(response => { console.log(response.data)});
+    this.setState({
+     responsables: this.state.responsables.filter(el => el._id !== id)
+    })
+  }
+
   responsableList() {
     return this.state.responsables.map(currentresponsable => {
-      return <Responsable responsable={currentresponsable} deleteResponsable={this.deleteResponsable} key={currentresponsable._id}/>;
+      return <Responsable responsable={currentresponsable} deleteResponsable={this.deleteResponsable} approveResponsable={this.approveResponsable} key={currentresponsable._id} />;
     })
   }
 
