@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
-import SignupCentre from './SignUpCentre';
+
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
+import SignupCentre from './SignUpCentre';
+import SignupUser from './SignUpUser';
 
 class Header extends Component {
     constructor(props) {
@@ -48,7 +50,7 @@ class Header extends Component {
             <div className="nav-head ">
                 <Navbar  dark expand="md">        
                     <NavbarToggler onClick={this.toggleNav} />
-                    <NavbarBrand className="mr-auto" href=""><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
+                    <NavbarBrand className="mr-auto" ><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
@@ -89,43 +91,47 @@ class Header extends Component {
                         </Collapse> 
                                         
                 </Navbar> 
-
+            {/*modal centre begin */}
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-               
+                <ModalBody>
+                    <h3>Espace Centre </h3>
+                    
+                <Tabs id="controlled-tab" >
+                <Tab  title="Log In" eventKey="Login"> 
+                <div className="col-12">
+                    
+                    <h3>Log In</h3>
+                    <br/>
+                </div>
+                <Login/>
+                </Tab>
+                <Tab  title="Sign Up" eventKey="Signup" >
+                <div className="col-12">
                 
-            <ModalBody>
-                <h3>Espace Centre </h3>
-                
-            <Tabs id="controlled-tab" >
-            <Tab  title="Log In" eventKey="Login"> 
-            <div className="col-12">
-                
-                <h3>Log In</h3>
-                <br/>
-            </div>
-            <Login/>
-            </Tab>
-            <Tab  title="Sign Up" eventKey="Signup" >
-            <div className="col-12">
-            
-             <h3>Sign Up</h3>
-        </div>
-            <SignupCentre/>
-            </Tab>
-      
-      
-      
-    </Tabs>
-                
-            </ModalBody>
+                <h3>Sign Up</h3>
+                </div>
+                <SignupCentre/>
+                </Tab>
+                </Tabs>
+                </ModalBody>
          </Modal> 
+         {/*modal centre end */}
+         {/*modal client begin */}
          <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
    
-            <ModalBody>
+            <ModalBody> 
+                <Tabs id="controlled-tab" >
+                <Tab  title="Log In" eventKey="Login"> 
                 <LoginClient/>
-                
+                </Tab>
+                <Tab  title="Sign Up" eventKey="Signup" >
+                <SignupUser/>
+                </Tab>
+                </Tabs>
             </ModalBody>
-         </Modal>                                   
+
+         </Modal> 
+         {/*modal client end */}                                  
          </div>
             
         );
