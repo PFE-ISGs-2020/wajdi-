@@ -14,13 +14,14 @@ class SignUpClient extends Component {
             DatenaissClient:'',
             ProfessionClient:'',
             NiveauClient:'',
-           emailClient: '',
-           TelClient: '',
-           LoginClient: '',
-           passwordClient: '',
-           AdresseClient: ''   ,
-           client: []        
+            emailClient: '',
+            TelClient: '',
+            LoginClient: '',
+            passwordClient: '',
+            AdresseClient: ''   ,
+            client: []        
         };
+
         this.onChangeNomClient = this.onChangeNomClient.bind(this);
         this.onChangePrenomClient = this.onChangePrenomClient.bind(this);
         this.onChangeDatenaissClient = this.onChangeDatenaissClient.bind(this);
@@ -35,8 +36,7 @@ class SignUpClient extends Component {
     }
       
     
-    //react life cycle methode end
-
+    
     onChangeNomClient(e) {
         this.setState({
             NomClient: e.target.value

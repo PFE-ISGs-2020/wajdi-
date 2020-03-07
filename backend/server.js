@@ -26,11 +26,16 @@ connection.once('open', () => {
 const DemandeRouter = require('./routes/Demande');
 const ClientRouter = require('./routes/Client');
 const centresRouter = require('./routes/centres');
-
+const FormationRouter = require('./routes/Formation');
+const FormateurRouter = require('./routes/Formateur');
+const ThemeRouter = require('./routes/Theme');
 //use the files
 app.use('/centres', centresRouter);
 app.use('/Demande', DemandeRouter);
 app.use('/Client', ClientRouter); 
+app.use('/Formation', FormationRouter);
+app.use('/Formateur', FormateurRouter);
+app.use('/Theme', ThemeRouter);
 
 //starts the server
 app.listen(port, () => {
