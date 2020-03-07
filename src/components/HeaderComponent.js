@@ -6,7 +6,7 @@ import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bo
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
 import SignupCentre from './SignUpCentre';
-import SignupUser from './SignUpUser';
+import SignUpClient from './SignUpClient';
 
 class Header extends Component {
     constructor(props) {
@@ -72,15 +72,20 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
-
+                            {/*webmaster button begin */}
                             <NavItem>
-                                <NavLink className="nav-link" to='ResponsablesList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
+                                <NavLink className="nav-link" to='DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
                             </NavItem>
-                            
+                            {/*webmaster button end */}
+                            {/*responsable button begin */}
+                            <NavItem>
+                                <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Resposable </NavLink>
+                            </NavItem>
+                            {/*responsable button end */}
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/> Log in</Button>
+                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace Etudiant</Button>
                                 </NavItem>
                                 <NavItem>
                                     <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
@@ -121,11 +126,11 @@ class Header extends Component {
    
             <ModalBody> 
                 <Tabs id="controlled-tab" >
-                <Tab  title="Log In" eventKey="Login"> 
+                <Tab  title="Log In Client" eventKey="LoginClient"> 
                 <LoginClient/>
                 </Tab>
-                <Tab  title="Sign Up" eventKey="Signup" >
-                <SignupUser/>
+                <Tab  title="Sign Up Client" eventKey="SignUpClient" >
+                <SignUpClient/>
                 </Tab>
                 </Tabs>
             </ModalBody>
