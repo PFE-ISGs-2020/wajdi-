@@ -2,22 +2,16 @@ import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
-import SignupCentre from './SignUpCentre';
-import Login from './LoginCentre';
-import LoginClient from './LoginClient';
 
-class Header extends Component {
+class HeaderWebmaster extends Component {
     constructor(props) {
         super(props);
     
         
         this.state = {
           isNavOpen: false,
-          isModalOpen: false
         };
         this.toggleNav = this.toggleNav.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.toggleModalClient = this.toggleModalClient.bind(this);
                        
       }
 
@@ -27,21 +21,7 @@ class Header extends Component {
         });
         this.toggleNav=this.toggleNav.bind(this);
       }
-      toggleModal() {
-        this.setState({
-          isModalOpen: !this.state.isModalOpen
-        });
-        this.toggleModal = this.toggleModal.bind(this);
-      }
-      toggleModalClient() {
-        this.setState({
-          isModalClientOpen: !this.state.isModalClientOpen
-        });
-        this.toggleModalClient = this.toggleModalClient.bind(this);
-      }
-
-       
-
+        
     render() {
 
         return(
@@ -67,67 +47,23 @@ class Header extends Component {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="4.4">A court terme</NavDropdown.Item>
                             </NavDropdown>
-                            <NavItem>
-                                <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
-                            </NavItem>
+                            
 
                             <NavItem>
-                                <NavLink className="nav-link" to='demandes'> webmaster </NavLink>
+                                <NavLink className="nav-link" to='ResponsablesList'> Requests </NavLink>
                             </NavItem>
                             
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace apprenant</Button>
-                                </NavItem>
-                                <NavItem>
-                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
+                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-out fa-lg"></span>Log out</Button>
                                 </NavItem>
                             </Nav> 
                            
                             
                         </Collapse> 
                                         
-                </Navbar> 
-
-
-            
-            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModa}>
-            <ModalHeader toggle={this.toggleModal}><h3><h3>Espace Centre </h3></h3></ModalHeader>   
-                
-            <ModalBody>
-                
-                
-            <Tabs id="controlled-tab" >
-            <Tab  title="Log In" eventKey="Login"> 
-            <div className="col-12">
-                
-                <h3>Log In</h3>
-                <br/>
-            </div>
-            <Login/>
-            </Tab>
-            <Tab  title="Sign Up" eventKey="Signup" >
-            <div className="col-12">
-            
-             <h3>Sign Up</h3>
-        </div>
-            <SignupCentre/>
-            </Tab>
-      
-      
-      
-    </Tabs>
-                
-            </ModalBody>
-         </Modal> 
-         <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
-            <ModalHeader toggle={this.toggleModalClient}><h3>Log In</h3></ModalHeader>
-            <ModalBody>
-                <LoginClient/>
-                
-            </ModalBody>
-         </Modal>                                   
+                </Navbar>                                   
          </div>
             
         );
@@ -135,4 +71,4 @@ class Header extends Component {
 }
 
 
-export default Header;
+export default HeaderWebmaster;

@@ -3,12 +3,18 @@
 }
 .footer{
   background-color: rgb(148, 144, 144);
-    position:static;
+    position:absolute;
     left: 0;
     bottom: 0;
     height: 100px;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden;}
 
-}
-
+    
+     .flex-column{
+      position: fixed ;
+      width: 20%;
+      background-color:rgb(110, 170, 172);
+      height: 100vh;
+    }  
+    

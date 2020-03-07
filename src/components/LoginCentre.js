@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import {  Button, Form, InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
+import {  Button, Form,  FormFeedback, InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
 
 class Login extends Component {
-
-
-
+    
     render(){
+
     return(
         <div className="row row-content">
             
@@ -28,8 +27,10 @@ class Login extends Component {
                         <br/>
                         <Col md={{size: 10, offset: 9}}>
                             <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Col>    
+                        </Col> 
+                        {/* <FormFeedback>{error}</FormFeedback>    */}
                         </Form>
+                        
 
             </div>
         </div>

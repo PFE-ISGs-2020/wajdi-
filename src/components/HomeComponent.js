@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
 
-  class Home extends Component {
+  
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,6 +12,7 @@ import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Butto
 
         return (
         <div className="container">
+        
             <br/>
             {/* Carousel slider */}
             <div className="row-12 justify-content-center">

@@ -1,4 +1,4 @@
-import React, { Component, mobiscroll } from 'react';
+import React, { Component} from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios'; 
 
@@ -17,9 +17,7 @@ class SignupCentre extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-
         this.state = {
-
            NomCentre: '',
            password: '',
            Adresse: '',
@@ -28,7 +26,7 @@ class SignupCentre extends Component {
             Region: '',
             Description: '',
            
-            respnsables: []
+            Demande: []
         };
 
     }
@@ -36,50 +34,50 @@ class SignupCentre extends Component {
     onChangeNomCentre(e) {
         this.setState({
             NomCentre: e.target.value
-        })
+        });
     }
 
     onChangeAdresse(e) {
         this.setState({
             Adresse: e.target.value
-        })
+        });
     }
     
     onChangeDescription(e) {
         this.setState({
           Description: e.target.value
-        })
+        });
     }
     
     onChangeTel(e) {
         this.setState({
             Tel: e.target.value
-        })
+        });
     }
 
     onChangeEmail(e) {
         this.setState({
             Email: e.target.value
-        })
+        });
     }
 
     onChangeRegion(e) {
         this.setState({
             Region: e.target.value
-        })
+        });
     }
 
     onChangePassword(e) {
         this.setState({
             password: e.target.value
-        })
+        });
     }
     
       
     
     onSubmit(e) {
         e.preventDefault();
-        const responsable = {
+        const demande = {
            NomCentre: this.state.NomCentre,
            Adresse : this.state.Adresse,
             Description: this.state.Description,
@@ -89,9 +87,9 @@ class SignupCentre extends Component {
             password: this.state.password
         }
       
-        console.log(responsable);
+        console.log(demande);
       
-        axios.post('http://localhost:5000/responsables/add', responsable)
+        axios.post('http://localhost:5000/demande/add', demande)
         .then(res => console.log(res.data));
       
         window.location = '/';
@@ -194,7 +192,7 @@ class SignupCentre extends Component {
                 <FormGroup row>
                     <Col md={{size: 10, offset: 8}}>
                         <div className="form-group">
-                            <input type="submit" value="Create Responsable" className="btn btn-primary" />
+                            <input type="submit" value="Creation Demande" className="btn btn-primary" />
                         </div>
                     </Col>        
                 </FormGroup>        
