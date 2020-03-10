@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Menu from './sideNavWebmaster'
 const Demande = props => (  
   <tr>
     <td>{props.demande.NomCentre}</td>
@@ -22,8 +22,7 @@ export default class DemandeList extends Component {
     this.deleteDemande = this.deleteDemande.bind(this)
     this.approveDemande = this.approveDemande.bind(this)
 
-    this.state = {demande: [],
-                  selectedCentre: null};
+    this.state = {demande: []};
 
   }
 
@@ -48,10 +47,7 @@ export default class DemandeList extends Component {
 
   approveDemande(id) {
 
-    /*  this.setState({
-      selectedCentre: this.state.responsables.filter(centre => centre._id == id)[0]
-    })  */
-  
+   
     axios.post('http://localhost:5000/centres/add', this.state.demande.filter(centre => centre._id === id)[0])
       .then(demand => { console.log(demand.data)});
       
@@ -72,11 +68,17 @@ export default class DemandeList extends Component {
   render() {
     return (
       <div>
+       <div className="row row-content">
+        <nav  className="col-2">
+          <Menu/>
+        </nav>  
+         <section className="col-10 text-center">   
         <br/>
         <br/>
-        <h3> Demande</h3>
+        <h3> Demande d'accés des responsables</h3>
         <br/>
-        <br/>
+        <br/> 
+       
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -93,6 +95,8 @@ export default class DemandeList extends Component {
             { this.DemandeList() }
           </tbody>
         </table>
+        </section>
+      </div>     
       </div>
       
     )

@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 class Menu extends Component {
     render(){
         return(
-            <Nav  className="flex-column " >
+            <Nav  className="flex-column  " >
             <NavItem>
                 <NavLink className="nav-link" to=''> Vérifier Etat centre </NavLink>
             </NavItem>
 
             <NavItem>
-                <NavLink className="nav-link" to='Demandes'> Demandes des responsables </NavLink>
+                <NavLink className="nav-link" to='DemandeList'> Demandes des responsables </NavLink>
             </NavItem>
             <NavItem>
             <NavLink className="nav-link" to=''>Consulter les avis </NavLink>

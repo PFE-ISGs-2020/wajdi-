@@ -1,9 +1,9 @@
 const router = require('express').Router();
-let Responsable = require('../models/responsable_model');
+let Demande = require('../models/Demande_model');
 
 router.route('/').get((req, res) => {
-    Responsable.find()
-    .then(responsables => res.json(responsables))
+    Demande.find()
+    .then(demande => res.json(demande))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -17,37 +17,36 @@ router.route('/add').post((req, res) => {
   const Description= req.body.Description;
   
 
-  const newResponsable = new Responsable({
+  const newDemande = new Demande({
     NomCentre,
     password,
     Adresse,
     Tel,
     Email,
     Region,
-    Description,
-    
+    Description    
   });
 
-  newResponsable.save()
-  .then(() => res.json('Responsable added!'))
+  newDemande.save()
+  .then(() => res.json('Demande ajouter!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
-    Responsable.findById(req.params.id)
-    .then(responsable => res.json(responsable))
+    Demande.findById(req.params.id)
+    .then(Demande => res.json(Demande))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').delete((req, res) => {
-    Responsable.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Responsable deleted.'))
+    Demande.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Demande deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/update/:id').post((req, res) => {
-    Responsable.findById(req.params.id)
-    .then(responsable => {
+    Demande.findById(req.params.id)
+    .then(demande => {
         
         NomCentre = req.body.NomCentre;
         password = req.body.password;
@@ -57,8 +56,8 @@ router.route('/update/:id').post((req, res) => {
         Region= req.body.Region;
         Description= req.body.Description;
 
-        responsable.save()
-        .then(() => res.json('Responsable updated!'))
+        demande.save()
+        .then(() => res.json('Demande Modifer!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

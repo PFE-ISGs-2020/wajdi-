@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const responsableSchema = new Schema({
+const demandeSchema = new Schema({
   NomCentre: { type: String, required: true, minlength: 3 },
   password: { type: String, required: true, minlength:8 },
   Adresse: { type: String, required: true },
@@ -15,6 +15,6 @@ const responsableSchema = new Schema({
   timestamps: true,
 });
 
-const Responsable = mongoose.model('Responsable', responsableSchema);
+const Demande = mongoose.model('Demande', demandeSchema);
 
-module.exports = Responsable;
+module.exports = Demande;

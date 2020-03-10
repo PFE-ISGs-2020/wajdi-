@@ -1,18 +1,74 @@
 import React, { Component } from 'react';
 import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import DetailFormationComponent from './DetailFormationComponent';
+import {Switch,  BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-  
+function RenderFormations ({formation}, onClick) {
+   
+     
+    return (
+        
+        <Card>
+            
+              <Link to= {`/home/DetailFormation/${formation._id}`} > 
+            {/* <Link to = {() => <DetailFormationComponent formation/>} > */}
+            {/*<Link to= '/home/DetailFormation' > */}
+            <Card.Header as="h5">{formation.LibelleFormation}</Card.Header>
+                <Card.Body>
+                    <Card.Title>Description:</Card.Title>
+                    <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                </Card.Body>
+            </Link>
+         </Card>
+        
+    );
+}            
+
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.onChangeCritere = this.onChangeCritere.bind(this);
+        this.state = {Formation: [],
+                        selectedFormation : null,
+                        Critere: null}
+    
       }
+      onChangeCritere(e) {
+        this.setState({
+            Critere: e.target.value
+        });
+    }
+      componentDidMount() {
+        axios.get('http://localhost:5000/Formation/')
+          .then(formation => {
+            this.setState({ Formation: formation.data })
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      }
+     
+      
       render() {
+          
+          
+        /*COME BACK HERE*/ 
+        const Formations = this.state.Formation.map((formation => {
+            return (
+                <div className="col-12  m-1"  key={formation._id}>
+                    <RenderFormations formation={formation}  />
+                    <br/>
+                </div>
+            );
+        }))
 
+        
+
+        
         return (
         <div className="container">
-        
             <br/>
             {/* Carousel slider */}
             <div className="row-12 justify-content-center">
@@ -56,13 +112,13 @@ class Home extends Component {
             </div>
             {/* searching bar and botton */}
             <div className="row-12 justify-content-center">
-            <InputGroup className="mb-3">
+            <InputGroup  className="mb-3">
                 <DropdownButton
                 as={InputGroup.Prepend}
                 variant="outline-secondary"
                 title='Centre'
-                id="input-group-dropdown-1"
-                >
+                id="input-group-dropdown-1" type="select"   value={this.state.Critere} onChange={this.onChangeCritere} name="Critere">
+                
                 <Dropdown.Item href="#">Centre</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="#">Formation</Dropdown.Item>                
@@ -73,29 +129,11 @@ class Home extends Component {
             </InputGroup>
             </div>
 
-            {/* Cards */}
+            {/* Cards des Formations*/}
             <div className="row-12 justify-content-center">
-            <Card>
-                <Card.Header as="h5">Title</Card.Header>
-                <Card.Body>
-                    <Card.Title>Description:</Card.Title>
-                    <Card.Text>
-                    
-                    </Card.Text>
-                    
-                </Card.Body>
-            </Card>
-            <br/>
-            <Card>
-                <Card.Header as="h5">Title</Card.Header>
-                <Card.Body>
-                    <Card.Title>Description:</Card.Title>
-                    <Card.Text>
-                    
-                    </Card.Text>
-                    
-                </Card.Body>
-            </Card>
+            
+                    {Formations}
+            
             </div>
             <br/>
             {/* Pagination */}
@@ -103,12 +141,12 @@ class Home extends Component {
             <Pagination>
                 <Pagination.First />
                 <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
+                <Pagination.Item active>{1}</Pagination.Item>
                 <Pagination.Ellipsis />
 
                 <Pagination.Item>{10}</Pagination.Item>
                 <Pagination.Item>{11}</Pagination.Item>
-                <Pagination.Item active>{12}</Pagination.Item>
+                <Pagination.Item >{12}</Pagination.Item>
                 <Pagination.Item>{13}</Pagination.Item>
                 <Pagination.Item disabled>{14}</Pagination.Item>
 
@@ -117,8 +155,11 @@ class Home extends Component {
                 <Pagination.Next />
                 <Pagination.Last />
             </Pagination>
+
+
             </div>
-        </div>
+            
+       </div>
         );
     }
 }

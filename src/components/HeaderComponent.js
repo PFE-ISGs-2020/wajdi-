@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
-import SignupCentre from './SignUpCentre';
+
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
+import SignupCentre from './SignUpCentre';
+import SignUpClient from './SignUpClient';
 
 class Header extends Component {
     constructor(props) {
@@ -48,7 +50,7 @@ class Header extends Component {
             <div className="nav-head ">
                 <Navbar  dark expand="md">        
                     <NavbarToggler onClick={this.toggleNav} />
-                    <NavbarBrand className="mr-auto" href=""><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
+                    <NavbarBrand className="mr-auto" ><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
@@ -70,15 +72,20 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
-
+                            {/*webmaster button begin */}
                             <NavItem>
-                                <NavLink className="nav-link" to='demandes'> webmaster </NavLink>
+                                <NavLink className="nav-link" to='DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
                             </NavItem>
-                            
+                            {/*webmaster button end */}
+                            {/*responsable button begin */}
+                            <NavItem>
+                                <NavLink className="nav-link" to= 'ajoutformation' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
+                            </NavItem>
+                            {/*responsable button end */}
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace apprenant</Button>
+                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace Etudiant</Button>
                                 </NavItem>
                                 <NavItem>
                                     <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
@@ -89,45 +96,47 @@ class Header extends Component {
                         </Collapse> 
                                         
                 </Navbar> 
-
-
-            
-            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModa}>
-            <ModalHeader toggle={this.toggleModal}><h3><h3>Espace Centre </h3></h3></ModalHeader>   
+            {/*modal centre begin */}
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalBody>
+                    <h3>Espace Centre </h3>
+                    
+                <Tabs id="controlled-tab" >
+                <Tab  title="Log In" eventKey="Login"> 
+                <div className="col-12">
+                    
+                    <h3>Log In</h3>
+                    <br/>
+                </div>
+                <Login/>
+                </Tab>
+                <Tab  title="Sign Up" eventKey="Signup" >
+                <div className="col-12">
                 
-            <ModalBody>
-                
-                
-            <Tabs id="controlled-tab" >
-            <Tab  title="Log In" eventKey="Login"> 
-            <div className="col-12">
-                
-                <h3>Log In</h3>
-                <br/>
-            </div>
-            <Login/>
-            </Tab>
-            <Tab  title="Sign Up" eventKey="Signup" >
-            <div className="col-12">
-            
-             <h3>Sign Up</h3>
-        </div>
-            <SignupCentre/>
-            </Tab>
-      
-      
-      
-    </Tabs>
-                
-            </ModalBody>
+                <h3>Sign Up</h3>
+                </div>
+                <SignupCentre/>
+                </Tab>
+                </Tabs>
+                </ModalBody>
          </Modal> 
+         {/*modal centre end */}
+         {/*modal client begin */}
          <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
-            <ModalHeader toggle={this.toggleModalClient}><h3>Log In</h3></ModalHeader>
-            <ModalBody>
+   
+            <ModalBody> 
+                <Tabs id="controlled-tab" >
+                <Tab  title="Log In Client" eventKey="LoginClient"> 
                 <LoginClient/>
-                
+                </Tab>
+                <Tab  title="Sign Up Client" eventKey="SignUpClient" >
+                <SignUpClient/>
+                </Tab>
+                </Tabs>
             </ModalBody>
-         </Modal>                                   
+
+         </Modal> 
+         {/*modal client end */}                                  
          </div>
             
         );

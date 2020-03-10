@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import {Breadcrumb, BreadcrumbItem, InputGroup,Dropdown,DropdownButton,FormControl,Button} from 'react-bootstrap';
+import axios from 'axios';
 
 class DetailFormationComponent extends Component {
 
@@ -7,14 +9,26 @@ class DetailFormationComponent extends Component {
         super(props);
 
         this.state = {
-            nomformation:'',
+            formationn: []
+           /*  nomformation:'',
             datedeb:'',
             datefin:'',
             nomcentre:'',
-            description:''    
+            description:''     */
         };
                 
     }
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/Formation/'+this.props.formation._id)
+          .then(formation => {
+            this.setState({ formationn: formation.data })
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      }
+      
 
     render(){
         return(
@@ -23,10 +37,10 @@ class DetailFormationComponent extends Component {
                 <div className="row">
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Contact Us</BreadcrumbItem>
+                        <BreadcrumbItem active>{this.state.formationn.LibelleFormation}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
-                        <h3>Contact Us</h3>
+                    <h3>{this.state.formationn.LibelleFormation}</h3>
                         <hr />
                     </div>                
                 </div>
@@ -53,19 +67,19 @@ class DetailFormationComponent extends Component {
                 {/* searching bar and botton  end*/}
                 {/* showing details  begin*/}
                 <div className="row">
-                    <p>Nom formation:{this.state.nomformation}</p>
+                    <p>Nom formation:   {this.state.formationn.LibelleFormation}</p>
                 </div>
                 <div className="row">
-                    <p>Date debut:{this.state.datedeb}</p>
+                    <p>Date debut:  {this.state.formationn.DateDebutFormation}</p>
                 </div> 
                 <div className="row">
-                    <p>Date fin:{this.state.datefin}</p>
+                    <p>Date fin:    {this.state.formationn.DateFinFormation}</p>
                 </div> 
                 <div className="row">
-                    <p>Nom du centre:{this.state.nomcentre}</p>
+                    <p>Nom du centre:   {this.state.formationn.nomcentre}</p>
                 </div>  
                 <div className="row">
-                    <p>Description:{this.state.description}</p>
+                    <p>Description: {this.state.formationn.DescriptionFormation}</p>
                 </div>   
                 {/* showing details  end*/}
 
