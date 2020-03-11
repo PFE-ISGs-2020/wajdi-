@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import DetailFormationComponent from './DetailFormationComponent';
-import {Switch,  BrowserRouter, Route, Redirect } from 'react-router-dom';
+
 
 function RenderFormations ({formation}, onClick) {
    

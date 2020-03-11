@@ -29,7 +29,7 @@ import MainClient from './components/mainClient'
     
     <Route path="/homewebmaster" exact component={HomeWebmaster} />
     <Route path="/loginwebmaster" exact component={loginwebmaster} />
-    
+    <Redirect to="/home" />
     
     </div>
 

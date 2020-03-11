@@ -14,8 +14,9 @@ router.route('/add').post((req, res) => {
   const DateFinFormation = req.body.DateFinFormation;
   const DescriptionFormation= req.body.DescriptionFormation;
   const CapaciteFormation= req.body.CapaciteFormation;
-  const ThemeFormation= req.body.ThemeFormation;
+  const NomTheme= req.body.NomTheme;
   const NomFormateur= req.body.NomFormateur;
+  const NomCentre =req.body.NomCentre;
 
   const newFormation = new Formation({
     CodeFormation,
@@ -24,8 +25,9 @@ router.route('/add').post((req, res) => {
     DateFinFormation,
     DescriptionFormation,
     CapaciteFormation ,
-    ThemeFormation ,
-    NomFormateur 
+    NomTheme ,
+    NomFormateur ,
+    NomCentre
   });
 
   newFormation.save()
@@ -55,8 +57,9 @@ router.route('/update/:id').post((req, res) => {
         DateFinFormation = req.body.DateFinFormation;
         DescriptionFormation= req.body.DescriptionFormation;
         CapaciteFormation= req.body.CapaciteFormation;
-        ThemeFormation= req.body.ThemeFormation;
+        NomTheme= req.body.NomTheme;
         NomFormateur= req.body.NomFormateur;
+        NomCentre=req.body.NomCentre;
 
         formation.save()
         .then(() => res.json('Formation Modifer!'))
