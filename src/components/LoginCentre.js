@@ -11,27 +11,27 @@ class Login extends Component {
             <div className="col-12 col-md-9">
             <Form onSubmit={this.handleLogin}>
                         
-                            <InputGroup>
-                            <InputGroupAddon addonType="prepend">
-                            <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
-                            </InputGroupAddon>
-                            <Input placeholder="username" />
-                        </InputGroup>
-                        <br/>
-                        <InputGroup>
-                            <InputGroupAddon addonType="prepend">
-                            <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
-                            </InputGroupAddon>
-                            <Input type="password" placeholder="Password" />
-                        </InputGroup>
-                        <br/>
-                        <Col md={{size: 10, offset: 9}}>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Col> 
+                <InputGroup>
+                    {/* Logo de User*/ }
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
+                    </InputGroupAddon>
+                    <Input placeholder="username" />
+                </InputGroup>
+                <br/>
+                <InputGroup>
+                    {/* Logo pour le password*/ }
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="password" placeholder="Password" />
+                </InputGroup>
+                <br/>
+                <Col md={{size: 10, offset: 9}}>
+                    <Button type="submit" value="submit" color="primary">Login</Button>
+                </Col> 
                         {/* <FormFeedback>{error}</FormFeedback>    */}
-                        </Form>
-                        
-
+            </Form>
             </div>
         </div>
     );

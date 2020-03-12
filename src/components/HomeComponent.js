@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import DetailFormationComponent from './DetailFormationComponent';
-import {Switch,  BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-function RenderFormations ({formation}, onClick) {
+//fonction qui permet d'afficher une formation dans une "Card"
+
+function RenderFormations ({formation}) {
    
      
     return (
@@ -13,8 +13,6 @@ function RenderFormations ({formation}, onClick) {
         <Card>
             
               <Link to= {`/home/DetailFormation/${formation._id}`} > 
-            {/* <Link to = {() => <DetailFormationComponent formation/>} > */}
-            {/*<Link to= '/home/DetailFormation' > */}
             <Card.Header as="h5">{formation.LibelleFormation}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>
@@ -40,6 +38,7 @@ class Home extends Component {
             Critere: e.target.value
         });
     }
+    //Récupérer les formtaions de la base de données
       componentDidMount() {
         axios.get('http://localhost:5000/Formation/')
           .then(formation => {
@@ -54,7 +53,7 @@ class Home extends Component {
       render() {
           
           
-        /*COME BACK HERE*/ 
+        //pour chaque formation on va utiliser la methode RenderFormation pour l'afficher dans une "Card"
         const Formations = this.state.Formation.map((formation => {
             return (
                 <div className="col-12  m-1"  key={formation._id}>
@@ -110,7 +109,7 @@ class Home extends Component {
                     </Carousel>  
                 </Jumbotron>
             </div>
-            {/* searching bar and botton */}
+            {/* searching bar and button */}
             <div className="row-12 justify-content-center">
             <InputGroup  className="mb-3">
                 <DropdownButton
@@ -129,7 +128,7 @@ class Home extends Component {
             </InputGroup>
             </div>
 
-            {/* Cards des Formations*/}
+            {/* Affichage des Cards des Formations*/}
             <div className="row-12 justify-content-center">
             
                     {Formations}

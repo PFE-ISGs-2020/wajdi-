@@ -10,16 +10,13 @@ class DetailFormationComponent extends Component {
 
         this.state = {
             formationn: []
-           /*  nomformation:'',
-            datedeb:'',
-            datefin:'',
-            nomcentre:'',
-            description:''     */
+          
         };
                 
     }
 
     componentDidMount() {
+        //Request to get "formation" details by its ID
         axios.get('http://localhost:5000/Formation/'+this.props.formation._id)
           .then(formation => {
             this.setState({ formationn: formation.data })
@@ -65,6 +62,7 @@ class DetailFormationComponent extends Component {
                 </InputGroup>
                 </div>
                 {/* searching bar and botton  end*/}
+                
                 {/* showing details  begin*/}
                 <div className="row">
                     <p>Nom formation:   {this.state.formationn.LibelleFormation}</p>
