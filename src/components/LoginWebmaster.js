@@ -24,9 +24,12 @@ class loginwebmaster extends Component {
    
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.login != "admin" && this.state.password != "admin"){
-        this.state.error = 'login ou mot de passe incorrect';
+        if (this.state.login !== "admin" && this.state.password !== "admin"){
+            this.setState({
+                error: 'login ou mot de passe incorrect'
+            })
         console.log(this.state.error);}
+        
         else  {return <HomeWebmaster />;}
     }
     onChangePassword(e) {

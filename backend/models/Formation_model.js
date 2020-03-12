@@ -9,8 +9,9 @@ const formationSchema = new Schema({
     DateFinFormation: { type: Date, required: true },
     DescriptionFormation: { type: String,required: true,unique: false,trim: true,minlength:4},
     CapaciteFormation: { type: Number, required: true },
-    ThemeFormation :{ type: String, required: false },
-    NomFormateur:{type: String, required: false}
+    NomTheme :{ type: String, required: true },
+    NomFormateur:{type: String, required: true},
+    NomCentre:{type: String, required: true}
 },
  {
   timestamps: true,
