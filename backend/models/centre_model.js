@@ -10,6 +10,7 @@ const centreSchema = new Schema({
   Email: { type: String, required: true },
   Region: { type: String, required: true },
   Description: { type: String, required: true },
+  Acces: { type: Number , required: true },
 },
  );
 

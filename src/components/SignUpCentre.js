@@ -25,7 +25,7 @@ class SignupCentre extends Component {
             Email: '',
             Region: '',
             Description: '',
-           
+            Acces: 0,
             Demande: []
         };
 
@@ -77,19 +77,20 @@ class SignupCentre extends Component {
     
     onSubmit(e) {
         e.preventDefault();
-        const demande = {
+        const Centre = {
            NomCentre: this.state.NomCentre,
            Adresse : this.state.Adresse,
             Description: this.state.Description,
             Region: this.state.Region,
             Tel: this.state.Tel,
             Email: this.state.Email,
-            password: this.state.password
+            password: this.state.password,
+            Acces: this.state.Acces
         }
       
-        console.log(demande);
-       //Query pour ajouter une nouvelle demande
-        axios.post('http://localhost:5000/demande/add', demande)
+        console.log(Centre);
+       //Query pour ajouter un nouvau Centre
+        axios.post('http://localhost:5000/Centre/add', Centre)
         .then(res => console.log(res.data));
        //Retourner au home page aprés l'ajout
         window.location = '/home';

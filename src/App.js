@@ -25,6 +25,7 @@ import MainClient from './components/mainClient'
     
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
+        {/* <Route render={() => <h1>Page not found</h1>} /> */}
       </div>
 
       <div id="footer">

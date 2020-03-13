@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
 import HomeWebmaster from './HomeWebmaster';
 
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
+
 class loginwebmaster extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +30,12 @@ class loginwebmaster extends Component {
             this.setState({
                 error: 'login ou mot de passe incorrect'
             })
-        console.log(this.state.error);}
+        return(console.log(this.state.error));}
         
-        else  {return <HomeWebmaster />;}
+        return (
+        <HomeWebmaster />
+         
+        );
     }
     onChangePassword(e) {
         this.setState({

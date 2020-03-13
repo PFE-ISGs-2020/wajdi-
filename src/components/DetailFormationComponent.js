@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {Breadcrumb, BreadcrumbItem, InputGroup,Dropdown,DropdownButton,FormControl,Button} from 'react-bootstrap';
 import axios from 'axios';
 
@@ -20,6 +19,7 @@ class DetailFormationComponent extends Component {
         axios.get('http://localhost:5000/Formation/'+this.props.formation._id)
           .then(formation => {
             this.setState({ formationn: formation.data })
+            console.log(this.props.formation);
           })
           .catch((error) => {
             console.log(error);
@@ -33,7 +33,7 @@ class DetailFormationComponent extends Component {
                 {/*BreadCrumb begin */}
                 <div className="row">
                     <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem href="/home">Home</BreadcrumbItem>
                         <BreadcrumbItem active>{this.state.formationn.LibelleFormation}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
