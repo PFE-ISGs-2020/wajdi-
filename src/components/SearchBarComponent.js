@@ -30,15 +30,15 @@ class SearchBar extends Component {
         super(props);
         this.onChangeCritere = this.onChangeCritere.bind(this);
         this.onchange = this.onchange.bind(this);
-
+        
         this.state = {Formation: [],
+                        Centre: [],
                         selectedFormation : null,
+         // l'attribut critere prend deux valeurs: centre ou formation il represente le critere de recherche
                         Critere:'',
                         search: ''}
     
       }
-      
-
       //on change for the search bar
       onchange = e => {
         this.setState({ search: e.target.value });
@@ -57,6 +57,15 @@ class SearchBar extends Component {
           .catch((error) => {
             console.log(error);
           })
+       /*    
+          //Récupérer les centres de la base de données
+          axios.get('http://localhost:5000/Centre/')
+          .then(centre => {
+            this.setState({ Centre: center.data })
+          })
+          .catch((error) => {
+            console.log(error);
+          }) */
       }
       
       
@@ -84,6 +93,12 @@ class SearchBar extends Component {
             <Button className="col-1" variant="outline-secondary">GO!!</Button>
             </InputGroup>
             <div className="row">
+          {/*if (Critere == "Centre"){
+            filteredCentres.map(centre => { 
+              return <RenderCentres centre={centre}  />;
+             })
+          }
+        else*/}
           {filteredFormations.map(formation => { 
            return <RenderFormations formation={formation}  />;
           })}

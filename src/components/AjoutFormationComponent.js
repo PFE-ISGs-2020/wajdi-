@@ -17,6 +17,7 @@ class ajoutformation extends Component {
             CapaciteFormation:'',
             NomTheme:'',
             NomFormateur:'',
+            NomCentre:'',
             themes:[] ,
             formateurs:[],
             centres:[]
@@ -36,22 +37,7 @@ class ajoutformation extends Component {
     }
     //didmount begin
     componentDidMount() {
-        axios.get('http://localhost:5000/formations/'+this.props.match.params.id)
-          .then(response => {
-            this.setState({
-                CodeFormation: response.data.CodeFormation,
-                LibelleFormation: response.data.LibelleFormation,
-                DateDebutFormation: new Date(response.data.DateDebutFormation),
-                DateFinFormation: new Date(response.data.DateFinFormation),
-                DescriptionFormation: response.data.DescriptionFormation,
-                NomTheme: response.data.NomTheme,
-                NomFormateur: response.data.NomFormateur,
-                NomCentre:response.data.NomCentre
-            })   
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+        
         //themes axios get 
         axios.get('http://localhost:5000/Theme/')
           .then(response => {
@@ -161,14 +147,17 @@ class ajoutformation extends Component {
             CapaciteFormation:  this.state.CapaciteFormation,
             NomTheme: this.state.NomTheme,
             NomFormateur:  this.state.NomFormateur,
-            NomCentre:this.state.NomCentre         
+            NomCentre:  this.state.NomCentre       
         }
       
         console.log(formation);
         
         axios.post('http://localhost:5000/Formation/add', formation)
-        .then(res => console.log(res.data));
-      
+        .then(res => console.log(res.data))
+        .catch((error) => {
+            console.log(error);
+          });
+
         window.location = '/';
         
     }
@@ -240,18 +229,18 @@ class ajoutformation extends Component {
                     <FormGroup row>
                         <Label  md={5}>Nom Theme: </Label>
                         <Col md={7}>
-                        <select ref="ThemeInput" required                            
-                            value={this.state.NomTheme}
-                            onChange={this.onChangeNomTheme}>
-                            {
+                        <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
+                         value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
+                             {
                                 this.state.themes.map(function(theme) {
                                 return <option 
-                                    key={theme}
+                                    key={theme._id}
                                     value={theme}>{theme}
                                     </option>;
                                 })
-                            }
-                        </select>  
+                            } 
+                        </Input>
+                      
                         </Col>  
                 
                     </FormGroup>
@@ -259,18 +248,18 @@ class ajoutformation extends Component {
                     <FormGroup row>
                         <Label md={5}>Nom Formateur: </Label>
                         <Col md={7}>
-                        <select ref="FormateurInput" required                            
-                            value={this.state.NomFormateur}
-                            onChange={this.onChangeNomFormateur}>
-                            {
+                        <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
+                         value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
+                             {
                                 this.state.formateurs.map(function(formateur) {
                                 return <option 
                                     key={formateur._id}
                                     value={formateur}>{formateur}
                                     </option>;
                                 })
-                            }
-                        </select>       
+                            } 
+                        </Input>
+                             
                         </Col>
                     </FormGroup>  
 
@@ -279,18 +268,18 @@ class ajoutformation extends Component {
                     
                         <Label md={5}>Nom Centre: </Label>
                         <Col md={7}>
-                        <select ref="CentreInput" required                            
-                            value={this.state.NomCentre}
-                            onChange={this.onChangeNomCentre}>
-                            {
+                        <Input className="form-control"  required type="select"   id="NomCentre" name="NomCentre"
+                         value={this.state.NomCentre} onChange={this.onChangeNomCentre} >
+                             {
                                 this.state.centres.map(function(centre) {
                                 return <option 
                                     key={centre._id}
                                     value={centre}>{centre}
                                     </option>;
                                 })
-                            }
-                        </select>       
+                            } 
+                        </Input>
+                              
                         </Col>
                     </FormGroup>  
 
