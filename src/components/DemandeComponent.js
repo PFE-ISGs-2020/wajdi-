@@ -48,14 +48,7 @@ export default class DemandeList extends Component {
   }
 
   approveDemande(Centre) {
-   /* axios.get('http://localhost:5000/Centre/'+ Centre.id)
-    .then(response => {
-      this.setState({ Centre: response.data })
-      } )
-    
-    .catch(function (error) {
-      console.log(error);
-    })*/
+   
    const CentreUpdated = {
       NomCentre: Centre.NomCentre,
       Adresse : Centre.Adresse,
@@ -65,10 +58,7 @@ export default class DemandeList extends Component {
        Email: Centre.Email,
        password: Centre.password,
        Acces: "1"}
-
-    /*this.setState({Centre: CentreUpdated})*/
        
-      
     axios.post('http://localhost:5000/Centre/update/'+ Centre._id , CentreUpdated )
       .then(demand => { console.log(demand.data)});
       

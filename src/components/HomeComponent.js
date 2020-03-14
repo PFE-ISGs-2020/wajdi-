@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBarComponent';
 
 //fonction qui permet d'afficher une formation dans une "Card"
 
@@ -27,17 +28,11 @@ function RenderFormations ({formation}) {
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.onChangeCritere = this.onChangeCritere.bind(this);
-        this.state = {Formation: [],
-                        selectedFormation : null,
-                        Critere: null}
+
+        this.state = {Formation: [] }
     
       }
-      onChangeCritere(e) {
-        this.setState({
-            Critere: e.target.value
-        });
-    }
+
     //Récupérer les formtaions de la base de données
       componentDidMount() {
         axios.get('http://localhost:5000/Formation/')
@@ -48,7 +43,7 @@ class Home extends Component {
             console.log(error);
           })
       }
-     
+      
       
       render() {
           
@@ -62,10 +57,7 @@ class Home extends Component {
                 </div>
             );
         }))
-
-        
-
-        
+              
         return (
         <div className="container">
             <br/>
@@ -109,23 +101,8 @@ class Home extends Component {
                     </Carousel>  
                 </Jumbotron>
             </div>
-            {/* searching bar and button */}
-            <div className="row-12 justify-content-center">
-            <InputGroup  className="mb-3">
-                <DropdownButton
-                as={InputGroup.Prepend}
-                variant="outline-secondary"
-                title='Centre'
-                id="input-group-dropdown-1" type="select"   value={this.state.Critere} onChange={this.onChangeCritere} name="Critere">
-                
-                <Dropdown.Item href="#">Centre</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="#">Formation</Dropdown.Item>                
-                </DropdownButton>
-                <FormControl aria-describedby="basic-addon1" />
-
-                <Button variant="outline-secondary">GO!!</Button>
-            </InputGroup>
+            <div>
+            <SearchBar/>
             </div>
 
             {/* Affichage des Cards des Formations*/}
