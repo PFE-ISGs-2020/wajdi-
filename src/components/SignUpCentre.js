@@ -23,7 +23,7 @@ class SignupCentre extends Component {
            Adresse: '',
            Tel: '',
             Email: '',
-            Region: '',
+            Region: 'Ariana',
             Description: '',
             Acces: 0,
             Demande: []
