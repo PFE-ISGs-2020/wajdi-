@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
+import {  NavbarToggler, Collapse,  Button} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
+import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown} from 'react-bootstrap';
 
 class HeaderWebmaster extends Component {
     constructor(props) {

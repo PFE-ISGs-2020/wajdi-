@@ -23,7 +23,6 @@ connection.once('open', () => {
 });
 
 //require the files
-const DemandeRouter = require('./routes/Demande');
 const ClientRouter = require('./routes/Client');
 const CentreRouter = require('./routes/Centre');
 const FormationRouter = require('./routes/Formation');
@@ -31,7 +30,6 @@ const FormateurRouter = require('./routes/Formateur');
 const ThemeRouter = require('./routes/Theme');
 //use the files
 app.use('/Centre', CentreRouter);
-app.use('/Demande', DemandeRouter);
 app.use('/Client', ClientRouter); 
 app.use('/Formation', FormationRouter);
 app.use('/Formateur', FormateurRouter);

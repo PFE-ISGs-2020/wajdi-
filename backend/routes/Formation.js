@@ -31,7 +31,7 @@ router.route('/add').post((req, res) => {
   });
 
   newFormation.save()
-  .then(() => res.json('Formation ajouter!'))
+  .then(() => res.json('Formation ajoutée!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 

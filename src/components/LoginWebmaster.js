@@ -14,18 +14,16 @@ class loginwebmaster extends Component {
            login: '',
             password: '', 
             error: '',
-            //isLoggedIn: false
-            
-        };
-        
+            //isLoggedIn: false            
+        };       
         
     } 
     
    
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.login != "admin" && this.state.password != "admin"){
-        this.state.error = 'login ou mot de passe incorrect';
+        if (this.state.login !== "admin" && this.state.password !== "admin"){
+        this.state.error.setState('login ou mot de passe incorrect') ;
         console.log(this.state.error);}
         else  {return <HomeWebmaster />;}
     }
@@ -48,11 +46,8 @@ class loginwebmaster extends Component {
         /* return this.props.error;
       }  */
     render() {
-
-        return(
-            
-            <div className="row row-content">
-               
+        return(            
+            <div className="row row-content">               
                 <div className="col-12 text-center">
                     <br/>
                

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Breadcrumb, BreadcrumbItem, InputGroup,Dropdown,DropdownButton,FormControl,Button} from 'react-bootstrap';
+import {Breadcrumb, BreadcrumbItem,Button} from 'react-bootstrap';
 import axios from 'axios';
-
+import SearchBar from './SearchBarComponent';
 class DetailFormationComponent extends Component {
 
     constructor(props) {
@@ -10,11 +10,6 @@ class DetailFormationComponent extends Component {
 
         this.state = {
             formationn: []
-           /*  nomformation:'',
-            datedeb:'',
-            datefin:'',
-            nomcentre:'',
-            description:''     */
         };
                 
     }
@@ -32,6 +27,7 @@ class DetailFormationComponent extends Component {
 
     render(){
         return(
+            <div>
             <div className="container">
                 {/*BreadCrumb begin */}
                 <div className="row">
@@ -46,51 +42,40 @@ class DetailFormationComponent extends Component {
                 </div>
                  {/*BreadCrumb end */}
             
-                {/* searching bar and botton begin*/}
-                <div className="row-12 justify-content-center">
-                <InputGroup className="mb-3">
-                    <DropdownButton
-                    as={InputGroup.Prepend}
-                    variant="outline-secondary"
-                    title='Centre'
-                    id="input-group-dropdown-1"
-                    >
-                    <Dropdown.Item href="#">Centre</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item href="#">Formation</Dropdown.Item>                
-                    </DropdownButton>
-                    <FormControl aria-describedby="basic-addon1" />
-
-                    <Button variant="outline-secondary">GO!!</Button>
-                </InputGroup>
-                </div>
-                {/* searching bar and botton  end*/}
                 {/* showing details  begin*/}
-                <div className="row">
+                <div className="row ">
                     <p>Nom formation:   {this.state.formationn.LibelleFormation}</p>
                 </div>
-                <div className="row">
+                <div className="row ">
                     <p>Date debut:  {this.state.formationn.DateDebutFormation}</p>
                 </div> 
-                <div className="row">
+                <div className="row ">
                     <p>Date fin:    {this.state.formationn.DateFinFormation}</p>
                 </div> 
-                <div className="row">
+                <div className="row ">
                     <p>Nom du centre:   {this.state.formationn.nomcentre}</p>
                 </div>  
-                <div className="row">
+                <div className="row ">
                     <p>Description: {this.state.formationn.DescriptionFormation}</p>
                 </div>   
                 {/* showing details  end*/}
 
                 {/* s'inscrire Button  begin*/}
-                <div className="row">  
+                <div className="row ">  
                     <Button type="submit" color="primary">
                         S'inscrire
                     </Button>
                 </div>   
-                {/* s'inscrire Button  end*/}
-
+                    {/* s'inscrire Button  end*/}
+                   
+            </div>
+            {/* searching bar and botton begin*/}
+            <div className="container">
+            <br/>
+                <SearchBar />
+            </div>
+                
+            {/* searching bar and botton  end*/}
             </div>
     );    
 

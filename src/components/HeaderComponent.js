@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
+import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
+import {Nav,Navbar, NavbarBrand, NavItem, Tabs, Tab} from 'react-bootstrap';
 
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
@@ -48,29 +48,25 @@ class Header extends Component {
 
         return(
             <div className="nav-head ">
-                <Navbar  dark expand="md">        
+                <Navbar   expand="md">        
                     <NavbarToggler onClick={this.toggleNav} />
                     <NavbarBrand className="mr-auto" ><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"/> Accueil </NavLink>
+                                <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
 
-                            <NavDropdown  title={<a><span className="fa fa-list fa-lg"/> Centre de formation</a>} id="nav-dropdown-centre_de_formations">
-                                <NavDropdown.Item eventKey="4.1">Yoodev</NavDropdown.Item>
-                                <NavDropdown.Item eventKey="4.2">ISG</NavDropdown.Item>
-                                
-                            </NavDropdown>
-                            
-                            <NavDropdown title={<a><span className="fa fa-list fa-lg"/> Formations </a>} id="nav-dropdown-formations">
-                                <NavDropdown.Item eventKey="4.1">BTP</NavDropdown.Item>
-                                <NavDropdown.Item eventKey="4.2">BTS</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item eventKey="4.4">A court terme</NavDropdown.Item>
-                            </NavDropdown>
                             <NavItem>
-                                <NavLink className="nav-link" to=''><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
+                                <NavLink className="nav-link"  to='home'><span className="fa fa-list fa-lg"/> Centre de formation </NavLink>
+                            </NavItem>
+                            
+                            <NavItem>
+                                <NavLink className="nav-link"  to='home'><span className="fa fa-list fa-lg"/> Formations  </NavLink>
+                            </NavItem>
+
+                            <NavItem>
+                                <NavLink className="nav-link" to='quisommesnous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
                             {/*webmaster button begin */}
                             <NavItem>
@@ -85,10 +81,11 @@ class Header extends Component {
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace Etudiant</Button>
+                                    <Button  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Etudiant</Button>
                                 </NavItem>
-                                <NavItem>
-                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
+
+                                <NavItem className="ml-2">
+                                    <Button onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"/> Espace Centre</Button>
                                 </NavItem>
                             </Nav> 
                            
@@ -127,9 +124,18 @@ class Header extends Component {
             <ModalBody> 
                 <Tabs id="controlled-tab" >
                 <Tab  title="Log In Client" eventKey="LoginClient"> 
+                <div className="col-12">
+                    
+                    <h3>Log In</h3>
+                    <br/>
+                </div>
                 <LoginClient/>
                 </Tab>
                 <Tab  title="Sign Up Client" eventKey="SignUpClient" >
+                <div className="col-12">
+                
+                <h3>Sign Up</h3>
+                </div>
                 <SignUpClient/>
                 </Tab>
                 </Tabs>

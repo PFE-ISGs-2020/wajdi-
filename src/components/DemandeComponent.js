@@ -3,14 +3,14 @@ import axios from 'axios';
 import Menu from './sideNavWebmaster'
 const Demande = props => (  
   <tr>
-    <td>{props.demande.NomCentre}</td>
-    <td>{props.demande.Adresse}</td>
-    <td>{props.demande.Region}</td>
-    <td>{props.demande.Tel}</td>
-    <td>{props.demande.Email}</td>
-    <td>{props.demande.password}</td>    
+    <td>{props.centre.NomCentre}</td>
+    <td>{props.centre.Adresse}</td>
+    <td>{props.centre.Region}</td>
+    <td>{props.centre.Tel}</td>
+    <td>{props.centre.Email}</td>
+    <td>{props.centre.password}</td>    
     <td>
-    <a href="/" onClick={() => { props.approveDemande(props.demande._id) }}>Approve</a> | <a href="/" onClick={() => { props.deleteDemande(props.demande._id) }}>delete</a>
+    <a href="/" onClick={() => { props.approveDemande(props.centre) }}>Approve</a> | <a href="/" onClick={() => { props.deleteDemande(props.centre._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -22,14 +22,15 @@ export default class DemandeList extends Component {
     this.deleteDemande = this.deleteDemande.bind(this)
     this.approveDemande = this.approveDemande.bind(this)
 
-    this.state = {demande: []};
+    this.state = {centre: [],
+                  Centre :  null};
 
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/Demande/')
-      .then(demand => {
-        this.setState({ demande: demand.data })
+    axios.get('http://localhost:5000/Centre/Acces')
+      .then(centr => {
+        this.setState({ centre: centr.data })
       })
       .catch((error) => {
         console.log(error);
@@ -37,30 +38,37 @@ export default class DemandeList extends Component {
   }
 
   deleteDemande(id) {
-    axios.delete('http://localhost:5000/Demande/'+id)
+    
+    axios.delete('http://localhost:5000/Centre/'+id)
       .then(demand => { console.log(demand.data)});
 
     this.setState({
-      demande: this.state.demande.filter(el => el._id !== id)
+      centre: this.state.centre.filter(el => el._id !== id && el.Acces === 0)
     })
   }
 
-  approveDemande(id) {
-
+  approveDemande(Centre) {
    
-    axios.post('http://localhost:5000/centres/add', this.state.demande.filter(centre => centre._id === id)[0])
+   const CentreUpdated = {
+      NomCentre: Centre.NomCentre,
+      Adresse : Centre.Adresse,
+       Description: Centre.Description,
+       Region: Centre.Region,
+       Tel: Centre.Tel,
+       Email: Centre.Email,
+       password: Centre.password,
+       Acces: "1"}
+       
+    axios.post('http://localhost:5000/Centre/update/'+ Centre._id , CentreUpdated )
       .then(demand => { console.log(demand.data)});
       
-    axios.delete('http://localhost:5000/Demande/'+id)
-      .then(demand => { console.log(demand.data)});
-    this.setState({
-      demande : this.state.demande.filter(el => el._id !== id)
+     this.setState({
+      centre : this.state.centre.filter(el => el._id !== Centre._id  && el.Acces === 0)
     })
   }
-
   DemandeList() {
-    return this.state.demande.map(currentdemande => {
-      return <Demande  demande={currentdemande} deleteDemande={this.deleteDemande}  approveDemande={this.approveDemande} key={currentdemande._id} />;
+    return this.state.centre.map(currentdemande => {
+      return <Demande  centre={currentdemande} deleteDemande={this.deleteDemande}  approveDemande={this.approveDemande} key={currentdemande._id} />;
 
     });
   }

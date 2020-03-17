@@ -1,38 +1,30 @@
 .nav-head{
   background-color: rgb(110, 170, 172);
-}
 
-    #footer {
-      background-color: rgb(148, 144, 144);
-      
-      left: 0;
-        
-        height: 20%;
-        width: 100%;
-      margin:  auto;
-      clear:both;
-      position: absolute;
-    }
-    
-     .flex-column{
-      
-      background-color:rgb(110, 170, 172);
-      height: 100vh;
-      margin: 0;
-    }  
-    
+}
+ 
+#footer {
+  background-color: rgb(148, 144, 144);  
+  bottom:0px;    
+  left: 0;      
+  width: 100%;
+  position: fixed;
+}    
+.flex-column{      
+  background-color:rgb(110, 170, 172);
+  height: 100vh;
+  margin: 0;
+}      
 
 html {
   position: relative;
   min-height: 100%;
 }
 
-
 #body {
   width: auto;
   padding: 5px 14px 5px 14px;
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  
 }
-
-
