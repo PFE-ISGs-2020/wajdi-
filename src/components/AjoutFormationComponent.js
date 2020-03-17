@@ -44,6 +44,7 @@ class ajoutformation extends Component {
             if (response.data.length > 0) {
               this.setState({
                 themes: response.data.map(theme => theme.NomTheme),
+               
               })
               
             this.setState({
@@ -62,8 +63,13 @@ class ajoutformation extends Component {
         axios.get('http://localhost:5000/Formateur/')
           .then(response2 => {
             if (response2.data.length > 0) {
+
               this.setState({
                 formateurs: response2.data.map(Formateur => Formateur.NomFormateur),
+                
+              })
+              this.setState({
+                NomFormateur: this.state.formateurs[0]
               })
 
               this.setState({
@@ -81,6 +87,10 @@ class ajoutformation extends Component {
           if (response3.data.length > 0) {
             this.setState({
               centres: response3.data.map(Centre => Centre.NomCentre),
+              
+            })
+            this.setState({
+                NomCentre: this.state.centres[0],
             })
             
         this.setState({

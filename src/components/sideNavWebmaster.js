@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Nav, NavItem } from 'react-bootstrap';
+import {Nav, NavItem} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 class Menu extends Component {

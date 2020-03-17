@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
 import HomeWebmaster from './HomeWebmaster';
 
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
+
 class loginwebmaster extends Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,10 @@ class loginwebmaster extends Component {
            login: '',
             password: '', 
             error: '',
-            //isLoggedIn: false            
-        };       
+            //isLoggedIn: false
+            
+        };
+        
         
     } 
     
@@ -23,9 +27,15 @@ class loginwebmaster extends Component {
     onSubmit(e) {
         e.preventDefault();
         if (this.state.login !== "admin" && this.state.password !== "admin"){
-        this.state.error.setState('login ou mot de passe incorrect') ;
-        console.log(this.state.error);}
-        else  {return <HomeWebmaster />;}
+            this.setState({
+                error: 'login ou mot de passe incorrect'
+            })
+        return(console.log(this.state.error));}
+        
+        return (
+        <HomeWebmaster />
+         
+        );
     }
     onChangePassword(e) {
         this.setState({
@@ -46,8 +56,11 @@ class loginwebmaster extends Component {
         /* return this.props.error;
       }  */
     render() {
-        return(            
-            <div className="row row-content">               
+
+        return(
+            
+            <div className="row row-content">
+               
                 <div className="col-12 text-center">
                     <br/>
                

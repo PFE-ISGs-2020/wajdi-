@@ -25,7 +25,10 @@ import MainClient from './components/mainClient'
     
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
+<<<<<<< HEAD
         <Redirect to="/home" />
+=======
+>>>>>>> 63f7724eaf13fe698bd2135097a745bf2ca44dd4
         {/* <Route render={() => <h1>Page not found</h1>} /> */}
       </div>
 

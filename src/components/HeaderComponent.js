@@ -54,6 +54,7 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
+<<<<<<< HEAD
                                 <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
 
@@ -67,6 +68,25 @@ class Header extends Component {
 
                             <NavItem>
                                 <NavLink className="nav-link" to='quisommesnous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
+=======
+                                <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"> Accueil </span> </NavLink>
+                            </NavItem>
+
+                            <NavDropdown  title={<span className="fa fa-list fa-lg"> Centre de formation</span>} id="nav-dropdown-centre_de_formations">
+                                <NavDropdown.Item eventKey="4.1">Yoodev</NavDropdown.Item>
+                                <NavDropdown.Item eventKey="4.2">ISG</NavDropdown.Item>
+                                
+                            </NavDropdown>
+                            
+                            <NavDropdown title={<span className="fa fa-list fa-lg"> Formations </span>} id="nav-dropdown-formations">
+                                <NavDropdown.Item eventKey="4.1">BTP</NavDropdown.Item>
+                                <NavDropdown.Item eventKey="4.2">BTS</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item eventKey="4.4">A court terme</NavDropdown.Item>
+                            </NavDropdown>
+                            <NavItem>
+                                <NavLink className="nav-link" to='quisommesnous'><span className="fa fa-info fa-lg"> Qui sommes nous?</span> </NavLink>
+>>>>>>> 63f7724eaf13fe698bd2135097a745bf2ca44dd4
                             </NavItem>
                             {/*webmaster button begin */}
                             <NavItem>
