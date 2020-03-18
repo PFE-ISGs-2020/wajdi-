@@ -54,7 +54,7 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='home'><span className="fa fa-home fa-lg"> Accueil </span> </NavLink>
+                                <NavLink className="nav-link"  to='/'><span className="fa fa-home fa-lg"> Accueil </span> </NavLink>
                             </NavItem>
 
                             <NavDropdown  title={<span className="fa fa-list fa-lg"> Centre de formation</span>} id="nav-dropdown-centre_de_formations">

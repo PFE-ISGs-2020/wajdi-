@@ -33,7 +33,7 @@ class DetailFormationComponent extends Component {
                 {/*BreadCrumb begin */}
                 <div className="row">
                     <Breadcrumb>
-                        <BreadcrumbItem href="/home">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="/">Accueil</BreadcrumbItem>
                         <BreadcrumbItem active>{this.state.formationn.LibelleFormation}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
@@ -74,7 +74,7 @@ class DetailFormationComponent extends Component {
                     <p>Date fin:    {this.state.formationn.DateFinFormation}</p>
                 </div> 
                 <div className="row">
-                    <p>Nom du centre:   {this.state.formationn.nomcentre}</p>
+                    <p>Nom du centre:   {this.state.formationn.NomCentre}</p>
                 </div>  
                 <div className="row">
                     <p>Description: {this.state.formationn.DescriptionFormation}</p>

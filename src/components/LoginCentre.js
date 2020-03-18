@@ -1,10 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {  Button, Form,  FormFeedback, InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
+import axios from 'axios';
 
-class Login extends Component {
+const useFormInput = initialValue => {
+    const [value, setValue] = useState(initialValue);
+   
+    const handleChange = e => {
+      setValue(e.target.value);
+    }
+    return {
+      value,
+      onChange: handleChange
+    }
+  }
+
+function Login(props) {
     
-    render(){
-
+    const username = useFormInput('');
+    const password = useFormInput('');
+    
     return(
         <div className="row row-content">
             
@@ -16,7 +30,7 @@ class Login extends Component {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="username" />
+                    <Input placeholder="username" type="text" {...username} autoComplete="new-password" />
                 </InputGroup>
                 <br/>
                 <InputGroup>
@@ -24,18 +38,18 @@ class Login extends Component {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                     </InputGroupAddon>
-                    <Input type="password" placeholder="Password" />
+                    <Input type="password" placeholder="Password" {...password} autoComplete="new-password" />
                 </InputGroup>
-                <br/>
+                 <br/>
                 <Col md={{size: 10, offset: 9}}>
-                    <Button type="submit" value="submit" color="primary">Login</Button>
+                    <Button type="submit" value="submit" color="primary" ></Button>
                 </Col> 
                         {/* <FormFeedback>{error}</FormFeedback>    */}
             </Form>
             </div>
         </div>
     );
-    }
+ }   
 
-}
+
 export default Login;

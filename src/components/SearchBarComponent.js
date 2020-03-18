@@ -13,7 +13,7 @@ function RenderFormations ({formation}) {
         
         <Card>
             
-              <Link to= {`/home/DetailFormation/${formation._id}`} > 
+              <Link to= {`/DetailFormation/${formation._id}`} > 
             <Card.Header as="h5">{formation.LibelleFormation}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>

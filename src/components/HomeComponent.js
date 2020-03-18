@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Carousel, Jumbotron,InputGroup,Dropdown,DropdownButton,FormControl,Button,Pagination,Card} from 'react-bootstrap';
+import React, { Component} from 'react';
+import {Carousel, Jumbotron,Pagination,Card} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBarComponent';
@@ -13,7 +13,7 @@ function RenderFormations ({formation}) {
         
         <Card>
             
-              <Link to= {`/home/DetailFormation/${formation._id}`} > 
+              <Link to= {`/DetailFormation/${formation._id}`} > 
             <Card.Header as="h5">{formation.LibelleFormation}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>
