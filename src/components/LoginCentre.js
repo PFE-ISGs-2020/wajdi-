@@ -23,7 +23,7 @@ function Login(props) {
         <div className="row row-content">
             
             <div className="col-12 col-md-9">
-            <Form onSubmit={this.handleLogin}>
+            <Form /*onSubmit={this.handleLogin}*/>
                         
                 <InputGroup>
                     {/* Logo de User*/ }

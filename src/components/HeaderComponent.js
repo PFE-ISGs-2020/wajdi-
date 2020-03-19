@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
+import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar, NavbarBrand, NavItem, NavDropdown, Tabs, Tab} from 'react-bootstrap';
+import {Nav,Navbar,NavDropdown, NavbarBrand, NavItem, Tabs, Tab} from 'react-bootstrap';
 
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
@@ -85,10 +85,11 @@ class Header extends Component {
                             </Nav>
                             <Nav  className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg"/>Espace Etudiant</Button>
+                                    <Button  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Etudiant</Button>
                                 </NavItem>
-                                <NavItem>
-                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span>Espace Centre</Button>
+
+                                <NavItem className="ml-2">
+                                    <Button onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"/> Espace Centre</Button>
                                 </NavItem>
                             </Nav> 
                            
@@ -127,9 +128,18 @@ class Header extends Component {
             <ModalBody> 
                 <Tabs id="controlled-tab" >
                 <Tab  title="Log In Client" eventKey="LoginClient"> 
+                <div className="col-12">
+                    
+                    <h3>Log In</h3>
+                    <br/>
+                </div>
                 <LoginClient/>
                 </Tab>
                 <Tab  title="Sign Up Client" eventKey="SignUpClient" >
+                <div className="col-12">
+                
+                <h3>Sign Up</h3>
+                </div>
                 <SignUpClient/>
                 </Tab>
                 </Tabs>

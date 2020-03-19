@@ -46,12 +46,16 @@ class ajoutformation extends Component {
                 themes: response.data.map(theme => theme.NomTheme),
                
               })
-              this.setState({
-                NomTheme: this.state.themes[0],
+              
+            this.setState({
+            NomTheme: this.state.themes[0],
             })
 
             }
+
           })
+
+          
           .catch((error) => {
             console.log(error);
           })
@@ -64,6 +68,10 @@ class ajoutformation extends Component {
                 formateurs: response2.data.map(Formateur => Formateur.NomFormateur),
                 
               })
+              this.setState({
+                NomFormateur: this.state.formateurs[0]
+              })
+
               this.setState({
                 NomFormateur: this.state.formateurs[0]
               })
@@ -84,12 +92,16 @@ class ajoutformation extends Component {
             this.setState({
                 NomCentre: this.state.centres[0],
             })
+            
+        this.setState({
+            NomCentre: this.state.centres[0],
+        })
           }
         })
+
         .catch((error) => {
           console.log(error);
         })
-
 
       }
 
@@ -244,7 +256,7 @@ class ajoutformation extends Component {
                         <Label  md={5}>Nom Theme: </Label>
                         <Col md={7}>
                         <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
-                         value={this.state.NomTheme} onChange={this.onChangeNomTheme}  >
+                         value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
                              {
                                 this.state.themes.map(function(theme) {
                                 return <option 
@@ -262,7 +274,7 @@ class ajoutformation extends Component {
                     <FormGroup row>
                         <Label md={5}>Nom Formateur: </Label>
                         <Col md={7}>
-                        <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur" 
+                        <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
                          value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
                              {
                                 this.state.formateurs.map(function(formateur) {
@@ -277,12 +289,11 @@ class ajoutformation extends Component {
                         </Col>
                     </FormGroup>  
 
-
                     <FormGroup row>
                     
                         <Label md={5}>Nom Centre: </Label>
                         <Col md={7}>
-                        <Input className="form-control"  required type="select"   id="NomCentre" name="NomCentre" 
+                        <Input className="form-control"  required type="select"   id="NomCentre" name="NomCentre"
                          value={this.state.NomCentre} onChange={this.onChangeNomCentre} >
                              {
                                 this.state.centres.map(function(centre) {

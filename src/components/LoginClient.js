@@ -4,16 +4,12 @@ import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col
 
 class LoginClient extends Component {
 
-
-
     render(){
     return(
         <div className="row row-content">
         
-            <div className="col-12">
-               
-                
-               
+            <div className="col-12">            
+                               
             </div>
             <div className="col-12 col-md-9">
             <Form onSubmit={this.handleLogin}>

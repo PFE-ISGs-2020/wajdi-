@@ -29,6 +29,7 @@ import DashboardResponsable from './components/DashboardResponsable';
         <Route path="/DashboardResponsable" component={DashboardResponsable} />
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
+        <Redirect to="/home" />
         {/* <Route render={() => <h1>Page not found</h1>} /> */}
         </Switch>
       </div>

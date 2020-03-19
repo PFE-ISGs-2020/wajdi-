@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');//mongoose will help us to connect to our database
+const passport = require("passport");
+
 
 require('dotenv').config();
  
@@ -31,6 +33,11 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 });
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./passport")(passport);
 
 //require the files
 const ClientRouter = require('./routes/Client');

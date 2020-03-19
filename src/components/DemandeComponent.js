@@ -4,11 +4,11 @@ import Menu from './sideNavWebmaster'
 const Demande = props => (  
   <tr>
     <td>{props.centre.NomCentre}</td>
-    <td>{props.centre.Adresse}</td>
-    <td>{props.centre.Region}</td>
-    <td>{props.centre.Tel}</td>
-    <td>{props.centre.Email}</td>
-    <td>{props.centre.password}</td>    
+    <td>{props.centre.AdresseCentre}</td>
+    <td>{props.centre.RegionCentre}</td>
+    <td>{props.centre.TelCentre}</td>
+    <td>{props.centre.EmailCentre}</td>
+       
     <td>
     <a href="#" onClick={() => { props.approveDemande(props.centre) }}>Approve</a> | <a href="#" onClick={() => { props.deleteDemande(props.centre._id) }}>delete</a>
     </td>
@@ -43,7 +43,7 @@ export default class DemandeList extends Component {
       .then(demand => { console.log(demand.data)});
 
     this.setState({
-      centre: this.state.centre.filter(el => el._id !== id && el.Acces == 0)
+      centre: this.state.centre.filter(el => el._id !== id && el.Acces === 0)
     })
   }
 
@@ -63,7 +63,7 @@ export default class DemandeList extends Component {
       .then(demand => { console.log(demand.data)});
       
      this.setState({
-      centre : this.state.centre.filter(el => el._id !== Centre._id  && el.Acces == 0)
+      centre : this.state.centre.filter(el => el._id !== Centre._id  && el.Acces === 0)
     })
   }
   DemandeList() {
@@ -95,7 +95,6 @@ export default class DemandeList extends Component {
               <th>Region</th>
               <th>Tel</th>
               <th>Email</th>
-              <th>Password</th>
               <th>Actions</th>
             </tr>
           </thead>
