@@ -29,7 +29,6 @@ router.route('/add').post((req, res) => {
   const DescriptionCentre= req.body.DescriptionCentre;
   const Acces = req.body.Acces;
   
-
   const newCentre = new Centre({
     NomCentre,    
     AdresseCentre,

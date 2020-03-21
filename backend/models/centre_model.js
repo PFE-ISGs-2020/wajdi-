@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const centreSchema = new Schema({
   NomCentre: { type: String, required: true, minlength: 3 },
   AdresseCentre: { type: String, required: true },
-  TelCentre: { type: String, required: true },
+  TelCentre: { type: String, required: true }, 
+  RegionCentre: { type: String, required: true },  
+  DescriptionCentre: { type: String, required: true },
   EmailCentre: { type: String, required: true },
   passwordCentre: { type: String, required: true, minlength:8 },
-  RegionCentre: { type: String, required: true },
-  DescriptionCentre: { type: String, required: true },
   Acces: { type: Number , required: true },
 },
 );

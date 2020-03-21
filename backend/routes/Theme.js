@@ -35,7 +35,7 @@ router.route('/update/:id').post((req, res) => {
     Theme.findById(req.params.id)
     .then(theme => {
         
-        NomTheme = req.body.NomTheme;
+        theme.NomTheme = req.body.NomTheme;
 
         theme.save()
         .then(() => res.json('Theme Modifer!'))

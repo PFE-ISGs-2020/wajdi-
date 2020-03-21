@@ -11,7 +11,7 @@ class Menu extends Component {
             </NavItem>
 
             <NavItem>
-                <NavLink className="nav-link" to='DemandeList'> Demandes des responsables </NavLink>
+                <NavLink className="nav-link" to='/DemandeList'> Demandes des responsables </NavLink>
             </NavItem>
             <NavItem>
             <NavLink className="nav-link" to=''>Consulter les avis </NavLink>

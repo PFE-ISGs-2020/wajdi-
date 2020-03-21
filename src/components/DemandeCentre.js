@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Menu from './sideNavWebmaster'
+
+
 const Demande = props => (  
   <tr>
     <td>{props.centre.NomCentre}</td>
@@ -48,7 +50,7 @@ export default class DemandeList extends Component {
   }
 
   approveDemande(Centre) {
-   
+
    const CentreUpdated = {
       NomCentre: Centre.NomCentre,
       Adresse : Centre.Adresse,
@@ -68,7 +70,8 @@ export default class DemandeList extends Component {
   }
   DemandeList() {
     return this.state.centre.map(currentdemande => {
-      return <Demande  centre={currentdemande} deleteDemande={this.deleteDemande}  approveDemande={this.approveDemande} key={currentdemande._id} />;
+      return <Demande  centre={currentdemande} deleteDemande={this.deleteDemande}  
+      approveDemande={this.approveDemande} key={currentdemande._id} />;
 
     });
   }

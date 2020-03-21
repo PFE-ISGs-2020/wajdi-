@@ -43,7 +43,7 @@ class SearchBar extends Component {
         this.state = {Formation: [],
                       Centre:[],
                         selectedFormation : null,
-                        Critere:'',
+                        Critere:"Formation",
                         search: ''}    
       }
             
@@ -115,20 +115,19 @@ class SearchBar extends Component {
                     <InputGroup  className="mb-3">            
                         <Input className=" col-2 form-control"  required type="select"   
                         value={this.state.Critere} onChange={this.onChangeCritere} name="Critere">
-                            <option>Centre</option>
                             <option>Formation</option>
+                            <option>Centre</option>
                         </Input>   
                         
                         <FormControl aria-describedby="basic-addon1" 
                         onChange={this.onchange} />
 
-                        <Button className="col-1" variant="outline-secondary" type="submit">GO!!</Button>
                     </InputGroup>
                 </Form>           
 
                <div className="row-12 justify-content-center" >
                      
-               </div>            
+               </div>         
 
                 {list}
             </div>

@@ -12,7 +12,7 @@ class ajoutformation extends Component {
             CodeFormation:'',
             LibelleFormation:'',
             DateDebutFormation:'',
-            DateFinFormation:'',
+            DateFinFormation: '',
             DescriptionFormation:'',
             CapaciteFormation:'',
             NomTheme:'',
@@ -161,7 +161,8 @@ class ajoutformation extends Component {
             NomCentre: e.target.value
         });
     }
-
+    
+//récupération des donnees du l'Input
     onSubmit(e) {
         e.preventDefault();
         const formation = {
@@ -309,20 +310,18 @@ class ajoutformation extends Component {
                     </FormGroup>  
 
                     <FormGroup row>
-                        <Col md={{size: 10, offset: 8}}>
-                        
-                            <input type="submit" value="Creation Formation" className="btn btn-primary" />
-                         
+                        <Col md={{size: 10, offset: 8}}>                        
+                            <input type="submit" value="Creation Formation" className="btn btn-primary" />                         
                         </Col>        
-                    </FormGroup>        
+                    </FormGroup>  
                                 
                     </Form>  
+
+                 
             </div>
             </div>     
                
     );
-    
-
 }
 }
 export default ajoutformation;

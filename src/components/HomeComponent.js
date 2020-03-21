@@ -34,11 +34,11 @@ class Home extends Component {
             {/* Carousel slider */}
             <div className="row-12 justify-content-center">
                 <Jumbotron>
-                    <Carousel>
+                    <Carousel className="carousel">
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src=""
+                            src="./images/RED"
                             alt="First slide"
                             />
                             <Carousel.Caption>

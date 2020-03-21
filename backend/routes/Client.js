@@ -13,10 +13,9 @@ router.route('/add').post((req, res) => {
   const DatenaissClient = req.body.DatenaissClient;
   const ProfessionClient = req.body.ProfessionClient;
   const NiveauClient = req.body.NiveauClient;
-  const emailClient = req.body.emailClient;
+  const EmailClient = req.body.EmailClient;
   const TelClient = req.body.TelClient;
-  const LoginClient = req.body.LoginClient;
-  const passwordClient = req.body.passwordClient;
+  const PasswordClient = req.body.PasswordClient;
   const AdresseClient = req.body.AdresseClient;
 
   const newClient = new Client({
@@ -25,10 +24,9 @@ router.route('/add').post((req, res) => {
       DatenaissClient, 
       ProfessionClient,
       NiveauClient,
-      emailClient,
+      EmailClient,      
+      PasswordClient,
       TelClient,
-      LoginClient,
-      passwordClient,
       AdresseClient,
     });
 
@@ -59,10 +57,9 @@ router.route('/update/:id').post((req, res) => {
         client.DatenaissClient = req.body.DatenaissClient;
         client.ProfessionClient = req.body.ProfessionClient;
         client.NiveauClient = req.body.NiveauClient;
-        client.emailClient = req.body.emailClient;
+        client.EmailClient = req.body.EmailClient;        
+        client.PasswordClient = req.body.PasswordClient;
         client.TelClient = req.body.TelClient;
-        client.LoginClient = req.body.LoginClient;
-        client.passwordClient = req.body.passwordClient;
         client.AdresseClient = req.body.AdresseClient;
       
 
