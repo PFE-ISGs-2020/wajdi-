@@ -6,6 +6,7 @@ const isEmpty = require("is-empty");
     centre: {},
     loading: false 
   };
+
   export default function(state = initialState, action) {
     switch (action.type) {
       case SET_CURRENT_CENTRE: 
@@ -14,11 +15,13 @@ const isEmpty = require("is-empty");
           isAuthenticated: !isEmpty(action.payload),
           centre: action.payload
         };
+        
       case CENTRE_LOADING:
         return {
           ...state,
           loading: true
         };
+
       default:
         return state;
     }

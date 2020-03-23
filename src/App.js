@@ -6,16 +6,24 @@ import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
 import DemandeList from './components/DemandeCentre';
 import Home from './components/HomeComponent';
-import ajoutformation from './components/AjoutFormation';
+
 import FormationList from './components/Liste_Formations';
-import ModiferFormation from'./components/ModiferFormation';
+import ajoutformation from './components/Ajout_Formation';
+import ModiferFormation from'./components/Modifier_Formation';
+
+import FormateurList from'./components/Liste_Formateur';
+import ajoutformateur from './components/Ajout_Formateur';
+import ModiferFormateur from'./components/Modifier_Formateur';
+
 
 import HomeWebmaster from './components/HomeWebmaster';
 import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
 import DashboardResponsable from './components/DashboardResponsable';
+
 import { Provider } from "react-redux";
 import store from "./store";
+
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser, setCurrentCentre, logoutCentre } from "./actions/authActions";
@@ -30,6 +38,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set centre and isAuthenticated
   store.dispatch(setCurrentCentre(decoded));
+
 // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
@@ -51,15 +60,23 @@ if (localStorage.jwtToken) {
       <div id="body">
         <MainClient/>
         <Switch>
+        <Route path="/Home" exact component={Home} />
         <Route path="/DemandeList" exact component={DemandeList} />
-        <Route path="/ajoutformation" exact component={ajoutformation} />
-              
-        <Route path="/" exact component={Home} />
+       
+          <Route path="/FormationList" exact component={FormationList} />        
+          <Route path="/ajoutformation" exact component={ajoutformation} />
+          <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
+
+          <Route path="/FormateurList" exact component={FormateurList} />
+          <Route path="/ajoutformateur" exact component={ajoutformateur} />
+          <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
+      
+        
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
-        <Redirect to="/" />
-        {/* <Route render={() => <h1>Page not found</h1>} /> */}
+     
+  
         </Switch>
       </div>
       {/*  <Switch>
