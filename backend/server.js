@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');//mongoose will help us to connect to our database
-const passport = require("passport");
-
+const passportCentre = require("passport");
+const passportClient = require("passport");
 
 require('dotenv').config();
  
@@ -34,10 +34,15 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 });
 
-// Passport middleware
-app.use(passport.initialize());
-// Passport config
-require("./passport")(passport);
+// Passport Centre middleware
+app.use(passportCentre.initialize());
+// Passport Centre config
+require("./passportCentre")(passportCentre);
+
+// Passport Client middleware
+app.use(passportClient.initialize());
+// Passport Client config
+require("./passportClient")(passportClient);
 
 //require the files
 const ClientRouter = require('./routes/Client');

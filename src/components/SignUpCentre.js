@@ -1,7 +1,11 @@
 import React, { Component} from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios'; 
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux"; 
+import { signUpCentre } from "../actions/authActions";
+import classnames from "classnames";
+import { Link, withRouter } from "react-router-dom";
 
 class SignupCentre extends Component {
 
@@ -15,6 +19,7 @@ class SignupCentre extends Component {
         this.onChangepasswordCentre = this.onChangepasswordCentre.bind(this);
         this.onChangeRegionCentre = this.onChangeRegionCentre.bind(this);
         this.onChangeDescriptionCentre = this.onChangeDescriptionCentre.bind(this);
+        this.onChangepassword2 = this.onChangepassword2.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -25,11 +30,21 @@ class SignupCentre extends Component {
            passwordCentre: '',
            RegionCentre: '',
            DescriptionCentre: '',
+           password2:'',
            Acces: 0,
-           Demande: []
+           Demande: [],
+           errors: {}
         };
 
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
 
     onChangeNomCentre(e) {
         this.setState({
@@ -73,6 +88,12 @@ class SignupCentre extends Component {
         });
     }
     
+    onChangepassword2(e) {
+        this.setState({
+            password2: e.target.value
+        });
+    }
+    
       
     
     onSubmit(e) {
@@ -85,58 +106,70 @@ class SignupCentre extends Component {
             TelCentre: this.state.TelCentre,
             EmailCentre: this.state.EmailCentre,
             passwordCentre: this.state.passwordCentre,
+            password2: this.state.password2,
             Acces: this.state.Acces
         }
+
+        this.props.signUpCentre(Centre, this.props.history);
       
         console.log(Centre);
-       //Query pour ajouter un nouvau Centre
+       /* //Query pour ajouter un nouvau Centre
         axios.post('http://localhost:5000/Centre/add', Centre)
         .then(res => console.log(res.data));
        //Retourner au home page aprés l'ajout
-        window.location = '/home';
+        window.location = '/'; */
     }
 
     
     render(){
+        const { errors } = this.state;
         return(
     <div className="row row-content">
        
         <div className="col-12 col-md-9">
-            <Form onSubmit={this.onSubmit}>
+            <Form noValidate  onSubmit={this.onSubmit}>
                 <FormGroup row>
                     <Label htmlFor="NomCentre" md={5}>Nom du Centre</Label>
                         <Col md={7}>
                        
-                            <Input className="form-control" type="text" id="NomCentre" name="NomCentre" required
-                             placeholder="Nom du centre"
-                             value={this.state.NomCentre}
+                            <span className="red-text">{errors.NomCentre}</span>
+                            <Input className="form-control"  type="text" id="NomCentre" name="NomCentre" required
+                             placeholder="Nom du centre" value={this.state.NomCentre}
+                             error={errors.NomCentre}
+                             className={classnames("", {invalid: errors.NomCentre})}
                              onChange={this.onChangeNomCentre} />
                         </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="AdresseCentre" md={5}>Adresse</Label>
                         <Col md={7}>
+                            <span className="red-text">{errors.AdresseCentre}</span>
                             <Input className="form-control" type="text" id="AdresseCentre" name="AdresseCentre"
-                                placeholder="Adresse" required
-                                value={this.state.AdresseCentre}
+                                placeholder="Adresse" required value={this.state.AdresseCentre}
+                                error={errors.AdresseCentre}
+                                className={classnames("", {invalid: errors.AdresseCentre})}
                                 onChange={this.onChangeAdresseCentre} />
                         </Col>                        
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="TelCentre" md={5}>Téléphone</Label>
                         <Col md={7}>
+                            <span className="red-text">{errors.TelCentre}</span>
                             <Input  className="form-control" type="tel" id="TelCentre" name="TelCentre"
-                                placeholder="Téléphne" required
-                                value={this.state.TelCentre}
+                                placeholder="Téléphne" required value={this.state.TelCentre}
+                                error={errors.TelCentre}
+                                className={classnames("", {invalid: errors.TelCentre})}
                                 onChange={this.onChangeTelCentre} />
                         </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="EmailCentre" md={5}>Email</Label>
                         <Col md={7}>
+                            <span className="red-text">{errors.EmailCentre}</span>
                             <Input className="form-control"  required type="email" id="EmailCentre" name="EmailCentre"
-                                placeholder="Email"
-                                value={this.state.EmailCentre}
+                                placeholder="Email" value={this.state.EmailCentre}
+                                error={errors.EmailCentre}
+                                className={classnames("", {invalid: errors.EmailCentre})}
                                 onChange={this.onChangeEmailCentre} />
                         </Col>
                 </FormGroup>
@@ -176,21 +209,36 @@ class SignupCentre extends Component {
                 </FormGroup>
                                                     
                 <FormGroup row>
-                    <Label htmlFor="DescriptionCentre" md={5}>Description</Label>
+                    <Label htmlFor="DescriptionCentre" md={5}>Déscription</Label>
                     <Col md={7}>
+                        <span className="red-text">{errors.DescriptionCentre}</span>
                         <Input className="form-control"  required type="textarea" id="DescriptionCentre" name="DescriptionCentre"
                             rows="6" placeholder="Déscription"
-                            value={this.state.DescriptionCentre}
-                            onChange={this.onChangeDescriptionCentre}></Input>
+                            value={this.state.DescriptionCentre} onChange={this.onChangeDescriptionCentre}
+                            error={errors.DescriptionCentre}
+                            className={classnames("", {invalid: errors.DescriptionCentre})}></Input>
                     </Col>              
                 </FormGroup> 
                 <FormGroup row>    
                     <Label htmlFor="password" md={5}>Mot de passe</Label>
                         <Col md={7}>
+                            <span className="red-text">{errors.passwordCentre}</span>
                             <Input className="form-control"  required type="password" id="passwordCentre" name="passwordCentre"
-                                placeholder="Mot de passe"
+                                placeholder="Mot de passe" error={errors.passwordCentre}
                                 value={this.state.passwordCentre}
+                                className={classnames("", {invalid: errors.passwordCentre})}
                                 onChange={this.onChangepasswordCentre} />
+                        </Col>
+                </FormGroup>
+                <FormGroup row>    
+                    <Label htmlFor="password2" md={5}> Confirmez Mot de passe</Label>
+                        <Col md={7}>
+                            <span className="red-text">{errors.password2}</span>
+                            <Input className="form-control"  required type="password" id="password2" name="password2"
+                                placeholder="Confirmez Mot de passe"
+                                value={this.state.password2} error={errors.password2}
+                                onChange={this.onChangepassword2}
+                                className={classnames("", {invalid: errors.password2})} />
                         </Col>
                 </FormGroup>
 
@@ -213,4 +261,18 @@ class SignupCentre extends Component {
 
 }
 }
-export default SignupCentre;
+
+SignupCentre.propTypes = {
+    signUpCentregnupcentre: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+
+export default connect(
+    mapStateToProps,
+    { signUpCentre }
+  )(withRouter(SignupCentre));

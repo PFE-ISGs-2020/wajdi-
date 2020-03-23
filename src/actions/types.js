@@ -1,0 +1,3 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const CENTRE_LOADING = "USER_LOADING";
+export const SET_CURRENT_CENTRE = "SET_CURRENT_USER";

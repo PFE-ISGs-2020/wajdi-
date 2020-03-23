@@ -10,13 +10,37 @@ import HomeWebmaster from './components/HomeWebmaster';
 import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
 import DashboardResponsable from './components/DashboardResponsable';
- 
+import { Provider } from "react-redux";
+import store from "./store";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser, setCurrentCentre, logoutCentre } from "./actions/authActions";
+import PrivateRoute from "./components/private-route/PrivateRoute";
+
+// Check for token to keep centre logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get centre info and exp
+  const decoded = jwt_decode(token);
+  // Set centre and isAuthenticated
+  store.dispatch(setCurrentCentre(decoded));
+// Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout centre
+    store.dispatch(logoutCentre());
+    // Redirect to home
+    window.location.href = "./";
+  }
+}
  class App extends Component {   
   render() {
 
     return (
-
-    <BrowserRouter>
+      <Provider store={store}>
+    <BrowserRouter >
       <div id="header">
         <Header />
       </div>
@@ -26,18 +50,21 @@ import DashboardResponsable from './components/DashboardResponsable';
         <Route path="/DemandeList" exact component={DemandeList} />
         <Route path="/ajoutformation" exact component={ajoutformation} />
       
-        <Route path="/DashboardResponsable" component={DashboardResponsable} />
+        <Route path="/DashboardResponsable" component={DashboardResponsable} />  
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
-        <Redirect to="/home" />
+        <Redirect to="/" />
         {/* <Route render={() => <h1>Page not found</h1>} /> */}
         </Switch>
       </div>
-
+      {/*  <Switch>
+        <PrivateRoute exact path="/DashboardResponsable" component={DashboardResponsable} />
+      </Switch> */} 
       <div id="footer">
         <Footer />
       </div>
      </BrowserRouter>
+     </Provider> 
     
     
   );

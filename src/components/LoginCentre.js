@@ -1,55 +1,95 @@
-import React, { useState } from 'react';
-import {  Button, Form,  FormFeedback, InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
-import axios from 'axios';
+import React, { Component } from "react";
+import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginCentre } from "../actions/authActions";
+import classnames from "classnames";
 
-const useFormInput = initialValue => {
-    const [value, setValue] = useState(initialValue);
-   
-    const handleChange = e => {
-      setValue(e.target.value);
-    }
-    return {
-      value,
-      onChange: handleChange
+class LoginCentre extends Component {
+  
+    constructor() {
+    super();
+    this.state = {
+        EmailCentre: "",
+        passwordCentre: "",
+        errors: {}
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      window.location="/dashboardResponsable"; // push responsable to dashboard when they login
+    } 
+if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
   }
 
-function Login(props) {
-    
-    const username = useFormInput('');
-    const password = useFormInput('');
-    
-    return(
-        <div className="row row-content">
+onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+onSubmit = e => {
+    e.preventDefault();
+const Centre = {
+    EmailCentre: this.state.EmailCentre,
+      passwordCentre: this.state.passwordCentre
+    };
+console.log(Centre);
+this.props.loginCentre(Centre); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+  
+  };
+  
+render() {
+    const { errors } = this.state;
+return (
+      <div className="row row-content">
+        <div  className="col-12">
             
-            <div className="col-12 col-md-9">
-            <Form /*onSubmit={this.handleLogin}*/>
-                        
-                <InputGroup>
-                    {/* Logo de User*/ }
-                    <InputGroupAddon addonType="prepend">
-                        <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder="username" type="text" {...username} autoComplete="new-password" />
-                </InputGroup>
-                <br/>
-                <InputGroup>
-                    {/* Logo pour le password*/ }
-                    <InputGroupAddon addonType="prepend">
-                        <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
-                    </InputGroupAddon>
-                    <Input type="password" placeholder="Password" {...password} autoComplete="new-password" />
-                </InputGroup>
-                 <br/>
-                <Col md={{size: 10, offset: 9}}>
-                    <Button type="submit" value="submit" color="primary" ></Button>
-                </Col> 
-                        {/* <FormFeedback>{error}</FormFeedback>    */}
-            </Form>
-            </div>
+            <Form noValidate onSubmit={this.onSubmit}>
+            <InputGroup>
+
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
+                </InputGroupAddon>
+                <Input placeholder="Email"  onChange={this.onChange} value={this.state.EmailCentre}
+                error={errors.EmailCentre} id="EmailCentre" type="EmailCentre"
+                className={classnames("", {invalid: errors.EmailCentre || errors.emailnotfound})}/>
+                <span className="red-text">{errors.EmailCentre}{errors.emailnotfound} </span>
+              </InputGroup>
+            <br/>
+            <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
+                </InputGroupAddon>
+                <Input type="password" placeholder="Mot de passe" onChange={this.onChange} 
+                 value={this.state.passwordCentre}  error={errors.passwordCentre} id="passwordCentre"
+                 className={classnames("", { invalid: errors.passwordCentre || errors.passwordincorrect })}/>
+                <span className="red-text"> {errors.passwordCentre} {errors.passwordincorrect}</span>
+            </InputGroup>            
+            <br/>
+            <Col md={{size: 10, offset: 9}}>
+                    <Button type="submit" value="submit" color="primary">Login</Button>
+            </Col> 
+        </Form>  
+            
         </div>
+      </div>
     );
- }   
+  }
+}
+LoginCentre.propTypes = {
+  loginCentre: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { loginCentre }
+)(LoginCentre);
 
-
-export default Login;

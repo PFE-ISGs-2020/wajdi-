@@ -27,7 +27,6 @@ router.route('/List').get((req, res) => {
 });
 
 //Sign Up centre 
-//router.post("/register"), (req, res) router.route('/add').post((req, res)
 router.route('/add').post((req, res)=> {
     // Form validation
   const { errors, isValid } = validateSignUpCentreInput(req.body);
@@ -82,13 +81,13 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Centre.findById(req.params.id)
     .then(centre => {        
-        NomCentre = req.body.NomCentre;  
-        AdresseCentre = req.body.AdresseCentre;
-        TelCentre = req.body.TelCentre;
-        EmailCentre= req.body.EmailCentre;
-        passwordCentre = req.body.passwordCentre;
-        RegionCentre= req.body.RegionCentre;
-        DescriptionCentre= req.body.DescriptionCentre;
+      centre.NomCentre = req.body.NomCentre;  
+      centre.AdresseCentre = req.body.AdresseCentre;
+      centre.TelCentre = req.body.TelCentre;
+      centre.EmailCentre= req.body.EmailCentre;
+      centre.passwordCentre = req.body.passwordCentre;
+      centre.RegionCentre= req.body.RegionCentre;
+      centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
         
         centre.save()
@@ -102,7 +101,6 @@ router.route('/update/:id').post((req, res) => {
 
 router.route('/loginCentre').post((req, res)=> {
 
-//router.post("/loginCentre", (req, res) => {
     // Form validation
   const { errors, isValid } = validateLoginCentreInput(req.body);
   // Check validation
