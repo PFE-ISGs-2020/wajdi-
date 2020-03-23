@@ -75,7 +75,8 @@ router.route('/update/:id').post((req, res) => {
         client.DatenaissClient = req.body.DatenaissClient;
         client.ProfessionClient = req.body.ProfessionClient;
         client.NiveauClient = req.body.NiveauClient;
-        client.emailClient = req.body.emailClient;
+        client.EmailClient = req.body.EmailClient;        
+        client.PasswordClient = req.body.PasswordClient;
         client.TelClient = req.body.TelClient;
         client.AdresseClient = req.body.AdresseClient;
       

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
 import Home from './HomeComponent';
 import axios from 'axios';
@@ -34,11 +34,14 @@ class MainClient extends Component {
           };
          
         return(
-            <div>
-    <Switch>
-        <Route exact path="/"  component={Home} />
+    <BrowserRouter>
+    
+    <Route>
+        <Route exact path="/home"  component={Home} />
         <Route path='/home/DetailFormation/:formationId' component={FormationWithId} />
-    </Switch></div>
+    </Route>
+    
+    </BrowserRouter>
         );
 }}
 export default MainClient;

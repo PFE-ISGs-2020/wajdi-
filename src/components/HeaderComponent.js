@@ -74,12 +74,12 @@ class Header extends Component {
                             </NavItem>
                             {/*webmaster button begin */}
                             <NavItem>
-                                <NavLink className="nav-link" to='DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
+                                <NavLink className="nav-link" to='/DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
                             </NavItem>
                             {/*webmaster button end */}
                             {/*responsable button begin */}
                             <NavItem>
-                                <NavLink className="nav-link" to= 'ajoutformation' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
+                                <NavLink className="nav-link" to= '/FormationList' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
                             </NavItem>
                             {/*responsable button end */}
                             </Nav>
@@ -97,6 +97,7 @@ class Header extends Component {
                         </Collapse> 
                                         
                 </Navbar> 
+                
             {/*modal centre begin */}
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                 <ModalBody>
@@ -122,6 +123,7 @@ class Header extends Component {
                 </ModalBody>
          </Modal> 
          {/*modal centre end */}
+
          {/*modal client begin */}
          <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
    

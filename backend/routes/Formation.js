@@ -50,16 +50,16 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Formation.findById(req.params.id)
     .then(formation => {
-        
-        CodeFormation = req.body.CodeFormation;
-        LibelleFormation = req.body.LibelleFormation;
-        DateDebutFormation = req.body.DateDebutFormation;
-        DateFinFormation = req.body.DateFinFormation;
-        DescriptionFormation= req.body.DescriptionFormation;
-        CapaciteFormation= req.body.CapaciteFormation;
-        NomTheme= req.body.NomTheme;
-        NomFormateur= req.body.NomFormateur;
-        NomCentre=req.body.NomCentre;
+                
+        formation.CodeFormation = req.body.CodeFormation;
+        formation.LibelleFormation = req.body.LibelleFormation;
+        formation.DateDebutFormation = req.body.DateDebutFormation;
+        formation.DateFinFormation = req.body.DateFinFormation;
+        formation.DescriptionFormation= req.body.DescriptionFormation;
+        formation.CapaciteFormation= req.body.CapaciteFormation;
+        formation.NomTheme= req.body.NomTheme;
+        formation.NomFormateur= req.body.NomFormateur;
+        formation.NomCentre=req.body.NomCentre;
 
         formation.save()
         .then(() => res.json('Formation Modifer!'))

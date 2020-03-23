@@ -11,11 +11,13 @@ router.route('/add').post((req, res) => {
   const NomFormateur = req.body.NomFormateur;
   const PrenomFormateur = req.body.PrenomFormateur;
   const SpecialiteFormateur = req.body.SpecialiteFormateur;  
+  const NomCentre =req.body.NomCentre;
 
   const newFormateur = new Formateur({
     NomFormateur,
     PrenomFormateur,
     SpecialiteFormateur,
+    NomCentre
   });
 
   newFormateur.save()
@@ -39,10 +41,11 @@ router.route('/update/:id').post((req, res) => {
     Formateur.findById(req.params.id)
     .then(formateur => {
         
-        NomFormateur = req.body.NomFormateur;
-        PrenomFormateur = req.body.PrenomFormateur;
-        SpecialiteFormateur = req.body.SpecialiteFormateur;
-        
+        formateur.NomFormateur = req.body.NomFormateur;
+        formateur.PrenomFormateur = req.body.PrenomFormateur;
+        formateur.SpecialiteFormateur = req.body.SpecialiteFormateur;
+        formateur.NomCentre=req.body.NomCentre;
+
         formateur.save()
         .then(() => res.json('Formateur Modifer!'))
         .catch(err => res.status(400).json('Error: ' + err));

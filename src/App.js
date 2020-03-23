@@ -4,8 +4,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
-import DemandeList from './components/DemandeComponent';
-import ajoutformation from './components/AjoutFormationComponent';
+import DemandeList from './components/DemandeCentre';
+import Home from './components/HomeComponent';
+import ajoutformation from './components/AjoutFormation';
+import FormationList from './components/Liste_Formations';
+import ModiferFormation from'./components/ModiferFormation';
+
 import HomeWebmaster from './components/HomeWebmaster';
 import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
@@ -49,7 +53,8 @@ if (localStorage.jwtToken) {
         <Switch>
         <Route path="/DemandeList" exact component={DemandeList} />
         <Route path="/ajoutformation" exact component={ajoutformation} />
-      
+              
+        <Route path="/" exact component={Home} />
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />

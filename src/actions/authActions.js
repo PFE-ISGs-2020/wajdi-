@@ -61,4 +61,5 @@ export const logoutCentre = () => dispatch => {
   setAuthToken(false);
   // Set current Centre to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentCentre({}));
+  window.location="/";
 };
