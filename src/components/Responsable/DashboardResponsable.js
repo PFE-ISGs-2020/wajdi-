@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutCentre } from "../actions/authActions";
+import { logoutCentre } from "../../actions/authActions";
 
 class DashboardResponsable extends Component {
   onLogoutClick = e => {

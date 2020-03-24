@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Menu from './sideNavWebmaster'
 
-
 const Demande = props => (  
   <tr>
     <td>{props.centre.NomCentre}</td>
@@ -50,14 +49,14 @@ export default class DemandeList extends Component {
 
   approveDemande(Centre) {
 
-   const CentreUpdated = {
+    const CentreUpdated = {
       NomCentre: Centre.NomCentre,
-      Adresse : Centre.Adresse,
-       Description: Centre.Description,
-       Region: Centre.Region,
-       Tel: Centre.Tel,
-       Email: Centre.Email,
-       password: Centre.password,
+      AdresseCentre : Centre.AdresseCentre,
+      DescriptionCentre: Centre.DescriptionCentre,
+       RegionCentre: Centre.RegionCentre,
+       TelCentre: Centre.TelCentre,
+       EmailCentre: Centre.EmailCentre,
+       passwordCentre: Centre.passwordCentre,
        Acces: "1"}
        
     axios.post('http://localhost:5000/Centre/update/'+ Centre._id , CentreUpdated )
@@ -67,6 +66,7 @@ export default class DemandeList extends Component {
       centre : this.state.centre.filter(el => el._id !== Centre._id  && el.Acces === 0)
     })
   }
+
   DemandeList() {
     return this.state.centre.map(currentdemande => {
       return <Demande  centre={currentdemande} deleteDemande={this.deleteDemande}  

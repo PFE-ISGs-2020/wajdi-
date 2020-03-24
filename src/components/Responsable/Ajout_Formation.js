@@ -5,7 +5,8 @@ import axios from 'axios';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-class ajoutformation extends Component {
+
+class AjoutFormation extends Component {
 
     constructor(props) {
         super(props);
@@ -271,7 +272,7 @@ class ajoutformation extends Component {
     );
 }
 }
-ajoutformation.propTypes = {
+AjoutFormation.propTypes = {
     auth: PropTypes.object.isRequired
   };  
 
@@ -279,4 +280,4 @@ ajoutformation.propTypes = {
     auth: state.auth
   });
 
-export default connect(mapStateToProps)(ajoutformation);
+export default connect(mapStateToProps)(AjoutFormation);

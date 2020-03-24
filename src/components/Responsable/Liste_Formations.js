@@ -74,8 +74,8 @@ class FormationList extends Component {
 
   render() {
     return (
-      <div>
-       <div className="row row-content">  
+      <div className=" container ">
+       <div className="row justify-content-md-center">  
          <section className="col-10 text-center">   
         <br/>
         <br/>
