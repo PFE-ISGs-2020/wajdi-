@@ -45,19 +45,19 @@ if (localStorage.jwtToken) {
     // Logout centre
     store.dispatch(logoutCentre());
     // Redirect to home
-    window.location.href = "./";
+    window.location.href = "/";
   }
 }
  class App extends Component {   
   render() {
 
     return (
-      <Provider store={store}>
+    <Provider store={store}>
     <BrowserRouter >
       <div id="header">
         <Header />
       </div>
-      <div id="body">
+      <div id="Body">
         <MainClient/>
         <Switch>
         <Route path="/Home" exact component={Home} />

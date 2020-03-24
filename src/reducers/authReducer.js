@@ -1,10 +1,11 @@
-import { SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/types";
+import { CENTRE_LOADED,SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/types";
   
-const isEmpty = require("is-empty");
+  const isEmpty = require("is-empty");
   const initialState = {
+    token: localStorage.getItem('token'),
     isAuthenticated: false,
-    centre: {},
-    loading: false 
+    centre: null,
+    isLoading: false 
   };
 
   export default function(state = initialState, action) {

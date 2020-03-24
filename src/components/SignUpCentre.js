@@ -28,7 +28,7 @@ class SignupCentre extends Component {
            TelCentre: '',
            EmailCentre: '',
            passwordCentre: '',
-           RegionCentre: '',
+           RegionCentre: 'Ariana',
            DescriptionCentre: '',
            password2:'',
            Acces: 0,
@@ -272,7 +272,4 @@ const mapStateToProps = state => ({
     errors: state.errors
   });
 
-export default connect(
-    mapStateToProps,
-    { signUpCentre }
-  )(withRouter(SignupCentre));
+export default connect( mapStateToProps, { signUpCentre })(withRouter(SignupCentre));
