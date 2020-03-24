@@ -37,8 +37,8 @@ class MainClient extends Component {
     <BrowserRouter>
     
     <Route>
-        <Route exact path="/home"  component={Home} />
-        <Route path='/home/DetailFormation/:formationId' component={FormationWithId} />
+        <Route exact path="/"  component={Home} />
+        <Route path='/DetailFormation/:formationId' component={FormationWithId} />
     </Route>
     
     </BrowserRouter>

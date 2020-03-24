@@ -37,7 +37,7 @@ const Centre = {
       passwordCentre: this.state.passwordCentre
     };
 console.log(Centre);
-this.props.loginCentre(Centre); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+this.props.loginCentre(Centre, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   
   };
   
@@ -88,8 +88,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-export default connect(
-  mapStateToProps,
-  { loginCentre }
-)(LoginCentre);
+export default connect(mapStateToProps, { loginCentre })(LoginCentre);
+  
+ 
+
 

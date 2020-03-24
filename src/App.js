@@ -36,19 +36,19 @@ if (localStorage.jwtToken) {
     // Logout centre
     store.dispatch(logoutCentre());
     // Redirect to home
-    window.location.href = "./";
+    window.location.href = "/";
   }
 }
  class App extends Component {   
   render() {
 
     return (
-      <Provider store={store}>
+    <Provider store={store}>
     <BrowserRouter >
       <div id="header">
         <Header />
       </div>
-      <div id="body">
+      <div id="Body">
         <MainClient/>
         <Switch>
         <Route path="/DemandeList" exact component={DemandeList} />
@@ -58,8 +58,8 @@ if (localStorage.jwtToken) {
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
-        <Redirect to="/" />
-        {/* <Route render={() => <h1>Page not found</h1>} /> */}
+         {/*<Redirect to="/" />
+        <Route render={() => <h1>Page not found</h1>} /> */}
         </Switch>
       </div>
       {/*  <Switch>
