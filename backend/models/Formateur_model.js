@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const formateurSchema = new Schema({
   NomFormateur: {type: String,required: true,trim: true,unique:false},
-  PrenomFormateur: {type: String,required: true,trim: true},
+  PrenomFormateur: {type: String,required: true,trim: true,unique:false},
   SpecialiteFormateur: {type: String,required: true,trim: true},
-  //NomCentre:{type: String, required: true}
+  NomCentre:{type: String, required: true}
 }, {
   timestamps: true,
 });

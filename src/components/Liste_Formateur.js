@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Button} from 'reactstrap';
 import axios from 'axios';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 const Formateur = props => (  
   <tr>
     <td></td>
@@ -26,8 +29,9 @@ const Formateur = props => (
     </td>   
   </tr>
 )
+ 
 
-export default class FormateurList extends Component {
+class FormateurList extends Component {
   constructor(props) {
     super(props);
 
@@ -37,14 +41,15 @@ export default class FormateurList extends Component {
                   Formateur : null};
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:5000/Formateur')
-      .then(formateu => {
-        this.setState({ formateur: formateu.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+  componentDidMount() {    
+    const {centre} = this.props.auth;
+      axios.get('http://localhost:5000/Formateur/listbynamecentre/'+centre.NomCentre)
+    .then(form => {
+      this.setState({ formateur: form.data })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   supprimerFormateur(id) {    
@@ -102,3 +107,12 @@ export default class FormateurList extends Component {
     )
   }
 }
+FormateurList.propTypes = {
+  auth: PropTypes.object.isRequired
+};  
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default   connect(mapStateToProps)(FormateurList);

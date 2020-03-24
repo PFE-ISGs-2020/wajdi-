@@ -3,7 +3,6 @@ import {Carousel, Jumbotron,Pagination} from 'react-bootstrap';
 import axios from 'axios';
 
 import SearchBar from './SearchBarComponent';
-           
 
 class Home extends Component {
     constructor(props) {

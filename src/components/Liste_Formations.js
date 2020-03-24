@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {Button} from 'reactstrap';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 const Formation = props => (  
   <tr>
     <td></td>
@@ -13,7 +16,6 @@ const Formation = props => (
     <td>{props.formation.CapaciteFormation}</td>   
     <td>{props.formation.NomTheme}</td>
     <td>{props.formation.NomFormateur}</td>   
-    <td>{props.formation.NomCentre}</td>
     <td>
       <a href={"/ModiferFormation/"+props.formation._id}>
         <Button className="btn btn-warning btn-sm" >
@@ -31,7 +33,7 @@ const Formation = props => (
   </tr>
 )
 
-export default class FormationList extends Component {
+class FormationList extends Component {
   constructor(props) {
     super(props);
 
@@ -44,13 +46,14 @@ export default class FormationList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/Formation')
-      .then(format => {
-        this.setState({ formation: format.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    const {centre} = this.props.auth;
+      axios.get('http://localhost:5000/Formation/listbynamecentre/'+centre.NomCentre)
+    .then(forma => {
+      this.setState({ formation: forma.data })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
  
   supprimerFormation(id) {    
@@ -97,7 +100,6 @@ export default class FormationList extends Component {
               <th>Capacite </th>
               <th>Theme</th>
               <th>Formateur</th>
-              <th>Centre</th>
               <th>Modifier</th>
               <th>Supprimer</th>
 
@@ -114,3 +116,12 @@ export default class FormationList extends Component {
     )
   }
 }
+FormationList.propTypes = {
+  auth: PropTypes.object.isRequired
+};  
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default   connect(mapStateToProps)(FormationList);

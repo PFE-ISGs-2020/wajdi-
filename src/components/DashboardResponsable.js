@@ -43,12 +43,12 @@ class DashboardResponsable extends Component {
     }
   }
 
+
   DashboardResponsable.propTypes = {
     logoutCentre: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
   
-
   const mapStateToProps = state => ({
     auth: state.auth
   });

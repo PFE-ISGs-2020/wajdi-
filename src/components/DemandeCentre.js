@@ -26,7 +26,6 @@ export default class DemandeList extends Component {
 
     this.state = {centre: [],
                   Centre :  null};
-
   }
 
   componentDidMount() {

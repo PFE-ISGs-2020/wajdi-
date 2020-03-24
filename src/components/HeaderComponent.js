@@ -76,7 +76,7 @@ class Header extends Component {
                             {/*webmaster button end */}
                             {/*responsable button begin */}
                             <NavItem>
-                                <NavLink className="nav-link" to= '/FormateurList' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
+                                <NavLink className="nav-link" to= '/FormationList' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
                             </NavItem>
                             {/*responsable button end */}
                             </Nav>

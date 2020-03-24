@@ -3,6 +3,9 @@ import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios'; 
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 class ajoutformateur extends Component {
 
     constructor(props) {
@@ -11,8 +14,7 @@ class ajoutformateur extends Component {
         this.state = {
             NomFormateur:'',
             PrenomFormateur:'',
-            SpecialiteFormateur:'',           
-               
+            SpecialiteFormateur:''
         };
 
         this.onChangeNomFormateur = this.onChangeNomFormateur.bind(this);
@@ -40,17 +42,17 @@ class ajoutformateur extends Component {
             SpecialiteFormateur: e.target.value
         });
     }
-    
+
 //récupération des donnees du l'Input
 
     onSubmit(e) {
         e.preventDefault();
-        
+        const {centre} = this.props.auth;
         const formateur = {
             NomFormateur: this.state.NomFormateur,
             PrenomFormateur: this.state.PrenomFormateur,
             SpecialiteFormateur: this.state.SpecialiteFormateur,  
-               
+            NomCentre:centre.NomCentre 
         }
       
         console.log(formateur);
@@ -66,7 +68,7 @@ class ajoutformateur extends Component {
     }
 
     render(){
-         
+        
         return(
             
             <div className=" container">
@@ -93,7 +95,7 @@ class ajoutformateur extends Component {
                     </FormGroup>
 
                     <FormGroup row>
-                        <Label htmlFor="SpecialiteFormateur" md={5}>SpecialiteFormateur</Label>
+                        <Label htmlFor="SpecialiteFormateur" md={5}>Specialite Formateur</Label>
                             <Col md={7}>
                                 <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
                                     placeholder="Specialite Formateur"
@@ -115,4 +117,12 @@ class ajoutformateur extends Component {
     );
 }
 }
-export default ajoutformateur;
+ajoutformateur.propTypes = {
+    auth: PropTypes.object.isRequired
+  };  
+
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps)(ajoutformateur);

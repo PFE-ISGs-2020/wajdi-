@@ -40,7 +40,7 @@ router.route('/add').post((req, res)=> {
       } else {
          
          newCentre = new Centre({
-          NomCentre : req.body.NomCentre, 
+         NomCentre : req.body.NomCentre, 
          AdresseCentre : req.body.AdresseCentre,
          TelCentre : req.body.TelCentre,
          EmailCentre : req.body.EmailCentre,
@@ -63,7 +63,6 @@ router.route('/add').post((req, res)=> {
       }
     });
   });
-
 
 
 router.route('/:id').get((req, res) => {
@@ -122,10 +121,9 @@ router.route('/loginCentre').post((req, res)=> {
           // Create JWT Payload
           const payload = {
             id: centre._id,
-            nomCentre: centre.NomCentre
+            NomCentre: centre.NomCentre
           };
   // Sign token
-  
           jwt.sign(
             payload,
             "secret",
@@ -146,6 +144,7 @@ router.route('/loginCentre').post((req, res)=> {
         }
       });
     });
+
   });
 
 module.exports = router;
