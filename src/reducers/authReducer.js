@@ -7,6 +7,7 @@ import { CENTRE_LOADED,SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/typ
     centre: null,
     isLoading: false 
   };
+
   export default function(state = initialState, action) {
     switch (action.type) {
       case SET_CURRENT_CENTRE: 
@@ -15,7 +16,13 @@ import { CENTRE_LOADED,SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/typ
           isAuthenticated: !isEmpty(action.payload),
           centre: action.payload
         };
-       
+        
+      case CENTRE_LOADING:
+        return {
+          ...state,
+          loading: true
+        };
+
       default:
         return state;
     }

@@ -23,7 +23,7 @@ function RenderFormations ({formation}) {
 function RenderCentres ({centre}) {    
     return (        
         <Card>            
-            <Link to= {`/home/DetailFormationw/${centre._id}`} > 
+            <Link to= {`/DetailFormation/${centre._id}`} > 
                 <Card.Header as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {Button} from 'reactstrap';
 
 const Formation = props => (  
   <tr>
+    <td></td>
     <td>{props.formation.CodeFormation}</td>
     <td>{props.formation.LibelleFormation}</td>
     <td>{props.formation.DateDebutFormation}</td>
@@ -14,8 +15,18 @@ const Formation = props => (
     <td>{props.formation.NomFormateur}</td>   
     <td>{props.formation.NomCentre}</td>
     <td>
-    <Link to={"/ModiferFormation/"+props.formation._id}>Modifer</Link>| 
-    <a href="/" onClick={() => { props.supprimerFormation(props.formation._id) }}>Supprimer</a>
+      <a href={"/ModiferFormation/"+props.formation._id}>
+        <Button className="btn btn-warning btn-sm" >
+        <span className="fa fa-edit"></span>
+        </Button>
+      </a>
+    </td>
+    <td>
+        <a href="/">
+          <Button className="btn btn-danger btn-sm"
+          onClick={() => { props.supprimerFormation(props.formation._id) }}>
+          <span className="fa fa-times"></span></Button>
+        </a> 
     </td>
   </tr>
 )
@@ -27,7 +38,8 @@ export default class FormationList extends Component {
     this.supprimerFormation = this.supprimerFormation.bind(this)
 
     this.state = {formation: [],
-                  Formation :  null};
+                  Formation :  null  };
+    
 
   }
 
@@ -40,7 +52,7 @@ export default class FormationList extends Component {
         console.log(error);
       })
   }
-
+ 
   supprimerFormation(id) {    
     axios.delete('http://localhost:5000/Formation/'+id)
       .then(formationn => { console.log(formationn.data)});
@@ -64,22 +76,31 @@ export default class FormationList extends Component {
          <section className="col-10 text-center">   
         <br/>
         <br/>
-        <h3> Demande d'accés des responsables</h3>
+        <h3> Liste Des Formations </h3>
         <br/>
-        <br/>        
+        <br/>   
+            
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Code Formation</th>
-              <th>Libelle Formation</th>
-              <th>Date Debut Formation</th>
-              <th>Date Fin Formation</th>
-              <th>Description Formation</th>
-              <th>Capacite Formation</th>
-              <th>Nom Theme</th>
-              <th>Nom Formateur</th>
-              <th>Nom Centre</th>
-              <th>Décision</th>
+              <th><a href="/ajoutformation">
+                 <Button className="btn btn-success btn-sm" >
+                  <span className="fa fa-plus"></span>
+                  </Button>
+                  </a> 
+              </th>
+              <th>Code</th>
+              <th>Libelle</th>
+              <th>Date Debut </th>
+              <th>Date Fin </th>
+              <th>Description </th>
+              <th>Capacite </th>
+              <th>Theme</th>
+              <th>Formateur</th>
+              <th>Centre</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
+
             </tr>
           </thead>
           <tbody>
