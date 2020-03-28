@@ -1,25 +1,29 @@
 import React,{Component} from 'react';
-import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
+ 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
-import DemandeList from './components/DemandeCentre';
+
 import Home from './components/HomeComponent';
 
-import FormationList from './components/Liste_Formations';
-import ajoutformation from './components/Ajout_Formation';
-import ModiferFormation from'./components/Modifier_Formation';
+//Responsable imports begin
+import DashboardResponsable from './components/Responsable/DashboardResponsable';
+import FormationList from './components/Responsable/Liste_Formations';
+import AjoutFormation from './components/Responsable/Ajout_Formation';
+import ModiferFormation from'./components/Responsable/Modifier_Formation';
+import FormateurList from'./components/Responsable/Liste_Formateur';
+import AjoutFormateur from './components/Responsable/Ajout_Formateur';
+import ModiferFormateur from'./components/Responsable/Modifier_Formateur';
+//Responsable imports end
 
-import FormateurList from'./components/Liste_Formateur';
-import ajoutformateur from './components/Ajout_Formateur';
-import ModiferFormateur from'./components/Modifier_Formateur';
+import HomeWebmaster from './components/Webmaster/HomeWebmaster';
+import DemandeList from './components/Webmaster/DemandeCentre';
 
-
-import HomeWebmaster from './components/HomeWebmaster';
 import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
-import DashboardResponsable from './components/DashboardResponsable';
+
 
 import Inscriptions_Formations from './components/Inscriptions_Formations';
 import { Provider } from "react-redux";
@@ -27,8 +31,8 @@ import store from "./store";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser, setCurrentCentre, logoutCentre } from "./actions/authActions";
-import PrivateRoute from "./components/private-route/PrivateRoute";
+import {setCurrentCentre, logoutCentre } from "./actions/authActions";
+//import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in
 if (localStorage.jwtToken) {
@@ -65,11 +69,11 @@ if (localStorage.jwtToken) {
         <Route path="/DemandeList" exact component={DemandeList} />
        
           <Route path="/FormationList" exact component={FormationList} />        
-          <Route path="/ajoutformation" exact component={ajoutformation} />
+          <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
 
           <Route path="/FormateurList" exact component={FormateurList} />
-          <Route path="/ajoutformateur" exact component={ajoutformateur} />
+          <Route path="/AjoutFormateur" exact component={AjoutFormateur} />
           <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
           <Route path="/InscriptionList" exact component={Inscriptions_Formations} />
           

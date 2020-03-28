@@ -3,7 +3,10 @@ import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios'; 
 
-class ajoutformation extends Component {
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+class AjoutFormation extends Component {
 
     constructor(props) {
         super(props);
@@ -17,10 +20,8 @@ class ajoutformation extends Component {
             CapaciteFormation:'',
             NomTheme:'',
             NomFormateur:'',
-            NomCentre:'',
             themes:[] ,
             formateurs:[],
-            centres:[]
         };
 
         this.onChangeCodeFormation = this.onChangeCodeFormation.bind(this);
@@ -31,7 +32,6 @@ class ajoutformation extends Component {
         this.onChangeCapaciteFormation =this.onChangeCapaciteFormation.bind(this);
         this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
         this.onChangeNomFormateur =this.onChangeNomFormateur.bind(this);
-        this.onChangeNomCentre=this.onChangeNomCentre.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this); 
     }
@@ -41,37 +41,31 @@ class ajoutformation extends Component {
         //themes axios get 
         axios.get('http://localhost:5000/Theme/')
           .then(response => {
-            if (response.data.length > 0) {
-              this.setState({
-                themes: response.data.map(theme => theme.NomTheme),
-               
-              })
-              
-            this.setState({
-            NomTheme: this.state.themes[0],
-            })
+                if (response.data.length > 0) {
+                    this.setState({
+                        themes: response.data.map(theme => theme.NomTheme),
+                    })              
+                    this.setState({
+                    NomTheme: this.state.themes[0],
+                    })
+                }
 
-            }
-
-          })
-
-          
+            })          
           .catch((error) => {
             console.log(error);
           })
+
         //formateur axios get
-        axios.get('http://localhost:5000/Formateur/')
+        const {centre} = this.props.auth;
+        axios.get('http://localhost:5000/Formateur/listbynamecentre/'+centre.NomCentre)
           .then(response2 => {
             if (response2.data.length > 0) {
-
               this.setState({
-                formateurs: response2.data.map(Formateur => Formateur.NomFormateur),
-                
+                formateurs: response2.data.map(Formateur => Formateur.NomFormateur),  
               })
               this.setState({
                 NomFormateur: this.state.formateurs[0]
               })
-
               this.setState({
                 NomFormateur: this.state.formateurs[0]
               })
@@ -80,28 +74,6 @@ class ajoutformation extends Component {
           .catch((error) => {
             console.log(error);
           })
-    
-          //Centre axios get
-        axios.get('http://localhost:5000/Centre/')
-        .then(response3 => {
-          if (response3.data.length > 0) {
-            this.setState({
-              centres: response3.data.map(Centre => Centre.NomCentre),
-              
-            })
-            this.setState({
-                NomCentre: this.state.centres[0],
-            })
-            
-        this.setState({
-            NomCentre: this.state.centres[0],
-        })
-          }
-        })
-
-        .catch((error) => {
-          console.log(error);
-        })
 
       }
 
@@ -156,15 +128,10 @@ class ajoutformation extends Component {
         });
     }
 
-    onChangeNomCentre(e) {
-        this.setState({
-            NomCentre: e.target.value
-        });
-    }
-    
 //récupération des donnees du l'Input
     onSubmit(e) {
         e.preventDefault();
+        const {centre} = this.props.auth;
         const formation = {
             CodeFormation: this.state.CodeFormation,
             LibelleFormation: this.state.LibelleFormation,
@@ -173,8 +140,8 @@ class ajoutformation extends Component {
             DescriptionFormation: this.state.DescriptionFormation,
             CapaciteFormation:  this.state.CapaciteFormation,
             NomTheme: this.state.NomTheme,
-            NomFormateur:  this.state.NomFormateur,
-            NomCentre:  this.state.NomCentre       
+            NomFormateur: this.state.NomFormateur,
+            NomCentre:centre.NomCentre  
         }
       
         console.log(formation);
@@ -288,26 +255,7 @@ class ajoutformation extends Component {
                         </Input>
                              
                         </Col>
-                    </FormGroup>  
-
-                    <FormGroup row>
-                    
-                        <Label md={5}>Nom Centre: </Label>
-                        <Col md={7}>
-                        <Input className="form-control"  required type="select"   id="NomCentre" name="NomCentre"
-                         value={this.state.NomCentre} onChange={this.onChangeNomCentre} >
-                             {
-                                this.state.centres.map(function(centre) {
-                                return <option 
-                                    key={centre._id}
-                                    value={centre}>{centre}
-                                    </option>;
-                                })
-                            } 
-                        </Input>
-                              
-                        </Col>
-                    </FormGroup>  
+                    </FormGroup>    
 
                     <FormGroup row>
                         <Col md={{size: 10, offset: 8}}>                        
@@ -324,4 +272,12 @@ class ajoutformation extends Component {
     );
 }
 }
-export default ajoutformation;
+AjoutFormation.propTypes = {
+    auth: PropTypes.object.isRequired
+  };  
+
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps)(AjoutFormation);

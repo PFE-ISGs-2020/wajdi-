@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
 import Home from './HomeComponent';
 import axios from 'axios';

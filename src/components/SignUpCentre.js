@@ -1,11 +1,10 @@
 import React, { Component} from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
-import axios from 'axios'; 
 import PropTypes from "prop-types";
 import { connect } from "react-redux"; 
 import { signUpCentre } from "../actions/authActions";
 import classnames from "classnames";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class SignupCentre extends Component {
 

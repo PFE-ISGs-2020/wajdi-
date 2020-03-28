@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem,Button} from 'react-bootstrap';
 import axios from 'axios';
 import SearchBar from './SearchBarComponent';
+
 class DetailFormationComponent extends Component {
 
     constructor(props) {

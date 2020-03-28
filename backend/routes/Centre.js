@@ -65,7 +65,6 @@ router.route('/add').post((req, res)=> {
   });
 
 
-
 router.route('/:id').get((req, res) => {
     Centre.findById(req.params.id)
     .then(centre => res.json(centre))
@@ -125,7 +124,6 @@ router.route('/loginCentre').post((req, res)=> {
             NomCentre: centre.NomCentre
           };
   // Sign token
-  
           jwt.sign(
             payload,
             "secret",
@@ -146,6 +144,7 @@ router.route('/loginCentre').post((req, res)=> {
         }
       });
     });
+
   });
 
 module.exports = router;

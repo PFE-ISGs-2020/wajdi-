@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutCentre } from "../actions/authActions";
+import { logoutCentre } from "../../actions/authActions";
 
 class DashboardResponsable extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutCentre();
   };
+
 render() {
     const { centre } = this.props.auth;
 return (
@@ -34,11 +35,13 @@ return (
     );
   }
 }
-DashboardResponsable.propTypes = {
-  logoutCentre: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-};
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-export default connect(mapStateToProps, { logoutCentre })(DashboardResponsable);
+  DashboardResponsable.propTypes = {
+    logoutCentre: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps,{ logoutCentre })(DashboardResponsable);

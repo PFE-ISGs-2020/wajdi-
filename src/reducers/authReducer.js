@@ -1,4 +1,4 @@
-import { CENTRE_LOADED,SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/types";
+import {SET_CURRENT_CENTRE, CENTRE_LOADING } from "../actions/types";
   
   const isEmpty = require("is-empty");
   const initialState = {
