@@ -53,12 +53,12 @@ export default class DemandeList extends Component {
 
    const CentreUpdated = {
       NomCentre: Centre.NomCentre,
-      Adresse : Centre.Adresse,
-       Description: Centre.Description,
-       Region: Centre.Region,
-       Tel: Centre.Tel,
-       Email: Centre.Email,
-       password: Centre.password,
+      AdresseCentre : Centre.AdresseCentre,
+      DescriptionCentre: Centre.DescriptionCentre,
+       RegionCentre: Centre.RegionCentre,
+       TelCentre: Centre.TelCentre,
+       EmailCentre: Centre.EmailCentre,
+       passwordCentre: Centre.passwordCentre,
        Acces: "1"}
        
     axios.post('http://localhost:5000/Centre/update/'+ Centre._id , CentreUpdated )

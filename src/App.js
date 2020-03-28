@@ -21,6 +21,7 @@ import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
 import DashboardResponsable from './components/DashboardResponsable';
 
+import Inscriptions_Formations from './components/Inscriptions_Formations';
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -70,7 +71,8 @@ if (localStorage.jwtToken) {
           <Route path="/FormateurList" exact component={FormateurList} />
           <Route path="/ajoutformateur" exact component={ajoutformateur} />
           <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
-      
+          <Route path="/InscriptionList" exact component={Inscriptions_Formations} />
+          
         
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
