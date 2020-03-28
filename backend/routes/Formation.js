@@ -1,3 +1,4 @@
+  
 const router = require('express').Router();
 let Formation = require('../models/Formation_model');
 
@@ -56,7 +57,7 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Formation.findById(req.params.id)
     .then(formation => {
-                
+                        
         formation.CodeFormation = req.body.CodeFormation;
         formation.LibelleFormation = req.body.LibelleFormation;
         formation.DateDebutFormation = req.body.DateDebutFormation;

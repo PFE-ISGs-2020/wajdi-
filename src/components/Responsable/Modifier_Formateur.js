@@ -10,7 +10,8 @@ export default class ModiferFormateur extends Component {
     this.state = {
         NomFormateur:'',
         PrenomFormateur:'',
-        SpecialiteFormateur:''     
+        SpecialiteFormateur:'',
+        NomCentre:''
     };
 
     this.onChangeNomFormateur = this.onChangeNomFormateur.bind(this);
@@ -27,6 +28,7 @@ export default class ModiferFormateur extends Component {
             NomFormateur: response.data.NomFormateur,
             PrenomFormateur: response.data.PrenomFormateur,
             SpecialiteFormateur: response.data.SpecialiteFormateur,
+            NomCentre: response.data.NomCentre
         })   
       })
       .catch((error) => {
@@ -61,15 +63,15 @@ export default class ModiferFormateur extends Component {
     const formateur = {
         NomFormateur: this.state.NomFormateur,
         PrenomFormateur: this.state.PrenomFormateur,
-        SpecialiteFormateur: this.state.SpecialiteFormateur,    
+        SpecialiteFormateur: this.state.SpecialiteFormateur,
+        NomCentre:this.state.NomCentre
     }
 
     console.log(formateur);
 
     axios.post('http://localhost:5000/Formateur/update/' + this.props.match.params.id, formateur)
       .then(res => console.log(res.data));
-      window.location = '/';
-
+      window.location = '/FormateurList';
   }
 
   render() {

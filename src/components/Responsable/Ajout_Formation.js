@@ -20,6 +20,7 @@ class AjoutFormation extends Component {
             CapaciteFormation:'',
             NomTheme:'',
             NomFormateur:'',
+            NomCentre:'',
             themes:[] ,
             formateurs:[],
         };
@@ -152,7 +153,7 @@ class AjoutFormation extends Component {
             console.log(error);
           });
 
-        window.location = '/';
+        window.location = '/FormationList';
         
     }
 

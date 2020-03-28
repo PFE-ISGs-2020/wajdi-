@@ -20,7 +20,7 @@ const Formateur = props => (
         </a>
     </td>
     <td>
-      <a href="/">
+      <a href="/FormateurList">
           <Button className="btn btn-danger btn-sm"
             onClick={() => { props.supprimerFormateur(props.formateur._id) }}>
             <span className="fa fa-times"></span>
@@ -55,10 +55,12 @@ class FormateurList extends Component {
   supprimerFormateur(id) {    
     axios.delete('http://localhost:5000/Formateur/'+id)
       .then(formateurr => { console.log(formateurr.data)});
-
+      
     this.setState({
         formateur: this.state.formateur.filter(el => el._id !== id)
     })
+
+    
   }
  
   FormateurList() {
@@ -107,6 +109,7 @@ class FormateurList extends Component {
     )
   }
 }
+
 FormateurList.propTypes = {
   auth: PropTypes.object.isRequired
 };  

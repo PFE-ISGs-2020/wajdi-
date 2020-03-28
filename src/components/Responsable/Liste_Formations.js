@@ -24,7 +24,7 @@ const Formation = props => (
       </a>
     </td>
     <td>
-        <a href="/">
+        <a href="/FormationList">
           <Button className="btn btn-danger btn-sm"
           onClick={() => { props.supprimerFormation(props.formation._id) }}>
           <span className="fa fa-times"></span></Button>
@@ -67,15 +67,17 @@ class FormationList extends Component {
  
   FormationList() {
     return this.state.formation.map(currentformation => {
-      return <Formation  formation={currentformation} supprimerFormation={this.supprimerFormation} key={currentformation._id} />;
+      return <Formation  formation={currentformation} 
+              supprimerFormation={this.supprimerFormation} 
+              key={currentformation._id} />;
 
     });
   }
 
   render() {
     return (
-      <div className=" container ">
-       <div className="row justify-content-md-center">  
+      <div>
+       <div className="row row-content">  
          <section className="col-10 text-center">   
         <br/>
         <br/>

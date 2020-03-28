@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const centreSchema = new Schema({
-  NomCentre: { type: String, required: true, minlength: 3 },
+  NomCentre: { type: String, required: true, minlength: 3,unique:true},
   AdresseCentre: { type: String, required: true },
   TelCentre: { type: String, required: true }, 
   RegionCentre: { type: String, required: true },  

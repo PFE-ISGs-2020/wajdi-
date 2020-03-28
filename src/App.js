@@ -31,6 +31,9 @@ import store from "./store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
+
+ 
+
 //import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in

@@ -162,7 +162,7 @@ export default class ModiferFormation extends Component {
 
     axios.post('http://localhost:5000/Formation/update/' + this.props.match.params.id, formation)
       .then(res => console.log(res.data));
-      window.location = '/';
+      window.location = '/FormationList';
 
   }
 
