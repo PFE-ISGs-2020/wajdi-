@@ -78,6 +78,9 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to= '/FormationList' ><span className="fa fa-info fa-lg"/> Resposable </NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to= '/InscriptionList' ><span className="fa fa-info fa-lg"/> Inscriptions </NavLink>
+                            </NavItem>
                             {/*responsable button end */}
                             </Nav>
                             <Nav  className="ml-auto" navbar>

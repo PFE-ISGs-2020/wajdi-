@@ -50,12 +50,14 @@ const CentreRouter = require('./routes/Centre');
 const FormationRouter = require('./routes/Formation');
 const FormateurRouter = require('./routes/Formateur');
 const ThemeRouter = require('./routes/Theme');
+const Details_Inscription_Router =  require('./routes/Details_Inscription');
 //use the files
 app.use('/Centre', CentreRouter);
 app.use('/Client', ClientRouter); 
 app.use('/Formation', FormationRouter);
 app.use('/Formateur', FormateurRouter);
 app.use('/Theme', ThemeRouter);
+app.use('/Details_Inscription', Details_Inscription_Router);
 
 //starts the server
 app.listen(port, () => {

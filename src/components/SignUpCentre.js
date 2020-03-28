@@ -110,6 +110,7 @@ class SignupCentre extends Component {
         }
 
         this.props.signUpCentre(Centre, this.props.history);
+        window.location = '/';
       
         console.log(Centre);
        /* //Query pour ajouter un nouvau Centre
