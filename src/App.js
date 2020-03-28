@@ -25,7 +25,7 @@ import loginwebmaster from './components/LoginWebmaster';
 import MainClient from './components/mainClient';
 
 
-import Inscriptions_Formations from './components/Inscriptions_Formations';
+import Inscriptions_Formations from './components/Responsable/Inscriptions_Formations';
 import { Provider } from "react-redux";
 import store from "./store";
 
