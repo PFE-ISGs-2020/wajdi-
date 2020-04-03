@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
-import HomeWebmaster from './Webmaster/HomeWebmaster';
+import HomeWebmaster from './HomeWebmaster';
 
 //import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -32,11 +32,10 @@ class loginwebmaster extends Component {
             })
         return(console.log(this.state.error));}
         
-        return (
-        <HomeWebmaster />
-         
-        );
-    }
+        else { 
+            window.location = '/homewebmaster'
+           
+    }}
     onChangePassword(e) {
         this.setState({
             password: e.target.value
