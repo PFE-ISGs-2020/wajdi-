@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {Button, Modal,  ModalBody} from 'reactstrap';
 import axios from 'axios';
 import DetailsClient from '../Details_Client'
+import SideBar from "./sidebar";
 
 const Details = props => (  
   <tr>
-    
     <td>{props.details.NomClient}</td>
     <td>{props.details.PrenomClient}</td>
     <td>{props.details.createdAt}</td>
@@ -32,7 +32,7 @@ const Details = props => (
                           
         <span className="fa fa-plus "></span>
        
-    </Button>
+      </Button>
    
     </td>                       
   </tr>
@@ -116,43 +116,52 @@ export default class InscriptionList extends Component {
 
   render() {
     return (
-      <div className=" container ">
-       <div className="row justify-content-md-center">  
-        <section className="col-10 text-center">   
-        <br/>
-        <br/>
-        <h3> Liste des demandes d'inscription  </h3>
-        <br/>
-        <br/>        
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              
-              <th>Nom Client</th>
-              <th>Prenom Client</th>
-              <th>Date Inscription</th>
-              <th>Accepter</th>
-              <th>Supprimer</th>
-              <th>Plus de détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.DetailsList() }
-          </tbody>
-        </table>
-        </section>
+      <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+          <div className=" container ">
+            <div className="row justify-content-md-center">  
+              <section className="col-10 text-center">   
+              <br/>
+              <br/>
+              <h3> Liste des demandes d'inscription  </h3>
+              <br/>
+              <br/>        
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    
+                    <th>Nom Client</th>
+                    <th>Prenom Client</th>
+                    <th>Date Inscription</th>
+                    <th>Accepter</th>
+                    <th>Supprimer</th>
+                    <th>Plus de détails</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.DetailsList() }
+                </tbody>
+              </table>
+              </section>
+            </div>
+          {/*modal client begin */}
+          <div className=" container ">
+            <div className="row justify-content-md-center">              
+              <Modal 
+              isOpen={this.state.isModalClientOpen} 
+              toggle={this.toggleModalClient}
+              >
+                <ModalBody> 
+                <DetailsClient  Id_Client={this.state.Id_Client} />
+                </ModalBody>
+              </Modal> 
+            </div>
+          </div>
+          {/*modal client end */}        
+          </div>
+        </div>
       </div>
-       {/*modal client begin */}
-       <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
-   
-        <ModalBody> 
-        <DetailsClient  Id_Client={this.state.Id_Client} />
-        </ModalBody>
-
-      </Modal> 
-      {/*modal client end */}        
-      </div>
-      
     )
   }
 }

@@ -185,8 +185,7 @@ class AjoutFormation extends Component {
                     <FormGroup row>
                         <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
                             <Col md={7}>
-                                <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"
-                                    
+                                <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
                                     value={this.state.DateDebutFormation}
                                     onChange={this.onChangeDateDebutFormation} />
                             </Col>                        

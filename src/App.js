@@ -1,14 +1,21 @@
 import React,{Component} from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
+
+import 'font-awesome/css/font-awesome.css';
  
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+ 
+import 'bootstrap-social/bootstrap-social.css';
+ 
+
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
 
 import Home from './components/HomeComponent';
 
 //Responsable imports begin
+import ProfileCentre  from './components/Responsable/Profile_Centre';
 import DashboardResponsable from './components/Responsable/DashboardResponsable';
 import FormationList from './components/Responsable/Liste_Formations';
 import AjoutFormation from './components/Responsable/Ajout_Formation';
@@ -62,15 +69,17 @@ if (localStorage.jwtToken) {
     return (
     <Provider store={store}>
     <BrowserRouter >
-      <div id="header">
+  {/*  <div id="header">
         <Header />
-      </div>
+      </div>  */}
       <div id="Body">
         <MainClient/>
         <Switch>
         <Route path="/Home" exact component={Home} />
         <Route path="/DemandeList" exact component={DemandeList} />
-       
+
+
+          <Route path="/ProfileCentre" exact component={ProfileCentre} />   
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
@@ -91,9 +100,9 @@ if (localStorage.jwtToken) {
       {/*  <Switch>
         <PrivateRoute exact path="/DashboardResponsable" component={DashboardResponsable} />
       </Switch> */} 
-      <div id="footer">
+      {/* <div id="footer">
         <Footer />
-      </div>
+      </div> */}
      </BrowserRouter>
      </Provider> 
     

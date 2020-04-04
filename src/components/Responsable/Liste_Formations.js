@@ -4,7 +4,8 @@ import {Button} from 'reactstrap';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import SideBar from "./sidebar";
+ 
 const Formation = props => (  
   <tr>
     <td></td>
@@ -76,19 +77,25 @@ class FormationList extends Component {
 
   render() {
     return (
-      <div>
-       <div className="row row-content">  
-         <section className="col-10 text-center">   
+    <div>
+        <SideBar pageWrapId={"page-wrap"} 
+        
+        />
+      <div id="page-wrap">
+        <div className=" container ">
+        <div className="row justify-content-md-center"> 
+         <section className="col-12  text-center">   
         <br/>
         <br/>
         <h3> Liste Des Formations </h3>
         <br/>
         <br/>   
             
-        <table className="table">
+        <table className="table col-sm-6 col-6 ">
           <thead className="thead-light">
-            <tr>
-              <th><a href="/ajoutformation">
+            <tr >
+              <th>
+                <a href="/ajoutformation">
                  <Button className="btn btn-success btn-sm" >
                   <span className="fa fa-plus"></span>
                   </Button>
@@ -112,8 +119,11 @@ class FormationList extends Component {
           </tbody>
         </table>
         </section>
+      </div>  
       </div>     
       </div>
+
+    </div>
       
     )
   }

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import SideBar from "./sidebar";
 
 const Formateur = props => (  
   <tr>
@@ -74,38 +75,43 @@ class FormateurList extends Component {
 
   render() {
     return (
-      <div className=" container ">
-       <div className="row justify-content-md-center">  
-        <section className="col-10 text-center">   
-        <br/>
-        <br/>
-        <h3> Liste Des Formateurs </h3>
-        <br/>
-        <br/>        
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th><a href="/ajoutformateur">
-                 <Button className="btn btn-success btn-sm" >
-                  <span className="fa fa-plus"></span>
-                  </Button>
-                  </a>
-              </th>
-              <th>Nom Formateur</th>
-              <th>Prenom Formateur</th>
-              <th>Specialite Formateur</th>
-              <th>Modifier</th>
-              <th>Supprimer</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.FormateurList() }
-          </tbody>
-        </table>
-        </section>
-      </div>     
+      <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+          <div className=" container ">
+          <div className="row justify-content-md-center">  
+            <section className="col-10 text-center">   
+            <br/>
+            <br/>
+            <h3> Liste Des Formateurs </h3>
+            <br/>
+            <br/>        
+            <table className="table">
+              <thead className="thead-light">
+                <tr>
+                  <th><a href="/ajoutformateur">
+                    <Button className="btn btn-success btn-sm" >
+                      <span className="fa fa-plus"></span>
+                      </Button>
+                      </a>
+                  </th>
+
+                  <th>Nom Formateur</th>
+                  <th>Prenom Formateur</th>
+                  <th>Specialite Formateur</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.FormateurList() }
+              </tbody>
+            </table>
+            </section>
+          </div>     
+          </div> 
+        </div>
       </div>
-      
     )
   }
 }

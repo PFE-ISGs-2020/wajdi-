@@ -3,8 +3,8 @@ import {Carousel, Jumbotron,Pagination,Image } from 'react-bootstrap';
 import axios from 'axios';
 
 
-import SearchBar from './SearchBarComponent';
-import slide from '../img/slide.jpg';
+import SearchBar from '../components/SearchBarComponent';
+ 
 import BLUE from '../img/BLUE.png';
 import RED from '../img/RED.png';
 class Home extends Component {
@@ -36,7 +36,7 @@ class Home extends Component {
                 <Carousel className="carousel slide">
                   <Carousel.Item className="active">
                     <Image className="d-block w-100"
-                      src={slide} 
+                      src="" 
                       />
                     <Carousel.Caption>
                       <h3>First slide </h3>
