@@ -3,12 +3,13 @@ import {Button, Modal,  ModalBody} from 'reactstrap';
 import axios from 'axios';
 import DetailsClient from '../Details_Client'
 import SideBar from "./sidebar";
+import moment from 'moment'
 
-const Details = props => (  
+const Demande = props => (  
   <tr>
     <td>{props.details.NomClient}</td>
     <td>{props.details.PrenomClient}</td>
-    <td>{props.details.createdAt}</td>
+    <td>{moment(props.details.createdAt).format('DD/MM/YYYY')}</td>
 
     <td>
        <a href="/InscriptionList">
@@ -28,9 +29,27 @@ const Details = props => (
     </td> 
    <td>
     
-      <Button className="btn  btn-sm" onClick={ () => { props.toggleModalClient(props.details.Id_Client)}}>
+      <Button className="btn btn-secondary  btn-sm" onClick={ () => { props.toggleModalClient(props.details.Id_Client)}}>
                           
-        <span className="fa fa-plus "></span>
+        <span className="fa fa-info "> </span>
+       
+    </Button>
+   
+    </td>                       
+  </tr>
+)
+
+const Inscription = props => (  
+  <tr>
+    
+    <td>{props.inscriptions.NomClient}</td>
+    <td>{props.inscriptions.PrenomClient}</td>
+    <td>{moment(props.inscriptions.createdAt).format('DD/MM/YYYY')}</td>
+   <td>
+    
+      <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalClient(props.inscriptions.Id_Client)}}>
+                          
+        <span className="fa fa-info "></span>
        
       </Button>
    
@@ -51,6 +70,7 @@ export default class InscriptionList extends Component {
                     Formation: null,
                     isModalClientOpen: false,
                     Id_Client: null,
+                    inscriptions: []
                     
                    };
   }
@@ -66,8 +86,18 @@ export default class InscriptionList extends Component {
       .catch((error) => {
         console.log(error);
       })
+
+      axios.get('http://localhost:5000/Details_Inscription/List')
+      .then(det => {
+        this.setState({ inscriptions: det.data, })
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
      
   }
+  
   toggleModalClient(id) {
     this.setState({
       isModalClientOpen: !this.state.isModalClientOpen,
@@ -106,13 +136,20 @@ export default class InscriptionList extends Component {
  
   DetailsList() {
     return this.state.details.map(currentdetails => {
-    return <Details   details={currentdetails} supprimerDetails={this.supprimerDetails} 
+    return <Demande   details={currentdetails} supprimerDetails={this.supprimerDetails} 
     key={currentdetails._id} accepterDetails={this.accepterDetails} 
      toggleModalClient={this.toggleModalClient}
     />;
 
     });
   }
+
+  InscriptionList() {
+    return this.state.inscriptions.map(currentdetails => {
+    return <Inscription   inscriptions={currentdetails} key={currentdetails._id}  
+     toggleModalClient={this.toggleModalClient} />;
+    });
+  }   
 
   render() {
     return (

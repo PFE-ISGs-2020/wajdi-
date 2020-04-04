@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment'
 class DetailsClient extends Component {
 
     constructor(props) {
@@ -37,8 +38,8 @@ class DetailsClient extends Component {
                 <div className="row ">
                     <p><b>Prénom: </b> {this.state.client.PrenomClient}</p>
                 </div> 
-                <div className="row ">
-                    <p><b>Date de naissance: </b>   {this.state.client.DatenaissClient}</p>
+                <div className="row "> 
+                    <p><b>Date de naissance: </b>   {moment(this.state.client.DatenaissClient).format('DD/MM/YYYY')}</p>
                 </div> 
                 <div className="row">
                     <p><b>Profession: </b>  {this.state.client.ProfessionClient}</p>

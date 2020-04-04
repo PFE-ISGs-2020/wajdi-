@@ -20,10 +20,11 @@ function RenderFormations ({formation}) {
     );
 }   
 
-function RenderCentres ({centre}) {    
+//fonction qui permet d'afficher un centre dans une "Card"
+function RenderCentres ({centre}) {   
     return (        
         <Card>            
-            <Link to= {`/DetailFormation/${centre._id}`} > 
+            <Link to= {`/DetailCentre/${centre._id}`} > 
                 <Card.Header as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>
@@ -59,23 +60,24 @@ class SearchBar extends Component {
             Critere: e.target.value
         });
     }
-    //Récupérer les formtaions de la base de données
+    
       componentDidMount() {
+        //Récupérer les formtaions de la base de données
         axios.get('http://localhost:5000/Formation/')
           .then(formation => {
             this.setState({ Formation: formation.data })
           })
           .catch((error) => {
             console.log(error);
-          })
-
-          axios.get('http://localhost:5000/Centre/')
+        })
+        //Récupérer les centres de la base de données
+        axios.get('http://localhost:5000/Centre/')
           .then(centre => {
             this.setState({ Centre: centre.data })
           })
           .catch((error) => {
             console.log(error);
-          })
+        })
 
       }   
 

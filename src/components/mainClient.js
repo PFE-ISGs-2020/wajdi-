@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
+import DetailCentreComponent from './DetailsCentreComponent';
 import Home from './HomeComponent';
 import axios from 'axios';
 
@@ -9,7 +10,8 @@ class MainClient extends Component {
       super(props);
       this.state = {
        
-        Formation: []
+        Formation: [],
+        Centre: []
      };
     }
 
@@ -22,16 +24,31 @@ class MainClient extends Component {
           .catch((error) => {
             console.log(error);
           })
+
+          axios.get('http://localhost:5000/Centre/')
+          .then(centre => {
+            this.setState({ Centre: centre.data })
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       }
 
     render() {
-        //Acceder aux detatils de la formation qui possede l'ID de la formation dont on a cliquer sur son Card
+        //Acceder aux detatils de la formation qui possede l'ID de la formation dont on a cliqué sur son Card
         const FormationWithId = ({match}) => {
-            return(
-                <DetailFormationComponent formation={this.state.Formation.filter((formation) => formation._id === match.params.formationId)[0]} 
+          return(
+            <DetailFormationComponent formation={this.state.Formation.filter((formation) => formation._id === match.params.formationId)[0]} 
                    />
-            );
-          };
+          );
+        };  
+          //Acceder aux detatils du centre qui possede l'ID du centre dont on a cliqué sur son Card
+        const CentreWithId = ({match}) => {
+          return(
+            <DetailCentreComponent centre={this.state.Centre.filter((centre) => centre._id === match.params.centreId)[0]} 
+                   />
+          );
+        };
          
         return(
     <BrowserRouter>
@@ -39,6 +56,7 @@ class MainClient extends Component {
     <Route>
         <Route exact path="/"  component={Home} />
         <Route path='/DetailFormation/:formationId' component={FormationWithId} />
+        <Route path='/DetailCentre/:centreId' component={CentreWithId} />
     </Route>
     
     </BrowserRouter>
