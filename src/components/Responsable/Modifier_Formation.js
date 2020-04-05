@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class ModiferFormation extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class ModiferFormation extends Component {
         this.setState({
             CodeFormation: response.data.CodeFormation,
             LibelleFormation: response.data.LibelleFormation,
-            DateDebutFormation: response.data.DateDebutFormation,
+            DateDebutFormation:  response.data.DateDebutFormation,
             DateFinFormation: response.data.DateFinFormation,
             DescriptionFormation: response.data.DescriptionFormation,
             CapaciteFormation: response.data.CapaciteFormation,
@@ -196,7 +197,9 @@ export default class ModiferFormation extends Component {
                 <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
                     <Col md={7}>
                         <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"
-                            
+                        //    defaultValue={ moment(new Date(this.state.DateDebutFormation)).format('YYYY-MM-DD')}
+                        defaultChecked="02/02/2020"
+                           
                             value={this.state.DateDebutFormation}
                             onChange={this.onChangeDateDebutFormation} />
                     </Col>                        
