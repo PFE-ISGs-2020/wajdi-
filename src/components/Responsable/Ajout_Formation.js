@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import SideBar from "./sidebar";
 
 class AjoutFormation extends Component {
 
@@ -159,118 +160,126 @@ class AjoutFormation extends Component {
 
     render(){
         return(
-            <div className="row row-content">
-                <div className="col-12 col-md-9">
-                    <Form onSubmit={this.onSubmit}>
-                    <FormGroup row>
-                        <Label htmlFor="CodeFormation" md={5}>Code Formation</Label>
-                            <Col md={7}>
-                                <Input type="text" id="CodeFormation" name="CodeFormation"
-                                placeholder="Code Formation"
-                                value={this.state.CodeFormation}
-                                onChange={this.onChangeCodeFormation} />
-                            </Col>
-                    </FormGroup>
+            <div>
+                <SideBar pageWrapId={"page-wrap"} />
+                <div id="page-wrap">
+                    <div className=" container ">
+                        <div className="row justify-content-md-center">
+                            <div className="col-10 text-center">
+                                 
+                                <h3> Ajouter une  Formation </h3>
+                                <br/>
+                                <br/>
+                                <Form onSubmit={this.onSubmit}>
+                                <FormGroup row>
+                                    <Label htmlFor="CodeFormation" md={5}>Code Formation</Label>
+                                        <Col md={7}>
+                                            <Input type="text" id="CodeFormation" name="CodeFormation"
+                                            placeholder="Code Formation"
+                                            value={this.state.CodeFormation}
+                                            onChange={this.onChangeCodeFormation} />
+                                        </Col>
+                                </FormGroup>
 
-                    <FormGroup row>
-                        <Label htmlFor="LibelleFormation" md={5}>Libelle Formation</Label>
-                            <Col md={7}>
-                                <Input type="text" id="LibelleFormation" name="LibelleFormation"
-                                placeholder="Libelle Formation"
-                                value={this.state.LibelleFormation}
-                                onChange={this.onChangeLibelleFormation} />
-                            </Col>
-                    </FormGroup>
+                                <FormGroup row>
+                                    <Label htmlFor="LibelleFormation" md={5}>Libelle Formation</Label>
+                                        <Col md={7}>
+                                            <Input type="text" id="LibelleFormation" name="LibelleFormation"
+                                            placeholder="Libelle Formation"
+                                            value={this.state.LibelleFormation}
+                                            onChange={this.onChangeLibelleFormation} />
+                                        </Col>
+                                </FormGroup>
 
-                    <FormGroup row>
-                        <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
-                            <Col md={7}>
-                                <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
-                                    value={this.state.DateDebutFormation}
-                                    onChange={this.onChangeDateDebutFormation} />
-                            </Col>                        
-                    </FormGroup>
+                                <FormGroup row>
+                                    <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
+                                        <Col md={7}>
+                                            <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
+                                                value={this.state.DateDebutFormation}
+                                                onChange={this.onChangeDateDebutFormation} />
+                                        </Col>                        
+                                </FormGroup>
 
-                    <FormGroup row>
-                        <Label htmlFor="DateFinFormation" md={5}>Date Fin Formation</Label>
-                            <Col md={7}>
-                                <Input type="Date" id="DateFinFormation" name="DateFinFormation"
-                                    
-                                    value={this.state.DateFinFormation}
-                                    onChange={this.onChangeDateFinFormation} />
-                            </Col>
-                    </FormGroup>
+                                <FormGroup row>
+                                    <Label htmlFor="DateFinFormation" md={5}>Date Fin Formation</Label>
+                                        <Col md={7}>
+                                            <Input type="Date" id="DateFinFormation" name="DateFinFormation"
+                                                
+                                                value={this.state.DateFinFormation}
+                                                onChange={this.onChangeDateFinFormation} />
+                                        </Col>
+                                </FormGroup>
 
-                    <FormGroup row>
-                            <Label htmlFor="DescriptionFormation" md={5}>Description Formation</Label>
-                            <Col md={7}>
-                            <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
-                                value={this.state.DescriptionFormation}
-                                onChange={this.onChangeDescriptionFormation}></Input>
-                            </Col>          
-                        </FormGroup> 
+                                <FormGroup row>
+                                        <Label htmlFor="DescriptionFormation" md={5}>Description Formation</Label>
+                                        <Col md={7}>
+                                        <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
+                                            value={this.state.DescriptionFormation}
+                                            onChange={this.onChangeDescriptionFormation}></Input>
+                                        </Col>          
+                                    </FormGroup> 
 
-                        <FormGroup row>
-                        <Label htmlFor="CapaciteFormation" md={5}>Capacite Formation</Label>
-                            <Col md={7}>
-                                <Input type="number" id="CapaciteFormation" name="CapaciteFormation"
-                                    placeholder="Capacite Formation"
-                                    value={this.state.CapaciteFormation}
-                                    onChange={this.onChangeCapaciteFormation} />
-                            </Col>
-                    </FormGroup>
-                    
-                    <FormGroup row>
-                        <Label  md={5}>Nom Theme: </Label>
-                        <Col md={7}>
-                        <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
-                         value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
-                             {
-                                this.state.themes.map(function(theme) {
-                                return <option 
-                                    key={theme._id}
-                                    value={theme}>{theme}
-                                    </option>;
-                                })
-                            } 
-                        </Input>
-                      
-                        </Col>  
-                
-                    </FormGroup>
-
-                    <FormGroup row>
-                        <Label md={5}>Nom Formateur: </Label>
-                        <Col md={7}>
-                        <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
-                         value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
-                             {
-                                this.state.formateurs.map(function(formateur) {
-                                return <option 
-                                    key={formateur._id}
-                                    value={formateur}>{formateur}
-                                    </option>;
-                                })
-                            } 
-                        </Input>
-                             
-                        </Col>
-                    </FormGroup>    
-
-                    <FormGroup row>
-                        <Col md={{size: 10, offset: 8}}>                        
-                            <input type="submit" value="Creation Formation" className="btn btn-primary" />                         
-                        </Col>        
-                    </FormGroup>  
+                                    <FormGroup row>
+                                    <Label htmlFor="CapaciteFormation" md={5}>Capacite Formation</Label>
+                                        <Col md={7}>
+                                            <Input type="number" id="CapaciteFormation" name="CapaciteFormation"
+                                                placeholder="Capacite Formation"
+                                                value={this.state.CapaciteFormation}
+                                                onChange={this.onChangeCapaciteFormation} />
+                                        </Col>
+                                </FormGroup>
                                 
-                    </Form>  
+                                <FormGroup row>
+                                    <Label  md={5}>Nom Theme: </Label>
+                                    <Col md={7}>
+                                    <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
+                                    value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
+                                        {
+                                            this.state.themes.map(function(theme) {
+                                            return <option 
+                                                key={theme._id}
+                                                value={theme}>{theme}
+                                                </option>;
+                                            })
+                                        } 
+                                    </Input>
+                                
+                                    </Col>  
+                            
+                                </FormGroup>
 
-                 
-            </div>
-            </div>     
-               
-    );
-}
+                                <FormGroup row>
+                                    <Label md={5}>Nom Formateur: </Label>
+                                    <Col md={7}>
+                                    <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
+                                    value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
+                                        {
+                                            this.state.formateurs.map(function(formateur) {
+                                            return <option 
+                                                key={formateur._id}
+                                                value={formateur}>{formateur}
+                                                </option>;
+                                            })
+                                        } 
+                                    </Input>
+                                        
+                                    </Col>
+                                </FormGroup>    
+
+                                <FormGroup row>
+                                    <Col>                        
+                                        <input type="submit" value="Creation Formation" className="btn btn-primary" />                         
+                                    </Col>        
+                                </FormGroup>  
+                                            
+                                </Form>                   
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div>                   
+        );
+    }
 }
 AjoutFormation.propTypes = {
     auth: PropTypes.object.isRequired

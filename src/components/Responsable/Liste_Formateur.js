@@ -81,8 +81,7 @@ class FormateurList extends Component {
           <div className=" container ">
           <div className="row justify-content-md-center">  
             <section className="col-10 text-center">   
-            <br/>
-            <br/>
+            
             <h3> Liste Des Formateurs </h3>
             <br/>
             <br/>        

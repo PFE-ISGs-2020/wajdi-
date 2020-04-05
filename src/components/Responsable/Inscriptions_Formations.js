@@ -4,6 +4,7 @@ import axios from 'axios';
 import DetailsClient from '../Details_Client'
 import SideBar from "./sidebar";
 import moment from 'moment'
+import { Tabs, Tab} from 'react-bootstrap'
 
 const Demande = props => (  
   <tr>
@@ -159,27 +160,61 @@ export default class InscriptionList extends Component {
           <div className=" container ">
             <div className="row justify-content-md-center">  
               <section className="col-10 text-center">   
-              <br/>
-              <br/>
-              <h3> Liste des demandes d'inscription  </h3>
-              <br/>
-              <br/>        
-              <table className="table">
-                <thead className="thead-light">
-                  <tr>
-                    
-                    <th>Nom Client</th>
-                    <th>Prenom Client</th>
-                    <th>Date Inscription</th>
-                    <th>Accepter</th>
-                    <th>Supprimer</th>
-                    <th>Plus de détails</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { this.DetailsList() }
-                </tbody>
-              </table>
+              
+                <Tabs id="controlled-tab" >
+                  <Tab  title="Liste Des Demandes d'Inscription" eventKey="Demandes"> 
+                  <div className="col-12">
+                    <br/>
+                    <br/>
+                    <h3> Liste Des Demandes d'Inscription  </h3>
+                    <br/>
+                    <br/>  
+                  </div>   
+                  <table className="table">
+                    <thead className="thead-light">
+                      <tr>
+                        
+                        <th>Nom Client</th>
+                        <th>Prenom Client</th>
+                        <th>Date Inscription</th>
+                        <th>Accepter</th>
+                        <th>Supprimer</th>
+                        <th>Voir plus</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      { this.DetailsList() }
+                    </tbody>
+                  </table>
+                  </Tab>
+
+                  <Tab  title="Liste Des Inscrits" eventKey="ListeInscri" >
+                    <div className="col-12">
+                        <br/>
+                        <br/>
+                        <h3>Liste des Inscrits</h3> 
+                        <br/>
+                        <br/>
+                    </div>
+                        
+                    <table className="table">
+                    <thead className="thead-light">
+                    <tr>
+                      
+                      <th>Nom Client</th>
+                      <th>Prenom Client</th>
+                      <th>Date Inscription</th>
+                      <th>Plus de détails</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { this.InscriptionList() }
+                  </tbody>
+                  </table>
+
+                  </Tab>
+
+                </Tabs> 
               </section>
             </div>
           {/*modal client begin */}

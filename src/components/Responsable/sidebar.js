@@ -31,7 +31,7 @@ class SideBar extends Component {
       </a>
 
       <a className="menu-item" href={"/FormateurList"}  style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-table fa-lg"/>   Liste Formateur  </p>
+      <p>   <span className="fa fa-table fa-lg"/>   Liste Formateurs  </p>
       </a>
 
       <a className="menu-item" href="/InscriptionList"   style={{ textDecoration: 'none' }}>

@@ -69,9 +69,9 @@ if (localStorage.jwtToken) {
     return (
     <Provider store={store}>
     <BrowserRouter >
-  {/*  <div id="header">
+    {/* <div id="header">
         <Header />
-      </div>  */}
+      </div> */}  
       <div id="Body">
         <MainClient/>
         <Switch>

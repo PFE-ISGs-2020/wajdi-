@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios';
+import SideBar from "./sidebar";
+
 
 export default class ModiferFormateur extends Component {
   constructor(props) {
@@ -76,51 +78,59 @@ export default class ModiferFormateur extends Component {
 
   render() {
     return (
-        <div className="row row-content">
-        <div className="col-12 col-md-9">
-            <br/>
-            <Form onSubmit={this.onSubmit}>
-            <FormGroup row>
-                <Label htmlFor="NomFormateur" md={5}>Nom Formateur</Label>
-                    <Col md={7}>
-                        <Input type="text" id="NomFormateur" name="NomFormateur"
-                        placeholder="Nom Formateur"
-                        value={this.state.NomFormateur}
-                        onChange={this.onChangeNomFormateur } />
-                    </Col>
-            </FormGroup>
+        <div>
+            <SideBar pageWrapId={"page-wrap"} />
+            <div id="page-wrap">
+                <div className=" container ">
+                    <div className="row justify-content-md-center">
+                        <div className="col-10 text-center">
+                            
+                            <h3> Modifier Formateur </h3>
+                            <br/>
+                            <br/>
+                            <Form onSubmit={this.onSubmit}>
+                            <FormGroup row>
+                                <Label htmlFor="NomFormateur" md={5}>Nom Formateur</Label>
+                                    <Col md={7}>
+                                        <Input type="text" id="NomFormateur" name="NomFormateur"
+                                        placeholder="Nom Formateur"
+                                        value={this.state.NomFormateur}
+                                        onChange={this.onChangeNomFormateur } />
+                                    </Col>
+                            </FormGroup>
 
-            <FormGroup row>
-                <Label htmlFor="PrenomFormateur" md={5}>Prenom Formateur</Label>
-                    <Col md={7}>
-                        <Input type="text" id="PrenomFormateur" name="PrenomFormateur"
-                        placeholder="Prenom Formateur"
-                        value={this.state.PrenomFormateur}
-                        onChange={this.onChangePrenomFormateur} />
-                    </Col>
-            </FormGroup>
+                            <FormGroup row>
+                                <Label htmlFor="PrenomFormateur" md={5}>Prenom Formateur</Label>
+                                    <Col md={7}>
+                                        <Input type="text" id="PrenomFormateur" name="PrenomFormateur"
+                                        placeholder="Prenom Formateur"
+                                        value={this.state.PrenomFormateur}
+                                        onChange={this.onChangePrenomFormateur} />
+                                    </Col>
+                            </FormGroup>
 
-            <FormGroup row>
-                <Label htmlFor="SpecialiteFormateur" md={5}>Date Debut Formation</Label>
-                    <Col md={7}>
-                        <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
-                            placeholder="Specialite Formateur"
-                            value={this.state.SpecialiteFormateur}
-                            onChange={this.onChangeSpecialiteFormateur} />
-                    </Col>                        
-            </FormGroup>
+                            <FormGroup row>
+                                <Label htmlFor="SpecialiteFormateur" md={5}>Date Debut Formation</Label>
+                                    <Col md={7}>
+                                        <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
+                                            placeholder="Specialite Formateur"
+                                            value={this.state.SpecialiteFormateur}
+                                            onChange={this.onChangeSpecialiteFormateur} />
+                                    </Col>                        
+                            </FormGroup>
 
-            <FormGroup row>
-                <Col md={{size: 10, offset: 8}}>                        
-                    <input type="submit" value="Modifer Formateur" className="btn btn-primary" />                         
-                </Col>        
-            </FormGroup>  
-                        
-            </Form>  
-
-         
-    </div>
-    </div>  
+                            <FormGroup row>
+                                <Col>                        
+                                    <input type="submit" value="Modifer Formateur" className="btn btn-primary" />                         
+                                </Col>        
+                            </FormGroup>  
+                                        
+                            </Form>  
+                        </div>            
+                    </div>
+                </div>  
+            </div>
+        </div>
     );
   }
 }

@@ -17,9 +17,7 @@ render() {
     const { centre } = this.props.auth;
 return (
       <div>
-        <SideBar pageWrapId={"page-wrap"} 
-       
-        />
+        <SideBar pageWrapId={"page-wrap"} />
 
         <div id="page-wrap">
           <h4>
@@ -28,10 +26,8 @@ return (
               You are logged into a full-stack{" "}
               <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
             </p>
-          </h4>
-              
-        </div>      
-
+          </h4>              
+        </div>
       </div>
     );
   }

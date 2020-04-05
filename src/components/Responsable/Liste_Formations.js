@@ -5,8 +5,7 @@ import CardFormation from '../CardFormation'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
- 
-import moment from 'moment'
+import moment from 'moment';
 
 const Formation = props => (  
   <tr> 
@@ -94,57 +93,53 @@ class FormationList extends Component {
 
   render() {
     return (
-    <div>
-        <SideBar pageWrapId={"page-wrap"} 
-        
-        />
-      <div id="page-wrap">
-        <div className=" container ">
-        <div className="row justify-content-md-center"> 
-         <section className="col-12  text-center">   
-        <br/>
-        <br/>
-        <h3> Liste Des Formations </h3>
-        <br/>
-        <br/>   
+      <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+            <div className=" container ">
+              <div className="row justify-content-md-center">  
+                <section className="col-10 text-center">   
             
-        <table className="table col-sm-6 col-6 ">
-          <thead className="thead-light">
-            <tr >
-              <th>
-                <a href="/ajoutformation">
-                 <Button className="btn btn-success btn-sm" >
-                  <span className="fa fa-plus"></span>
-                  </Button>
-                  </a> 
-              </th>
-              <th>Code</th>
-              <th>Libelle</th>
-              <th>Date Debut </th>
-              <th>Formateur</th>
-              <th>Modifier</th>
-              <th>Supprimer</th>
-              <th>Voir plus</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.FormationList() }
-          </tbody>
-        </table>
-        </section>
-      </div> 
-      {/*modal formation begin */}
-      <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
-        <ModalBody> 
-        <CardFormation  Id_Formation={this.state.Id_Formation} />
-        </ModalBody>
-      </Modal> 
-      {/*modal formation end */}     
-      </div>
+              <h3> Liste Des Formations </h3>
+              <br/>
+              <br/>                     
+              <table className="table">
+                <thead className="thead-light">
+                  <tr >
+                    <th>
+                      <a href="/ajoutformation">
+                      <Button className="btn btn-success btn-sm" >
+                        <span className="fa fa-plus"></span>
+                        </Button>
+                        </a> 
+                    </th>
+                    <th>Code</th>
+                    <th>Libelle</th>
+                    <th>Date Debut </th>
+                    <th>Formateur</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                    <th>Voir plus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.FormationList() }
+                </tbody>
+              </table>
+              </section>
+            </div> 
+            {/*modal formation begin */}
+            <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
+              <ModalBody> 
+              <CardFormation  Id_Formation={this.state.Id_Formation} />
+              </ModalBody>
+            </Modal>
+            {/*modal formation end */}     
+          </div>
 
-    </div>
+      </div>
     </div> 
-    )
+    );
   }
 }
 FormationList.propTypes = {
