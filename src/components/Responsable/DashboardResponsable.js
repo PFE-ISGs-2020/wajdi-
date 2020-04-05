@@ -23,8 +23,8 @@ return (
           <h4>
             <b>Hey there,</b> {centre.NomCentre}
             <p className="flow-text grey-text text-darken-1">
-              You are logged into a full-stack{" "}
-              <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+              You are logged into your Dashboard
+              <span style={{ fontFamily: "monospace" }}></span> 👏
             </p>
           </h4>              
         </div>

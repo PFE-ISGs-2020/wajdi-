@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { push  as Menu } from "react-burger-menu";
 
-
+import {NavLink} from 'react-router-dom';
 
 class SideBar extends Component {
     onLogoutClick = e => {
@@ -17,26 +17,35 @@ class SideBar extends Component {
       return(
       // Pass on our props    
       <Menu  className="justify-content-center" pageWrapId={ "page-wrap" }>
-      
-        <a className="menu-item">
+              
+        <div className="menu-item">
           {centre.NomCentre}
-        </a>
+        </div>
+      
+      <NavLink activeClassName="myactive" to="/DashboardResponsable"  
+      style={{ textDecoration: 'none' }}>
+      <p>   <span className="fa fa-home fa-lg"/>   Dashboard  </p>
+      </NavLink>
 
-      <a className="menu-item" href="/DashboardResponsable"  style={{ textDecoration: 'none' }}>
+      <NavLink activeClassName="myactive" to="/ProfileCentre"  
+      style={{ textDecoration: 'none' }}>
       <p>   <span className="fa fa-user fa-lg"/>   Profile Centre  </p>
-      </a>
+      </NavLink>
 
-      <a className="menu-item" href="/FormationList"  style={{ textDecoration: 'none' }}>
+      <NavLink activeClassName="myactive" to="/FormationList"  
+      style={{ textDecoration: 'none' }}>
       <p>   <span className="fa fa-table fa-lg"/>   Liste Formations  </p>
-      </a>
+      </NavLink>
 
-      <a className="menu-item" href={"/FormateurList"}  style={{ textDecoration: 'none' }}>
+      <NavLink activeClassName="myactive" to={"/FormateurList"}  
+      style={{ textDecoration: 'none' }}>
       <p>   <span className="fa fa-table fa-lg"/>   Liste Formateurs  </p>
-      </a>
+      </NavLink>
 
-      <a className="menu-item" href="/InscriptionList"   style={{ textDecoration: 'none' }}>
+      <NavLink activeClassName="myactive" to="/InscriptionList"  
+      style={{ textDecoration: 'none' }}>
       <p>   <span className="fa fa-table fa-lg"/>   Liste Demande D'inscription  </p>
-      </a>
+      </NavLink>
 
       <a className="menu-item" onClick={this.onLogoutClick}>
       <p>   <span className="fa fa-sign-out fa-lg"/>  Logout</p>
@@ -58,3 +67,25 @@ SideBar.propTypes = {
 
   export default connect(mapStateToProps,{ logoutCentre })(SideBar);
   
+
+
+  /* 
+  const StyledNav = styled(Nav)`
+    background-color: #fff;
+
+    &&[class*="expanded--"] {
+        [class*="sidenav-subnav--"] {
+
+  > [class*="sidenav-subnavitem--"][class*="selected--"] {
+    > [class*="navitem--"] {
+        color: #db3d44;
+    }
+    > [class*="navitem--"]::before {
+        border-left: 2px solid #db3d44;
+    }
+
+  }
+} 
+`;
+StyledNav.defaultProps = Nav.defaultProps;
+*/

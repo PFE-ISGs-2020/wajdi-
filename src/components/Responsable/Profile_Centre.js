@@ -1,5 +1,6 @@
 import React, { Component } from "react";
- 
+import SideBar from "./sidebar";
+
  
 class ProfileCentre extends Component {
     constructor(props) {
@@ -7,15 +8,22 @@ class ProfileCentre extends Component {
       
         this.state = { };
     }
+
 render() {     
 return (
-        <div class="row row-content align-items-center">
-            <div class="col-12 col-sm-6">
-           
-            </div>        
-            <div  class="col-sm">                            
+    <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+            <div className=" container ">
+                <div className="row justify-content-md-center">
+                    <div className="col-10 text-center">
+
+
+                    </div>        
+                </div>                            
             </div>
-        </div>    
+        </div>  
+    </div>  
     );
   }
 } 
