@@ -1,7 +1,11 @@
+  
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutCentre } from "../../actions/authActions";
+import SideBar from "./sidebar";
+import './Sidebar.css';
+
 
 class DashboardResponsable extends Component {
   onLogoutClick = e => {
@@ -12,24 +16,17 @@ class DashboardResponsable extends Component {
 render() {
     const { centre } = this.props.auth;
 return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {centre.NomCentre}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-            </h4>
-            <button
-              
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-            </button>
-          </div>
+      <div>
+        <SideBar pageWrapId={"page-wrap"} />
+
+        <div id="page-wrap">
+          <h4>
+            <b>Hey there,</b> {centre.NomCentre}
+            <p className="flow-text grey-text text-darken-1">
+              You are logged into your Dashboard
+              <span style={{ fontFamily: "monospace" }}></span> 👏
+            </p>
+          </h4>              
         </div>
       </div>
     );

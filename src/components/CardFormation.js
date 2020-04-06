@@ -30,10 +30,8 @@ class CardFormation extends Component {
        // const dateToFormat = this.state.formation.DateDebutFormation;var datedeb = moment(this.state.formation.DateDebutFormation, 'DD-MM-YYYY');
             
         return(
-            <div>
-            <div className="container">
-                
-            
+        <div>
+            <div className="container">            
                 {/* showing details  begin*/}
                 <div className="row ">
                     <p><b>Nom formation:</b>   {this.state.formation.LibelleFormation}</p>
@@ -43,14 +41,16 @@ class CardFormation extends Component {
                     <Moment format="DD/MM/YYYY">{this.state.formation.DateDebutFormation}</Moment></p> 
                 </div> 
                 
-                <div className="row ">
+                <div className="row">
                    
                     <p><b>Date fin:</b>  <Moment format="DD/MM/YYYY">{this.state.formation.DateFinFormation}</Moment> </p>
                 
                 </div>  
-                <div className="row ">
+                
+                <div className="row">
                     <p><b>Description:</b> {this.state.formation.DescriptionFormation}</p>
                 </div> 
+
                 <div className="row ">
                     <p><b>Theme:</b> {this.state.formation.NomTheme}</p>
                 </div>
@@ -61,13 +61,10 @@ class CardFormation extends Component {
                     <p><b>Capacité:</b> {this.state.formation.CapaciteFormation}</p>
                 </div> 
                   
-                {/* showing details  end*/}
-
-                
+                {/* showing details  end*/}                
                    
-            </div>
-            
-            </div>
+            </div>            
+        </div>
     );    
 
 }

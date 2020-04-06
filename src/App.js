@@ -1,14 +1,21 @@
 import React,{Component} from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
+
+import 'font-awesome/css/font-awesome.css';
  
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/HeaderComponent';
-import Footer from './components/FooterComponent';
+import 'font-awesome/css/font-awesome.min.css';
+ 
+import 'bootstrap-social/bootstrap-social.css';
+ 
+
+//import Header from './components/HeaderComponent';
+//import Footer from './components/FooterComponent';
 
 import Home from './components/HomeComponent';
 
 //Responsable imports begin
+import ProfileCentre  from './components/Responsable/Profile_Centre';
 import DashboardResponsable from './components/Responsable/DashboardResponsable';
 import FormationList from './components/Responsable/Liste_Formations';
 import AjoutFormation from './components/Responsable/Ajout_Formation';
@@ -16,6 +23,7 @@ import ModiferFormation from'./components/Responsable/Modifier_Formation';
 import FormateurList from'./components/Responsable/Liste_Formateur';
 import AjoutFormateur from './components/Responsable/Ajout_Formateur';
 import ModiferFormateur from'./components/Responsable/Modifier_Formateur';
+import DemandeInscriptionList from './components/Responsable/Demandes_Inscription'
 //Responsable imports end
 
 import HomeWebmaster from './components/Webmaster/HomeWebmaster';
@@ -32,6 +40,9 @@ import store from "./store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
+
+ 
+
 //import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in
@@ -59,15 +70,17 @@ if (localStorage.jwtToken) {
     return (
     <Provider store={store}>
     <BrowserRouter >
-      <div id="header">
+    {/* <div id="header">
         <Header />
-      </div>
+      </div> */}  
       <div id="Body">
         <MainClient/>
         <Switch>
         <Route path="/Home" exact component={Home} />
         <Route path="/DemandeList" exact component={DemandeList} />
-       
+        
+          <Route path="/DemandeInscriptionList" exact component={DemandeInscriptionList} /> 
+          <Route path="/ProfileCentre" exact component={ProfileCentre} />   
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
@@ -88,9 +101,9 @@ if (localStorage.jwtToken) {
       {/*  <Switch>
         <PrivateRoute exact path="/DashboardResponsable" component={DashboardResponsable} />
       </Switch> */} 
-      <div id="footer">
+      {/* <div id="footer">
         <Footer />
-      </div>
+      </div> */}
      </BrowserRouter>
      </Provider> 
     

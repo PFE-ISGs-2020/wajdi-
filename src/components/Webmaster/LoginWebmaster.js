@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
-import HomeWebmaster from './HomeWebmaster';
 
-//import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 class loginwebmaster extends Component {
     constructor(props) {

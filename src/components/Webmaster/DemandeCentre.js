@@ -8,10 +8,10 @@ const Demande = props => (
     <td>{props.centre.AdresseCentre}</td>
     <td>{props.centre.RegionCentre}</td>
     <td>{props.centre.TelCentre}</td>
-    <td>{props.centre.EmailCentre}</td>
-       
+    <td>{props.centre.EmailCentre}</td>       
     <td>
-    <a href="#" onClick={() => { props.approveDemande(props.centre) }}>Approve</a> | <a href="#" onClick={() => { props.deleteDemande(props.centre._id) }}>delete</a>
+    <a href="/DemandeList" onClick={() => { props.approveDemande(props.centre) }}>Approve</a> |
+    <a href="/DemandeList" onClick={() => { props.deleteDemande(props.centre._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -19,7 +19,7 @@ const Demande = props => (
 export default class DemandeList extends Component {
   constructor(props) {
     super(props);
-
+ 
     this.deleteDemande = this.deleteDemande.bind(this)
     this.approveDemande = this.approveDemande.bind(this)
 

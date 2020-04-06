@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import {Carousel, Jumbotron,Pagination} from 'react-bootstrap';
+import {Carousel, Jumbotron,Pagination,Image } from 'react-bootstrap';
 import axios from 'axios';
 
-import SearchBar from './SearchBarComponent';
-
+import Header from './HeaderComponent';
+import SearchBar from '../components/SearchBarComponent';
+ 
+import BLUE from '../img/BLUE.png';
+import RED from '../img/RED.png';
 class Home extends Component {
     constructor(props) {
-        super(props);
-
+        super(props);      
         this.state = {Formation: [] }
-    
+   
       }
 
     //Récupérer les formtaions de la base de données
@@ -23,54 +25,55 @@ class Home extends Component {
           })
       }
       
-      
-      render() {
-       
-              
+      render() { 
         return (
+          
         <div className="container">
-            <br/>
-            {/* Carousel slider */}
-            <div className="row-12 justify-content-center">
-                <Jumbotron>
-                    <Carousel className="carousel">
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="./images/RED"
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src=" "
-                            alt="Third slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src=" "
-                            alt="Third slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel>  
-                </Jumbotron>
+          <Header/>
+          <br/>
+          {/* Carousel slider */} 
+          <Jumbotron>
+            <div className="row row-content">
+              <div class="col-12">
+                <Carousel className="carousel slide">
+                  <Carousel.Item className="active">
+                    <Image className="d-block w-100"
+                      src="" 
+                      />
+                    <Carousel.Caption>
+                      <h3>First slide </h3>
+                      <p>slide</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+
+                  <Carousel.Item>
+                    <Image 
+                      className="d-block w-100"
+                      src={BLUE}
+                      alt="Third slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>Second slide label</h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+
+                  <Carousel.Item>
+                    <Image 
+                      className="d-block w-100"
+                      src={RED}
+                      alt="Third slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>Third slide label</h3>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                </Carousel> 
+                    
+              </div>
             </div>
-            
+            </Jumbotron>  
             <div>
             <SearchBar/>
             </div>
@@ -98,6 +101,7 @@ class Home extends Component {
 
 
             </div>
+
             
        </div>
         );

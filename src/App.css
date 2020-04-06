@@ -1,8 +1,11 @@
 .nav-head{
-  background-color: rgb(110, 170, 172);}
+  background-color: rgb(110, 170, 172);
+  }
+#header{
+  margin-left:0%
+}
 
 
- 
 #footer {
   background-color: rgb(148, 144, 144);  
   bottom:0px;    
@@ -16,22 +19,10 @@
   margin: 0;
 }      
 
-html {
-  position: relative;
-  min-height: 100%;
-   
-}
-
-#body {
-  width: auto;
-  padding: 5px 14px 5px 14px;
-  margin: 0 auto;
-  padding-bottom: 30px;
-   
-}
-
 table, th, td {
    
   border-bottom: 1px solid #ddd;
 }
 tr:hover {background-color: #f5f5f5;}
+
+ 

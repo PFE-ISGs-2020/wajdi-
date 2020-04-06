@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+ 
+import 'font-awesome/css/font-awesome.css';
+import 'font-awesome/css/font-awesome.css.map';
+import 'font-awesome/css/font-awesome.min.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-social/bootstrap-social.css';
+import 'bootstrap-social/assets/css/font-awesome.css';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.css';
-import 'bootstrap-social/bootstrap-social.css';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

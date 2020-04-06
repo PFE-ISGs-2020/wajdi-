@@ -28,6 +28,8 @@ router.route('/List').get((req, res) => {
 
 //Sign Up centre 
 router.route('/add').post((req, res)=> {
+          
+
     // Form validation
   const { errors, isValid } = validateSignUpCentreInput(req.body);
   // Check validation
@@ -39,7 +41,7 @@ router.route('/add').post((req, res)=> {
         return res.status(400).json({ EmailCentre: "Email Centre already exists" });
       } else {
          
-         newCentre = new Centre({
+        const newCentre = new Centre({
          NomCentre : req.body.NomCentre, 
          AdresseCentre : req.body.AdresseCentre,
          TelCentre : req.body.TelCentre,
