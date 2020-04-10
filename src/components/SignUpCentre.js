@@ -107,20 +107,11 @@ class SignupCentre extends Component {
             passwordCentre: this.state.passwordCentre,
             password2: this.state.password2,
             Acces: this.state.Acces
-        }
-
+        } 
+            
         this.props.signUpCentre(Centre, this.props.history);
-        if (this.state.errors=== null){
-         window.location = '/';   
-        }
-        
-      
+         
         console.log(Centre);
-       /* //Query pour ajouter un nouvau Centre
-        axios.post('http://localhost:5000/Centre/add', Centre)
-        .then(res => console.log(res.data));
-       //Retourner au home page aprés l'ajout
-        window.location = '/'; */
     }
 
     
@@ -266,7 +257,7 @@ class SignupCentre extends Component {
 }
 
 SignupCentre.propTypes = {
-    signUpCentregnupcentre: PropTypes.func.isRequired,
+    signUpCentre: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
   };
