@@ -7,13 +7,13 @@ module.exports = function validateLoginInput(data) {
   data.passwordCentre = !isEmpty(data.passwordCentre) ? data.passwordCentre : "";
 // Email checks
   if (Validator.isEmpty(data.EmailCentre)) {
-    errors.EmailCentre = "Email field is required";
+    errors.EmailCentre = "Ce champ est obligatoir";
   } else if (!Validator.isEmail(data.EmailCentre)) {
-    errors.EmailCentre = "Email is invalid";
+    errors.EmailCentre = "Email invalide";
   }
 // Password checks
   if (Validator.isEmpty(data.passwordCentre)) {
-    errors.passwordCentre = "Password field is required";
+    errors.passwordCentre = "Ce champ est obligatoir";
   }
 return {
     errors,

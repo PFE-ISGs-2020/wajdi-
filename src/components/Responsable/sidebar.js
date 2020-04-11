@@ -42,14 +42,6 @@ class SideBar extends Component {
       <p>   <span className="fa fa-table fa-lg"/>   Liste Formateurs  </p>
       </NavLink>
 
-      <NavLink activeClassName="myactive" to="/InscriptionList"  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-table fa-lg"/>   Liste D'inscription  </p>
-      </NavLink>
-      <NavLink activeClassName="myactive" to="/DemandeInscriptionList"  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-table fa-lg"/>   Liste Demande D'inscription  </p>
-      </NavLink>
       <a href="/" className="menu-item" onClick={this.onLogoutClick}>
       <p>   <span className="fa fa-sign-out fa-lg"/>  Logout</p>
              

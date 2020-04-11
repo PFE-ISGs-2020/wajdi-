@@ -7,14 +7,14 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/Demande').get((req, res) => {
-    Details_Inscription.find({ EtatInscription: 0 })
+router.route('/Demande/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 0 , Id_Formation: req.params.id })
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/List').get((req, res) => {
-    Details_Inscription.find({ EtatInscription: 1 })
+router.route('/List/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 1, Id_Formation: req.params.id })
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
 });

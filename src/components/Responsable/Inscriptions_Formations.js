@@ -42,9 +42,17 @@ export default class InscriptionList extends Component {
 
   componentDidMount() {
 
-      axios.get('http://localhost:5000/Details_Inscription/List')
+      axios.get('http://localhost:5000/Details_Inscription/List/'+this.props.match.params.id)
       .then(det => {
         this.setState({ inscriptions: det.data, })
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      axios.get('http://localhost:5000/Formation/'+this.props.match.params.id)
+      .then(det => {
+        this.setState({ Formation: det.data.LibelleFormation, })
         
       })
       .catch((error) => {
@@ -82,7 +90,7 @@ export default class InscriptionList extends Component {
                     <div className="col-12">
                         <br/>
                         <br/>
-                        <h3>Liste des Inscrits</h3> 
+                        <h3>Liste des Inscrits à la Formation { this.state.Formation}</h3> 
                         <br/>
                         <br/>
                     </div>

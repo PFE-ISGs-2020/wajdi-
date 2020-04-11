@@ -12,7 +12,7 @@ const Demande = props => (
     <td>{moment(props.details.createdAt).format('DD/MM/YYYY')}</td>
 
     <td>
-       <a href="/DemandeInscriptionList">
+       <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}>
              <Button className="btn btn-success btn-sm"   
               onClick={() => { props.accepterDetails(props.details) }}>  
               <span className="fa fa-check"></span>
@@ -20,7 +20,7 @@ const Demande = props => (
         </a>          
     </td>                 
     <td>
-      <a href="/DemandeInscriptionList">
+      <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}>
           <Button className="btn btn-danger btn-sm"
             onClick={() => { props.supprimerDetails(props.details._id) }}>
             <span className="fa fa-times"></span>
@@ -58,7 +58,7 @@ export default class DemandeInscriptionList extends Component {
   
     componentDidMount() {
       
-      axios.get('http://localhost:5000/Details_Inscription/Demande')
+      axios.get('http://localhost:5000/Details_Inscription/Demande/'+this.props.match.params.id)
         .then(det => {
           this.setState({ details: det.data, })
           
@@ -66,6 +66,15 @@ export default class DemandeInscriptionList extends Component {
         .catch((error) => {
           console.log(error);
         })
+
+      axios.get('http://localhost:5000/Formation/'+this.props.match.params.id)
+      .then(det => {
+        this.setState({ Formation: det.data.LibelleFormation, })
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
        
     }
     
@@ -127,7 +136,7 @@ export default class DemandeInscriptionList extends Component {
                     <div className="col-12">
                       <br/>
                       <br/>
-                      <h3> Liste Des Demandes d'Inscription  </h3>
+                      <h3> Liste Des Demandes d'Inscription à la Formation {this.state.Formation} </h3>
                       <br/>
                       <br/>  
                     </div>   

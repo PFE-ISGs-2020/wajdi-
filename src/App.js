@@ -77,9 +77,7 @@ if (localStorage.jwtToken) {
         <MainClient/>
         <Switch>
         <Route path="/Home" exact component={Home} />
-        <Route path="/DemandeList" exact component={DemandeList} />
         
-          <Route path="/DemandeInscriptionList" exact component={DemandeInscriptionList} /> 
           <Route path="/ProfileCentre" exact component={ProfileCentre} />   
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
@@ -88,13 +86,16 @@ if (localStorage.jwtToken) {
           <Route path="/FormateurList" exact component={FormateurList} />
           <Route path="/AjoutFormateur" exact component={AjoutFormateur} />
           <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
-          <Route path="/InscriptionList" exact component={Inscriptions_Formations} />
+          <Route path="/InscriptionList/:id" exact component={Inscriptions_Formations} />
+           <Route path="/DemandeInscriptionList/:id" exact component={DemandeInscriptionList} /> 
           
         
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
+        
+        {/* Webmaster */}
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
-     
+        <Route path="/DemandeList" exact component={DemandeList} />
   
         </Switch>
       </div>

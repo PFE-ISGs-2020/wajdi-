@@ -114,7 +114,10 @@ router.route('/loginCentre').post((req, res)=> {
     Centre.findOne({ EmailCentre }).then(centre => {
     // Check if Centre exists
     if (!centre) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ emailnotfound: "Email introuvable" });
+    }
+    if (!centre.Acces ){
+      return res.status(404).json({ passwordCentre: "Demande en cours de consultation" });
     }
   // Check password
       bcrypt.compare(passwordCentre, centre.passwordCentre).then(isMatch => {

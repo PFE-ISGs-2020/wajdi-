@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Button,  Modal,  ModalBody} from 'reactstrap';
+import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
 import CardFormation from '../CardFormation'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -13,7 +13,12 @@ const Formation = props => (
     <td>{props.formation.CodeFormation}</td>
     <td>{props.formation.LibelleFormation}</td>
     <td>{moment(props.formation.DateDebutFormation).format('DD/MM/YYYY')} </td>
-    <td>{props.formation.NomFormateur}</td>   
+    <td>{moment(props.formation.DateFinFormation).format('DD/MM/YYYY')} </td> 
+    <td>
+    <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalFormation(props.formation._id, props.formation.LibelleFormation)}}>
+      <span className="fa fa-info "></span>
+    </Button>
+    </td>
     <td>
       <a href={"/ModiferFormation/"+props.formation._id}>
         <Button className="btn btn-warning btn-sm" >
@@ -29,11 +34,21 @@ const Formation = props => (
         </Button>  
       </a>     
     </td>
+      
     <td>
-    <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalFormation(props.formation._id)}}>
-      <span className="fa fa-info "></span>
-    </Button>
-    </td>                    
+    <a href={"/DemandeInscriptionList/"+props.formation._id}>
+    <button type="button" className="btn btn-outline-danger btn-sm">
+      <span className="fa fa-user-plus "></span>
+    </button>  
+    </a>
+    </td>   
+    <td>
+    <a href={"/InscriptionList/"+props.formation._id}>
+          <Button className="btn btn-info btn-sm" >
+          <span className="fa fa-list "></span>
+          </Button>
+        </a>
+    </td>                
   </tr>
 )          
     
@@ -74,10 +89,11 @@ class FormationList extends Component {
     })
   }
 
-  toggleModalFormation(id) {
+  toggleModalFormation(id, Formation) {
     this.setState({
       isModalFormationOpen: !this.state.isModalFormationOpen,
      Id_Formation: id,
+     Formation: Formation
      
     });  
   }
@@ -115,11 +131,14 @@ class FormationList extends Component {
                     </th>
                     <th>Code</th>
                     <th>Libelle</th>
-                    <th>Date Debut </th>
-                    <th>Formateur</th>
+                    <th>Date Debut</th>
+                    <th>Date Fin</th> 
+                    <th>Voir plus</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
-                    <th>Voir plus</th>
+                   
+                    <th>Demandes</th>
+                    <th>Inscriptions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,6 +149,9 @@ class FormationList extends Component {
             </div> 
             {/*modal formation begin */}
             <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
+              <ModalHeader>
+                {this.state.Formation}
+              </ModalHeader>
               <ModalBody> 
               <CardFormation  Id_Formation={this.state.Id_Formation} />
               </ModalBody>

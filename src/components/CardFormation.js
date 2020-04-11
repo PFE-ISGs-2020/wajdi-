@@ -33,9 +33,7 @@ class CardFormation extends Component {
         <div>
             <div className="container">            
                 {/* showing details  begin*/}
-                <div className="row ">
-                    <p><b>Nom formation:</b>   {this.state.formation.LibelleFormation}</p>
-                </div>
+                
                  <div className="row ">
                     <p><b>Date debut: </b>    
                     <Moment format="DD/MM/YYYY">{this.state.formation.DateDebutFormation}</Moment></p> 
