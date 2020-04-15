@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {Image } from 'react-bootstrap';
+import {Button} from 'reactstrap';
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
 import axios from 'axios';
@@ -27,21 +28,41 @@ class ProfileCentre extends Component {
   }
 
 render() { 
-    
+  
 return (
     <div>
         <SideBar pageWrapId={"page-wrap"} />
         
             <div className=" container "> 
+            
                  <div className="card ">
+                 
+                   
+                   
+                  
                      <div className="row" >
+                       
                          <div className="col-sm-3">
                             <Image src="//placehold.it/200" alt=""/>
                          </div>
+                         <div className=" order-sm-last">
+                           <a href={"/ModiferCentre/"+this.state.Centre._id}>
+                              <Button className="btn btn-warning btn-sm" >
+                                <span className="fa fa-edit"></span>
+                              </Button>
+                            </a>
+                          </div> 
                          <div>
-                             
+                         
+                            <div> 
+                              
                              <h2>  {this.state.Centre.NomCentre} </h2>
+                             
                              <br/>
+                            
+
+
+                         </div>
                             <p><b> <span className="fa fa-map"></span>  Region:</b>   {this.state.Centre.RegionCentre}</p>
                             <p><b> <span className="fa fa-map-marker"></span> Adresse:</b>   {this.state.Centre.AdresseCentre}</p>
                             <p><b> <span className="fa fa-phone"></span> Tel:</b>   {this.state.Centre.TelCentre}</p>
@@ -71,7 +92,9 @@ return (
                     {/* <div class="card-footer w-100 text-muted">
                     FOOTER
                     </div> */}
-                </div>                          
+                </div> 
+                
+                                        
             </div>
         </div>  
      
