@@ -20,11 +20,13 @@ const Demande = props => (
         </a>          
     </td>                 
     <td>
+    
       <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}>
-          <Button className="btn btn-danger btn-sm"
-            onClick={() => { props.supprimerDetails(props.details._id) }}>
+        <Button className="btn btn-danger btn-sm"
+           onClick={() => { if (window.confirm('Voulez-vous vraiment supprimer cette demande?'))
+           props.supprimerDetails(props.details._id) } }   >
             <span className="fa fa-times"></span>
-          </Button>
+        </Button>
       </a>
     </td> 
    <td>
@@ -125,7 +127,38 @@ export default class DemandeInscriptionList extends Component {
     }  
   
     render() {
+      if (!this.state.details[0]){
+        return(
+          <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+          <div className=" container ">
+          <div className="row justify-content-md-center">  
+          <section className="col-10 text-center">   
+          
+              <div className="col-12">
+                <br/>
+                <br/>
+                <h3> Liste Des Demandes d'Inscription à la Formation {this.state.Formation} </h3>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <h4 >
+                  Il n'y aucune demande d'inscription
+                </h4>  
+              </div>   
+          </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        )
+      }
+      else{
       return (
+       
         <div>
           <SideBar pageWrapId={"page-wrap"} />
           <div id="page-wrap">
@@ -179,3 +212,4 @@ export default class DemandeInscriptionList extends Component {
       )
     }
   }
+}

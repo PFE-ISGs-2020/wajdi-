@@ -75,16 +75,6 @@ export default class ModiferFormation extends Component {
               })
             }
           })
-      
-          //Centre axios get
-        axios.get('http://localhost:5000/Centre/')
-        .then(response3 => {
-          if (response3.data.length > 0) {
-            this.setState({
-              centres: response3.data.map(Centre => Centre.NomCentre),
-            })            
-          }
-        })
        
     }
     //didmount end
@@ -176,7 +166,7 @@ export default class ModiferFormation extends Component {
                     <div className="row justify-content-md-center">
                         <div className="col-10 text-center">
                             
-                            <h3> Modifier Formateur </h3>
+                            <h3> Modifier Formation </h3>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
@@ -275,27 +265,8 @@ export default class ModiferFormation extends Component {
                             </FormGroup>  
 
                             <FormGroup row>
-                            
-                                <Label md={5}>Nom Centre: </Label>
-                                <Col md={7}>
-                                <Input className="form-control"  required type="select"   id="NomCentre" name="NomCentre"
-                                value={this.state.NomCentre} onChange={this.onChangeNomCentre} >
-                                    {
-                                        this.state.centres.map(function(centre) {
-                                        return <option 
-                                            key={centre._id}
-                                            value={centre}>{centre}
-                                            </option>;
-                                        })
-                                    } 
-                                </Input>
-                                    
-                                </Col>
-                            </FormGroup>  
-
-                            <FormGroup row>
                                 <Col>                        
-                                    <input type="submit" value="Modifer Formation" className="btn btn-primary" />                         
+                                    <input type="submit" value="Modifer" className="btn btn-primary" />                         
                                 </Col>        
                             </FormGroup>                                          
                             </Form>           

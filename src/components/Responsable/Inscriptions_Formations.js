@@ -78,6 +78,35 @@ export default class InscriptionList extends Component {
   }   
 
   render() {
+    if (!this.state.inscriptions[0]){
+      return(
+        <div>
+        <SideBar pageWrapId={"page-wrap"} />
+        <div id="page-wrap">
+          <div className=" container ">
+        <div className="row justify-content-md-center">  
+        <section className="col-10 text-center">   
+        
+            <div className="col-12">
+              <br/>
+              <br/>
+              <h3>Liste des Inscrits à la Formation { this.state.Formation} </h3>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <h4 >
+                Il n'y aucune inscription
+              </h4>  
+            </div>   
+        </section>
+      </div>
+      </div>
+      </div>
+      </div>
+      )
+    }
+    else{
     return (
       <div>
         <SideBar pageWrapId={"page-wrap"} />
@@ -128,6 +157,6 @@ export default class InscriptionList extends Component {
           </div>
         </div>
       </div>
-    )
+    )}
   }
 }

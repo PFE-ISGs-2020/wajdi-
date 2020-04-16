@@ -27,10 +27,12 @@ const Formation = props => (
       </a>
     </td>
     <td>
+    
       <a href="/FormationList">
         <Button className="btn btn-danger btn-sm"
-         onClick={() => { props.supprimerFormation(props.formation._id) }}>
-         <span className="fa fa-times"></span>
+           onClick={() => { if (window.confirm('Voulez-vous vraiment supprimer cette formation?'))
+           props.supprimerFormation(props.formation._id) } }   >
+            <span className="fa fa-times"></span>
         </Button>  
       </a>     
     </td>
@@ -108,6 +110,42 @@ class FormationList extends Component {
   }
 
   render() {
+    if (!this.state.formation[0]){
+      return(
+        <div>
+      <SideBar pageWrapId={"page-wrap"} />
+      <div id="page-wrap">
+        <div className=" container ">
+        <div className="row justify-content-md-center">  
+        <section className="col-10 text-center">   
+        
+            <div className="col-12">
+              <br/>
+              <br/>
+              
+              <br/>
+              <br/>
+              <br/>
+              <h4 >
+                Il n'y a aucune formation
+              </h4>
+              <br/>
+              <br/>
+              <br/>
+              <a href="/ajoutformation">
+                <Button className="btn btn-success btn-sm" >
+                  <span className="fa fa-plus"> Ajouter une  formation</span>
+                </Button>
+              </a> 
+            </div>   
+        </section>
+      </div>
+      </div>
+      </div>
+      </div>
+      )
+    }
+    else{
     return (
       <div>
         <SideBar pageWrapId={"page-wrap"} />
@@ -161,7 +199,7 @@ class FormationList extends Component {
 
       </div>
     </div> 
-    );
+    );}
   }
 }
 FormationList.propTypes = {
