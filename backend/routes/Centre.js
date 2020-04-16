@@ -28,9 +28,7 @@ router.route('/List').get((req, res) => {
 
 //Sign Up centre 
 router.route('/add').post((req, res)=> {
-          
-
-    // Form validation
+ // Form validation
   const { errors, isValid } = validateSignUpCentreInput(req.body);
   // Check validation
     if (!isValid) {
@@ -97,6 +95,33 @@ router.route('/update/:id').post((req, res) => {
         
     })
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/updatePassword/:id').post((req, res) => {
+  Centre.findById(req.params.id)
+  .then(centre => {        
+    centre.NomCentre = req.body.NomCentre;  
+    centre.AdresseCentre = req.body.AdresseCentre;
+    centre.TelCentre = req.body.TelCentre;
+    centre.EmailCentre= req.body.EmailCentre;
+    centre.passwordCentre= req.body.passwordCentre
+    centre.RegionCentre= req.body.RegionCentre;
+    centre.DescriptionCentre= req.body.DescriptionCentre;
+      centre.Acces = Number(req.body.Acces);
+
+     // Hash password before saving in database
+     bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(centre.passwordCentre, salt, (err, hash) => {
+        if (err) throw err;
+        centre.passwordCentre = hash;
+        centre.save()
+          
+          .then(centre => res.json('Password Centre updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      });
+    }); 
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
 });
 
 

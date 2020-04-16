@@ -41,6 +41,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
 import ModifierCentre from './components/Responsable/Modifier_Centre';
+import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
 
  
 
@@ -78,9 +79,12 @@ if (localStorage.jwtToken) {
         <MainClient/>
         <Switch>
         <Route path="/Home" exact component={Home} />
+
+        {/* Responsable */}
         
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
           <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />  
+          <Route path="/ModifierPasswordCentre" exact component={ModifierPasswordCentre} />  
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />

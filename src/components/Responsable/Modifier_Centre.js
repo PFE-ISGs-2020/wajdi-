@@ -125,7 +125,7 @@ export default class ModifierCentre extends Component {
                             <Form onSubmit={this.onSubmit}>
 
                             <FormGroup row>
-                             <Label htmlFor="NomCentre" md={5}>Nom du Centre</Label>
+                             <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>
                              <Col md={7}>
                                 
                                 <Input  type="text" id="NomCentre" name="NomCentre" required
@@ -136,7 +136,7 @@ export default class ModifierCentre extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                             <Label htmlFor="AdresseCentre" md={5}>Adresse</Label>
+                             <Label htmlFor="AdresseCentre" md={5}><b>Adresse </b></Label>
                              <Col md={7}>
                              
                              <Input type="text" id="AdresseCentre" name="AdresseCentre"
@@ -148,7 +148,7 @@ export default class ModifierCentre extends Component {
                             </FormGroup>
 
                             <FormGroup  row controlId="RegionCentre">
-                             <Label htmlFor="RegionCentre" md={5}>Région</Label>
+                             <Label htmlFor="RegionCentre" md={5}> <b>Région</b> </Label>
                              <Col md = {7}>
    
                              <Input className="form-control"  required type="select"   value={this.state.RegionCentre} onChange={this.onChangeRegionCentre} name="RegionCentre">
@@ -183,7 +183,7 @@ export default class ModifierCentre extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                             <Label htmlFor="TelCentre" md={5}>Téléphone</Label>
+                             <Label htmlFor="TelCentre" md={5}><b>Téléphone </b></Label>
                              <Col md={7}>
                              <Input type="tel" id="TelCentre" name="TelCentre"
                                 placeholder="Téléphne" required value={this.state.TelCentre}
@@ -194,7 +194,7 @@ export default class ModifierCentre extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="EmailCentre" md={5}>Email</Label>
+                                <Label htmlFor="EmailCentre" md={5}><b>Email</b></Label>
                                 <Col md={7}>
                                     <Input  required type="email" id="EmailCentre" name="EmailCentre"
                                     placeholder="Email" value={this.state.EmailCentre}
@@ -205,7 +205,7 @@ export default class ModifierCentre extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="DescriptionCentre" md={5}>Déscription</Label>
+                                <Label htmlFor="DescriptionCentre" md={5}> <b>Déscription</b></Label>
                                     <Col md={7}>
                                         
                                         <Input   required type="textarea" id="DescriptionCentre" name="DescriptionCentre"
@@ -218,7 +218,7 @@ export default class ModifierCentre extends Component {
 
                             <FormGroup row>
                                 <Col>                        
-                                    <input type="submit" value="Modifer Centre" className="btn btn-primary" />                         
+                                    <input type="submit" value="Modifer" className="btn btn-primary" />                         
                                 </Col>        
                             </FormGroup>  
                                         
