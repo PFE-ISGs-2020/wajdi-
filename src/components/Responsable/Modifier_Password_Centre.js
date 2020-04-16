@@ -183,7 +183,10 @@ class ModifierPasswordCentre extends Component {
                             <FormGroup row>
                                 <Col>  
                                 <br/>                      
-                                    <input type="submit" value="Modifer" className="btn btn-primary" />                         
+                                    <input type="submit" value="Modifer" className="btn btn-primary offset-2" />                         
+                                    <a className="offset-1 btn btn-secondary" href="/DashboardResponsable">
+                                        Annuler
+                                    </a>
                                 </Col>        
                             </FormGroup>  
                                         

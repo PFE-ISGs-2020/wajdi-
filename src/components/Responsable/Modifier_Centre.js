@@ -218,7 +218,10 @@ export default class ModifierCentre extends Component {
 
                             <FormGroup row>
                                 <Col>                        
-                                    <input type="submit" value="Modifer" className="btn btn-primary" />                         
+                                    <input type="submit" value="Modifer" className="btn btn-primary offset-2" />                         
+                                    <a className="offset-1 btn btn-secondary" href="/ProfileCentre">
+                                        Annuler
+                                    </a>
                                 </Col>        
                             </FormGroup>  
                                         

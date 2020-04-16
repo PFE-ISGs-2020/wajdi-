@@ -172,7 +172,7 @@ class AjoutFormation extends Component {
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>
                                 <FormGroup row>
-                                    <Label htmlFor="CodeFormation" md={5}>Code Formation</Label>
+                                    <Label htmlFor="CodeFormation" md={5}><b>Code Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="text" id="CodeFormation" name="CodeFormation"
                                             placeholder="Code Formation"
@@ -182,7 +182,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label htmlFor="LibelleFormation" md={5}>Libelle Formation</Label>
+                                    <Label htmlFor="LibelleFormation" md={5}><b>Libelle Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="text" id="LibelleFormation" name="LibelleFormation"
                                             placeholder="Libelle Formation"
@@ -192,7 +192,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
+                                    <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
                                                 value={this.state.DateDebutFormation}
@@ -201,7 +201,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label htmlFor="DateFinFormation" md={5}>Date Fin Formation</Label>
+                                    <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="Date" id="DateFinFormation" name="DateFinFormation"
                                                 
@@ -211,16 +211,16 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                        <Label htmlFor="DescriptionFormation" md={5}>Description Formation</Label>
+                                        <Label htmlFor="DescriptionFormation" md={5}><b>Description Formation</b></Label>
                                         <Col md={7}>
                                         <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
-                                            value={this.state.DescriptionFormation}
+                                            value={this.state.DescriptionFormation} placeholder="Déscription Formation"
                                             onChange={this.onChangeDescriptionFormation}></Input>
                                         </Col>          
                                     </FormGroup> 
 
                                     <FormGroup row>
-                                    <Label htmlFor="CapaciteFormation" md={5}>Capacite Formation</Label>
+                                    <Label htmlFor="CapaciteFormation" md={5}><b>Capacite Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="number" id="CapaciteFormation" name="CapaciteFormation"
                                                 placeholder="Capacite Formation"
@@ -230,7 +230,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
                                 
                                 <FormGroup row>
-                                    <Label  md={5}>Nom Theme: </Label>
+                                    <Label  md={5}> <b>Nom Theme:</b> </Label>
                                     <Col md={7}>
                                     <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
                                     value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
@@ -249,7 +249,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label md={5}>Nom Formateur: </Label>
+                                    <Label md={5}> <b>Nom Formateur:</b> </Label>
                                     <Col md={7}>
                                     <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
                                     value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >

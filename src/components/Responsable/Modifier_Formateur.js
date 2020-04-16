@@ -120,8 +120,12 @@ export default class ModiferFormateur extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Col>                        
-                                    <input type="submit" value="Modifer " className="btn btn-primary" />                         
+                                <Col> 
+                                <br/>                       
+                                    <input type="submit" value="Modifer " className="btn btn-primary offset-2" />                         
+                                    <a className="offset-1 btn btn-secondary" href="/FormateurList">
+                                        Annuler
+                                    </a>
                                 </Col>        
                             </FormGroup>  
                                         

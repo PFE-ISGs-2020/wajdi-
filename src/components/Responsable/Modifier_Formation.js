@@ -3,8 +3,10 @@ import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios';
 import SideBar from "./sidebar";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export default class ModiferFormation extends Component {
+class ModiferFormation extends Component {
   constructor(props) {
     super(props);
 
@@ -67,13 +69,23 @@ export default class ModiferFormation extends Component {
           })
 
         //formateur axios get
-        axios.get('http://localhost:5000/Formateur/')
+        const {centre} = this.props.auth;
+        axios.get('http://localhost:5000/Formateur/listbynamecentre/'+centre.NomCentre)
           .then(response2 => {
             if (response2.data.length > 0) {
               this.setState({
-                formateurs: response2.data.map(Formateur => Formateur.NomFormateur),
+                formateurs: response2.data.map(Formateur => Formateur.NomFormateur+' '+Formateur.PrenomFormateur),  
+              })
+              this.setState({
+                NomFormateur: this.state.formateurs[0]
+              })
+              this.setState({
+                NomFormateur: this.state.formateurs[0]
               })
             }
+          })
+          .catch((error) => {
+            console.log(error);
           })
        
     }
@@ -171,7 +183,7 @@ export default class ModiferFormation extends Component {
                             <br/>
                             <Form onSubmit={this.onSubmit}>
                             <FormGroup row>
-                                <Label htmlFor="CodeFormation" md={5}>Code Formation</Label>
+                                <Label htmlFor="CodeFormation" md={5}> <b>Code Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="text" id="CodeFormation" name="CodeFormation"
                                         placeholder="Code Formation"
@@ -181,7 +193,7 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="LibelleFormation" md={5}>Libelle Formation</Label>
+                                <Label htmlFor="LibelleFormation" md={5}> <b> Libelle Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="text" id="LibelleFormation" name="LibelleFormation"
                                         placeholder="Libelle Formation"
@@ -191,7 +203,7 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="DateDebutFormation" md={5}>Date Debut Formation</Label>
+                                <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                            
                                             value={this.state.DateDebutFormation}
@@ -200,7 +212,7 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="DateFinFormation" md={5}>Date Fin Formation</Label>
+                                <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateFinFormation" name="DateFinFormation"                                            
                                             value={this.state.DateFinFormation}
@@ -209,16 +221,16 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                    <Label htmlFor="DescriptionFormation" md={5}>Description Formation</Label>
+                                    <Label htmlFor="DescriptionFormation" md={5}> <b>Description Formation</b></Label>
                                     <Col md={7}>
                                     <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
-                                        value={this.state.DescriptionFormation}
+                                        value={this.state.DescriptionFormation} placeholder="Déscription Formation"
                                         onChange={this.onChangeDescriptionFormation}></Input>
                                     </Col>          
                                 </FormGroup> 
 
                                 <FormGroup row>
-                                <Label htmlFor="CapaciteFormation" md={5}>Capacite Formation</Label>
+                                <Label htmlFor="CapaciteFormation" md={5}> <b>Capacite Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="number" id="CapaciteFormation" name="CapaciteFormation"
                                             placeholder="Capacite Formation"
@@ -228,7 +240,7 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
                             
                             <FormGroup row>
-                                <Label  md={5}>Nom Theme: </Label>
+                                <Label  md={5}> <b>Nom Theme:</b> </Label>
                                 <Col md={7}>
                                 <Input className="form-control"  required type="select"  id="NomTheme" name="NomTheme"
                                 value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
@@ -247,7 +259,7 @@ export default class ModiferFormation extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label md={5}>Nom Formateur: </Label>
+                                <Label md={5}> <b>Nom Formateur:</b> </Label>
                                 <Col md={7}>
                                 <Input className="form-control"  required type="select"  id="NomFormateur" name="NomFormateur"
                                 value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
@@ -265,9 +277,16 @@ export default class ModiferFormation extends Component {
                             </FormGroup>  
 
                             <FormGroup row>
-                                <Col>                        
-                                    <input type="submit" value="Modifer" className="btn btn-primary" />                         
-                                </Col>        
+                                <Col>  
+                                <br/>
+                                                    
+                                    <input type="submit" value="Modifer" className=" offset-8 btn btn-primary" />
+                                    
+                                     <a className="offset-1 btn btn-secondary" href="/FormationList">
+                                        Annuler
+                                    </a>                         
+                                </Col>
+                                       
                             </FormGroup>                                          
                             </Form>           
                         </div>            
@@ -278,3 +297,12 @@ export default class ModiferFormation extends Component {
     );
   }
 }
+ModiferFormation.propTypes = {
+    auth: PropTypes.object.isRequired
+  };  
+
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps)(ModiferFormation);
