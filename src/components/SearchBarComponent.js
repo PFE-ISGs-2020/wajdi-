@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import {InputGroup,FormControl,Card,Form} from 'react-bootstrap';
+import {InputGroup,FormControl,Card,Form,CardDeck} from 'react-bootstrap';
 import axios from 'axios';
 import { Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 //fonction qui permet d'afficher une formation dans une "Card"
-
 function RenderFormations ({formation}) {    
-    return (        
-        <Card>            
-            <Link to= {`/DetailFormation/${formation._id}`} > 
-                <Card.Header as="h5">{formation.LibelleFormation}</Card.Header>
-                <Card.Body>
+    return (   
+        <Card  className="card ">            
+            <Link to= {`/DetailFormation/${formation._id}`}  style={{color:"black",textDecorationLine:"none" }} > 
+                <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
+                <Card.Body className="cardbody">
                     <Card.Title>Description:</Card.Title>
                     <Card.Text>{formation.DescriptionFormation}</Card.Text>
                 </Card.Body>
             </Link>
-         </Card>        
+         </Card>  
+                
     );
 }   
 
 //fonction qui permet d'afficher un centre dans une "Card"
 function RenderCentres ({centre}) {   
     return (        
-        <Card>            
-            <Link to= {`/DetailCentre/${centre._id}`} > 
-                <Card.Header as="h5">{centre.NomCentre}</Card.Header>
+        <Card className="card">            
+            <Link to= {`/DetailCentre/${centre._id}`} style={{color:"black",textDecorationLine:"none" }} > 
+                <Card.Header className="cardhead" as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>
                     <Card.Text>{centre.DescriptionCentre}</Card.Text>
@@ -46,13 +46,11 @@ class SearchBar extends Component {
                         selectedFormation : null,
                         Critere:"Formation",
                         search: ''}    
-      }
-            
+      }      
 
       //on change for the search bar
       onchange = e => {
         this.setState({ search: e.target.value });
-
       };
 
       onChangeCritere = e => {
@@ -80,13 +78,12 @@ class SearchBar extends Component {
         })
 
       }   
-
   
       render() {  
         const  {search} = this.state;
             
         const filteredFormations = this.state.Formation.filter(formation => {
-        return formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+            return formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1;
         }); 
 
         const filteredCentres = this.state.Centre.filter(centre => {
@@ -113,27 +110,29 @@ class SearchBar extends Component {
         return(        
         <div className="container">
             <div className="row-12 justify-content-center">
-                <Form >
-                    <InputGroup  className="mb-3">            
-                        <Input className=" col-2 form-control"  required type="select"   
-                        value={this.state.Critere} onChange={this.onChangeCritere} name="Critere">
+                <Form>
+                    <InputGroup  className="mb-3 searchbar">            
+                        <Input className=" col-2 form-control critere"  
+                        required type="select"                 
+                        value={this.state.Critere} 
+                        onChange={this.onChangeCritere} 
+                        name="Critere">
                             <option>Formation</option>
                             <option>Centre</option>
                         </Input>   
                         
                         <FormControl aria-describedby="basic-addon1" 
+                        style={{borderLeftStyleStyle: "solid",
+                                borderLeftWidthWidth: "1px",
+                                borderLeftColor:"#0A3642" }}
                         onChange={this.onchange} />
 
                     </InputGroup>
-                </Form>           
+                </Form> 
 
-               <div className="row-12 justify-content-center" >
-                     
-               </div>         
-
-                {list}
             </div>
-        
+                {list}                                      
+                
         </div>
 );
 }

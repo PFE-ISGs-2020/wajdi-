@@ -1,26 +1,82 @@
 .nav-head{
-  background-color: rgb(110, 170, 172);
+  background-color: #0A3642;
+  padding-left: 0.5%;
+  position:relative;
+  border: none;
+  outline: none;  
+  border-radius: 25px 25px 25px 25px;  
   }
-#header{
-  margin-left:0%
-}
+   
+  html{
+    background-color: white;
+  }
 
-
-#footer {
-  background-color: rgb(148, 144, 144);  
+ 
+.footer{ 
+  background-color:#B2B9BC ;  
   bottom:0px;    
   left: 0;      
   width: 100%;
-  position: fixed;
+  border: none;
+  outline: none;  
+  border-radius: 5px 5px 5px 5px;
+   
 }    
+
+.card{
+  outline: none; 
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px rgb(146, 146, 146);
+  border-style: solid;
+  border-width: 1px;
+  border-color:#0A3642 ;
+}
+
+ .cardhead{
+    background-color: #6EAAAC;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color:#0A3642 ;
+  }
+
+  .cardbody{
+    background-color:white ;
+  }
+
+  .searchbar{
+    border-style: solid;
+    border-width: 1px;
+    border-color:#0A3642 ;
+    outline: none; 
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgb(146, 146, 146);
+  }
+ 
+  .carouselslide{
+    background-color:#B2B9BC;
+ 
+
+  }
+
+  .critere{
+    background-color: #FCCA92;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color:#0A3642;
+    color:#0A3642;
+    font-weight: bold;
+  }
+   
+ 
 .flex-column{      
   background-color:rgb(110, 170, 172);
   height: 100vh;
   margin: 0;
 }      
 
-table, th, td {
-   
+table, th, td {   
   border-bottom: 1px solid #ddd;
 }
 tr:hover {background-color: #f5f5f5;}

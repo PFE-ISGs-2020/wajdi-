@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import {Carousel, Jumbotron,Pagination,Image } from 'react-bootstrap';
+import {Carousel,Image } from 'react-bootstrap';
 import axios from 'axios';
 
 import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import SearchBar from '../components/SearchBarComponent';
  
-import BLUE from '../img/BLUE.png';
-import RED from '../img/RED.png';
+import PIC01 from '../img/PIC01.png';
+import PIC02 from '../img/PIC02.png';
+import PIC03 from '../img/PIC03.png';
+import PIC04 from '../img/PIC04.png';
+
 class Home extends Component {
     constructor(props) {
         super(props);      
@@ -27,83 +31,66 @@ class Home extends Component {
       
       render() { 
         return (
-          
+        <div>         
+        <Header />
+        
         <div className="container">
-          <Header/>
+         
           <br/>
           {/* Carousel slider */} 
-          <Jumbotron>
+          
             <div className="row row-content">
               <div class="col-12">
-                <Carousel className="carousel slide">
-                  <Carousel.Item className="active">
-                    <Image className="d-block w-100"
-                      src="" 
-                      />
-                    <Carousel.Caption>
-                      <h3>First slide </h3>
-                      <p>slide</p>
-                    </Carousel.Caption>
+                <Carousel className="carouselslide rounded">
+                  <Carousel.Item>
+                    <Image 
+                      className=" mx-auto d-block"
+                      src={PIC01}
+                      alt="Third slide"
+                    />
                   </Carousel.Item>
 
                   <Carousel.Item>
                     <Image 
-                      className="d-block w-100"
-                      src={BLUE}
+                      className="mx-auto d-block"
+                      src={PIC02}
                       alt="Third slide"
                     />
-                    <Carousel.Caption>
-                      <h3>Second slide label</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
+                  
                   </Carousel.Item>
 
                   <Carousel.Item>
                     <Image 
-                      className="d-block w-100"
-                      src={RED}
-                      alt="Third slide"
+                      className="mx-auto d-block "
+                      src={PIC03}
+                      alt="Forth slide"
                     />
-                    <Carousel.Caption>
-                      <h3>Third slide label</h3>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </Carousel.Caption>
+
                   </Carousel.Item>
+
+                  <Carousel.Item>
+                    <Image 
+                      className="mx-auto d-block  "
+                      src={PIC04}
+                      alt="Fifth slide"
+                    />
+               
+                  </Carousel.Item>
+
                 </Carousel> 
                     
               </div>
             </div>
-            </Jumbotron>  
+            <br/>
             <div>
             <SearchBar/>
             </div>
 
             <br/>
-            {/* Pagination */}
-            <div className="row justify-content-center">
-            <Pagination>
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item active>{1}</Pagination.Item>
-                <Pagination.Ellipsis />
-
-                <Pagination.Item>{10}</Pagination.Item>
-                <Pagination.Item>{11}</Pagination.Item>
-                <Pagination.Item >{12}</Pagination.Item>
-                <Pagination.Item>{13}</Pagination.Item>
-                <Pagination.Item disabled>{14}</Pagination.Item>
-
-                <Pagination.Ellipsis />
-                <Pagination.Item>{20}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
-            </Pagination>
-
-
-            </div>
-
-            
+                      
        </div>
+        <Footer />       
+        </div>
         );
     }
 }

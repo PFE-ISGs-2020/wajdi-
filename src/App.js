@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import 'font-awesome/css/font-awesome.css';
@@ -11,9 +11,8 @@ import 'bootstrap-social/bootstrap-social.css';
 
 //import Header from './components/HeaderComponent';
 //import Footer from './components/FooterComponent';
-
-import Home from './components/HomeComponent';
-
+//import Home from './components/HomeComponent';
+ 
 //Responsable imports begin
 import ProfileCentre  from './components/Responsable/Profile_Centre';
 import DashboardResponsable from './components/Responsable/DashboardResponsable';
@@ -72,14 +71,12 @@ if (localStorage.jwtToken) {
     return (
     <Provider store={store}>
     <BrowserRouter >
-    {/* <div id="header">
-        <Header />
-      </div> */}  
-      <div id="Body">
+
+      <div className="Body">
         <MainClient/>
         <Switch>
-        <Route path="/Home" exact component={Home} />
-
+         
+         
         {/* Responsable */}
         
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
@@ -102,15 +99,10 @@ if (localStorage.jwtToken) {
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
         <Route path="/DemandeList" exact component={DemandeList} />
-  
+
         </Switch>
       </div>
-      {/*  <Switch>
-        <PrivateRoute exact path="/DashboardResponsable" component={DashboardResponsable} />
-      </Switch> */} 
-      {/* <div id="footer">
-        <Footer />
-      </div> */}
+    
      </BrowserRouter>
      </Provider> 
     

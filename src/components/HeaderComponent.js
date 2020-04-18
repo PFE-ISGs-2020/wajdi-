@@ -47,12 +47,12 @@ class Header extends Component {
     render() {
 
         return(
-            <div className="nav-head ">
-                <Navbar   expand="md">        
+            <div className="nav-head rounded">
+                <Navbar   expand="md" variant="dark">        
                     <NavbarToggler onClick={this.toggleNav} />
                     <NavbarBrand className="mr-auto" ><img src='' height="30" width="41" alt='Logo' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar>
+                            <Nav className="navbar">
                             <NavItem>
                                 <NavLink className="nav-link"  to='/'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
@@ -76,13 +76,14 @@ class Header extends Component {
                             {/*webmaster button end */}
                     
                             </Nav>
-                            <Nav  className="ml-auto" navbar>
-                                <NavItem>
-                                    <Button  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Etudiant</Button>
+
+                            <Nav  className="ml-auto " navbar>
+                                <NavItem >
+                                    <Button style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}}  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Etudiant</Button>
                                 </NavItem>
 
                                 <NavItem className="ml-2">
-                                    <Button onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"/> Espace Centre</Button>
+                                    <Button  style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}} onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"/> Espace Centre</Button>
                                 </NavItem>
                             </Nav> 
                            
