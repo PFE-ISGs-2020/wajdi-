@@ -75,11 +75,11 @@ router.route('/update/:id').post((req, res) => {
         client.DatenaissClient = req.body.DatenaissClient;
         client.ProfessionClient = req.body.ProfessionClient;
         client.NiveauClient = req.body.NiveauClient;
-        client.EmailClient = req.body.EmailClient;        
+        client.emailClient = req.body.emailClient;        
         client.PasswordClient = req.body.PasswordClient;
         client.TelClient = req.body.TelClient;
         client.AdresseClient = req.body.AdresseClient;
-      
+        
         client.save()
         .then(() => res.json('client updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

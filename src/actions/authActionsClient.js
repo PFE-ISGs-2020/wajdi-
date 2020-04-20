@@ -31,7 +31,7 @@ export const loginClient = clientData => dispatch => {
       const decoded = jwt_decode(token);
       // Set current center
       dispatch(setCurrentClient(decoded));
-      //window.location="/dashboardResponsable";
+    
     })
     .catch(err =>
       dispatch({

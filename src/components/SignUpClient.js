@@ -137,6 +137,8 @@ class SignUpClient extends Component {
         
         console.log(client);
         
+    
+        
     }
 
     render(){
