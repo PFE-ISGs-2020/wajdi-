@@ -16,6 +16,7 @@ export default class ModifierCentre extends Component {
         EmailCentre:'',
         password:'',
         Acces:'',
+        image: '',
 
     };
     
@@ -26,7 +27,7 @@ export default class ModifierCentre extends Component {
     this.onChangeDescriptionCentre = this.onChangeDescriptionCentre.bind(this);
     this.onChangeEmailCentre =this.onChangeEmailCentre.bind(this);
     this.onChangeRegionCentre = this.onChangeRegionCentre.bind(this);
-
+   // this.onChangeImage = this.onChangeImage.bind(this);
     this.onSubmit = this.onSubmit.bind(this); 
   }
 
@@ -44,6 +45,7 @@ export default class ModifierCentre extends Component {
             EmailCentre: response.data.EmailCentre,
             password: response.data.passwordCentre,
             Acces: response.data.Acces,
+            image: response.data.image
             
         })   
       })
@@ -86,11 +88,30 @@ export default class ModifierCentre extends Component {
             RegionCentre: e.target.value
         });
     }
+   /*  onChangeImage(e){
+        let imageFormObj = new FormData();
+
+     // imageFormObj.append("imageName", "multer-image-" + Date.now());
+      imageFormObj.append("image", e.target.files[0]);
+
+      // stores a readable instance of 
+      // the image being uploaded using multer
+      this.setState({
+        image: URL.createObjectURL(e.target.files[0])
+      });
+    } */
+
+    fileChangedHandler = event => {
+        this.setState({ image: event.target.files[0] })
+      }
+      
 
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
-
+    /* const formData = new FormData()
+    formData.append('myFile',this.state.image, this.state.image.name)
+ */
     const centre = {
         NomCentre: this.state.NomCentre,
         AdresseCentre: this.state.AdresseCentre,
@@ -100,6 +121,7 @@ export default class ModifierCentre extends Component {
         EmailCentre:this.state.EmailCentre,
         passwordCentre: this.state.password,
         Acces: this.state.Acces,
+        //image : this.state.formData
     }
     
     console.log(centre);
@@ -123,6 +145,20 @@ export default class ModifierCentre extends Component {
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
+                            <FormGroup row>
+                             <Label htmlFor="image" md={5}> <b>Image du Centre</b></Label>
+                             <Col md={7}>
+                                
+                                <Input  type="file" id="image" name="image" 
+                                
+                                className="process__upload-btn"
+                                onChange={this.fileChangedHandler} />
+                                <img src={this.state.image}  className="process__image" />
+                             </Col>
+                            </FormGroup>
+                            {/* <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e, "multer")} />
+                                <img src={this.state.multerImage} alt="upload-image" className="process__image" /> */}
+          
 
                             <FormGroup row>
                              <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>

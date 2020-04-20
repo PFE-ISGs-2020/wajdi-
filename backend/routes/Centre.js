@@ -8,6 +8,38 @@ const jwt = require("jsonwebtoken");
 const validateSignUpCentreInput = require("../validation/SignUpCentre");
 const validateLoginCentreInput = require("../validation/LoginCentre");
 
+// Consts to save the image
+/* const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        // rejects storing a file
+        cb(null, false);
+    }
+}
+
+const upload = multer({
+    storage: storage,
+     limits: {
+         // 1024 * 1024 = 1 megabyte * 5 = 5 megabytes
+        fileSize: 1024 * 1024 * 5
+    }, 
+    fileFilter: fileFilter
+}); */
+
+//Routes
+
 router.route('/').get((req, res) => {
     Centre.find()
     .then(centres => res.json(centres))
@@ -27,7 +59,7 @@ router.route('/List').get((req, res) => {
 });
 
 //Sign Up centre 
-router.route('/add').post((req, res)=> {
+router.route('/add').post( /* upload.single('imageData'), */ (req, res)=> {
  // Form validation
   const { errors, isValid } = validateSignUpCentreInput(req.body);
   // Check validation
@@ -47,7 +79,8 @@ router.route('/add').post((req, res)=> {
          passwordCentre : req.body.passwordCentre,
          RegionCentre : req.body.RegionCentre,
          DescriptionCentre : req.body.DescriptionCentre,
-         Acces : req.body.Acces
+         Acces : req.body.Acces,
+         //image: req.body.file.path
         });
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -77,7 +110,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post( /* upload.single('image'), */ (req, res) => {
     Centre.findById(req.params.id)
     .then(centre => {        
       centre.NomCentre = req.body.NomCentre;  
@@ -88,7 +121,7 @@ router.route('/update/:id').post((req, res) => {
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
-        
+       // centre.image = req.file.path
         centre.save()
         .then(() => res.json('Centre updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

@@ -41,6 +41,7 @@ import setAuthToken from "./utils/setAuthToken";
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
 import ModifierCentre from './components/Responsable/Modifier_Centre';
 import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
+import img from './components/image';
 
  
 
@@ -99,6 +100,7 @@ if (localStorage.jwtToken) {
         <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
         <Route path="/DemandeList" exact component={DemandeList} />
+        <Route path="/img" exact component={img} />
 
         </Switch>
       </div>

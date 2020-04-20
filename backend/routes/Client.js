@@ -80,17 +80,6 @@ router.route('/update/:id').post((req, res) => {
         client.TelClient = req.body.TelClient;
         client.AdresseClient = req.body.AdresseClient;
       
-        // Hash password before saving in database
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(client.passwordClient, salt, (err, hash) => {
-              if (err) throw err;
-              client.passwordClient = hash;
-             /*  newClient.save()
-                
-                .then(client => res.json(client))
-                .catch(err => console.log(err)); */
-            });
-          });
         client.save()
         .then(() => res.json('client updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

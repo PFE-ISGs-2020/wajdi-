@@ -51,6 +51,8 @@ const FormationRouter = require('./routes/Formation');
 const FormateurRouter = require('./routes/Formateur');
 const ThemeRouter = require('./routes/Theme');
 const Details_Inscription_Router =  require('./routes/Details_Inscription');
+//to save an image
+const ImageRouter = require('./routes/image');
 //use the files
 app.use('/Centre', CentreRouter);
 app.use('/Client', ClientRouter); 
@@ -58,7 +60,9 @@ app.use('/Formation', FormationRouter);
 app.use('/Formateur', FormateurRouter);
 app.use('/Theme', ThemeRouter);
 app.use('/Details_Inscription', Details_Inscription_Router);
-
+//to save an image
+app.use('/uploads', express.static('uploads'));
+app.use('/image', ImageRouter);
 //starts the server
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

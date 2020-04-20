@@ -11,6 +11,7 @@ const centreSchema = new Schema({
   EmailCentre: { type: String, required: true },
   passwordCentre: { type: String, required: true, minlength:8 },
   Acces: { type: Number , required: true },
+  image:{ type: String }
 },
 );
 
