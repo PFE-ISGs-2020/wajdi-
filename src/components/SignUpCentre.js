@@ -118,7 +118,7 @@ class SignupCentre extends Component {
     render(){
         const { errors } = this.state;
         return(
-    <div className="row row-content">
+    <div className="row row-content justify-content-center">
        
         <div className="col-12 col-md-9">
             <Form noValidate  onSubmit={this.onSubmit}>

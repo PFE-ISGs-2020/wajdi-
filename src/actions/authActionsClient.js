@@ -1,5 +1,5 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
+import setAuthClientToken from "../utils/setAuthClientToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS_CLIENT, SET_CURRENT_CLIENT, CLIENT_LOADING } from "./types";
 
@@ -26,11 +26,12 @@ export const loginClient = clientData => dispatch => {
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       // Set token to Auth header
-      setAuthToken(token);
-      // Decode token to get center data
+      setAuthClientToken(token);
+      // Decode token to get client data
       const decoded = jwt_decode(token);
-      // Set current center
+      // Set current client
       dispatch(setCurrentClient(decoded));
+      //window.location = '/profileClient'
     
     })
     .catch(err =>
@@ -58,7 +59,7 @@ export const logoutClient = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
   // Remove auth header for future requests
-  setAuthToken(false);
+  setAuthClientToken(false);
   // Set current Client to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentClient({}));
   window.location="/";

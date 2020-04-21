@@ -38,10 +38,14 @@ import store from "./store";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
+import setAuthClientToken from "./utils/setAuthClientToken";
+
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
 import ModifierCentre from './components/Responsable/Modifier_Centre';
 import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
 import img from './components/image';
+import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
+import Profile_Client from './components/Client/Profile_Client';
 
  
 
@@ -65,6 +69,26 @@ if (localStorage.jwtToken) {
     // Redirect to home
     window.location.href = "/";
   }
+}
+// Check for tokenClient to keep client logged in
+if (localStorage.jwtToken) {
+  // Set auth tokenClient header auth
+  const tokenClient = localStorage.jwtToken;
+  setAuthClientToken(tokenClient);
+  // Decode tokenClient and get client info and exp
+  const decoded = jwt_decode(tokenClient);
+  // Set client and isAuthenticated
+  store.dispatch(setCurrentClient(decoded));
+
+// Check for expired tokenClient
+  const currentTimeClient = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTimeClient) {
+    // Logout client
+    store.dispatch(logoutClient());
+    // Redirect to home
+    window.location.href = "/";
+  }
+
 }
  class App extends Component {   
   render() {
@@ -95,6 +119,9 @@ if (localStorage.jwtToken) {
           
         
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
+
+        {/* Client */}
+        <Route path="/profileClient" component={Profile_Client} />
         
         {/* Webmaster */}
         <Route path="/homewebmaster" exact component={HomeWebmaster} />

@@ -5,8 +5,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Load input validation
-const validateSignUpClientInput = require("../validation/SignUpClient");
-const validateLoginClientInput = require("../validation/LoginClient");
+const validateSignUpClientInput = require("../Validation/SignUpClient");
+const validateLoginClientInput = require("../Validation/LoginClient");
 
 router.route('/').get((req, res) => {
     Client.find()
@@ -21,7 +21,7 @@ router.route('/add').post((req, res)=> {
   // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
-    }
+    } 
     Client.findOne({ emailClient: req.body.emailClient }).then(client => {
       if (client) {
         return res.status(400).json({ emailClient: "Email Client already exists" });
@@ -50,7 +50,8 @@ router.route('/add').post((req, res)=> {
           });
         });
       }
-    });
+     }
+    );
   });
 
 

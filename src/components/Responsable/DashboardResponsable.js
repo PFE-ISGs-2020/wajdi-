@@ -2,16 +2,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutCentre } from "../../actions/authActions";
 import SideBar from "./sidebar";
 import './Sidebar.css';
 
 
 class DashboardResponsable extends Component {
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutCentre();
-  };
+  
 
 render() {
     const { centre } = this.props.auth;
@@ -33,7 +29,7 @@ return (
   }
 }
   DashboardResponsable.propTypes = {
-    logoutCentre: PropTypes.func.isRequired,
+    
     auth: PropTypes.object.isRequired
   };
   
@@ -41,4 +37,4 @@ return (
     auth: state.auth
   });
 
-export default connect(mapStateToProps,{ logoutCentre })(DashboardResponsable);
+export default connect(mapStateToProps)(DashboardResponsable);

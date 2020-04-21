@@ -44,7 +44,7 @@ this.props.loginCentre(Centre, this.props.history); // since we handle the redir
 render() {
     const { errors } = this.state;
 return (
-      <div className="row row-content">
+      <div className="row row-content justify-content-center">
         <div  className="col-12">
             
             <Form noValidate onSubmit={this.onSubmit}>
@@ -54,7 +54,7 @@ return (
                     <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
                 </InputGroupAddon>
                 <Input placeholder="Email"  onChange={this.onChange} value={this.state.EmailCentre}
-                error={errors.EmailCentre} id="EmailCentre" type="EmailCentre"
+                error={errors.EmailCentre} id="EmailCentre" type="Email"
                 className={classnames("", {invalid: errors.EmailCentre || errors.emailnotfound})}/>
                 <span className="red-text">{errors.EmailCentre}{errors.emailnotfound} </span>
               </InputGroup>

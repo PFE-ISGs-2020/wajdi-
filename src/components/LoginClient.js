@@ -1,42 +1,93 @@
 import React, { Component } from 'react';
 import {  Button, Form,  InputGroup, InputGroupAddon, InputGroupText, Input, Col } from 'reactstrap';
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginClient} from "../actions/authActionsClient";
+import classnames from "classnames";
 
 class LoginClient extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            emailClient: "",
+            passwordClient: "",
+            errors: {}
+        };
+      }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.authClient.isAuthenticated) {
+          window.location="/profileClient"; 
+        } 
+    if (nextProps.errorsClient) {
+          this.setState({
+            errors: nextProps.errorsClient
+          });
+        }
+      }  
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+    const Client = {
+        emailClient: this.state.emailClient,
+        passwordClient: this.state.passwordClient
+        };
+    console.log(Client);
+    this.props.loginClient(Client, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+      
+      };
+
     render(){
+        const { errors } = this.state;
     return(
-        <div className="row row-content">
+        <div className="row row-content justify-content-center">
         
-            <div className="col-12">            
-                               
-            </div>
             <div className="col-12 col-md-9">
-            <Form onSubmit={this.handleLogin}>
+            <Form noValidate onSubmit={this.onSubmit}>
                         
-                            <InputGroup>
-                            <InputGroupAddon addonType="prepend">
-                            <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
-                            </InputGroupAddon>
-                            <Input placeholder="username" />
-                        </InputGroup>
-                        <br/>
-                        <InputGroup>
-                            <InputGroupAddon addonType="prepend">
-                            <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
-                            </InputGroupAddon>
-                            <Input type="password" placeholder="Password" />
-                        </InputGroup>
-                        <br/>
-                        <Col md={{size: 10, offset: 9}}>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Col>    
-                        </Form>
+                <InputGroup>
+
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="Email" placeholder="Email" onChange={this.onChange} value={this.state.emailClient}
+                           error={errors.emailClient} id="emailClient"
+                           className={classnames("", {invalid: errors.emailClient || errors.emailnotfound})}/>
+                </InputGroup> 
+                <span className="red-text"> {errors.emailClient}{errors.emailnotfound} <br/> </span>           
+               
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="password" placeholder="Mot de passe" onChange={this.onChange}
+                    value={this.state.passwordClient}  error={errors.passwordClient} id="passwordClient"
+                    className={classnames("", { invalid: errors.passwordClient || errors.passwordincorrect })}/>
+                </InputGroup>
+                <span className="red-text"> {errors.passwordClient} {errors.passwordincorrect} <br/> </span>
+                
+                <Col md={{size: 10, offset: 9}}>
+                    <Button type="submit" value="submit" color="primary">Login</Button>
+                </Col>    
+            </Form>
 
             </div>
         </div>
     );
     }
-
 }
-export default LoginClient;
+LoginClient.propTypes = {
+    loginClient: PropTypes.func.isRequired,
+    authClient: PropTypes.object.isRequired,
+    errorsClient: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    authClient: state.authClient,
+    errorsClient: state.errors
+  });
+export default connect(mapStateToProps, { loginClient })(LoginClient);

@@ -1,11 +1,9 @@
 import React, { Component} from 'react';
-import {Form} from 'react-bootstrap';
-import {FormGroup, Label,  Input, Col } from 'reactstrap';
-import axios from 'axios'; 
-import classnames from "classnames";
+import {Form, FormGroup, Input, Label, Col } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { signUpClient } from "../actions/authActionsClient";
+import classnames from "classnames";
 import { withRouter } from "react-router-dom";
 
 class SignUpClient extends Component {
@@ -13,12 +11,26 @@ class SignUpClient extends Component {
     constructor(props) {
         super(props);
 
+
+        this.onChangeNomClient = this.onChangeNomClient.bind(this);
+        this.onChangePrenomClient = this.onChangePrenomClient.bind(this);
+        this.onChangeDatenaissClient = this.onChangeDatenaissClient.bind(this);
+        this.onChangeProfessionClient = this.onChangeProfessionClient.bind(this);
+        this.onChangeNiveauClient = this.onChangeNiveauClient.bind(this);
+        this.onChangeemailClient = this.onChangeemailClient.bind(this);
+        this.onChangeTelClient = this.onChangeTelClient.bind(this);
+        this.onChangepasswordClient = this.onChangepasswordClient.bind(this);
+        this.onChangeAdresseClient = this.onChangeAdresseClient.bind(this);
+        this.onChangepassword2 = this.onChangepassword2.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);  
+
+
         this.state = {
             NomClient: '',
             PrenomClient: '',
             DatenaissClient:'',
             ProfessionClient:'',
-            NiveauClient:'BAC',
+            NiveauClient:'Bac',
             emailClient: '',
             TelClient: '',
             password2:'',
@@ -28,18 +40,7 @@ class SignUpClient extends Component {
             errors: {}        
         };
 
-        this.onChangeNomClient = this.onChangeNomClient.bind(this);
-        this.onChangePrenomClient = this.onChangePrenomClient.bind(this);
-        this.onChangeDatenaissClient = this.onChangeDatenaissClient.bind(this);
-        this.onChangeProfessionClient = this.onChangeProfessionClient.bind(this);
-        this.onChangeNiveauClient = this.onChangeNiveauClient.bind(this);
-        this.onChangeemailClient = this.onChangeemailClient.bind(this);
-        this.onChangeTelClient = this.onChangeTelClient.bind(this);
-        this.onChangeLoginClient = this.onChangeLoginClient.bind(this);
-        this.onChangepasswordClient = this.onChangepasswordClient.bind(this);
-        this.onChangeAdresseClient = this.onChangeAdresseClient.bind(this);
-        this.onChangepassword2 = this.onChangepassword2.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);        
+             
     }
       
     componentWillReceiveProps(nextProps) {
@@ -92,12 +93,6 @@ class SignUpClient extends Component {
         });
     }
 
-    onChangeLoginClient(e) {
-        this.setState({
-            LoginClient: e.target.value
-        });
-    }
-
     onChangepasswordClient(e) {
         this.setState({
             passwordClient: e.target.value
@@ -145,19 +140,19 @@ class SignUpClient extends Component {
         const { errors } = this.state;
         return(
            
-    <div className="row row-content">
+    <div className="row row-content justify-content-center">
       
-        <div className="col-12 col-md-9">
-            <Form noValidate onSubmit={this.onSubmit}>
-                <FormGroup row>
+        <div className="col-12 col-md-9 ">
+            <Form noValidate onSubmit={this.onSubmit} >
+                <FormGroup row >
                     <Label htmlFor="NomClient" md={5}>Nom</Label>
-                    <span className="red-text">{errors.NomClient}</span>
                         <Col md={7}>
-                            <Input type="text" id="NomClient" name="NomClient"
-                            placeholder="Nom"
-
-                            error={errors.NomClient}
+                        <span className="red-text">{errors.NomClient}</span>
+                            <Input type="text" id="NomClient" name="NomClient" required
+                            placeholder="Nom" 
                             value={this.state.NomClient}
+                            error={errors.NomClient}
+                            
                             className={classnames("form-control", {invalid: errors.NomClient})}
                             onChange={this.onChangeNomClient} />
                         </Col>
@@ -165,8 +160,9 @@ class SignUpClient extends Component {
                 <FormGroup row>
                     <Label htmlFor="PrenomClient" md={5}>Prenom</Label>
                         <Col md={7}>
+                        <span className="red-text">{errors.PrenomClient}</span>
                             <Input type="text" id="PrenomClient" name="PrenomClient"
-                            error={errors.PrenomClient}
+                            error={errors.PrenomClient} required
                             className={classnames("form-control", {invalid: errors.PrenomClient})}
                                 placeholder="Prenom"
                                 value={this.state.PrenomClient}
@@ -176,8 +172,9 @@ class SignUpClient extends Component {
                 <FormGroup row>
                     <Label htmlFor="DatenaissClient" md={5}>Date NaissUser</Label>
                         <Col md={7}>
+                        <span className="red-text">{errors.DatenaissClient}</span>
                             <Input type="Date" id="DatenaissClient" name="DatenaissClient"
-                                 error={errors.DatenaissClient}
+                                 error={errors.DatenaissClient} required
                                  className={classnames("form-control", {invalid: errors.DatenaissClient})}
                                  
                                 value={this.state.DatenaissClient}
@@ -188,8 +185,9 @@ class SignUpClient extends Component {
                 <FormGroup row>
                         <Label htmlFor="ProfessionClient" md={5}>Profession</Label>
                         <Col md={7}>
-                        <Input type="textarea" id="ProfessionClient" name="ProfessionClient"
-                            value={this.state.ProfessionClient}
+                        <span className="red-text">{errors.ProfessionClient}</span>
+                        <Input type="text" id="ProfessionClient" name="ProfessionClient"
+                            value={this.state.ProfessionClient} required
                             error={errors.ProfessionClient}
                             className={classnames("form-control", {invalid: errors.ProfessionClient})}
                             
@@ -220,10 +218,11 @@ class SignUpClient extends Component {
                     <FormGroup row>
                     <Label htmlFor="emailClient" md={5}>Email</Label>
                         <Col md={7}>
+                        <span className="red-text">{errors.emailClient}</span>
                             <Input type="email" id="emailClient" name="emailClient"
                                 placeholder="Email"
                                 value={this.state.emailClient}
-                                error={errors.emailClient}
+                                error={errors.emailClient} required
                             className={classnames("form-control", {invalid: errors.emailClient})}
                                 onChange={this.onChangeemailClient} />
                         </Col>
@@ -232,8 +231,9 @@ class SignUpClient extends Component {
                     <FormGroup row>
                         <Label htmlFor="TelClient" md={5}>Téléphone</Label>
                             <Col md={7}>
+                            <span className="red-text">{errors.TelClient}</span>
                                 <Input type="tel" id="TelClient" name="TelClient"
-                                    placeholder="Téléphne"
+                                    placeholder="Téléphne" required
                                     value={this.state.TelClient}
                                     error={errors.TelClient}
                             className={classnames("form-control", {invalid: errors.TelClient})}
@@ -244,9 +244,10 @@ class SignUpClient extends Component {
                     <FormGroup row>
                         <Label htmlFor="AdresseClient" md={5}>Adresse Client</Label>
                             <Col md={7}>
+                            <span className="red-text">{errors.AdresseClient}</span>
                                 <Input type="text" id="AdresseClient" name="AdresseClient"
                                     placeholder="Adresse Client"
-                                    value={this.state.AdresseClient}
+                                    value={this.state.AdresseClient} required
                                     className={classnames("form-control", {invalid: errors.AdresseClient})}
                                     error={errors.AdresseClient}
                                     onChange={this.onChangeAdresseClient} />
@@ -256,9 +257,10 @@ class SignUpClient extends Component {
                     <FormGroup row>
                     <Label htmlFor="passwordClient" md={5}>Mot de passe</Label>
                         <Col md={7}>
+                        <span className="red-text">{errors.passwordClient}</span>
                             <Input type="password" id="passwordClient" name="passwordClient"
                                 placeholder="Mot de passe"
-                                value={this.state.passwordClient}
+                                value={this.state.passwordClient} required
                                 error={errors.passwordClient}
                                     className={classnames("form-control", {invalid: errors.AdresseClient})}
                                     
@@ -278,9 +280,9 @@ class SignUpClient extends Component {
                 </FormGroup>
 
                     <FormGroup row>
-                        <Col md={{size: 10, offset: 8}}>
+                        <Col md={{size: 10, offset: 5}}>
                         <div className="form-group">
-                            <input type="submit" value="Creation Compte" className="btn btn-primary" />
+                            <input type="submit" value="Créer un Compte" className="btn btn-primary" />
                         </div>
                         </Col>        
                     </FormGroup>        
@@ -296,12 +298,12 @@ class SignUpClient extends Component {
 }
 }
 SignUpClient.propTypes = {
-    SignUpClient: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    signUpClient: PropTypes.func.isRequired,
+    authClient: PropTypes.object.isRequired,
+    errorsClient: PropTypes.object.isRequired
   };
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    authClient: state.authClient,
+    errors: state.errorsClient
   });
 export default connect( mapStateToProps, { signUpClient })(withRouter(SignUpClient));
