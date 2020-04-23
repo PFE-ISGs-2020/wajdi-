@@ -2,12 +2,9 @@ import React,{Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import 'font-awesome/css/font-awesome.css';
- 
-import 'font-awesome/css/font-awesome.min.css';
- 
-import 'bootstrap-social/bootstrap-social.css';
- 
+import 'font-awesome/css/font-awesome.css'; 
+import 'font-awesome/css/font-awesome.min.css'; 
+import 'bootstrap-social/bootstrap-social.css'; 
 
 //import Header from './components/HeaderComponent';
 //import Footer from './components/FooterComponent';
@@ -96,7 +93,7 @@ if (localStorage.jwtToken) {
     return (
     <Provider store={store}>
     <BrowserRouter >
-
+      
       <div className="Body">
         <MainClient/>
         <Switch>
