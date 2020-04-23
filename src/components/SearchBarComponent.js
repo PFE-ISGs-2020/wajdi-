@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import {InputGroup,FormControl,Card,Form} from 'react-bootstrap';
+import {InputGroup,FormControl,Card,Form,Button} from 'react-bootstrap';
 import axios from 'axios';
 import { Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
-    return (   
+    return ( 
         <Card  className="card ">            
-            <Link to= {`/DetailFormation/${formation._id}`}  style={{color:"black",textDecorationLine:"none" }} > 
+            <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
                 <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
                 <Card.Body className="cardbody">
                     <Card.Title>Description:</Card.Title>
                     <Card.Text>{formation.DescriptionFormation}</Card.Text>
                 </Card.Body>
-            </Link>
-         </Card>  
-                
+            </Link>            
+         </Card>       
     );
 }   
 
@@ -24,7 +23,7 @@ function RenderFormations ({formation}) {
 function RenderCentres ({centre}) {   
     return (        
         <Card className="card">            
-            <Link to= {`/DetailCentre/${centre._id}`} style={{color:"black",textDecorationLine:"none" }} > 
+            <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
                 <Card.Header className="cardhead" as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
                     <Card.Title>Description:</Card.Title>
@@ -95,6 +94,7 @@ class SearchBar extends Component {
             list=filteredFormations.map(formation => { 
                     return  <div>
                     <RenderFormations formation={formation}  />
+                    
                     <br/>
                     </div>;
                     })
@@ -113,7 +113,13 @@ class SearchBar extends Component {
                 <Form>
                     <InputGroup  className="mb-3 searchbar">            
                         <Input className=" col-2 form-control critere"  
-                        required type="select"                 
+                        required type="select"    
+                        style={{
+                        backgroundColor: "#FCCA92",
+                        borderRightStyle: "solid",
+                        borderRightWidth: "1px",
+                        borderRightColor:"#0A3642",
+                        color:"#0A3642"}}
                         value={this.state.Critere} 
                         onChange={this.onChangeCritere} 
                         name="Critere">

@@ -31,14 +31,11 @@ class Home extends Component {
       
       render() { 
         return (
-        <div>         
+        <div> 
         <Header />
-        
-        <div className="container">
-         
+        <div className="container">         
           <br/>
-          {/* Carousel slider */} 
-          
+          {/* Carousel slider */}           
             <div className="row row-content">
               <div class="col-12">
                 <Carousel className="carouselslide rounded">
@@ -85,11 +82,9 @@ class Home extends Component {
             <div>
             <SearchBar/>
             </div>
-
-            <br/>
-                      
-       </div>
-        <Footer />       
+            <br/>                      
+          </div>  
+          <Footer />  
         </div>
         );
     }

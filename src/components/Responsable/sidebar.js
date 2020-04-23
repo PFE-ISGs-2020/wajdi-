@@ -15,42 +15,45 @@ class SideBar extends Component {
     render() {
       const { centre } = this.props.auth;
       return(
+        
       // Pass on our props    
       <Menu  className="justify-content-center" pageWrapId={ "page-wrap" }>
-              
-        <div className="menu-item">
-          {centre.NomCentre}
-        </div>
+            
+        <span className="menu-item"  style={{fontSize:"20px",fontFamily:"Verdana",textAlign:"center"}}>
+          {centre.NomCentre} <hr style={{backgroundColor:"#fff"}} />
+        </span>
+       
       
-      <NavLink activeClassName="myactive" to="/DashboardResponsable"  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-home fa-lg"/>   Dashboard  </p>
-      </NavLink>
+        <NavLink activeClassName="myactive" to="/DashboardResponsable"  
+        style={{ textDecoration: 'none' }}>
+        <p>   <span className="fa fa-home fa-lg"/>   Dashboard  </p>
+        </NavLink>
 
-      <NavLink activeClassName="myactive" to="/ProfileCentre"  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-user fa-lg"/>   Profile Centre  </p>
-      </NavLink>
+        <NavLink activeClassName="myactive" to="/ProfileCentre"  
+        style={{ textDecoration: 'none' }}>
+        <p>   <span className="fa fa-user fa-lg"/>   Profile Centre  </p>
+        </NavLink>
 
-      <NavLink activeClassName="myactive" to="/FormationList"  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-table fa-lg"/>   Liste Formations  </p>
-      </NavLink>
+        <NavLink activeClassName="myactive" to="/FormationList"  
+        style={{ textDecoration: 'none' }}>
+        <p>   <span className="fa fa-table fa-lg"/>   Liste Formations  </p>
+        </NavLink>
 
-      <NavLink activeClassName="myactive" to={"/FormateurList"}  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-table fa-lg"/>   Liste Formateurs  </p>
-      </NavLink>
+        <NavLink activeClassName="myactive" to={"/FormateurList"}  
+        style={{ textDecoration: 'none' }}>
+        <p>   <span className="fa fa-table fa-lg"/>   Liste Formateurs  </p>
+        </NavLink>
 
-      <NavLink activeClassName="myactive" to={"/ModifierPasswordCentre"}  
-      style={{ textDecoration: 'none' }}>
-      <p>   <span className="fa fa-wrench fa-lg"/>   Modifier Mot de Passe  </p>
-      </NavLink>
-
-      <a href="/" className="menu-item" onClick={this.onLogoutClick}>
-      <p>   <span className="fa fa-sign-out fa-lg"/>  Logout</p>
-             
-      </a>
+        <NavLink activeClassName="myactive" to={"/ModifierPasswordCentre"}  
+        style={{ textDecoration: 'none' }}>
+        <p>   <span className="fa fa-wrench fa-lg"/>   Modifier Mot de Passe  </p>
+        </NavLink>
+        <hr style={{backgroundColor:"#fff"}} />
+        <a href="/" className="menu-item" onClick={this.onLogoutClick}>
+        
+        <p >   <span className="fa fa-sign-out fa-lg"/>  Logout</p>
+          
+        </a>
     </Menu>
 
     );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 import axios from 'axios';
-import SearchBar from './SearchBarComponent';
 
 class DetailCentreComponent extends Component {
 
@@ -10,8 +9,7 @@ class DetailCentreComponent extends Component {
 
         this.state = {
             centre: []
-        };
-                
+        };                
     }
 
     componentDidMount() {
@@ -24,49 +22,39 @@ class DetailCentreComponent extends Component {
           .catch((error) => {
             console.log(error);
           })
-      } 
-      
+      }       
 
     render(){
         return(
             <div>
-            <div className="container">
-                {/*BreadCrumb begin */}
-                <div className="row">
-                    <Breadcrumb>
-                        <BreadcrumbItem href="/">Accueil</BreadcrumbItem>
-                        <BreadcrumbItem active>{this.state.centre.NomCentre}</BreadcrumbItem>
-                    </Breadcrumb>
-                    <div className="col-12">
-                    <h3>{this.state.centre.NomCentre}</h3>
-                        <hr />
-                    </div>                
+                <div className="container">
+                    {/*BreadCrumb begin */}
+                    <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem href="/">Accueil</BreadcrumbItem>
+                            <BreadcrumbItem active>{this.state.centre.NomCentre}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                        <h3>{this.state.centre.NomCentre}</h3>
+                            <hr />
+                        </div>                
+                    </div>
+                    {/*BreadCrumb end */}
+                
+                    {/* showing details  begin*/}
+                    
+                    <p><b>  Nom du centre:</b>   {this.state.centre.NomCentre}</p>
+                    <p><b>  Region Centre:</b>   {this.state.centre.RegionCentre}</p>
+                    <p><b>  Adresse Centre:</b>   {this.state.centre.AdresseCentre}</p>
+                    <p><b>  Tel Centre:</b>   {this.state.centre.TelCentre}</p>
+                    <p><b>  Email Centre:</b>   {this.state.centre.EmailCentre}</p>
+                    <p><b>  Description Centre:</b>   {this.state.centre.DescriptionCentre}</p>
+                
+                    
+                    
+                    {/* showing details  end*/}               
+                   
                 </div>
-                 {/*BreadCrumb end */}
-            
-                {/* showing details  begin*/}
-                 
-                 <p><b>  Nom du centre:</b>   {this.state.centre.NomCentre}</p>
-                 <p><b>  Region Centre:</b>   {this.state.centre.RegionCentre}</p>
-                 <p><b>  Adresse Centre:</b>   {this.state.centre.AdresseCentre}</p>
-                 <p><b>  Tel Centre:</b>   {this.state.centre.TelCentre}</p>
-                 <p><b>  Email Centre:</b>   {this.state.centre.EmailCentre}</p>
-                 <p><b>  Description Centre:</b>   {this.state.centre.DescriptionCentre}</p>
-               
-                   
-                
-                {/* showing details  end*/}
-
-                
-                   
-            </div>
-            {/* searching bar and botton begin*/}
-            <div className="container">
-            <br/>
-                <SearchBar />
-            </div>
-                
-            {/* searching bar and botton  end*/}
             </div>
     );    
 

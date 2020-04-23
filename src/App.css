@@ -11,16 +11,16 @@
     background-color: white;
   }
 
+.Body{
+  min-height: calc(100vh - 70px);
+}
  
 .footer{ 
-  background-color:#B2B9BC ;  
-  bottom:0px;    
-  left: 0;      
-  width: 100%;
+  background-color:#B2B9BC ; 
+  height: 50px;
   border: none;
   outline: none;  
-  border-radius: 5px 5px 5px 5px;
-   
+  border-radius: 5px 5px 5px 5px;   
 }    
 
 .card{
@@ -56,19 +56,12 @@
  
   .carouselslide{
     background-color:#B2B9BC;
+  }
+
+  .critere{     
+    font-weight: bold;    
+  }
  
-
-  }
-
-  .critere{
-    background-color: #FCCA92;
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color:#0A3642;
-    color:#0A3642;
-    font-weight: bold;
-  }
-   
  
 .flex-column{      
   background-color:rgb(110, 170, 172);
