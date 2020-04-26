@@ -145,7 +145,7 @@ export default class DemandeInscriptionList extends Component {
                 <br/>
                 <br/>
                 <h4 >
-                  Il n'y aucune demande d'inscription
+                  Il n'y aucune demande d'inscription pour le moment.
                 </h4>  
               </div>   
           </section>

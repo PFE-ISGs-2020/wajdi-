@@ -57,7 +57,10 @@ class CardFormation extends Component {
                 </div> 
                 <div className="row ">
                     <p><b>Capacité:</b> {this.state.formation.CapaciteFormation}</p>
-                </div> 
+                </div>
+                <div className="row ">
+                    <p><b>Prix:</b> {this.state.formation.Prix}</p>
+                </div>
                   
                 {/* showing details  end*/}                
                    

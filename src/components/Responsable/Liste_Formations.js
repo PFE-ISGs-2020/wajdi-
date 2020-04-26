@@ -127,7 +127,7 @@ class FormationList extends Component {
               <br/>
               <br/>
               <h4 >
-                Il n'y a aucune formation
+                Il n'y a aucune formation enregistrée!
               </h4>
               <br/>
               <br/>

@@ -169,8 +169,9 @@ class SignUpClient extends Component {
                                 onChange={this.onChangePrenomClient} />
                         </Col>                        
                 </FormGroup>
+                
                 <FormGroup row>
-                    <Label htmlFor="DatenaissClient" md={5}>Date NaissUser</Label>
+                    <Label htmlFor="DatenaissClient" md={5}>Date de Naissance</Label>
                         <Col md={7}>
                         <span className="red-text">{errors.DatenaissClient}</span>
                             <Input type="Date" id="DatenaissClient" name="DatenaissClient"

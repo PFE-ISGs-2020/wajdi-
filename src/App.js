@@ -43,8 +43,7 @@ import ModifierPasswordCentre from './components/Responsable/Modifier_Password_C
 import img from './components/image';
 import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
 import Profile_Client from './components/Client/Profile_Client';
-
- 
+import ModifierProfile from './components/Client/Modifier_Profile'
 
 //import PrivateRoute from "./components/private-route/PrivateRoute";
 
@@ -119,6 +118,7 @@ if (localStorage.jwtToken) {
 
         {/* Client */}
         <Route path="/profileClient" component={Profile_Client} />
+        <Route path="/ModifierProfile/:id" component={ModifierProfile} />
         
         {/* Webmaster */}
         <Route path="/homewebmaster" exact component={HomeWebmaster} />

@@ -48,7 +48,7 @@ render() {
                         <Image src="//placehold.it/200" alt=""/>
                     </div>
                     <div className=" order-sm-last">
-                        <a href={"/ModiferClient/"+this.state.Client._id}>
+                        <a href={"/ModifierProfile/"+this.state.Client._id}>
                             <Button className="btn btn-warning btn-sm" >
                                 <span className="fa fa-edit"></span>
                             </Button>

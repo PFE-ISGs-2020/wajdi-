@@ -24,6 +24,7 @@ router.route('/add').post((req, res) => {
   const NomTheme= req.body.NomTheme;
   const NomFormateur= req.body.NomFormateur;
   const NomCentre =req.body.NomCentre;
+  const Prix =req.body.Prix;
 
   const newFormation = new Formation({
     CodeFormation,
@@ -34,7 +35,8 @@ router.route('/add').post((req, res) => {
     CapaciteFormation ,
     NomTheme ,
     NomFormateur ,
-    NomCentre
+    NomCentre,
+    Prix
   });
 
   newFormation.save()
@@ -67,9 +69,10 @@ router.route('/update/:id').post((req, res) => {
         formation.NomTheme= req.body.NomTheme;
         formation.NomFormateur= req.body.NomFormateur;
         formation.NomCentre=req.body.NomCentre;
+        formation.Prix=req.body.Prix;
 
         formation.save()
-        .then(() => res.json('Formation Modifer!'))
+        .then(() => res.json('Formation Modifée!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

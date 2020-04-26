@@ -11,7 +11,8 @@ const formationSchema = new Schema({
     CapaciteFormation: { type: Number, required: true },
     NomTheme :{ type: String, required: true },
     NomFormateur:{type: String, required: true},
-    NomCentre:{type: String, required: true}
+    NomCentre:{type: String, required: true},
+    Prix: {type: Number, required: true}
 },
  {
   timestamps: true,

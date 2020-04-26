@@ -93,7 +93,7 @@ class FormateurList extends Component {
               <br/>
               <br/>
               <h4 >
-                Il n'y a aucun formateur
+                Il n'y a aucun formateur enregistré!
               </h4>
               <br/>
               <br/>
