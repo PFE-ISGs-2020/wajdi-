@@ -65,30 +65,30 @@ class AjoutFormateur extends Component {
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>
                                 <FormGroup row>
-                                    <Label htmlFor="NomFormateur" md={5}>Nom Formateur</Label>
+                                    <Label htmlFor="NomFormateur" md={5}> <b>Nom:</b> </Label>
                                         <Col md={7}>
                                             <Input type="text" id="NomFormateur" name="NomFormateur"
-                                            placeholder="Nom Formateur"
+                                            placeholder="Nom "
                                             value={this.state.NomFormateur}
                                             onChange={this.onChangeNomFormateur } />
                                         </Col>
                                 </FormGroup>
     
                                 <FormGroup row>
-                                    <Label htmlFor="PrenomFormateur" md={5}>Prenom Formateur</Label>
+                                    <Label htmlFor="PrenomFormateur" md={5}> <b>Prénom:</b> </Label>
                                         <Col md={7}>
                                             <Input type="text" id="PrenomFormateur" name="PrenomFormateur"
-                                            placeholder="Prenom Formateur"
+                                            placeholder="Prénom "
                                             value={this.state.PrenomFormateur}
                                             onChange={this.onChangePrenomFormateur} />
                                         </Col>
                                 </FormGroup>
     
                                 <FormGroup row>
-                                    <Label htmlFor="SpecialiteFormateur" md={5}>Date Debut Formation</Label>
+                                    <Label htmlFor="SpecialiteFormateur" md={5}><b>Specialité:</b></Label>
                                         <Col md={7}>
                                             <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
-                                                placeholder="Specialite Formateur"
+                                                placeholder="Specialité"
                                                 value={this.state.SpecialiteFormateur}
                                                 onChange={this.onChangeSpecialiteFormateur} />
                                         </Col>                        
@@ -96,7 +96,10 @@ class AjoutFormateur extends Component {
     
                                 <FormGroup row>
                                     <Col>                        
-                                        <input type="submit" value="Ajouter Formateur" className="btn btn-primary" />                         
+                                        <input type="submit" value="Ajouter Formateur" className="btn btn-primary offset-3" />                         
+                                        <a className="offset-1 btn btn-secondary" href="/FormateurList">
+                                        Annuler
+                                        </a> 
                                     </Col>        
                                 </FormGroup>  
                                             

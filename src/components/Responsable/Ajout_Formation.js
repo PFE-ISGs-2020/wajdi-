@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Form} from 'react-bootstrap';
-import {FormGroup, Label,  Input, Col } from 'reactstrap';
+import {FormGroup, Label,  Input, Col, Button } from 'reactstrap';
 import axios from 'axios'; 
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
+import moment from 'moment'
+
 
 class AjoutFormation extends Component {
 
@@ -24,6 +26,7 @@ class AjoutFormation extends Component {
             NomCentre:'',
             themes:[] ,
             formateurs:[],
+            Prix: ''
         };
 
         this.onChangeCodeFormation = this.onChangeCodeFormation.bind(this);
@@ -34,7 +37,7 @@ class AjoutFormation extends Component {
         this.onChangeCapaciteFormation =this.onChangeCapaciteFormation.bind(this);
         this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
         this.onChangeNomFormateur =this.onChangeNomFormateur.bind(this);
-
+        this.onChangePrix = this.onChangePrix.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
     }
     //didmount begin
@@ -130,6 +133,12 @@ class AjoutFormation extends Component {
         });
     }
 
+    onChangePrix(e) {
+        this.setState({
+            Prix: e.target.value
+        });
+    }
+
 //récupération des donnees du l'Input
     onSubmit(e) {
         e.preventDefault();
@@ -143,7 +152,8 @@ class AjoutFormation extends Component {
             CapaciteFormation:  this.state.CapaciteFormation,
             NomTheme: this.state.NomTheme,
             NomFormateur: this.state.NomFormateur,
-            NomCentre:centre.NomCentre  
+            NomCentre:centre.NomCentre  ,
+            Prix: this.state.Prix
         }
       
         console.log(formation);
@@ -159,6 +169,43 @@ class AjoutFormation extends Component {
     }
 
     render(){
+        if (!this.state.formateurs[0]){
+            return(
+              <div>
+            <SideBar pageWrapId={"page-wrap"} />
+            <div id="page-wrap">
+              <div className=" container ">
+              <div className="row justify-content-md-center">  
+              <section className="col-10 text-center">   
+              
+                  <div className="col-12">
+                    <br/>
+                    <br/>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4 >
+                     Il n'ya aucun formateur enregistré! <br/>
+                     Veuillez ajouter un formateur avant d'ajouter une formation.
+                    </h4>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/ajoutformateur">
+                      <Button className="btn btn-success btn-sm" >
+                        <span className="fa fa-plus"> Ajouter un formateur</span>
+                      </Button>
+                    </a> 
+                  </div>   
+              </section>
+            </div>
+            </div>
+            </div>
+            </div>
+            )
+          }
+        else{
         return(
             <div>
                 <SideBar pageWrapId={"page-wrap"} />
@@ -194,7 +241,8 @@ class AjoutFormation extends Component {
                                 <FormGroup row>
                                     <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                         <Col md={7}>
-                                            <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
+                                            <Input type="Date" id="DateDebutFormation" name="DateDebutFormation" 
+                                             max = {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}                                   
                                                 value={this.state.DateDebutFormation}
                                                 onChange={this.onChangeDateDebutFormation} />
                                         </Col>                        
@@ -204,14 +252,14 @@ class AjoutFormation extends Component {
                                     <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="Date" id="DateFinFormation" name="DateFinFormation"
-                                                
+                                                min = {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
                                                 value={this.state.DateFinFormation}
                                                 onChange={this.onChangeDateFinFormation} />
                                         </Col>
                                 </FormGroup>
 
                                 <FormGroup row>
-                                        <Label htmlFor="DescriptionFormation" md={5}><b>Description Formation</b></Label>
+                                        <Label htmlFor="DescriptionFormation" md={5}><b>Déscription Formation</b></Label>
                                         <Col md={7}>
                                         <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
                                             value={this.state.DescriptionFormation} placeholder="Déscription Formation"
@@ -223,7 +271,7 @@ class AjoutFormation extends Component {
                                     <Label htmlFor="CapaciteFormation" md={5}><b>Capacite Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="number" id="CapaciteFormation" name="CapaciteFormation"
-                                                placeholder="Capacite Formation"
+                                                placeholder="Capacité Formation"
                                                 value={this.state.CapaciteFormation}
                                                 onChange={this.onChangeCapaciteFormation} />
                                         </Col>
@@ -267,8 +315,23 @@ class AjoutFormation extends Component {
                                 </FormGroup>    
 
                                 <FormGroup row>
-                                    <Col>                        
-                                        <input type="submit" value="Creation Formation" className="btn btn-primary" />                         
+                                    <Label md={5}> <b>Prix en Dinars:</b> </Label>
+                                    <Col md={7}>
+                                    <Input className="form-control"  required type="text"  id="prix" name="prix"
+                                    value={this.state.Prix} onChange={this.onChangePrix} placeholder="Prix en Dinars" >
+                                       
+                                    </Input>
+                                        
+                                    </Col>
+                                </FormGroup> 
+
+                                <FormGroup row>
+                                    <Col> 
+                                    <br/>                       
+                                        <input type="submit" value="Creation Formation" className="btn btn-primary offset-3" /> 
+                                        <a className="offset-1 btn btn-secondary" href="/FormationList">
+                                        Annuler
+                                    </a>                        
                                     </Col>        
                                 </FormGroup>  
                                             
@@ -280,6 +343,7 @@ class AjoutFormation extends Component {
             </div>                   
         );
     }
+}
 }
 AjoutFormation.propTypes = {
     auth: PropTypes.object.isRequired

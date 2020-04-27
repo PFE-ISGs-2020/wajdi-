@@ -132,7 +132,7 @@ class ModifierPasswordCentre extends Component {
                     <div className="row justify-content-md-center">
                         <div className="col-10 text-center">
                             
-                            <h3> Modifier Mot de Passe </h3>
+                            <h3> Changer Mot de Passe </h3>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>

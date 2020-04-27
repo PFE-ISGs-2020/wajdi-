@@ -46,7 +46,7 @@ class SideBar extends Component {
 
         <NavLink activeClassName="myactive" to={"/ModifierPasswordCentre"}  
         style={{ textDecoration: 'none' }}>
-        <p>   <span className="fa fa-wrench fa-lg"/>   Modifier Mot de Passe  </p>
+        <p>   <span className="fa fa-wrench fa-lg"/>   Changer Mot de Passe  </p>
         </NavLink>
         <hr style={{backgroundColor:"#fff"}} />
         <a href="/" className="menu-item" onClick={this.onLogoutClick}>

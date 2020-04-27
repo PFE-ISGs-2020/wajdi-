@@ -5,6 +5,7 @@ import axios from 'axios';
 import SideBar from "./sidebar";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import moment from 'moment'
 
 class ModiferFormation extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class ModiferFormation extends Component {
         NomCentre:'',
         themes:[] ,
         formateurs:[],
-        centres:[]
+       
+        Prix: ''
     };
 
     this.onChangeCodeFormation = this.onChangeCodeFormation.bind(this);
@@ -34,6 +36,7 @@ class ModiferFormation extends Component {
     this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
     this.onChangeNomFormateur =this.onChangeNomFormateur.bind(this);
     this.onChangeNomCentre=this.onChangeNomCentre.bind(this);
+    this.onChangePrix = this.onChangePrix.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this); 
   }
@@ -51,6 +54,7 @@ class ModiferFormation extends Component {
             NomTheme: response.data.NomTheme,
             NomFormateur: response.data.NomFormateur,
             NomCentre: response.data.NomCentre,
+            Prix: response.data.Prix
         })   
       })
       .catch((error) => {
@@ -145,6 +149,12 @@ class ModiferFormation extends Component {
         });
     }
 
+    onChangePrix(e) {
+        this.setState({
+            Prix: e.target.value
+        });
+    }
+
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
@@ -158,7 +168,8 @@ class ModiferFormation extends Component {
         CapaciteFormation:  this.state.CapaciteFormation,
         NomTheme: this.state.NomTheme,
         NomFormateur:  this.state.NomFormateur,
-        NomCentre:  this.state.NomCentre       
+        NomCentre:  this.state.NomCentre   ,
+        Prix: this.state.Prix    
     }
 
     console.log(formation);
@@ -206,8 +217,9 @@ class ModiferFormation extends Component {
                                 <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                            
-                                            value={this.state.DateDebutFormation}
-                                            onChange={this.onChangeDateDebutFormation} />
+                                            value= {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
+                                            onChange={this.onChangeDateDebutFormation} 
+                                            max = {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}/>
                                     </Col>                        
                             </FormGroup>
 
@@ -215,7 +227,8 @@ class ModiferFormation extends Component {
                                 <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateFinFormation" name="DateFinFormation"                                            
-                                            value={this.state.DateFinFormation}
+                                            value= {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}
+                                            min= {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
                                             onChange={this.onChangeDateFinFormation} />
                                     </Col>
                             </FormGroup>
@@ -275,6 +288,16 @@ class ModiferFormation extends Component {
                                     
                                 </Col>
                             </FormGroup>  
+
+                            <FormGroup row>
+                                <Label htmlFor="Prix" md={5}> <b>Prix en Dinars:</b></Label>
+                                    <Col md={7}>
+                                        <Input type="number" id="Prix" name="Prix"
+                                            placeholder="Prix en Dinars"
+                                            value={this.state.Prix}
+                                            onChange={this.onChangePrix} />
+                                    </Col>
+                            </FormGroup>
 
                             <FormGroup row>
                                 <Col>  

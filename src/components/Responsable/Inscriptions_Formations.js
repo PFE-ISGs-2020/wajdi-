@@ -96,7 +96,7 @@ export default class InscriptionList extends Component {
               <br/>
               <br/>
               <h4 >
-                Il n'y aucune inscription
+                Il n'y aucune inscription pour le moment
               </h4>  
             </div>   
         </section>

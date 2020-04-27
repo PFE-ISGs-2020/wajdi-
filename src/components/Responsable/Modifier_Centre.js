@@ -153,7 +153,7 @@ export default class ModifierCentre extends Component {
                                 
                                 className="process__upload-btn"
                                 onChange={this.fileChangedHandler} />
-                                <img src={this.state.image}  className="process__image" />
+                                <img src={this.state.image} alt="" className="process__image" />
                              </Col>
                             </FormGroup>
                             {/* <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e, "multer")} />

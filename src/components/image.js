@@ -60,11 +60,11 @@ class img extends Component {
             <p className="process__details">Upload image to a node server, connected to a MongoDB database, with the help of multer</p>
 
             <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e, "multer")} />
-            <img src={this.state.multerImage} alt="upload-image" className="process__image" />
+            <img src={this.state.multerImage} alt="upload_image" className="process__image" />
           </div>
         </div>
 
-        <p className="main-credit">Created by <a href="#">Tarique Ejaz</a></p>
+        <p className="main-credit">Created by Tarique Ejaz</p>
       </div>
     );
   }
