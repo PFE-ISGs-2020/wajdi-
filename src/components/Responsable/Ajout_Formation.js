@@ -252,7 +252,7 @@ class AjoutFormation extends Component {
                                     <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="Date" id="DateFinFormation" name="DateFinFormation"
-                                                
+                                                min = {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
                                                 value={this.state.DateFinFormation}
                                                 onChange={this.onChangeDateFinFormation} />
                                         </Col>
