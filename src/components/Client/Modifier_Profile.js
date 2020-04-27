@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios';
+import moment from 'moment'
 
 export default class ModifierProfile extends Component {
   constructor(props) {
@@ -203,10 +204,9 @@ export default class ModifierProfile extends Component {
                     <Label htmlFor="DatenaissClient" md={5}><b> Date de Naissance: </b></Label>
                         <Col md={7}>
                             <Input type="Date" id="DatenaissClient" name="DatenaissClient"
-                                 // required
+                                  required
                                  className="form-control"
-                                 
-                                value={this.state.DatenaissClient}
+                                value= {moment(this.state.DatenaissClient).format('YYYY-MM-DD')}
                                 onChange={this.onChangeDatenaissClient} />
                         </Col>
                 </FormGroup> 
@@ -277,7 +277,7 @@ export default class ModifierProfile extends Component {
                             <FormGroup row>
                                 <Col>                        
                                     <input type="submit" value="Modifer" className="btn btn-primary offset-2" />                         
-                                    <a className="offset-1 btn btn-secondary" href="/ProfileCentre">
+                                    <a className="offset-1 btn btn-secondary" href="/ProfileClient">
                                         Annuler
                                     </a>
                                 </Col>        

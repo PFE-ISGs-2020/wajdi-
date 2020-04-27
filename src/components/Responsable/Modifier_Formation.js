@@ -5,6 +5,7 @@ import axios from 'axios';
 import SideBar from "./sidebar";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import moment from 'moment'
 
 class ModiferFormation extends Component {
   constructor(props) {
@@ -216,8 +217,9 @@ class ModiferFormation extends Component {
                                 <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                            
-                                            value={this.state.DateDebutFormation}
-                                            onChange={this.onChangeDateDebutFormation} />
+                                            value= {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
+                                            onChange={this.onChangeDateDebutFormation} 
+                                            max = {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}/>
                                     </Col>                        
                             </FormGroup>
 
@@ -225,7 +227,8 @@ class ModiferFormation extends Component {
                                 <Label htmlFor="DateFinFormation" md={5}> <b>Date Fin Formation</b></Label>
                                     <Col md={7}>
                                         <Input type="Date" id="DateFinFormation" name="DateFinFormation"                                            
-                                            value={this.state.DateFinFormation}
+                                            value= {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}
+                                            min= {moment(this.state.DateDebutFormation).format('YYYY-MM-DD')}
                                             onChange={this.onChangeDateFinFormation} />
                                     </Col>
                             </FormGroup>
@@ -290,7 +293,7 @@ class ModiferFormation extends Component {
                                 <Label htmlFor="Prix" md={5}> <b>Prix en Dinars:</b></Label>
                                     <Col md={7}>
                                         <Input type="number" id="Prix" name="Prix"
-                                            placeholder="Capacite Formation"
+                                            placeholder="Prix en Dinars"
                                             value={this.state.Prix}
                                             onChange={this.onChangePrix} />
                                     </Col>

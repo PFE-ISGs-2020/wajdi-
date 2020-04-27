@@ -6,6 +6,8 @@ import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
+import moment from 'moment'
+
 
 class AjoutFormation extends Component {
 
@@ -239,7 +241,8 @@ class AjoutFormation extends Component {
                                 <FormGroup row>
                                     <Label htmlFor="DateDebutFormation" md={5}> <b>Date Debut Formation</b></Label>
                                         <Col md={7}>
-                                            <Input type="Date" id="DateDebutFormation" name="DateDebutFormation"                                    
+                                            <Input type="Date" id="DateDebutFormation" name="DateDebutFormation" 
+                                             max = {moment(this.state.DateFinFormation).format('YYYY-MM-DD')}                                   
                                                 value={this.state.DateDebutFormation}
                                                 onChange={this.onChangeDateDebutFormation} />
                                         </Col>                        
@@ -256,7 +259,7 @@ class AjoutFormation extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                        <Label htmlFor="DescriptionFormation" md={5}><b>Description Formation</b></Label>
+                                        <Label htmlFor="DescriptionFormation" md={5}><b>Déscription Formation</b></Label>
                                         <Col md={7}>
                                         <Input type="textarea" id="DescriptionFormation" name="DescriptionFormation"
                                             value={this.state.DescriptionFormation} placeholder="Déscription Formation"
@@ -315,7 +318,7 @@ class AjoutFormation extends Component {
                                     <Label md={5}> <b>Prix en Dinars:</b> </Label>
                                     <Col md={7}>
                                     <Input className="form-control"  required type="text"  id="prix" name="prix"
-                                    value={this.state.Prix} onChange={this.onChangePrix} placeholder="Prix" >
+                                    value={this.state.Prix} onChange={this.onChangePrix} placeholder="Prix en Dinars" >
                                        
                                     </Input>
                                         
