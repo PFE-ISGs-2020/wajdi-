@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
     return ( 
