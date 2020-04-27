@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 import axios from 'axios';
+import Header from '../components/HeaderComponent';
 
 class DetailCentreComponent extends Component {
 
@@ -8,15 +9,22 @@ class DetailCentreComponent extends Component {
         super(props);
 
         this.state = {
-            centre: []
+            centree:this.props.centre ? this.props.centre:JSON.parse(localStorage.getItem('object'))
         };                
     }
 
     componentDidMount() {
+        //if we refresh and id get lost from the state we store it locally
+        if(this.props.centre!==undefined)
+        localStorage.setItem("object", JSON.stringify(this.props.centre));
+
+        const {centree} = this.state;
+        let ID_Centre = centree ? centree._id : "";
+
         //Request to get "centre" details by its ID
-        axios.get('http://localhost:5000/Centre/'+this.props.centre._id)
-          .then(centree => {
-            this.setState({ centre: centree.data })
+        axios.get('http://localhost:5000/Centre/'+ID_Centre)
+          .then(centre => {
+            this.setState({ centree: centre.data })
             console.log(this.props.centre);
           })
           .catch((error) => {
@@ -25,31 +33,37 @@ class DetailCentreComponent extends Component {
       }       
 
     render(){
+        const {centree} = this.state;
+        let NomCentre = centree ? centree.NomCentre : "";
+        let RegionCentre = centree ? centree.RegionCentre : "";
+        let AdresseCentre = centree ? centree.AdresseCentre : "";
+        let TelCentre = centree ? centree.TelCentre : "";
+        let EmailCentre = centree ? centree.EmailCentre : "";
+        let DescriptionCentre = centree ? centree.DescriptionCentre : "";
         return(
             <div>
+                <Header />
                 <div className="container">
                     {/*BreadCrumb begin */}
                     <div className="row">
                         <Breadcrumb>
                             <BreadcrumbItem href="/">Accueil</BreadcrumbItem>
-                            <BreadcrumbItem active>{this.state.centre.NomCentre}</BreadcrumbItem>
+                            <BreadcrumbItem active>{NomCentre}</BreadcrumbItem>
                         </Breadcrumb>
                         <div className="col-12">
-                        <h3>{this.state.centre.NomCentre}</h3>
+                        <h3>{NomCentre}</h3>
                             <hr />
                         </div>                
                     </div>
                     {/*BreadCrumb end */}
                 
-                    {/* showing details  begin*/}
-                    
-                    <p><b>  Nom du centre:</b>   {this.state.centre.NomCentre}</p>
-                    <p><b>  Region Centre:</b>   {this.state.centre.RegionCentre}</p>
-                    <p><b>  Adresse Centre:</b>   {this.state.centre.AdresseCentre}</p>
-                    <p><b>  Tel Centre:</b>   {this.state.centre.TelCentre}</p>
-                    <p><b>  Email Centre:</b>   {this.state.centre.EmailCentre}</p>
-                    <p><b>  Description Centre:</b>   {this.state.centre.DescriptionCentre}</p>
-                
+                    {/* showing details  begin*/}                    
+                    <p><b>  Nom du centre:</b>   {NomCentre}</p>
+                    <p><b>  Region Centre:</b>   {RegionCentre}</p>
+                    <p><b>  Adresse Centre:</b>   {AdresseCentre}</p>
+                    <p><b>  Tel Centre:</b>   {TelCentre}</p>
+                    <p><b>  Email Centre:</b>   {EmailCentre}</p>
+                    <p><b>  Description Centre:</b>   {DescriptionCentre}</p>                
                     
                     
                     {/* showing details  end*/}               

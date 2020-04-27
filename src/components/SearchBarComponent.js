@@ -93,7 +93,7 @@ class SearchBar extends Component {
         if (this.state.Critere === "Formation") {
             list=filteredFormations.map(formation => { 
                     return  <div>
-                    <RenderFormations formation={formation}  />
+                    <RenderFormations formation={formation}  key={formation._id}/>
                     
                     <br/>
                     </div>;
