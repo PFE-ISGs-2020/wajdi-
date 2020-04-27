@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { logoutCentre } from "../../actions/authActions";
 import SideBar from "./sidebar";
 import './Sidebar.css';
-import Header from '../HeaderComponent';
 
 class DashboardResponsable extends Component {
   onLogoutClick = e => {

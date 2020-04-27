@@ -11,7 +11,6 @@ class SignUpClient extends Component {
     constructor(props) {
         super(props);
 
-
         this.onChangeNomClient = this.onChangeNomClient.bind(this);
         this.onChangePrenomClient = this.onChangePrenomClient.bind(this);
         this.onChangeDatenaissClient = this.onChangeDatenaissClient.bind(this);
