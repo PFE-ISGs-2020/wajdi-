@@ -11,8 +11,7 @@ import SignUpClient from './SignUpClient';
 class Header extends Component {
     constructor(props) {
         super(props);
-    
-        
+       
         this.state = {
           isNavOpen: false,
           isModalOpen: false
@@ -42,7 +41,6 @@ class Header extends Component {
         this.toggleModalClient = this.toggleModalClient.bind(this);
       }
 
-       
 
     render() {
 
@@ -58,11 +56,11 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Centres'><span className="fa fa-list fa-lg"/> Centre de formation </NavLink>
+                                <NavLink className="nav-link"  to='/Centres_Formation'><span className="fa fa-list fa-lg"/> Centre de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formations'><span className="fa fa-list fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-list fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>

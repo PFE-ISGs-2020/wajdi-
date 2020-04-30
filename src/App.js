@@ -100,6 +100,7 @@ if (localStorage.jwtToken) {
          
         {/* Responsable */}
         
+
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
           <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />  
           <Route path="/ModifierPasswordCentre" exact component={ModifierPasswordCentre} />  

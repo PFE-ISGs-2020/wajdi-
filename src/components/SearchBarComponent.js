@@ -7,16 +7,18 @@ import { Link } from 'react-router-dom';
 
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
-    return ( 
+    return (  
+           
         <Card  className="card ">            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
-                <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
-                <Card.Body className="cardbody">
-                    <Card.Title>Description:</Card.Title>
-                    <Card.Text>{formation.DescriptionFormation}</Card.Text>
-                </Card.Body>
+            <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
+            <Card.Body className="cardbody">
+                <Card.Title>Description:</Card.Title>                
+                <Card.Text><p>{formation.DescriptionFormation}</p></Card.Text>
+            </Card.Body>
             </Link>            
-         </Card>       
+        </Card> 
+     
     );
 }   
 
@@ -138,8 +140,8 @@ class SearchBar extends Component {
                 </Form> 
 
             </div>
-                {list}                                      
-                
+            {list}                                   
+           
         </div>
 );
 }
