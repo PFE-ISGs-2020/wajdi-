@@ -43,7 +43,7 @@ return (
                      <div className="row" >
                        
                          <div className="col-sm-3">
-                            <img src={this.state.Centre.image} alt="centre"/>
+                            <img src={URL+"/"+this.state.Centre.image} alt="centre"/>
                          </div>
                          <div className=" order-sm-last">
                            <a href={"/ModiferCentre/"+this.state.Centre._id}>
