@@ -27,7 +27,7 @@ export default class ModifierCentre extends Component {
     this.onChangeDescriptionCentre = this.onChangeDescriptionCentre.bind(this);
     this.onChangeEmailCentre =this.onChangeEmailCentre.bind(this);
     this.onChangeRegionCentre = this.onChangeRegionCentre.bind(this);
-   // this.onChangeImage = this.onChangeImage.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
     this.onSubmit = this.onSubmit.bind(this); 
   }
 
@@ -46,6 +46,7 @@ export default class ModifierCentre extends Component {
             password: response.data.passwordCentre,
             Acces: response.data.Acces,
             image: response.data.image
+            
             
         })   
       })
@@ -88,47 +89,36 @@ export default class ModifierCentre extends Component {
             RegionCentre: e.target.value
         });
     }
-   /*  onChangeImage(e){
-        let imageFormObj = new FormData();
+ 
 
-     // imageFormObj.append("imageName", "multer-image-" + Date.now());
-      imageFormObj.append("image", e.target.files[0]);
+    onChangeImage (e) {
+        this.setState({
+            image: e.target.files[0],
+            //image:URL.createObjectURL(e.target.files[0])
+        });
+      };
 
-      // stores a readable instance of 
-      // the image being uploaded using multer
-      this.setState({
-        image: URL.createObjectURL(e.target.files[0])
-      });
-    } */
-
-    fileChangedHandler = event => {
-        this.setState({ image: event.target.files[0] })
-      }
-      
+    
 
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
-    /* const formData = new FormData()
-    formData.append('myFile',this.state.image, this.state.image.name)
- */
-    const centre = {
-        NomCentre: this.state.NomCentre,
-        AdresseCentre: this.state.AdresseCentre,
-        TelCentre: this.state.TelCentre,
-        RegionCentre:this.state.RegionCentre,
-        DescriptionCentre: this.state.DescriptionCentre,
-        EmailCentre:this.state.EmailCentre,
-        passwordCentre: this.state.password,
-        Acces: this.state.Acces,
-        //image : this.state.formData
-    }
-    
-    console.log(centre);
+   
+    let formData = new FormData();
+    formData.append("NomCentre", this.state.NomCentre)
+    formData.append("AdresseCentre", this.state.AdresseCentre)
+    formData.append("TelCentre", this.state.TelCentre)
+    formData.append("RegionCentre", this.state.RegionCentre)
+    formData.append("DescriptionCentre", this.state.DescriptionCentre)
+    formData.append("EmailCentre", this.state.EmailCentre)
+    formData.append("passwordCentre", this.state.passwordCentre)
+    formData.append("Acces", this.state.Acces)
+    formData.append("image", this.state.image)
 
-     axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, centre)
-      .then(res => console.log(res.data),
-      window.location = '/ProfileCentre');
+     axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, formData)
+      .then(res => console.log(res.data)
+     ,window.location = '/ProfileCentre'
+     );
   } 
 
   render() {
@@ -145,20 +135,19 @@ export default class ModifierCentre extends Component {
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
-                            <FormGroup row>
+                           
+                             <FormGroup row>
                              <Label htmlFor="image" md={5}> <b>Image du Centre</b></Label>
                              <Col md={7}>
                                 
                                 <Input  type="file" id="image" name="image" 
                                 
                                 className="process__upload-btn"
-                                onChange={this.fileChangedHandler} />
+                                onChange={this.onChangeImage} />
                                 <img src={this.state.image} alt="" className="process__image" />
                              </Col>
                             </FormGroup>
-                            {/* <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e, "multer")} />
-                                <img src={this.state.multerImage} alt="upload-image" className="process__image" /> */}
-          
+                            
 
                             <FormGroup row>
                              <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>

@@ -9,9 +9,9 @@ const validateSignUpCentreInput = require("../validation/SignUpCentre");
 const validateLoginCentreInput = require("../validation/LoginCentre");
 
 // Consts to save the image
-/* const multer = require('multer');
+ const multer = require('multer');
 
-const storage = multer.diskStorage({
+ const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/');
     },
@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + file.originalname);
     }
 });
+ 
 
 const fileFilter = (req, file, cb) => {
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
@@ -36,8 +37,7 @@ const upload = multer({
         fileSize: 1024 * 1024 * 5
     }, 
     fileFilter: fileFilter
-}); */
-
+}); 
 //Routes
 
 router.route('/').get((req, res) => {
@@ -110,7 +110,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post( /* upload.single('image'), */ (req, res) => {
+router.route('/update/:id').post(  upload.single('image'), (req, res) => {
     Centre.findById(req.params.id)
     .then(centre => {        
       centre.NomCentre = req.body.NomCentre;  
@@ -121,7 +121,10 @@ router.route('/update/:id').post( /* upload.single('image'), */ (req, res) => {
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
-       // centre.image = req.file.path
+      centre.image = req.file.path
+        // centre.image = req.files.file
+        //centre.image= url + '/public/' + req.file.filename
+
         centre.save()
         .then(() => res.json('Centre updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
