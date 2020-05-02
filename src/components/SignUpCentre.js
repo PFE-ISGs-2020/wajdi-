@@ -160,7 +160,7 @@ class SignupCentre extends Component {
                     <Label htmlFor="EmailCentre" md={5}>Email</Label>
                         <Col md={7}>
                             <span className="red-text">{errors.EmailCentre}</span>
-                            <Input  required type="email" id="EmailCentre" name="EmailCentre"
+                            <Input  required type="email" id="Email" name="EmailCentre"
                                 placeholder="Email" value={this.state.EmailCentre}
                                 error={errors.EmailCentre}
                                 className={classnames("form-control", {invalid: errors.EmailCentre})}
@@ -217,7 +217,7 @@ class SignupCentre extends Component {
                     <Label htmlFor="password" md={5}>Mot de passe</Label>
                         <Col md={7}>
                             <span className="red-text">{errors.passwordCentre}</span>
-                            <Input  required type="password" id="passwordCentre" name="passwordCentre"
+                            <Input  required type="password" id="password" name="passwordCentre"
                                 placeholder="Mot de passe" error={errors.passwordCentre}
                                 value={this.state.passwordCentre}
                                 className={classnames("form-control", {invalid: errors.passwordCentre})}

@@ -48,7 +48,8 @@ export default class ModifierCentre extends Component {
             image: response.data.image
             
             
-        })   
+        })
+        console.log(this.state.image);   
       })
       .catch((error) => {
         console.log(error);
@@ -111,7 +112,7 @@ export default class ModifierCentre extends Component {
     formData.append("RegionCentre", this.state.RegionCentre)
     formData.append("DescriptionCentre", this.state.DescriptionCentre)
     formData.append("EmailCentre", this.state.EmailCentre)
-    formData.append("passwordCentre", this.state.passwordCentre)
+   // formData.append("passwordCentre", this.state.passwordCentre)
     formData.append("Acces", this.state.Acces)
     formData.append("image", this.state.image)
 
