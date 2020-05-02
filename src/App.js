@@ -100,6 +100,7 @@ if (localStorage.jwtToken) {
          
         {/* Responsable */}
         
+
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
           <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />  
           <Route path="/ModifierPasswordCentre" exact component={ModifierPasswordCentre} />  
@@ -111,7 +112,7 @@ if (localStorage.jwtToken) {
           <Route path="/AjoutFormateur" exact component={AjoutFormateur} />
           <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
           <Route path="/InscriptionList/:id" exact component={Inscriptions_Formations} />
-           <Route path="/DemandeInscriptionList/:id" exact component={DemandeInscriptionList} /> 
+          <Route path="/DemandeInscriptionList/:id" exact component={DemandeInscriptionList} /> 
           
         
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  

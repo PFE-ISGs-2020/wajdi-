@@ -3,6 +3,7 @@ import {Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
 import DetailCentreComponent from './DetailsCentreComponent';
 import Home from './HomeComponent';
+import Formation from "./Formation";
 
 import axios from 'axios';
 
@@ -58,6 +59,8 @@ class MainClient extends Component {
         <Route exact path="/"  component={Home} />
         <Route path='/DetailFormation/:formationId' component={FormationWithId} />
         <Route path='/DetailCentre/:centreId' component={CentreWithId} />
+        <Route path="/Formation" exact component={Formation} /> 
+
     </Route>
     
     </BrowserRouter>

@@ -83,9 +83,7 @@ class ModiferFormation extends Component {
               this.setState({
                 NomFormateur: this.state.formateurs[0]
               })
-              this.setState({
-                NomFormateur: this.state.formateurs[0]
-              })
+    
             }
           })
           .catch((error) => {
