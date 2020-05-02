@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Carousel,Image } from 'react-bootstrap';
-import axios from 'axios';
-
+ 
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import SearchBar from '../components/SearchBarComponent';
@@ -18,17 +17,7 @@ class Home extends Component {
    
       }
 
-    //Récupérer les formtaions de la base de données
-      componentDidMount() {
-        axios.get('http://localhost:5000/Formation/')
-          .then(formation => {
-            this.setState({ Formation: formation.data })
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      }
-      
+
       render() { 
         return (
         <div> 

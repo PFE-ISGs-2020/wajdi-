@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
     return (  
-           
         <Card  className="card ">            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
             <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
