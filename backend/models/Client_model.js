@@ -11,7 +11,8 @@ const clientSchema = new Schema({
   emailClient:  {type:String,required: true,unique: false,trim: true,minlength: 3},
   TelClient:  {type: String,required: true,unique: false,trim: true,minlength: 8},
   passwordClient:  {type: String,required: true,unique: false,trim: true,minlength: 5},
-  AdresseClient: {type: String,required: true,unique: false,trim: true}
+  AdresseClient: {type: String,required: true,unique: false,trim: true},
+  imageClient:{ type: String }
 
 }, {timestamps: true
 });
