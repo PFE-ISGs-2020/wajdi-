@@ -4,17 +4,20 @@ import axios from 'axios';
 import Header from '../components/HeaderComponent';
 import Moment from 'react-moment';
 
-class DetailFormationComponent extends Component {
-
+class DetailFormationComponent extends Component {  
+    _isMounted = false;
     constructor(props) {
         super(props);
 
         this.state = {
             formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object'))
+  
         };          
     }
     
     componentDidMount() {
+
+        this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
         if(this.props.formation!==undefined)
         localStorage.setItem("object", JSON.stringify(this.props.formation));
@@ -23,15 +26,22 @@ class DetailFormationComponent extends Component {
         let ID_Formation = formationn ? formationn._id : "";
         //Request to get "formation" details by its ID
         axios.get('http://localhost:5000/Formation/'+ID_Formation)
-          .then(formation => {
+          .then( formation => {
+            
+            if (this._isMounted) {
             this.setState({ formationn: formation.data })
             console.log(this.props.formation);
-          })
+            }
+        })
           .catch((error) => {
             console.log(error);
           })
+
       } 
-      
+
+      componentWillUnmount() {
+        this._isMounted = false;
+      }
     render(){
         const {formationn} = this.state;
         let LibelleFormation = formationn ? formationn.LibelleFormation : "";

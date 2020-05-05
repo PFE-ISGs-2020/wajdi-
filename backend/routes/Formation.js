@@ -14,13 +14,7 @@ router.route('/listbynamecentre/:NomCentre').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-//------on test periode---------------------------
-router.route('/:NomTheme').get((req, res) => {
-    Formation.find({NomTheme:req.params.NomTheme})
-    .then(formation => res.json(formation))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-//-------------------------------
+
 
 router.route('/add').post((req, res) => {
   const CodeFormation = req.body.CodeFormation;

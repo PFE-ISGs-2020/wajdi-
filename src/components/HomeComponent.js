@@ -26,7 +26,7 @@ class Home extends Component {
           <br/>
           {/* Carousel slider */}           
             <div className="row row-content">
-              <div class="col-12">
+              <div className="col-12">
                 <Carousel className="carouselslide rounded">
                   <Carousel.Item>
                     <Image 

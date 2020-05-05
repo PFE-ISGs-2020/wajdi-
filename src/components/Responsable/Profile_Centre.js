@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {Image } from 'react-bootstrap';
+
 import {Button} from 'reactstrap';
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
@@ -36,14 +36,11 @@ return (
             <div className=" container "> 
             
                  <div className="card ">
-                 
-                   
-                   
-                  
-                     <div className="row" >
-                       
-                         <div className="col-sm-3">
-                            <img src={URL+"/"+this.state.Centre.image} alt="centre"/>
+
+                     <div className="row">
+                          <div className="col-sm-3 justify-content-center">
+                            <img src={"http://localhost:5000/"+this.state.Centre.image} alt="centre"
+                            width="260" height="300"/>
                          </div>
                          <div className=" order-sm-last">
                            <a href={"/ModiferCentre/"+this.state.Centre._id}>
@@ -54,10 +51,8 @@ return (
                           </div> 
                          <div>
                          
-                            <div> 
-                              
-                             <h2>  {this.state.Centre.NomCentre} </h2>
-                             
+                            <div>                               
+                             <h2>  {this.state.Centre.NomCentre} </h2>                             
                              <br/>
                             
 

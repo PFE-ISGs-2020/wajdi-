@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../components/HeaderComponent';
 
 class DetailCentreComponent extends Component {
-
+    _isMounted = false;
     constructor(props) {
         super(props);
 
@@ -14,6 +14,7 @@ class DetailCentreComponent extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
         if(this.props.centre!==undefined)
         localStorage.setItem("object", JSON.stringify(this.props.centre));
@@ -24,14 +25,18 @@ class DetailCentreComponent extends Component {
         //Request to get "centre" details by its ID
         axios.get('http://localhost:5000/Centre/'+ID_Centre)
           .then(centre => {
+            if (this._isMounted) {
             this.setState({ centree: centre.data })
             console.log(this.props.centre);
-          })
+          }})
           .catch((error) => {
             console.log(error);
           })
       }       
 
+      componentWillUnmount() {
+        this._isMounted = false;
+      }
     render(){
         const {centree} = this.state;
         let NomCentre = centree ? centree.NomCentre : "";

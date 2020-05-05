@@ -45,7 +45,7 @@ render() {
                 <div className="row" >
                        
                     <div className="col-sm-3">
-                        <Image src="//placehold.it/200" alt=""/>
+                        <Image src={"http://localhost:5000"+this.state.Client.image} alt=""/>
                     </div>
                     <div className=" order-sm-last">
                         <a href={"/ModifierProfile/"+this.state.Client._id}>
