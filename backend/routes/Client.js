@@ -8,6 +8,36 @@ const jwt = require("jsonwebtoken");
 const validateSignUpClientInput = require("../Validation/SignUpClient");
 const validateLoginClientInput = require("../Validation/LoginClient");
 
+// Consts to save the image
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+   destination: function (req, file, cb) {
+       cb(null, './uploads/');
+   },
+   filename: function (req, file, cb) {
+       cb(null, Date.now() + file.originalname);
+   }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+  } else {
+      // rejects storing a file
+      cb(null, false);
+  }
+}
+
+const upload = multer({
+  storage: storage,
+   limits: {
+       // 1024 * 1024 = 1 megabyte * 5 = 5 megabytes
+      fileSize: 1024 * 1024 * 5
+  }, 
+  fileFilter: fileFilter
+}); 
+
 router.route('/').get((req, res) => {
     Client.find()
     .then(clients => res.json(clients))
@@ -67,7 +97,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post( upload.single('imageClient'), (req, res) => {
     Client.findById(req.params.id)
     .then(client => {
 
@@ -77,10 +107,11 @@ router.route('/update/:id').post((req, res) => {
         client.ProfessionClient = req.body.ProfessionClient;
         client.NiveauClient = req.body.NiveauClient;
         client.emailClient = req.body.emailClient;        
-        client.PasswordClient = req.body.PasswordClient;
+        //client.PasswordClient = req.body.PasswordClient;
         client.TelClient = req.body.TelClient;
         client.AdresseClient = req.body.AdresseClient;
-        
+        client.imageClient= req.file.path
+
         client.save()
         .then(() => res.json('client updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

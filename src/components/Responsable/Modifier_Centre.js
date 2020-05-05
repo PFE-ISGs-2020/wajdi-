@@ -46,9 +46,9 @@ export default class ModifierCentre extends Component {
             password: response.data.passwordCentre,
             Acces: response.data.Acces,
             image: response.data.image
-            
-            
-        })   
+       
+        })
+        console.log(this.state.image);   
       })
       .catch((error) => {
         console.log(error);
@@ -104,20 +104,20 @@ export default class ModifierCentre extends Component {
     onSubmit(e) {
     e.preventDefault();
    
-    let formData = new FormData();
-    formData.append("NomCentre", this.state.NomCentre)
-    formData.append("AdresseCentre", this.state.AdresseCentre)
-    formData.append("TelCentre", this.state.TelCentre)
-    formData.append("RegionCentre", this.state.RegionCentre)
-    formData.append("DescriptionCentre", this.state.DescriptionCentre)
-    formData.append("EmailCentre", this.state.EmailCentre)
-    formData.append("passwordCentre", this.state.passwordCentre)
-    formData.append("Acces", this.state.Acces)
-    formData.append("image", this.state.image)
-
-     axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, formData)
+    let centre = new FormData();
+    centre.append("NomCentre", this.state.NomCentre)
+    centre.append("AdresseCentre", this.state.AdresseCentre)
+    centre.append("TelCentre", this.state.TelCentre)
+    centre.append("RegionCentre", this.state.RegionCentre)
+    centre.append("DescriptionCentre", this.state.DescriptionCentre)
+    centre.append("EmailCentre", this.state.EmailCentre)
+   // centre.append("passwordCentre", this.state.passwordCentre)
+   centre.append("Acces", this.state.Acces)
+   centre.append("image", this.state.image)
+    console.log(this.state.image)
+     axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, centre)
       .then(res => console.log(res.data)
-     ,window.location = '/ProfileCentre'
+     //,window.location = '/ProfileCentre'
      );
   } 
 
@@ -141,10 +141,11 @@ export default class ModifierCentre extends Component {
                              <Col md={7}>
                                 
                                 <Input  type="file" id="image" name="image" 
-                                
+                                defaultValue={this.state.image}
                                 className="process__upload-btn"
                                 onChange={this.onChangeImage} />
-                                <img src={this.state.image} alt="" className="process__image" />
+                                <img src= {"http://localhost:5000/"+this.state.image} alt="" className="process__image"
+                                 width="200" height="200" /> 
                              </Col>
                             </FormGroup>
                             

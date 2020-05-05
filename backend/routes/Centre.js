@@ -117,13 +117,11 @@ router.route('/update/:id').post(  upload.single('image'), (req, res) => {
       centre.AdresseCentre = req.body.AdresseCentre;
       centre.TelCentre = req.body.TelCentre;
       centre.EmailCentre= req.body.EmailCentre;
-      centre.passwordCentre = req.body.passwordCentre;
+     // centre.passwordCentre = req.body.passwordCentre;
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
       centre.image = req.file.path
-        // centre.image = req.files.file
-        //centre.image= url + '/public/' + req.file.filename
 
         centre.save()
         .then(() => res.json('Centre updated!'))

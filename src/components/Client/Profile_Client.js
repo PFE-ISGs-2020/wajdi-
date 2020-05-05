@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { logoutClient } from "../../actions/authActionsClient";
 import PropTypes from "prop-types";
-import {Image } from 'react-bootstrap';
 import {Button} from 'reactstrap';
 import { connect } from "react-redux";
 import axios from 'axios';
-
+import DefaultImg from '../../assets/default-img.jpg'; 
 import moment from 'moment'
 
  
@@ -35,7 +34,10 @@ class ProfileClient extends Component {
   };
 
 render() { 
-  
+  let image = DefaultImg;
+  if (this.state.Client.imageClient){
+      image = "http://localhost:5000/"+this.state.Client.imageClient
+  }
     return (
         
         
@@ -44,9 +46,10 @@ render() {
             <div className="card ">
                 <div className="row" >
                        
-                    <div className="col-sm-3">
-                        <Image src={"http://localhost:5000"+this.state.Client.image} alt=""/>
-                    </div>
+                <div className="col-sm-3">
+                            <img src={image} alt="photo_de_profile"
+                            width="200" height="200"/>
+                         </div>
                     <div className=" order-sm-last">
                         <a href={"/ModifierProfile/"+this.state.Client._id}>
                             <Button className="btn btn-warning btn-sm" >

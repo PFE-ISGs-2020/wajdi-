@@ -17,7 +17,7 @@ export default class ModifierProfile extends Component {
         TelClient:'',
         AdresseClient:'',
         passwordClient:'',
-        //image: '',
+        imageClient: '',
 
     };
     
@@ -30,8 +30,7 @@ export default class ModifierProfile extends Component {
     this.onChangeemailClient =this.onChangeemailClient.bind(this);
     this.onChangeTelClient = this.onChangeTelClient.bind(this);
     this.onChangeAdresseClient =this.onChangeAdresseClient.bind(this);
-  
-   // this.onChangeImage = this.onChangeImage.bind(this);
+    this.onChangeimageClient = this.onChangeimageClient.bind(this);
     this.onSubmit = this.onSubmit.bind(this); 
   }
 
@@ -49,8 +48,9 @@ export default class ModifierProfile extends Component {
             emailClient : response.data.emailClient,
             TelClient : response.data.TelClient,
             passwordClient : response.data.passwordClient,
-            AdresseClient : response.data.AdresseClient
-            
+            AdresseClient : response.data.AdresseClient,
+            imageClient: response.data.imageClient
+           
         })   
       })
       .catch((error) => {
@@ -104,44 +104,31 @@ export default class ModifierProfile extends Component {
             AdresseClient: e.target.value
         });
     }
-   /*  onChangeImage(e){
-        let imageFormObj = new FormData();
+    onChangeimageClient(e){
 
-     // imageFormObj.append("imageName", "multer-image-" + Date.now());
-      imageFormObj.append("image", e.target.files[0]);
-
-      // stores a readable instance of 
-      // the image being uploaded using multer
-      this.setState({
-        image: URL.createObjectURL(e.target.files[0])
+         this.setState({
+        imageClient: e.target.files[0]
       });
-    } */
-
-    fileChangedHandler = event => {
-        this.setState({ image: event.target.files[0] })
-      }
-      
+    } 
 
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
-    /* const formData = new FormData()
-    formData.append('myFile',this.state.image, this.state.image.name)
- */
-    const client = {
+    let client = new FormData();
+   
         
-        //image : this.state.formData
-        NomClient : this.state.NomClient,
-        PrenomClient : this.state.PrenomClient,
-        DatenaissClient : this.state.DatenaissClient,
-        ProfessionClient : this.state.ProfessionClient,
-        NiveauClient : this.state.NiveauClient,
-        emailClient : this.state.emailClient,
-        TelClient : this.state.TelClient,
-        passwordClient : this.state.passwordClient,
-        AdresseClient : this.state.AdresseClient
+    client.append("imageClient" , this.state.imageClient)
+    client.append( "NomClient" , this.state.NomClient)
+    client.append( "PrenomClient" , this.state.PrenomClient)
+    client.append( "DatenaissClient" , this.state.DatenaissClient)
+    client.append( "ProfessionClient" , this.state.ProfessionClient)
+    client.append( "NiveauClient" , this.state.NiveauClient)
+    client.append( "emailClient" , this.state.emailClient)
+    client.append( "TelClient" , this.state.TelClient)
+    //client.append( "passwordClient" , this.state.passwordClient)
+    client.append( "AdresseClient" , this.state.AdresseClient)
 
-    }
+   
     
     console.log(client);
 
@@ -164,19 +151,18 @@ export default class ModifierProfile extends Component {
                             <br/>
                             <Form onSubmit={this.onSubmit}>
                             <FormGroup row>
-                             <Label htmlFor="image" md={5}> <b>Photo de profile</b></Label>
+                             <Label htmlFor="image" md={5}> <b>Photo de profile:</b></Label>
                              <Col md={7}>
                                 
                                 <Input  type="file" id="image" name="image" 
                                 
                                 className="process__upload-btn"
-                                onChange={this.fileChangedHandler} />
-                                <img src={this.state.image} alt="" className="process__image" />
+                                onChange={this.onChangeimageClient} />
+                                <img src={"http://localhost:5000/"+this.state.imageClient} alt="" className="process__image" 
+                                width="200" height="200"/>
                              </Col>
                             </FormGroup>
-                            {/* <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e, "multer")} />
-                                <img src={this.state.multerImage} alt="upload-image" className="process__image" /> */} 
-         
+                            
                             <FormGroup row>
                              <Label htmlFor="NomClient" md={5}> <b>Nom: </b></Label>
                              <Col md={7}>
@@ -264,7 +250,7 @@ export default class ModifierProfile extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="AdresseClient" md={5}><b>Adresse</b></Label>
+                                <Label htmlFor="AdresseClient" md={5}><b>Adresse:</b></Label>
                                 <Col md={7}>
                                     <Input  required type="text" id="AdresseClient" name="AdresseClient"
                                     placeholder="Adresse" value={this.state.AdresseClient}

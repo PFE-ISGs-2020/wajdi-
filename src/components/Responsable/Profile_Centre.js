@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import {Button} from 'reactstrap';
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
 import axios from 'axios';
-
+import DefaultImg from '../../assets/default-img.jpg';
  
 class ProfileCentre extends Component {
     constructor(props) {
@@ -28,7 +27,10 @@ class ProfileCentre extends Component {
   }
 
 render() { 
-  
+  let image = DefaultImg;
+  if (this.state.Centre.image){
+      image = "http://localhost:5000/"+this.state.Centre.image
+  }
 return (
     <div>
         <SideBar pageWrapId={"page-wrap"} />
@@ -36,11 +38,12 @@ return (
             <div className=" container "> 
             
                  <div className="card ">
-
-                     <div className="row">
-                          <div className="col-sm-3 justify-content-center">
-                            <img src={"http://localhost:5000/"+this.state.Centre.image} alt="centre"
-                            width="260" height="300"/>
+                 
+                     <div className="row" >
+                       
+                         <div className="col-sm-3">
+                            <img src={image} alt="centre"
+                            width="200" height="200"/>
                          </div>
                          <div className=" order-sm-last">
                            <a href={"/ModiferCentre/"+this.state.Centre._id}>
