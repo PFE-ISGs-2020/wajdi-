@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
     return (  
+           
         <Card  className="card ">            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
             <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
             <Card.Body className="cardbody">
                 <Card.Title>Description:</Card.Title>                
-                <Card.Text><p>{formation.DescriptionFormation}</p></Card.Text>
+                <Card.Text>{formation.DescriptionFormation}</Card.Text>
             </Card.Body>
             </Link>            
         </Card> 
@@ -37,6 +38,7 @@ function RenderCentres ({centre}) {
 } 
 
 class SearchBar extends Component {
+  
     constructor(props) {
         super(props);
         this.onChangeCritere = this.onChangeCritere.bind(this);
@@ -65,6 +67,7 @@ class SearchBar extends Component {
         axios.get('http://localhost:5000/Formation/')
           .then(formation => {
             this.setState({ Formation: formation.data })
+
           })
           .catch((error) => {
             console.log(error);
@@ -80,35 +83,34 @@ class SearchBar extends Component {
 
       }   
   
-      render() {  
+     
+      render() { 
         const  {search} = this.state;
             
         const filteredFormations = this.state.Formation.filter(formation => {
             return formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1;
         }); 
-
+        
         const filteredCentres = this.state.Centre.filter(centre => {
             return centre.NomCentre.toLowerCase().indexOf(search.toLowerCase()) !== -1;
         });
 
-        let list ;
-        if (this.state.Critere === "Formation") {
-            list=filteredFormations.map(formation => { 
+        let list=(this.state.Critere === "Formation") ?
+                filteredFormations.map(formation => { 
                     return  <div>
                     <RenderFormations formation={formation}  key={formation._id}/>
                     
                     <br/>
                     </div>;
                     })
-        } else {
-            list=filteredCentres.map(centre => { 
-                    return  <div>
+                :
+                filteredCentres.map(centre => { 
+                    return  (<div>
                             <RenderCentres centre={centre}  />
                             <br/>
-                            </div>;
-                    }) ; 
-        }
-        
+                            </div>);
+                    })
+
         return(        
         <div className="container">
             <div className="row-12 justify-content-center">
@@ -139,7 +141,7 @@ class SearchBar extends Component {
                 </Form> 
 
             </div>
-            {list}                                   
+            {list}                               
            
         </div>
 );

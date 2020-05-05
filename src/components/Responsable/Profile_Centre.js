@@ -67,10 +67,8 @@ return (
                           </div> 
                          <div>
                          
-                            <div> 
-                              
-                             <h2>  {this.state.Centre.NomCentre} </h2>
-                             
+                            <div>                               
+                             <h2>  {this.state.Centre.NomCentre} </h2>                             
                              <br/>
                             
 
