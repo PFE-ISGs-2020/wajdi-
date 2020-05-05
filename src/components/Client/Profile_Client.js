@@ -45,11 +45,16 @@ render() {
             
             <div className="card ">
                 <div className="row" >
-                       
+                
                 <div className="col-sm-3">
                             <img src={image} alt="photo_de_profile"
                             width="200" height="200"/>
                          </div>
+                         <a href={"/ModifierImageClient/"+this.state.Client._id}>
+                              <Button className="btn btn-warning " >
+                                <span className="fa fa-edit"> Photo</span>
+                              </Button>
+                            </a>
                     <div className=" order-sm-last">
                         <a href={"/ModifierProfile/"+this.state.Client._id}>
                             <Button className="btn btn-warning btn-sm" >

@@ -16,8 +16,7 @@ export default class ModifierProfile extends Component {
         emailClient:'',
         TelClient:'',
         AdresseClient:'',
-        passwordClient:'',
-        imageClient: '',
+        
 
     };
     
@@ -30,7 +29,7 @@ export default class ModifierProfile extends Component {
     this.onChangeemailClient =this.onChangeemailClient.bind(this);
     this.onChangeTelClient = this.onChangeTelClient.bind(this);
     this.onChangeAdresseClient =this.onChangeAdresseClient.bind(this);
-    this.onChangeimageClient = this.onChangeimageClient.bind(this);
+    
     this.onSubmit = this.onSubmit.bind(this); 
   }
 
@@ -47,9 +46,9 @@ export default class ModifierProfile extends Component {
             NiveauClient : response.data.NiveauClient,
             emailClient : response.data.emailClient,
             TelClient : response.data.TelClient,
-            passwordClient : response.data.passwordClient,
+           
             AdresseClient : response.data.AdresseClient,
-            imageClient: response.data.imageClient
+           
            
         })   
       })
@@ -104,37 +103,29 @@ export default class ModifierProfile extends Component {
             AdresseClient: e.target.value
         });
     }
-    onChangeimageClient(e){
-
-         this.setState({
-        imageClient: e.target.files[0]
-      });
-    } 
+   
 
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
-    let client = new FormData();
+    const client = {
    
-        
-    client.append("imageClient" , this.state.imageClient)
-    client.append( "NomClient" , this.state.NomClient)
-    client.append( "PrenomClient" , this.state.PrenomClient)
-    client.append( "DatenaissClient" , this.state.DatenaissClient)
-    client.append( "ProfessionClient" , this.state.ProfessionClient)
-    client.append( "NiveauClient" , this.state.NiveauClient)
-    client.append( "emailClient" , this.state.emailClient)
-    client.append( "TelClient" , this.state.TelClient)
-    //client.append( "passwordClient" , this.state.passwordClient)
-    client.append( "AdresseClient" , this.state.AdresseClient)
+    NomClient: this.state.NomClient,
+    PrenomClient: this.state.PrenomClient,
+    DatenaissClient: this.state.DatenaissClient,
+    ProfessionClient: this.state.ProfessionClient,
+    NiveauClient: this.state.NiveauClient,
+    emailClient: this.state.emailClient,
+    TelClient: this.state.TelClient,
+   
+    AdresseClient: this.state.AdresseClient,
 
-   
+   }
     
     console.log(client);
 
      axios.post('http://localhost:5000/Client/update/' + this.props.match.params.id, client)
-      .then(res => console.log(res.data),
-      window.location = '/ProfileClient');
+      .then(res => console.log(res.data) , window.location = '/ProfileClient' );
   } 
 
   render() {
@@ -150,18 +141,6 @@ export default class ModifierProfile extends Component {
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
-                            <FormGroup row>
-                             <Label htmlFor="image" md={5}> <b>Photo de profile:</b></Label>
-                             <Col md={7}>
-                                
-                                <Input  type="file" id="image" name="image" 
-                                
-                                className="process__upload-btn"
-                                onChange={this.onChangeimageClient} />
-                                <img src={"http://localhost:5000/"+this.state.imageClient} alt="" className="process__image" 
-                                width="200" height="200"/>
-                             </Col>
-                            </FormGroup>
                             
                             <FormGroup row>
                              <Label htmlFor="NomClient" md={5}> <b>Nom: </b></Label>
@@ -262,7 +241,7 @@ export default class ModifierProfile extends Component {
 
                             <FormGroup row>
                                 <Col>                        
-                                    <input type="submit" value="Modifer" className="btn btn-primary offset-2" />                         
+                                    <input type="submit" value="Modifier" className="btn btn-primary offset-2" />                         
                                     <a className="offset-1 btn btn-secondary" href="/ProfileClient">
                                         Annuler
                                     </a>

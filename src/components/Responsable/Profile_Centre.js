@@ -41,9 +41,22 @@ return (
                  
                      <div className="row" >
                        
-                         <div className="col-sm-3">
+                         <div className="col-sm-3 row">
                             <img src={image} alt="centre"
                             width="200" height="200"/>
+                            <div className= "offset-1">
+                           <a href={"/ModiferImageCentre/"+this.state.Centre._id}>
+                              <Button className="btn btn-warning " >
+                                <span className="fa fa-edit"> Modifier Image</span>
+                              </Button>
+                            </a>
+                           {/*  <br/>
+                            <a href={"/ModiferImageCentre/"+this.state.Centre._id}>
+                              <Button className="btn btn-danger " >
+                                <span className="fa fa-edit">Supprimer Image</span>
+                              </Button>
+                            </a> */}
+                          </div> 
                          </div>
                          <div className=" order-sm-last">
                            <a href={"/ModiferCentre/"+this.state.Centre._id}>

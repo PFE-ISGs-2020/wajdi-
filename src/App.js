@@ -19,7 +19,10 @@ import ModiferFormation from'./components/Responsable/Modifier_Formation';
 import FormateurList from'./components/Responsable/Liste_Formateur';
 import AjoutFormateur from './components/Responsable/Ajout_Formateur';
 import ModiferFormateur from'./components/Responsable/Modifier_Formateur';
-import DemandeInscriptionList from './components/Responsable/Demandes_Inscription'
+import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
+import DemandeInscriptionList from './components/Responsable/Demandes_Inscription';
+import ModifierImageCentre from './components/Responsable/Modifier_Image_Centre';
+import ModifierCentre from './components/Responsable/Modifier_Centre';
 //Responsable imports end
 
 import HomeWebmaster from './components/Webmaster/HomeWebmaster';
@@ -38,10 +41,12 @@ import setAuthToken from "./utils/setAuthToken";
 import setAuthClientToken from "./utils/setAuthClientToken";
 
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
-import ModifierCentre from './components/Responsable/Modifier_Centre';
-import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
+
+
 import img from './components/image';
 import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
+
+import ModifierImageClient from './components/Client/Modifier_Image_Client';
 import Profile_Client from './components/Client/Profile_Client';
 import ModifierProfile from './components/Client/Modifier_Profile'
 
@@ -103,10 +108,12 @@ if (localStorage.jwtToken) {
 
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
           <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />  
+          <Route path="/ModiferImageCentre/:id" exact component={ModifierImageCentre} /> 
           <Route path="/ModifierPasswordCentre" exact component={ModifierPasswordCentre} />  
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
+          
 
           <Route path="/FormateurList" exact component={FormateurList} />
           <Route path="/AjoutFormateur" exact component={AjoutFormateur} />
@@ -120,6 +127,8 @@ if (localStorage.jwtToken) {
         {/* Client */}
         <Route path="/profileClient" component={Profile_Client} />
         <Route path="/ModifierProfile/:id" component={ModifierProfile} />
+        <Route path="/ModifierImageClient/:id" component={ModifierImageClient} />
+        
         
         {/* Webmaster */}
         <Route path="/homewebmaster" exact component={HomeWebmaster} />

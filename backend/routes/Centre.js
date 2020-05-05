@@ -59,7 +59,7 @@ router.route('/List').get((req, res) => {
 });
 
 //Sign Up centre 
-router.route('/add').post( /* upload.single('imageData'), */ (req, res)=> {
+router.route('/add').post(  (req, res)=> {
  // Form validation
   const { errors, isValid } = validateSignUpCentreInput(req.body);
   // Check validation
@@ -80,7 +80,7 @@ router.route('/add').post( /* upload.single('imageData'), */ (req, res)=> {
          RegionCentre : req.body.RegionCentre,
          DescriptionCentre : req.body.DescriptionCentre,
          Acces : req.body.Acces,
-         //image: req.body.file.path
+         
         });
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -110,7 +110,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post(  upload.single('image'), (req, res) => {
+router.route('/update/:id').post( (req, res) => {
     Centre.findById(req.params.id)
     .then(centre => {        
       centre.NomCentre = req.body.NomCentre;  
@@ -121,7 +121,6 @@ router.route('/update/:id').post(  upload.single('image'), (req, res) => {
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
-      centre.image = req.file.path
 
         centre.save()
         .then(() => res.json('Centre updated!'))
@@ -129,6 +128,20 @@ router.route('/update/:id').post(  upload.single('image'), (req, res) => {
         
     })
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res) => {
+  Centre.findById(req.params.id)
+  .then(centre => {        
+     
+    centre.image = req.file.path
+
+      centre.save()
+      .then(() => res.json('Image Centre updated!'))
+      .catch(err => res.status(400).json('Error: ' + err));
+      
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/updatePassword/:id').post((req, res) => {

@@ -104,7 +104,18 @@ export default class ModifierCentre extends Component {
     onSubmit(e) {
     e.preventDefault();
    
-    let centre = new FormData();
+    const centre= {
+        NomCentre: this.state.NomCentre,
+    AdresseCentre: this.state.AdresseCentre,
+    TelCentre: this.state.TelCentre,
+    RegionCentre: this.state.RegionCentre,
+    DescriptionCentre:this.state.DescriptionCentre,
+    EmailCentre: this.state.EmailCentre,
+   // centre.append("passwordCentre", this.state.passwordCentre)
+   Acces: this.state.Acces,
+   
+    }
+    /* let centre = new FormData();
     centre.append("NomCentre", this.state.NomCentre)
     centre.append("AdresseCentre", this.state.AdresseCentre)
     centre.append("TelCentre", this.state.TelCentre)
@@ -114,11 +125,9 @@ export default class ModifierCentre extends Component {
    // centre.append("passwordCentre", this.state.passwordCentre)
    centre.append("Acces", this.state.Acces)
    centre.append("image", this.state.image)
-    console.log(this.state.image)
+    console.log(this.state.image) */
      axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, centre)
-      .then(res => console.log(res.data)
-     //,window.location = '/ProfileCentre'
-     );
+      .then(res => console.log(res.data) ,window.location = '/ProfileCentre');
   } 
 
   render() {
@@ -135,21 +144,7 @@ export default class ModifierCentre extends Component {
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
-                           
-                             <FormGroup row>
-                             <Label htmlFor="image" md={5}> <b>Image du Centre</b></Label>
-                             <Col md={7}>
-                                
-                                <Input  type="file" id="image" name="image" 
-                                defaultValue={this.state.image}
-                                className="process__upload-btn"
-                                onChange={this.onChangeImage} />
-                                <img src= {"http://localhost:5000/"+this.state.image} alt="" className="process__image"
-                                 width="200" height="200" /> 
-                             </Col>
-                            </FormGroup>
                             
-
                             <FormGroup row>
                              <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>
                              <Col md={7}>

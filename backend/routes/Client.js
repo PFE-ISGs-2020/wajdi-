@@ -110,13 +110,27 @@ router.route('/update/:id').post( upload.single('imageClient'), (req, res) => {
         //client.PasswordClient = req.body.PasswordClient;
         client.TelClient = req.body.TelClient;
         client.AdresseClient = req.body.AdresseClient;
-        client.imageClient= req.file.path
+       
 
         client.save()
         .then(() => res.json('client updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/updateImageClient/:id').post(  upload.single('imageClient'), (req, res) => {
+  Client.findById(req.params.id)
+  .then(client => {        
+     
+    client.imageClient = req.file.path
+
+    client.save()
+      .then(() => res.json('Image Client updated!'))
+      .catch(err => res.status(400).json('Error: ' + err));
+      
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/loginClient').post((req, res)=> {
