@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar,NavbarBrand, NavItem, Tabs, Tab} from 'react-bootstrap';
+import {Nav,Navbar, //NavbarBrand,
+     NavItem, Tabs, Tab} from 'react-bootstrap';
 
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';

@@ -150,7 +150,7 @@ class SignupCentre extends Component {
                         <Col md={7}>
                             <span className="red-text">{errors.TelCentre}</span>
                             <Input type="tel" id="TelCentre" name="TelCentre"
-                                placeholder="Téléphne" required value={this.state.TelCentre}
+                                placeholder="Téléphone" required value={this.state.TelCentre}
                                 error={errors.TelCentre}
                                 className={classnames("form-control", {invalid: errors.TelCentre})}
                                 onChange={this.onChangeTelCentre} />

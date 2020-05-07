@@ -63,12 +63,12 @@ class DetailCentreComponent extends Component {
                     {/*BreadCrumb end */}
                 
                     {/* showing details  begin*/}                    
-                    <p><b>  Nom du centre:</b>   {NomCentre}</p>
-                    <p><b>  Region Centre:</b>   {RegionCentre}</p>
-                    <p><b>  Adresse Centre:</b>   {AdresseCentre}</p>
-                    <p><b>  Tel Centre:</b>   {TelCentre}</p>
-                    <p><b>  Email Centre:</b>   {EmailCentre}</p>
-                    <p><b>  Description Centre:</b>   {DescriptionCentre}</p>                
+                    <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
+                    <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
+                    <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>
+                    <p><b> <span className="fa fa-phone"></span> Tel Centre:</b>   {TelCentre}</p>
+                    <p><b> <span className="fa fa-envelope"></span> Email Centre:</b>   {EmailCentre}</p>
+                    <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
                     
                     
                     {/* showing details  end*/}               
