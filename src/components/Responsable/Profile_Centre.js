@@ -34,7 +34,7 @@ render() {
 return (
     <div>
         <SideBar pageWrapId={"page-wrap"} />
-        
+        <div id="page-wrap">
             <div className=" container "> 
             
                  <div className="card ">
@@ -105,7 +105,7 @@ return (
                     </div> */}
                 </div> 
                 
-                                        
+                </div>                            
             </div>
         </div>  
      

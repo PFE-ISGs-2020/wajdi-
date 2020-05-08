@@ -7,7 +7,8 @@ import axios from 'axios';
 import DefaultImg from '../../assets/default-img.jpg'; 
 import moment from 'moment'
 
- 
+import HeaderClient from '../Header_Client';
+
 class ProfileClient extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +40,8 @@ render() {
       image = "http://localhost:5000/"+this.state.Client.imageClient
   }
     return (
-        
+      <div>
+       <HeaderClient /> 
         
         <div className=" container ">     
             
@@ -47,14 +49,14 @@ render() {
                 <div className="row" >
                 
                 <div className="col-sm-3">
-                            <img src={image} alt="photo_de_profile"
+                    <img src={image} alt="photo_de_profile"
                             width="200" height="200"/>
-                         </div>
-                         <a href={"/ModifierImageClient/"+this.state.Client._id}>
-                              <Button className="btn btn-warning " >
-                                <span className="fa fa-edit"> Photo</span>
-                              </Button>
-                            </a>
+                </div>
+                <a href={"/ModifierImageClient/"+this.state.Client._id}>
+                    <Button className="btn btn-warning " >
+                        <span className="fa fa-edit"> Photo</span>
+                    </Button>
+                  </a>
                     <div className=" order-sm-last">
                         <a href={"/ModifierProfile/"+this.state.Client._id}>
                             <Button className="btn btn-warning btn-sm" >
@@ -99,14 +101,14 @@ render() {
         <a href="/" className="menu-item" onClick={this.onLogoutClick}>
             <Button>   <span className="fa fa-sign-out fa-lg"/>  Logout</Button>
         </a> 
-    </div>     
-                
+      </div>     
+    </div>           
    );
   }
 }             
 ProfileClient.propTypes = {
     logoutClient: PropTypes.func.isRequired,
-    authauthClient: PropTypes.object.isRequired
+      authClient: PropTypes.object.isRequired
   };
   
   const mapStateToProps = state => ({

@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import {Carousel,Image } from 'react-bootstrap';
  
 import Header from './HeaderComponent';
+import HeaderClient from './Header_Client';
+
 import Footer from './FooterComponent';
 import SearchBar from '../components/SearchBarComponent';
  
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import PIC01 from '../img/PIC01.png';
 import PIC02 from '../img/PIC02.png';
 import PIC03 from '../img/PIC03.png';
@@ -13,15 +18,21 @@ import PIC04 from '../img/PIC04.png';
 class Home extends Component {
     constructor(props) {
         super(props);      
-        this.state = {Formation: [] }
+        this.state = {Formation: [],
+                      client:this.props.auth }
    
-      }
+      }    
 
-
-      render() { 
+      render() {   
+        const {client} = this.props.authClient;
+        const header = (client === null) ?
+          <Header /> 
+        :       
+          <HeaderClient />
         return (
         <div> 
-        <Header />
+        {header}
+
         <div className="container">         
           <br/>
           {/* Carousel slider */}           
@@ -68,7 +79,7 @@ class Home extends Component {
               </div>
             </div>
             <br/>
-            <div>
+            <div className="row row-content">
             <SearchBar/>
             </div>
             <br/>                      
@@ -79,4 +90,13 @@ class Home extends Component {
     }
 }
 
-export default Home;
+
+Home.propTypes = {
+  authClient: PropTypes.object.isRequired
+};  
+
+const mapStateToProps = state => ({
+  authClient: state.authClient
+});
+
+export default  connect(mapStateToProps)(Home);

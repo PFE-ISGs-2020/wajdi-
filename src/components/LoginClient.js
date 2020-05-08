@@ -15,17 +15,7 @@ class LoginClient extends Component {
             errors: {}
         };
       }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.authClient.isAuthenticated) {
-          window.location="/profileClient"; 
-        } 
-    if (nextProps.errorsClient) {
-          this.setState({
-            errors: nextProps.errorsClient
-          });
-        }
-      }  
+ 
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -81,13 +71,14 @@ class LoginClient extends Component {
     );
     }
 }
+
 LoginClient.propTypes = {
     loginClient: PropTypes.func.isRequired,
     authClient: PropTypes.object.isRequired,
-    errorsClient: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired
   };
   const mapStateToProps = state => ({
     authClient: state.authClient,
-    errorsClient: state.errors
+    errors: state.errors
   });
 export default connect(mapStateToProps, { loginClient })(LoginClient);

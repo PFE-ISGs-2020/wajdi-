@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem,Button} from 'react-bootstrap';
 import axios from 'axios';
-import Header from '../components/HeaderComponent';
 import Moment from 'react-moment';
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Header from './HeaderComponent';
+import HeaderClient from './Header_Client';
 
 class DetailFormationComponent extends Component {  
     _isMounted = false;
@@ -53,9 +57,16 @@ class DetailFormationComponent extends Component {
         let CapaciteFormation = formationn ? formationn.CapaciteFormation : "";
         let NomCentre = formationn ? formationn.NomCentre : "";
 
+
+        const {client} = this.props.authClient;
+        const header = (client === null) ?
+          <Header /> 
+        :       
+          <HeaderClient />
+
         return(
             <div>
-                <Header />
+                 {header}
                 <div className="container">
                     <br/>
                     {/*BreadCrumb begin */}
@@ -73,37 +84,29 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container">            
                         {/* showing details  begin*/}
-                        
+                        <div className="row "> 
+                            <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
+                        </div>
                         <div className="row ">
-                            <p><b>Date debut: </b>    
+                            <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
                             <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
                         </div> 
-
                         <div className="row">                        
-                            <p><b>Date fin:</b>  
+                            <p><b><span className="fa fa-calendar"></span> Date fin:</b>  
                             <Moment format="DD/MM/YYYY">{DateFinFormation}</Moment> </p>                        
                         </div>             
-                        
+                        <div className="row ">
+                            <p><b><span className="fa fa-tag"></span> Theme:</b> {NomTheme}</p>
+                        </div>
+                        <div className="row ">
+                            <p><b> <span className="fa fa-user"></span> Formateur:</b> {NomFormateur}</p>
+                        </div> 
+                        <div className="row ">
+                            <p><span className="fa fa-users"></span><b> Capacité:</b> {CapaciteFormation}</p>
+                        </div> 
                         <div className="row">
-                            <p><b>Description:</b> {DescriptionFormation}</p>
+                            <p><span className="fa fa-align-justify"></span><b> Description:</b> {DescriptionFormation}</p>
                         </div> 
-
-                        <div className="row ">
-                            <p><b>Theme:</b> {NomTheme}</p>
-                        </div>
-
-                        <div className="row ">
-                            <p><b>Formateur:</b> {NomFormateur}</p>
-                        </div> 
-                        
-                        <div className="row ">
-                            <p><b>Capacité:</b> {CapaciteFormation}</p>
-                        </div> 
-
-                        <div className="row ">
-                            <p><b>  Nom du centre:</b>   {NomCentre}</p>
-                        </div>
-                            
                         {/* showing details  end*/}
 
                         {/* s'inscrire Button  begin*/}
@@ -121,4 +124,14 @@ class DetailFormationComponent extends Component {
 
 }
 }
-export default DetailFormationComponent;
+
+
+DetailFormationComponent.propTypes = {
+    authClient: PropTypes.object.isRequired
+  };  
+  
+  const mapStateToProps = state => ({
+    authClient: state.authClient
+  });
+  
+export default connect(mapStateToProps)(DetailFormationComponent);

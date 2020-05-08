@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom';
 
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {    
-    return (  
-           
-        <Card  className="card ">            
+    return (   
+        <Card  className="card " key={formation._id}>            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
             <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
             <Card.Body className="cardbody">
@@ -25,7 +24,7 @@ function RenderFormations ({formation}) {
 //fonction qui permet d'afficher un centre dans une "Card"
 function RenderCentres ({centre}) {   
     return (        
-        <Card className="card">            
+        <Card className="card" key={centre._id}>            
             <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
                 <Card.Header className="cardhead" as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
@@ -97,18 +96,21 @@ class SearchBar extends Component {
 
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
-                    return  <div>
+                    return (
+                    <li key={formation._id} style={{listStyleType:"none"}}>
                     <RenderFormations formation={formation}  key={formation._id}/>
-                    
                     <br/>
-                    </div>;
+                    </li>                    
+                    )
                     })
                 :
                 filteredCentres.map(centre => { 
-                    return  (<div>
-                            <RenderCentres centre={centre}  />
-                            <br/>
-                            </div>);
+                    return  (
+                    <li key={centre._id} style={{listStyleType:"none"}}>
+                    <RenderCentres centre={centre}  key={centre._id}/> 
+                    <br/>
+                    </li>                   
+                    )
                     })
 
         return(        

@@ -12,6 +12,7 @@ class SideBar extends Component {
       e.preventDefault();
       this.props.logoutCentre();
     };
+    
     render() {
       const { centre } = this.props.auth;
       return(
