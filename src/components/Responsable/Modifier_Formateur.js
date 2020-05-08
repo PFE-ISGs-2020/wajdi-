@@ -13,13 +13,16 @@ export default class ModiferFormateur extends Component {
         NomFormateur:'',
         PrenomFormateur:'',
         SpecialiteFormateur:'',
-        NomCentre:''
+        NomCentre:'',
+        emailFormateur: '',
+        TelFormateur: ''
     };
 
     this.onChangeNomFormateur = this.onChangeNomFormateur.bind(this);
     this.onChangePrenomFormateur =this.onChangePrenomFormateur.bind(this);
     this.onChangeSpecialiteFormateur = this.onChangeSpecialiteFormateur.bind(this);
-
+    this.onChangeemailFormateur = this.onChangeemailFormateur.bind(this);
+    this.onChangeTelFormateur = this.onChangeTelFormateur.bind(this);
     this.onSubmit = this.onSubmit.bind(this); 
   }
    //didmount begin
@@ -30,7 +33,9 @@ export default class ModiferFormateur extends Component {
             NomFormateur: response.data.NomFormateur,
             PrenomFormateur: response.data.PrenomFormateur,
             SpecialiteFormateur: response.data.SpecialiteFormateur,
-            NomCentre: response.data.NomCentre
+            NomCentre: response.data.NomCentre,
+            emailFormateur: response.data.emailFormateur,
+            TelFormateur: response.data.TelFormateur
         })   
       })
       .catch((error) => {
@@ -57,6 +62,13 @@ export default class ModiferFormateur extends Component {
             SpecialiteFormateur: e.target.value
         });
     }
+    onChangeemailFormateur(e) {
+        this.setState({emailFormateur: e.target.value});
+    }
+
+    onChangeTelFormateur(e) {
+        this.setState({TelFormateur: e.target.value});
+    }
 
     //récupération des donnees du l'Input
     onSubmit(e) {
@@ -66,7 +78,10 @@ export default class ModiferFormateur extends Component {
         NomFormateur: this.state.NomFormateur,
         PrenomFormateur: this.state.PrenomFormateur,
         SpecialiteFormateur: this.state.SpecialiteFormateur,
-        NomCentre:this.state.NomCentre
+        NomCentre:this.state.NomCentre,
+        emailFormateur : this.state.emailFormateur ,
+        TelFormateur : this.state.TelFormateur
+
     }
 
     console.log(formateur);
@@ -110,10 +125,36 @@ export default class ModiferFormateur extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="SpecialiteFormateur" md={5}><b>Specialité</b></Label>
+                                <Label htmlFor="emailFormateur" md={5}> <b>Email:</b></Label>
+                                <Col md={7}>
+                        
+                                <Input type="email" id="emailFormateur" name="emailFormateur"
+                                placeholder="Email"
+                                value={this.state.emailFormateur} required
+                                
+                                className="form-control"
+                                onChange={this.onChangeemailFormateur} />
+                                </Col>
+                             </FormGroup>
+
+                    <FormGroup row>
+                        <Label htmlFor="TelFormateur" md={5}><b>Téléphone:</b></Label>
+                            <Col md={7}>
+                            
+                                <Input type="tel" id="TelFormateur" name="TelFormateur"
+                                    placeholder="Téléphone" required
+                                    value={this.state.TelFormateur}
+                                    
+                                    className="form-control"
+                                    onChange={this.onChangeTelFormateur} />
+                            </Col>
+                    </FormGroup>
+
+                            <FormGroup row>
+                                <Label htmlFor="SpecialiteFormateur" md={5}><b>Spécialité</b></Label>
                                     <Col md={7}>
                                         <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
-                                            placeholder="Specialite "
+                                            placeholder="Spécialité "
                                             value={this.state.SpecialiteFormateur}
                                             onChange={this.onChangeSpecialiteFormateur} />
                                     </Col>                        

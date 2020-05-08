@@ -8,7 +8,7 @@ const clientSchema = new Schema({
   DatenaissClient: {type: Date,required: true,unique: false,trim: true},
   ProfessionClient: {type: String,required: true,unique: false,trim: true,minlength: 3},
   NiveauClient: {type: String,required: true,unique: false,trim: true,minlength: 3},
-  emailClient:  {type:String,required: true,unique: false,trim: true,minlength: 3},
+  emailClient:  {type:String,required: true,trim: true,minlength: 3},
   TelClient:  {type: String,required: true,unique: false,trim: true,minlength: 8},
   passwordClient:  {type: String,required: true,unique: false,trim: true,minlength: 5},
   AdresseClient: {type: String,required: true,unique: false,trim: true},

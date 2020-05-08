@@ -13,23 +13,36 @@ class AjoutFormateur extends Component {
             NomFormateur:'',
             PrenomFormateur:'',
             SpecialiteFormateur:'',
-            NomCentre:''
+            NomCentre:'',
+            emailFormateur: '',
+            TelFormateur: ''
         };
         this.onChangeNomFormateur = this.onChangeNomFormateur.bind(this);
         this.onChangePrenomFormateur =this.onChangePrenomFormateur.bind(this);
         this.onChangeSpecialiteFormateur = this.onChangeSpecialiteFormateur.bind(this); 
-    
+        this.onChangeemailFormateur = this.onChangeemailFormateur.bind(this);
+        this.onChangeTelFormateur = this.onChangeTelFormateur.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
     }
 
     onChangeNomFormateur(e) {
         this.setState({NomFormateur: e.target.value});
     }
+
     onChangePrenomFormateur(e) {
         this.setState({PrenomFormateur: e.target.value});
     }
+
     onChangeSpecialiteFormateur(e) {
         this.setState({SpecialiteFormateur: e.target.value});
+    }
+
+    onChangeemailFormateur(e) {
+        this.setState({emailFormateur: e.target.value});
+    }
+
+    onChangeTelFormateur(e) {
+        this.setState({TelFormateur: e.target.value});
     }
 
     //récupération des donnees du l'Input
@@ -40,7 +53,11 @@ class AjoutFormateur extends Component {
             NomFormateur:this.state.NomFormateur,
             PrenomFormateur: this.state.PrenomFormateur,
             SpecialiteFormateur: this.state.SpecialiteFormateur,  
-            NomCentre:centre.NomCentre 
+            NomCentre:centre.NomCentre,
+            emailFormateur : this.state.emailFormateur ,
+            TelFormateur : this.state.TelFormateur
+
+            
         }      
         console.log(formateur);        
         axios.post('http://localhost:5000/Formateur/add', formateur)
@@ -83,12 +100,38 @@ class AjoutFormateur extends Component {
                                             onChange={this.onChangePrenomFormateur} />
                                         </Col>
                                 </FormGroup>
+
+                                <FormGroup row>
+                    <Label htmlFor="emailFormateur" md={5}> <b>Email:</b></Label>
+                        <Col md={7}>
+                        
+                            <Input type="email" id="emailFormateur" name="emailFormateur"
+                                placeholder="Email"
+                                value={this.state.emailFormateur} required
+                                
+                                className="form-control"
+                                onChange={this.onChangeemailFormateur} />
+                        </Col>
+                </FormGroup>
+
+                    <FormGroup row>
+                        <Label htmlFor="TelFormateur" md={5}> <b>Téléphone:</b> </Label>
+                            <Col md={7}>
+                            
+                                <Input type="tel" id="TelFormateur" name="TelFormateur"
+                                    placeholder="Téléphone" required
+                                    value={this.state.TelFormateur}
+                                    
+                                    className="form-control"
+                                    onChange={this.onChangeTelFormateur} />
+                            </Col>
+                    </FormGroup>
     
                                 <FormGroup row>
-                                    <Label htmlFor="SpecialiteFormateur" md={5}><b>Specialité:</b></Label>
+                                    <Label htmlFor="SpecialiteFormateur" md={5}><b>Spécialité:</b></Label>
                                         <Col md={7}>
                                             <Input type="text" id="SpecialiteFormateur" name="SpecialiteFormateur"
-                                                placeholder="Specialité"
+                                                placeholder="Spécialité"
                                                 value={this.state.SpecialiteFormateur}
                                                 onChange={this.onChangeSpecialiteFormateur} />
                                         </Col>                        

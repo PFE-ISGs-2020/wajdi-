@@ -12,6 +12,8 @@ const Formateur = props => (
     <td>{props.formateur.NomFormateur}</td>
     <td>{props.formateur.PrenomFormateur}</td>
     <td>{props.formateur.SpecialiteFormateur}</td>
+    <td>{props.formateur.emailFormateur}</td>
+    <td>{props.formateur.TelFormateur}</td>
 
     <td>
         <a href={"/ModiferFormateur/"+props.formateur._id}>
@@ -133,9 +135,11 @@ class FormateurList extends Component {
                       </a>
                   </th>
 
-                  <th>Nom Formateur</th>
-                  <th>Prenom Formateur</th>
-                  <th>Specialite Formateur</th>
+                  <th>Nom </th>
+                  <th>Prénom </th>
+                  <th>Spécialité </th>
+                  <th>Email </th>
+                  <th>Tel </th>
                   <th>Modifier</th>
                   <th>Supprimer</th>
                 </tr>

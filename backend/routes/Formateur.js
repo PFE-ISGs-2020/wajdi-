@@ -17,13 +17,17 @@ router.route('/add').post((req, res) => {
   const NomFormateur = req.body.NomFormateur;
   const PrenomFormateur = req.body.PrenomFormateur;
   const SpecialiteFormateur = req.body.SpecialiteFormateur;  
-  const NomCentre =req.body.NomCentre;
+  const NomCentre = req.body.NomCentre;
+  const TelFormateur = req.body.TelFormateur;
+  const emailFormateur = req.body.emailFormateur;
 
   const newFormateur = new Formateur({
     NomFormateur,
     PrenomFormateur,
     SpecialiteFormateur,
-    NomCentre
+    NomCentre,
+    TelFormateur,
+    emailFormateur
   });
 
   newFormateur.save()
@@ -50,10 +54,12 @@ router.route('/update/:id').post((req, res) => {
         formateur.NomFormateur = req.body.NomFormateur;
         formateur.PrenomFormateur = req.body.PrenomFormateur;
         formateur.SpecialiteFormateur = req.body.SpecialiteFormateur;
-        formateur.NomCentre=req.body.NomCentre;
+        formateur.NomCentre = req.body.NomCentre;
+        formateur.TelFormateur = req.body.TelFormateur;
+        formateur.emailFormateur = req.body.emailFormateur
 
         formateur.save()
-        .then(() => res.json('Formateur Modifer!'))
+        .then(() => res.json('Formateur Modifié!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
