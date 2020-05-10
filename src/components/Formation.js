@@ -88,6 +88,7 @@ const formationList = ( this.state.NomTheme === "") ?
 
 
     const {client} = this.props.authClient;
+    
         const header = (client === null) ?
           <Header /> 
         :       
@@ -127,7 +128,7 @@ const formationList = ( this.state.NomTheme === "") ?
                   borderLeftWidthWidth: "1px",
                   borderLeftColor:"#0A3642" }} 
                   value={this.state.search}
-                  onChange={this.onchange} />                         
+                  onChange={this.onchange} placeholder="Search.." />                         
                </InputGroup>                   
             </Form>
               

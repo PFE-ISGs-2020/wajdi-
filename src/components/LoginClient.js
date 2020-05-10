@@ -15,6 +15,19 @@ class LoginClient extends Component {
             errors: {}
         };
       }
+
+    
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      window.location="/dashboardResponsable"; // push responsable to dashboard when they login
+    } 
+if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
  
 
     onChange = e => {

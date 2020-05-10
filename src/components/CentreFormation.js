@@ -122,7 +122,7 @@ const header = (client === null) ?
                   borderLeftWidthWidth: "1px",
                   borderLeftColor:"#0A3642" }} 
                   value={this.state.search}
-                  onChange={this.onchange} />                         
+                  onChange={this.onchange} placeholder="Search.." />                         
                </InputGroup>                   
             </Form>
               

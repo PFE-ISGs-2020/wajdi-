@@ -233,7 +233,7 @@ class SignUpClient extends Component {
                             <Col md={7}>
                             <span className="red-text">{errors.TelClient}</span>
                                 <Input type="tel" id="TelClient" name="TelClient"
-                                    placeholder="Téléphone" required
+                                    placeholder="Téléphne" required
                                     value={this.state.TelClient}
                                     error={errors.TelClient}
                             className={classnames("form-control", {invalid: errors.TelClient})}

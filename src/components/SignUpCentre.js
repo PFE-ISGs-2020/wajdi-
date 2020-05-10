@@ -31,7 +31,7 @@ class SignupCentre extends Component {
            DescriptionCentre: '',
            password2:'',
            Acces: 0,
-           Demande: [],
+           Centre: [],
            errors: {}
         };
 
@@ -160,18 +160,18 @@ class SignupCentre extends Component {
                     <Label htmlFor="EmailCentre" md={5}>Email</Label>
                         <Col md={7}>
                             <span className="red-text">{errors.EmailCentre}</span>
-                            <Input  required type="email" id="Email" name="EmailCentre"
+                            <Input  required type="email" id="EmailCentre" name="EmailCentre" 
                                 placeholder="Email" value={this.state.EmailCentre}
                                 error={errors.EmailCentre}
                                 className={classnames("form-control", {invalid: errors.EmailCentre})}
                                 onChange={this.onChangeEmailCentre} />
                         </Col>
                 </FormGroup>
-                <FormGroup  row controlId="RegionCentre">
+                <FormGroup  row >
                     <Label htmlFor="RegionCentre" md={5}>Région</Label>
                     <Col md = {7}>
    
-                        <Input className="form-control"  required type="select"   value={this.state.RegionCentre} onChange={this.onChangeRegionCentre} name="RegionCentre">
+                        <Input  type="select"   value={this.state.RegionCentre} onChange={this.onChangeRegionCentre} name="RegionCentre">
                         
                         <option>Ariana</option>
                         <option>Béja</option>

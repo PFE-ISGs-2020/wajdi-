@@ -5,17 +5,30 @@ import {Nav,Navbar, NavItem,Image,Dropdown} from 'react-bootstrap';
 import { logoutClient } from "../actions/authActionsClient";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
- 
-import wajdi from '../img/wajdi.jpg';
+import axios from 'axios';
+import DefaultImg from '../assets/default-img.jpg'; 
+
 class HeaderClient extends Component {
     constructor(props) {
         super(props);
        
         this.state = {
-          isNavOpen: false
+          isNavOpen: false, 
+          Client: []
         };
         this.toggleNav = this.toggleNav.bind(this);                       
       }
+
+      componentDidMount(){
+        const {client} = this.props.authClient;
+      axios.get('http://localhost:5000/Client/'+client.id)
+    .then(clt => {
+      this.setState({ Client: clt.data })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
       toggleNav() {
         this.setState({
@@ -30,8 +43,9 @@ class HeaderClient extends Component {
       };
 
     render() {
-        const {client} = this.props.authClient;
-        const NomClient = client.NomClient.toUpperCase();
+      let image = DefaultImg;
+      image = "http://localhost:5000/"+this.state.Client.imageClient;
+  
         return(
             <div className="nav-head ">
                 <Navbar   expand="md" variant="dark">        
@@ -58,14 +72,15 @@ class HeaderClient extends Component {
                             <Nav  className="ml-auto navbar" >                            
                                
                                <NavItem>
-                                    <Dropdown size="sm"   drop={'left'}>
-                                        <Dropdown.Toggle style={{backgroundColor:"#0A3642",border:"none"}} > 
-                                            <Image src={wajdi} style={{backgroundColor:"white"}} height="40px" width="40px" roundedCircle />                                         
+                                    <Dropdown size="sm" drop={'left'}>
+                                        <Dropdown.Toggle   style={{backgroundColor:"#0A3642",border:"none"}}  > 
+                                              <Image src={image} style={{backgroundColor:"white"}} height="43px" width="40px" roundedCircle />                                       
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
                                         <Dropdown.Item href="/profileClient">
-                                            {NomClient}
+                                            Profile
                                         </Dropdown.Item>
+                                        <Dropdown.Divider />
                                         <Dropdown.Item href="/" onClick={this.onLogoutClick}>
                                            Logout
                                         </Dropdown.Item>

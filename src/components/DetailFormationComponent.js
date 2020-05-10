@@ -9,7 +9,7 @@ import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
 
 class DetailFormationComponent extends Component {  
-    _isMounted = false;
+  
     constructor(props) {
         super(props);
 
@@ -20,8 +20,6 @@ class DetailFormationComponent extends Component {
     }
     
     componentDidMount() {
-
-        this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
         if(this.props.formation!==undefined)
         localStorage.setItem("object", JSON.stringify(this.props.formation));
@@ -31,21 +29,35 @@ class DetailFormationComponent extends Component {
         //Request to get "formation" details by its ID
         axios.get('http://localhost:5000/Formation/'+ID_Formation)
           .then( formation => {
-            
             if (this._isMounted) {
             this.setState({ formationn: formation.data })
             console.log(this.props.formation);
             }
         })
-          .catch((error) => {
-            console.log(error);
-          })
 
       } 
 
-      componentWillUnmount() {
-        this._isMounted = false;
+      
+
+      onclick() {
+        const {client} = this.props.authClient;
+        if (client){
+            const inscription = {
+            Id_Client:client.id,
+            NomClient:client.NomClient ,
+            PrenomClient:client.PrenomClient,
+            EtatInscription:false,
+            Id_Formation: this.state.formationn._id
+        }
+        console.log(inscription);
+        axios.post('http://localhost:5000/Details_Inscription/add', inscription)
+        .then(res => console.log(res.data))        
+        
+        }    window.location = '/';  
       }
+    
+
+
     render(){
         const {formationn} = this.state;
         let LibelleFormation = formationn ? formationn.LibelleFormation : "";
@@ -82,12 +94,12 @@ class DetailFormationComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                 
-                    <div className="container">            
+                    <div className="container">    
                         {/* showing details  begin*/}
-                        <div className="row "> 
+                        <div> 
                             <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                         </div>
-                        <div className="row ">
+                        <div>
                             <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
                             <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
                         </div> 
@@ -110,13 +122,16 @@ class DetailFormationComponent extends Component {
                         {/* showing details  end*/}
 
                         {/* s'inscrire Button  begin*/}
-                        <div className="row ">  
+                        <div className="form-group row" onClick={this.onclick()}>  
                             <Button type="submit" color="primary">
                                 S'inscrire
                             </Button>
+                            <br/>
                         </div>   
                         {/* s'inscrire Button  end*/}
-                    
+                        <br/>
+                        <br/>
+
                     </div>
                 </div>
             </div>
