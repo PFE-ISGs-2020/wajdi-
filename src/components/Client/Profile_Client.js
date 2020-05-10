@@ -106,7 +106,7 @@ render() {
 }             
 ProfileClient.propTypes = {
     logoutClient: PropTypes.func.isRequired,
-    authauthClient: PropTypes.object.isRequired
+    authClient: PropTypes.object.isRequired
   };
   
   const mapStateToProps = state => ({
