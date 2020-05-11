@@ -48,7 +48,7 @@ router.route('/listbynamecentre/:NomCentre').get((req, res) => {
 
 
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(upload.single('imageFormation'),(req, res) => {
   const CodeFormation = req.body.CodeFormation;
   const LibelleFormation = req.body.LibelleFormation;
   const DateDebutFormation = req.body.DateDebutFormation;
@@ -59,6 +59,9 @@ router.route('/add').post((req, res) => {
   const NomFormateur= req.body.NomFormateur;
   const NomCentre =req.body.NomCentre;
   const Prix =req.body.Prix;
+  let imageFormation = ""
+  if(req.file){
+   imageFormation = req.file.path}
 
   const newFormation = new Formation({
     CodeFormation,
@@ -70,7 +73,8 @@ router.route('/add').post((req, res) => {
     NomTheme ,
     NomFormateur ,
     NomCentre,
-    Prix
+    Prix,
+    imageFormation
   });
 
   newFormation.save()

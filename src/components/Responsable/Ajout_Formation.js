@@ -153,7 +153,7 @@ class AjoutFormation extends Component {
     onSubmit(e) {
         e.preventDefault();
         const {centre} = this.props.auth;
-        const formation = {
+         /*const formation = {
             CodeFormation: this.state.CodeFormation,
             LibelleFormation: this.state.LibelleFormation,
             DateDebutFormation: this.state.DateDebutFormation,
@@ -166,25 +166,28 @@ class AjoutFormation extends Component {
             Prix: this.state.Prix
         }
       
-        console.log(formation);
+        console.log(formation); */
+        let formation = new FormData();
+        formation.append(    "CodeFormation", this.state.CodeFormation);
+        formation.append(    "LibelleFormation", this.state.LibelleFormation);
+        formation.append(    "DateDebutFormation", this.state.DateDebutFormation);
+        formation.append(    "DateFinFormation", this.state.DateFinFormation);
+        formation.append(    "DescriptionFormation", this.state.DescriptionFormation);
+        formation.append(    "CapaciteFormation", this.state.CapaciteFormation);
+        formation.append(    "NomTheme", this.state.NomTheme);
+        formation.append(    "NomFormateur", this.state.NomFormateur);
+        formation.append(    "NomCentre", centre.NomCentre);
+        formation.append(    "Prix", this.state.Prix);
+        if (this.state.image){
+        formation.append("imageFormation", this.state.image);}
         
         axios.post('http://localhost:5000/Formation/add', formation)
-        .then(res => 
-        this.setState({
-            id: res.data._id
-        }),
-        console.log(this.state.id))
+        .then(
+        console.log(formation))
         .catch((error) => {
             console.log(error);
           });
-         /*  if (this.state.image ){
-
-            let ImageFormation = new FormData();
-            ImageFormation.append("imageFormation", this.state.image)
-            console.log(this.state.image) 
-           axios.post('http://localhost:5000/Formation/updateImageFormation/' + this.state.id, ImageFormation)
-            .then(res => console.log(res.data) );}
-           */  
+          
         window.location = '/FormationList';
         
     }
@@ -241,18 +244,18 @@ class AjoutFormation extends Component {
                                 <br/>
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>
-                                {/* <FormGroup row>
-                            <Label htmlFor="image" md={5}> <b>Image de la Formation</b></Label>
+                                 <FormGroup row>
+                            <Label htmlFor="imageFormation" md={5}> <b>Image de la Formation</b></Label>
                             <Col md={7}>
    
-                            <Input  type="file" id="image" name="image" 
+                            <Input  type="file" id="imageFormation" name="imageFormation" 
                             
                             className="process__upload-btn"
                             onChange={this.onChangeImage} />
                             </Col>
                             </FormGroup>
                             <img src= {image} alt="" className="process__image offset-2"
-                            width="200" height="200" />  */} 
+                            width="200" height="200" /> 
                             
                                 <FormGroup row>
                                     <br/>
