@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import Header from './HeaderComponent';
 import {InputGroup,FormControl,Form,Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {Input} from 'reactstrap';
 import axios from 'axios';
- 
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Header from './HeaderComponent';
+import HeaderClient from './Header_Client';
+
 class Formation extends Component {
   
     constructor() {
@@ -28,15 +32,6 @@ class Formation extends Component {
 
 
     componentDidMount() {
-        //themes axios get 
-        axios.get('http://localhost:5000/Theme/')
-          .then(themes => {
-            if (themes.data.length > 0) {
-              this.setState({
-                themes: themes.data.map(theme => theme.NomTheme) })
-            }
-          })
-
           //Récupérer les formtaions de la base de données
           axios.get('http://localhost:5000/Formation/')
           .then(Formation => {
@@ -53,6 +48,8 @@ class Formation extends Component {
       };
 
 render() { 
+  const themes = [...new Set(this.state.Formation.map(themes => themes.NomTheme    ))];
+
   const  {search} = this.state;
   const formabyname = this.state.Formation.filter( formation => formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
   const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
@@ -75,22 +72,31 @@ function RenderFormations ({formation}) {
 const formationList = ( this.state.NomTheme === "") ?
 
    formabyname.map((formation) =>
-    <div>
+      <li key={formation._id} style={{listStyleType:"none"}}>
       <RenderFormations formation={formation}  key={formation._id}/>
       <br/>
-    </div>
-  )
-  :
-  formabythem.map((formation) =>
-  <div>
-    <RenderFormations formation={formation}  key={formation._id}/>
-    <br/>
-  </div>
-);
+      </li>
+      
+    )
+    :
+    formabythem.map((formation) =>
+      <li key={formation._id} style={{listStyleType:"none"}}>
+        <RenderFormations formation={formation}  key={formation._id}/>
+        <br/>
+      </li>
+    );
+
+
+    const {client} = this.props.authClient;
+    
+        const header = (client === null) ?
+          <Header /> 
+        :       
+          <HeaderClient />
 
     return (
         <div>
-            <Header />
+            {header}
             <br/>
             <br/>
             <div className="container">
@@ -106,11 +112,13 @@ const formationList = ( this.state.NomTheme === "") ?
                 borderRightColor:"#0A3642",
                 color:"#0A3642"}}
                 value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
-                <option value="" > All </option>
+                <option value="" key={""}> Type ... </option>
                   {
-                    this.state.themes.map(function(themes) {
-                    return (                               
-                      <option key={themes._id} value={themes}> {themes} </option>                            
+                    themes.map(function(NomTheme) {
+                    return (                          
+                      <option key={NomTheme} value={NomTheme}> 
+                      {NomTheme}
+                      </option>                            
                         ) ;})
                   } 
               </Input>                            
@@ -120,7 +128,7 @@ const formationList = ( this.state.NomTheme === "") ?
                   borderLeftWidthWidth: "1px",
                   borderLeftColor:"#0A3642" }} 
                   value={this.state.search}
-                  onChange={this.onchange} />                         
+                  onChange={this.onchange} placeholder="Search.." />                         
                </InputGroup>                   
             </Form>
               
@@ -137,7 +145,15 @@ const formationList = ( this.state.NomTheme === "") ?
     }
 }
 
-export default Formation;
+Formation.propTypes = {
+  authClient: PropTypes.object.isRequired
+};  
+
+const mapStateToProps = state => ({
+  authClient: state.authClient
+});
+
+export default  connect(mapStateToProps)(Formation) ;
   
  
 

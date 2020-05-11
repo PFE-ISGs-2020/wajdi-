@@ -12,7 +12,8 @@ const formationSchema = new Schema({
     NomTheme :{ type: String, required: true },
     NomFormateur:{type: String, required: true},
     NomCentre:{type: String, required: true},
-    Prix: {type: Number, required: true}
+    Prix: {type: Number, required: true},
+    imageFormation:{ type: String }
 },
  {
   timestamps: true,

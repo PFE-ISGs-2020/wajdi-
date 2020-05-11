@@ -195,7 +195,7 @@ class SignUpClient extends Component {
                         </Col>          
                     </FormGroup> 
 
-                    <FormGroup row controlId="NiveauClient">
+                    <FormGroup row >
                         <Label htmlFor="NiveauClient" md={5}>Niveau </Label>
                         <Col md = {7}>
 
@@ -233,7 +233,7 @@ class SignUpClient extends Component {
                             <Col md={7}>
                             <span className="red-text">{errors.TelClient}</span>
                                 <Input type="tel" id="TelClient" name="TelClient"
-                                    placeholder="Téléphone" required
+                                    placeholder="Téléphne" required
                                     value={this.state.TelClient}
                                     error={errors.TelClient}
                             className={classnames("form-control", {invalid: errors.TelClient})}
@@ -300,10 +300,10 @@ class SignUpClient extends Component {
 SignUpClient.propTypes = {
     signUpClient: PropTypes.func.isRequired,
     authClient: PropTypes.object.isRequired,
-    errorsClient: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired
   };
 const mapStateToProps = state => ({
     authClient: state.authClient,
-    errors: state.errorsClient
+    errors: state.errors
   });
 export default connect( mapStateToProps, { signUpClient })(withRouter(SignUpClient));

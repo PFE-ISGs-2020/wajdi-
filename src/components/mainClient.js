@@ -1,9 +1,15 @@
+  
 import React, { Component } from 'react';
 import {Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
 import DetailCentreComponent from './DetailsCentreComponent';
 import Home from './HomeComponent';
 import Formation from "./Formation";
+import CentreFormation from "./CentreFormation";
+
+import ModifierImageClient from './Client/Modifier_Image_Client';
+import Profile_Client from './Client/Profile_Client';
+import ModifierProfile from './Client/Modifier_Profile'
 
 import axios from 'axios';
 
@@ -60,7 +66,11 @@ class MainClient extends Component {
         <Route path='/DetailFormation/:formationId' component={FormationWithId} />
         <Route path='/DetailCentre/:centreId' component={CentreWithId} />
         <Route path="/Formation" exact component={Formation} /> 
-
+        <Route path="/CentreFormation" exact component={CentreFormation} />       
+        
+        <Route path="/profileClient" component={Profile_Client} />
+        <Route path="/ModifierProfile/:id" component={ModifierProfile} />
+        <Route path="/ModifierImageClient/:id" component={ModifierImageClient} />
     </Route>
     
     </BrowserRouter>

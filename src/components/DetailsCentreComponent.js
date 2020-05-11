@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 import axios from 'axios';
-import Header from '../components/HeaderComponent';
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Header from './HeaderComponent';
+import HeaderClient from './Header_Client';
+import DefaultImg from '../assets/default-img.jpg';
 
 class DetailCentreComponent extends Component {
     _isMounted = false;
@@ -38,6 +43,7 @@ class DetailCentreComponent extends Component {
         this._isMounted = false;
       }
     render(){
+     
         const {centree} = this.state;
         let NomCentre = centree ? centree.NomCentre : "";
         let RegionCentre = centree ? centree.RegionCentre : "";
@@ -45,10 +51,23 @@ class DetailCentreComponent extends Component {
         let TelCentre = centree ? centree.TelCentre : "";
         let EmailCentre = centree ? centree.EmailCentre : "";
         let DescriptionCentre = centree ? centree.DescriptionCentre : "";
+        let image = centree ? centree.image : "";
+        
+        let imageCentre = DefaultImg;
+        if (image){
+        imageCentre = "http://localhost:5000/"+image
+        }  
+    const {client} = this.props.authClient;
+    const header = (client === null) ?
+      <Header /> 
+    :       
+      <HeaderClient />
+
+        
         return(
             <div>
-                <Header />
-                <div className="container">
+                {header}
+                 <div className="container">
                     {/*BreadCrumb begin */}
                     <div className="row">
                         <Breadcrumb>
@@ -61,7 +80,16 @@ class DetailCentreComponent extends Component {
                         </div>                
                     </div>
                     {/*BreadCrumb end */}
-                
+                    <div className="row ">
+                <div className="col-4 col-md-4 ">
+                 
+                  <img src={imageCentre} alt="photo_de_profile" width="260px" height="290px"/>               
+                   
+                        
+                        
+                </div> 
+                <div >
+                  <br/>
                     {/* showing details  begin*/}                    
                     <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                     <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
@@ -69,14 +97,21 @@ class DetailCentreComponent extends Component {
                     <p><b> <span className="fa fa-phone"></span> Tel Centre:</b>   {TelCentre}</p>
                     <p><b> <span className="fa fa-envelope"></span> Email Centre:</b>   {EmailCentre}</p>
                     <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
-                    
-                    
                     {/* showing details  end*/}               
-                   
+                   </div>
+                   </div>
                 </div>
             </div>
     );    
 
 }
 }
-export default DetailCentreComponent;
+
+DetailCentreComponent.propTypes = {
+    authClient: PropTypes.object.isRequired
+  };  
+  
+  const mapStateToProps = state => ({
+    authClient: state.authClient
+  });
+export default connect(mapStateToProps)(DetailCentreComponent);

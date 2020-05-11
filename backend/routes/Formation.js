@@ -2,6 +2,38 @@
 const router = require('express').Router();
 let Formation = require('../models/Formation_model');
 
+// Consts to save the image
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+   destination: function (req, file, cb) {
+       cb(null, './uploads/');
+   },
+   filename: function (req, file, cb) {
+       cb(null, Date.now() + file.originalname);
+   }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        // rejects storing a file
+        cb(null, false);
+    }
+}
+
+const upload = multer({
+    storage: storage,
+     limits: {
+         // 1024 * 1024 = 1 megabyte * 5 = 5 megabytes
+        fileSize: 1024 * 1024 * 5
+    }, 
+    fileFilter: fileFilter
+}); 
+
+//Routes
+
 router.route('/').get((req, res) => {
     Formation.find()
     .then(formation => res.json(formation))
@@ -79,5 +111,34 @@ router.route('/update/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/updateImageFormation/:id').post(  upload.single('imageFormation'), (req, res) => {
+    Formation.findById(req.params.id)
+    .then(formation => {        
+       
+        formation.imageFormation = req.file.path
+  
+        formation.save()
+        .then(() => res.json('Image Formation updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+        
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+  });
+
+  /* router.route('/addImageFormation/:id').post(  upload.single('imageFormation'), (req, res) => {
+    Formation.findById(req.params.id)
+    .then(formation => {        
+       
+        formation.imageFormation = req.file.path
+  
+        formation.save()
+        .then(() => res.json('Image Formation added!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+        
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+  }); */
+  
 
 module.exports = router;

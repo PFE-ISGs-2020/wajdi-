@@ -23,7 +23,8 @@ class ModiferFormation extends Component {
         NomCentre:'',
         themes:[] ,
         formateurs:[],
-       
+        image: '',
+        selectedImage:'',
         Prix: ''
     };
 
@@ -37,9 +38,12 @@ class ModiferFormation extends Component {
     this.onChangeNomFormateur =this.onChangeNomFormateur.bind(this);
     this.onChangeNomCentre=this.onChangeNomCentre.bind(this);
     this.onChangePrix = this.onChangePrix.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this); 
   }
+
+
    //didmount begin
   componentDidMount() {
     axios.get('http://localhost:5000/Formation/'+this.props.match.params.id)
@@ -54,7 +58,8 @@ class ModiferFormation extends Component {
             NomTheme: response.data.NomTheme,
             NomFormateur: response.data.NomFormateur,
             NomCentre: response.data.NomCentre,
-            Prix: response.data.Prix
+            Prix: response.data.Prix,
+            selectedImage: response.data.imageFormation
         })   
       })
       .catch((error) => {
@@ -92,6 +97,13 @@ class ModiferFormation extends Component {
        
     }
     //didmount end
+
+    onChangeImage (e) {
+        this.setState({
+            image: e.target.files[0],
+            selectedImage:URL.createObjectURL(e.target.files[0])
+        });
+    };
 
     onChangeCodeFormation(e) {
         this.setState({
@@ -174,11 +186,22 @@ class ModiferFormation extends Component {
 
     axios.post('http://localhost:5000/Formation/update/' + this.props.match.params.id, formation)
       .then(res => console.log(res.data));
+      
+    if (this.state.selectedImage ){
+        let ImageFormation = new FormData();
+      ImageFormation.append("imageFormation", this.state.image)
+      console.log(this.state.image) 
+     axios.post('http://localhost:5000/Formation/updateImageFormation/' + this.props.match.params.id, ImageFormation)
+      .then(res => console.log(res.data) );}
       window.location = '/FormationList';
 
   }
 
   render() {
+    let image = this.state.selectedImage;
+    if (!this.state.image){
+        image = "http://localhost:5000/"+this.state.selectedImage
+    }
     return (
         <div>
             <SideBar pageWrapId={"page-wrap"} />
@@ -192,8 +215,22 @@ class ModiferFormation extends Component {
                             <br/>
                             <Form onSubmit={this.onSubmit}>
                             <FormGroup row>
-                                <Label htmlFor="CodeFormation" md={5}> <b>Code Formation</b></Label>
-                                    <Col md={7}>
+                            <Label htmlFor="image" md={5}> <b>Image de la Formation</b></Label>
+                            <Col md={7}>
+   
+                            <Input  type="file" id="image" name="image" 
+                            
+                            className="process__upload-btn"
+                            onChange={this.onChangeImage} />
+                            </Col>
+                            </FormGroup>
+                            <img src= {image} alt="im" className="process__image offset-2"
+                            width="200" height="200" />  
+                            
+                            <FormGroup row>
+                                
+                                <Label htmlFor="CodeFormation" md={5}><br/> <b>Code Formation</b></Label>
+                                    <Col md={7}><br/>
                                         <Input type="text" id="CodeFormation" name="CodeFormation"
                                         placeholder="Code Formation"
                                         value={this.state.CodeFormation}

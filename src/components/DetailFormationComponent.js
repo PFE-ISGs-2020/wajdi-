@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem,Button} from 'react-bootstrap';
 import axios from 'axios';
-import Header from '../components/HeaderComponent';
 import Moment from 'react-moment';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Header from './HeaderComponent';
+import HeaderClient from './Header_Client';
+
 class DetailFormationComponent extends Component {  
-    _isMounted = false;
+  
     constructor(props) {
         super(props);
 
@@ -16,8 +20,6 @@ class DetailFormationComponent extends Component {
     }
     
     componentDidMount() {
-
-        this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
         if(this.props.formation!==undefined)
         localStorage.setItem("object", JSON.stringify(this.props.formation));
@@ -27,21 +29,35 @@ class DetailFormationComponent extends Component {
         //Request to get "formation" details by its ID
         axios.get('http://localhost:5000/Formation/'+ID_Formation)
           .then( formation => {
-            
             if (this._isMounted) {
             this.setState({ formationn: formation.data })
             console.log(this.props.formation);
             }
         })
-          .catch((error) => {
-            console.log(error);
-          })
 
       } 
 
-      componentWillUnmount() {
-        this._isMounted = false;
+      
+
+      onclick() {
+        const {client} = this.props.authClient;
+        if (client){
+            const inscription = {
+            Id_Client:client.id,
+            NomClient:client.NomClient ,
+            PrenomClient:client.PrenomClient,
+            EtatInscription:false,
+            Id_Formation: this.state.formationn._id
+        }
+        console.log(inscription);
+        axios.post('http://localhost:5000/Details_Inscription/add', inscription)
+        .then(res => console.log(res.data))        
+        
+        }    window.location = '/';  
       }
+    
+
+
     render(){
         const {formationn} = this.state;
         let LibelleFormation = formationn ? formationn.LibelleFormation : "";
@@ -53,9 +69,16 @@ class DetailFormationComponent extends Component {
         let CapaciteFormation = formationn ? formationn.CapaciteFormation : "";
         let NomCentre = formationn ? formationn.NomCentre : "";
 
+
+        const {client} = this.props.authClient;
+        const header = (client === null) ?
+          <Header /> 
+        :       
+          <HeaderClient />
+
         return(
             <div>
-                <Header />
+                 {header}
                 <div className="container">
                     <br/>
                     {/*BreadCrumb begin */}
@@ -71,49 +94,44 @@ class DetailFormationComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                 
-                    <div className="container">            
+                    <div className="container">    
                         {/* showing details  begin*/}
-
-                        <div className="row "> 
+                        <div> 
                             <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                         </div>
-                        
-                        <div className="row ">
+                        <div>
                             <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
                             <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
                         </div> 
-
                         <div className="row">                        
                             <p><b><span className="fa fa-calendar"></span> Date fin:</b>  
                             <Moment format="DD/MM/YYYY">{DateFinFormation}</Moment> </p>                        
                         </div>             
-                       
                         <div className="row ">
                             <p><b><span className="fa fa-tag"></span> Theme:</b> {NomTheme}</p>
                         </div>
-                        
                         <div className="row ">
                             <p><b> <span className="fa fa-user"></span> Formateur:</b> {NomFormateur}</p>
                         </div> 
-                        
                         <div className="row ">
                             <p><span className="fa fa-users"></span><b> Capacité:</b> {CapaciteFormation}</p>
                         </div> 
-                        
                         <div className="row">
                             <p><span className="fa fa-align-justify"></span><b> Description:</b> {DescriptionFormation}</p>
                         </div> 
-                            
                         {/* showing details  end*/}
 
                         {/* s'inscrire Button  begin*/}
-                        <div className="row ">  
+                        <div className="form-group row" onClick={this.onclick()}>  
                             <Button type="submit" color="primary">
                                 S'inscrire
                             </Button>
+                            <br/>
                         </div>   
                         {/* s'inscrire Button  end*/}
-                    
+                        <br/>
+                        <br/>
+
                     </div>
                 </div>
             </div>
@@ -121,4 +139,14 @@ class DetailFormationComponent extends Component {
 
 }
 }
-export default DetailFormationComponent;
+
+
+DetailFormationComponent.propTypes = {
+    authClient: PropTypes.object.isRequired
+  };  
+  
+  const mapStateToProps = state => ({
+    authClient: state.authClient
+  });
+  
+export default connect(mapStateToProps)(DetailFormationComponent);

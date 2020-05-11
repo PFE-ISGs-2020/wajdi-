@@ -26,7 +26,10 @@ class AjoutFormation extends Component {
             NomCentre:'',
             themes:[] ,
             formateurs:[],
-            Prix: ''
+            Prix: '',
+            image: '',
+            selectedImage:'',
+            id: ''
         };
 
         this.onChangeCodeFormation = this.onChangeCodeFormation.bind(this);
@@ -38,6 +41,7 @@ class AjoutFormation extends Component {
         this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
         this.onChangeNomFormateur =this.onChangeNomFormateur.bind(this);
         this.onChangePrix = this.onChangePrix.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
     }
     //didmount begin
@@ -84,6 +88,12 @@ class AjoutFormation extends Component {
 
     //didmount end
 
+    onChangeImage (e) {
+        this.setState({
+            image: e.target.files[0],
+            selectedImage:URL.createObjectURL(e.target.files[0])
+        });
+    };
 
     onChangeCodeFormation(e) {
         this.setState({
@@ -159,11 +169,22 @@ class AjoutFormation extends Component {
         console.log(formation);
         
         axios.post('http://localhost:5000/Formation/add', formation)
-        .then(res => console.log(res.data))
+        .then(res => 
+        this.setState({
+            id: res.data._id
+        }),
+        console.log(this.state.id))
         .catch((error) => {
             console.log(error);
           });
+         /*  if (this.state.image ){
 
+            let ImageFormation = new FormData();
+            ImageFormation.append("imageFormation", this.state.image)
+            console.log(this.state.image) 
+           axios.post('http://localhost:5000/Formation/updateImageFormation/' + this.state.id, ImageFormation)
+            .then(res => console.log(res.data) );}
+           */  
         window.location = '/FormationList';
         
     }
@@ -206,6 +227,8 @@ class AjoutFormation extends Component {
             )
           }
         else{
+            let image = this.state.selectedImage;
+            
         return(
             <div>
                 <SideBar pageWrapId={"page-wrap"} />
@@ -218,7 +241,21 @@ class AjoutFormation extends Component {
                                 <br/>
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>
+                                {/* <FormGroup row>
+                            <Label htmlFor="image" md={5}> <b>Image de la Formation</b></Label>
+                            <Col md={7}>
+   
+                            <Input  type="file" id="image" name="image" 
+                            
+                            className="process__upload-btn"
+                            onChange={this.onChangeImage} />
+                            </Col>
+                            </FormGroup>
+                            <img src= {image} alt="" className="process__image offset-2"
+                            width="200" height="200" />  */} 
+                            
                                 <FormGroup row>
+                                    <br/>
                                     <Label htmlFor="CodeFormation" md={5}><b>Code Formation</b></Label>
                                         <Col md={7}>
                                             <Input type="text" id="CodeFormation" name="CodeFormation"

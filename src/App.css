@@ -2,9 +2,6 @@
   background-color: #0A3642;
   padding-left: 0.5%;
   position:relative;
-  border: none;
-  outline: none;  
-  border-radius: 25px 25px 25px 25px;  
   }
    
   html{
@@ -31,6 +28,7 @@
   border-style: solid;
   border-width: 1px;
   border-color:#0A3642 ;
+  margin-top: 20px;
 }
 
  .cardhead{

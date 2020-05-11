@@ -46,10 +46,6 @@ import {setCurrentCentre, logoutCentre } from "./actions/authActions";
 import img from './components/image';
 import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
 
-import ModifierImageClient from './components/Client/Modifier_Image_Client';
-import Profile_Client from './components/Client/Profile_Client';
-import ModifierProfile from './components/Client/Modifier_Profile'
-
 //import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in
@@ -113,22 +109,16 @@ if (localStorage.jwtToken) {
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />
           <Route path="/ModiferFormation/:id" exact component={ModiferFormation} />
-          
 
           <Route path="/FormateurList" exact component={FormateurList} />
           <Route path="/AjoutFormateur" exact component={AjoutFormateur} />
           <Route path="/ModiferFormateur/:id" exact component={ModiferFormateur} />
           <Route path="/InscriptionList/:id" exact component={Inscriptions_Formations} />
           <Route path="/DemandeInscriptionList/:id" exact component={DemandeInscriptionList} /> 
-          
         
         <Route path="/DashboardResponsable" component={DashboardResponsable} />  
 
-        {/* Client */}
-        <Route path="/profileClient" component={Profile_Client} />
-        <Route path="/ModifierProfile/:id" component={ModifierProfile} />
-        <Route path="/ModifierImageClient/:id" component={ModifierImageClient} />
-        
+      
         
         {/* Webmaster */}
         <Route path="/homewebmaster" exact component={HomeWebmaster} />

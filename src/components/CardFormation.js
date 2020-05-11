@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
+import DefaultImg from '../assets/default-img.jpg';
 
 class CardFormation extends Component {
 
@@ -28,12 +29,18 @@ class CardFormation extends Component {
 
     render(){
        // const dateToFormat = this.state.formation.DateDebutFormation;var datedeb = moment(this.state.formation.DateDebutFormation, 'DD-MM-YYYY');
-            
+       let image = DefaultImg;
+       if (this.state.formation.imageFormation){
+        image = "http://localhost:5000/"+this.state.formation.imageFormation
+       }  
         return(
         <div>
             <div className="container">            
                 {/* showing details  begin*/}
-                
+                <div className="row offset-2 ">
+                <img src= {image} className="process__image offset-2"
+                            width="150" height="150" /> 
+                </div>
                  <div className="row ">
                     <p><b>Date debut: </b>    
                     <Moment format="DD/MM/YYYY">{this.state.formation.DateDebutFormation}</Moment></p> 
@@ -61,7 +68,7 @@ class CardFormation extends Component {
                 <div className="row">
                     <p><b>Description:</b> {this.state.formation.DescriptionFormation}</p>
                 </div> 
-                  
+                
                 {/* showing details  end*/}                
                    
             </div>            
