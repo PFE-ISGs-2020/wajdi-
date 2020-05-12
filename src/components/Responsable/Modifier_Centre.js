@@ -17,6 +17,7 @@ export default class ModifierCentre extends Component {
         password:'',
         Acces:'',
         image: '',
+        selectedImage:'',
 
     };
     
@@ -45,10 +46,10 @@ export default class ModifierCentre extends Component {
             EmailCentre: response.data.EmailCentre,
             password: response.data.passwordCentre,
             Acces: response.data.Acces,
-            image: response.data.image
+            selectedImage: response.data.image
        
         })
-        console.log(this.state.image);   
+           
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +95,7 @@ export default class ModifierCentre extends Component {
     onChangeImage (e) {
         this.setState({
             image: e.target.files[0],
-            //image:URL.createObjectURL(e.target.files[0])
+            selectedImage:URL.createObjectURL(e.target.files[0])
         });
       };
 
@@ -104,7 +105,7 @@ export default class ModifierCentre extends Component {
     onSubmit(e) {
     e.preventDefault();
    
-    const centre= {
+   const centre= {
         NomCentre: this.state.NomCentre,
     AdresseCentre: this.state.AdresseCentre,
     TelCentre: this.state.TelCentre,
@@ -115,23 +116,22 @@ export default class ModifierCentre extends Component {
    Acces: this.state.Acces,
    
     }
-    /* let centre = new FormData();
-    centre.append("NomCentre", this.state.NomCentre)
-    centre.append("AdresseCentre", this.state.AdresseCentre)
-    centre.append("TelCentre", this.state.TelCentre)
-    centre.append("RegionCentre", this.state.RegionCentre)
-    centre.append("DescriptionCentre", this.state.DescriptionCentre)
-    centre.append("EmailCentre", this.state.EmailCentre)
-   // centre.append("passwordCentre", this.state.passwordCentre)
-   centre.append("Acces", this.state.Acces)
-   centre.append("image", this.state.image)
-    console.log(this.state.image) */
+    
      axios.post('http://localhost:5000/Centre/update/' + this.props.match.params.id, centre)
-      .then(res => console.log(res.data) ,window.location = '/ProfileCentre');
+      .then(res => console.log(res.data) );
+      if (this.state.selectedImage ){
+        let Image = new FormData();
+      Image.append("image", this.state.image)
+      
+     axios.post('http://localhost:5000/Centre/updateImageCentre/' + this.props.match.params.id, Image)
+      .then(res => console.log(res.data) );}
+      window.location = '/ProfileCentre'
   } 
 
   render() {
-    
+    let image = this.state.selectedImage;
+  if (!this.state.image){
+      image = "http://localhost:5000/"+this.state.selectedImage}
     return (
         <div>
             <SideBar pageWrapId={"page-wrap"} />
@@ -145,6 +145,19 @@ export default class ModifierCentre extends Component {
                             <br/>
                             <Form onSubmit={this.onSubmit}>
                             
+                            <FormGroup row>
+                            <Label htmlFor="image" md={5}> <b>Image du Centre</b></Label>
+                            <Col md={7}>
+   
+                            <Input  type="file" id="image" name="image" 
+                            
+                            className="process__upload-btn"
+                            onChange={this.onChangeImage} />
+                            </Col>
+                            </FormGroup>
+                            <img src= {image} alt="" className="process__image offset-2"
+                            width="200" height="200" /> 
+
                             <FormGroup row>
                              <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>
                              <Col md={7}>

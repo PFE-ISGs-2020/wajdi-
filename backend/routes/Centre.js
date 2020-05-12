@@ -130,7 +130,7 @@ router.route('/update/:id').post( (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res) => {
+ router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res) => {
   Centre.findById(req.params.id)
   .then(centre => {        
      
@@ -142,7 +142,7 @@ router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res)
       
   })
   .catch(err => res.status(400).json('Error: ' + err));
-});
+}); 
 
 router.route('/updatePassword/:id').post((req, res) => {
   Centre.findById(req.params.id)

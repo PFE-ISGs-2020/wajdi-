@@ -21,7 +21,6 @@ import AjoutFormateur from './components/Responsable/Ajout_Formateur';
 import ModiferFormateur from'./components/Responsable/Modifier_Formateur';
 import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
 import DemandeInscriptionList from './components/Responsable/Demandes_Inscription';
-import ModifierImageCentre from './components/Responsable/Modifier_Image_Centre';
 import ModifierCentre from './components/Responsable/Modifier_Centre';
 //Responsable imports end
 
@@ -46,7 +45,7 @@ import {setCurrentCentre, logoutCentre } from "./actions/authActions";
 import img from './components/image';
 import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
 
-//import PrivateRoute from "./components/private-route/PrivateRoute";
+//import  from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in
 if (localStorage.jwtToken) {
@@ -103,8 +102,7 @@ if (localStorage.jwtToken) {
         
 
           <Route path="/ProfileCentre" exact component={ProfileCentre} /> 
-          <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />  
-          <Route path="/ModiferImageCentre/:id" exact component={ModifierImageCentre} /> 
+          <Route path="/ModiferCentre/:id" exact component={ModifierCentre} />   
           <Route path="/ModifierPasswordCentre" exact component={ModifierPasswordCentre} />  
           <Route path="/FormationList" exact component={FormationList} />        
           <Route path="/AjoutFormation" exact component={AjoutFormation} />

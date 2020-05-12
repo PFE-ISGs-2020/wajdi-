@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment'
+import DefaultImg from '../assets/default-img.jpg';
+
 class DetailsClient extends Component {
 
     constructor(props) {
@@ -26,12 +28,20 @@ class DetailsClient extends Component {
       
 
     render(){
+        let image = DefaultImg;
+       if (this.state.client.imageClient){
+        image = "http://localhost:5000/"+this.state.client.imageClient
+       }  
         return(
             <div>
             <div className="container">
-                
-            
+    
                 {/* showing details  begin*/}
+
+                <div className="row offset-2 ">
+                <img src= {image} alt="Photo_de_profile" className="process__image offset-2"
+                            width="150" height="150" /> 
+                </div>
                 <div className="row ">
                     <p><b>Nom: </b>   {this.state.client.NomClient}</p>
                 </div>

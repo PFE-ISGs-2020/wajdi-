@@ -45,16 +45,6 @@ render() {
                    
                     <br/>
                     <img src={image} alt="photo_de_profile" width="280px" height="300px"/>               
-                   
-                    <div>
-                    <br/>
-                    <a href={"/ModifierImageClient/"+this.state.Client._id}>                      
-                        <Button className="btn btn-secondary" style={{width:"280px"}} size="sm" block>
-                            <span className="fa fa-edit"/> Modifier la photo
-                        </Button>
-                    </a>
-                    </div>
-                    <br/>
                     
                   </div>
 
@@ -77,7 +67,7 @@ render() {
                         
                         <a href={"/ModifierProfile/"+this.state.Client._id}>
                         <Button className="btn btn-warning"  >
-                            <span className="fa fa-edit"/> Modifer détaille profile 
+                        <b><span className="fa fa-edit"/> Modifier  </b>
                         </Button>
                         </a>
                     </div>

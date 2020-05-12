@@ -16,7 +16,8 @@ export default class ModifierProfile extends Component {
         emailClient:'',
         TelClient:'',
         AdresseClient:'',
-        
+        imageClient: '',
+        selectedImage:'',
 
     };
     
@@ -29,7 +30,8 @@ export default class ModifierProfile extends Component {
     this.onChangeemailClient =this.onChangeemailClient.bind(this);
     this.onChangeTelClient = this.onChangeTelClient.bind(this);
     this.onChangeAdresseClient =this.onChangeAdresseClient.bind(this);
-    
+    this.onChangeimageClient = this.onChangeimageClient.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this); 
   }
 
@@ -46,9 +48,8 @@ export default class ModifierProfile extends Component {
             NiveauClient : response.data.NiveauClient,
             emailClient : response.data.emailClient,
             TelClient : response.data.TelClient,
-           
-            AdresseClient : response.data.AdresseClient,
-           
+            selectedImage: response.data.imageClient,
+            AdresseClient : response.data.AdresseClient,  
            
         })   
       })
@@ -58,6 +59,14 @@ export default class ModifierProfile extends Component {
 
     }
     //didmount end
+
+    onChangeimageClient(e){
+
+        this.setState({
+       imageClient: e.target.files[0],
+       selectedImage:URL.createObjectURL(e.target.files[0])
+     });
+    } 
     
     onChangeNomClient(e) {
         this.setState({
@@ -125,11 +134,22 @@ export default class ModifierProfile extends Component {
     console.log(client);
 
      axios.post('http://localhost:5000/Client/update/' + this.props.match.params.id, client)
-      .then(res => console.log(res.data) , window.location = '/ProfileClient' );
+      .then(res => console.log(res.data) );
+
+      if (this.state.selectedImage ){
+        let ImageClient = new FormData();
+    
+    ImageClient.append("imageClient", this.state.imageClient)
+    console.log(this.state.imageClient) 
+     axios.post('http://localhost:5000/Client/updateImageClient/' + this.props.match.params.id, ImageClient)
+      .then(res => console.log(res.data));}
+      window.location = '/ProfileClient'
   } 
 
   render() {
-    
+    let image = this.state.selectedImage;
+  if (!this.state.imageClient){
+      image = "http://localhost:5000/"+this.state.selectedImage}
     return (
         
             <div id="page-wrap">
@@ -143,9 +163,23 @@ export default class ModifierProfile extends Component {
                             <Form onSubmit={this.onSubmit}>
                             
                             <FormGroup row>
-                             <Label htmlFor="NomClient" md={5}> <b>Nom: </b></Label>
-                             <Col md={7}>
+                            <Label htmlFor="imageClient" md={5}> <b>Photo de profile</b></Label>
+                            <Col md={7}>
+   
+                            <Input  type="file" id="imageClient" name="imageClient" 
+                            
+                            className="process__upload-btn"
+                            onChange={this.onChangeimageClient} />
+                            </Col>
+                            </FormGroup>
+                            <img src= {image} alt="" className="process__image offset-2"
+                            width="200" height="200" /> 
+
+                            <FormGroup row>
                                 
+                             <Label htmlFor="NomClient" md={5}> <br/> <b>Nom: </b></Label>
+                             <Col md={7}>
+                             <br/>
                                 <Input  type="text" id="NomClient" name="NomClient" required
                                 placeholder="Nom " value={this.state.NomClient}
                                 className="form-control"
@@ -175,7 +209,7 @@ export default class ModifierProfile extends Component {
                                 onChange={this.onChangeDatenaissClient} />
                         </Col>
                 </FormGroup> 
-                        <FormGroup row controlId="NiveauClient">
+                        <FormGroup row >
                         <Label htmlFor="NiveauClient" md={5}> <b>Niveau:</b> </Label>
                         <Col md = {7}>
 

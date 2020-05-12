@@ -39,16 +39,7 @@ return (
               <div className="row ">
                 <div className="col-12 col-md-4 ">
                   <br/>
-                  <img src={image} alt="photo_de_profile" width="260px" height="290px"/>               
-                   
-                  <div>
-                  <br/>
-                    <a href={"/ModiferImageCentre/"+this.state.Centre._id}>
-                      <Button className="btn btn-secondary" style={{width:"260px"}} size="sm" block>
-                      <span className="fa fa-edit"> Modifier Image</span>
-                      </Button>
-                    </a>
-                  </div>      
+                  <img src={image} alt="photo_de_profile" width="260px" height="290px"/>                     
                   <br/>       
                 </div> 
 
@@ -64,7 +55,7 @@ return (
                  
                     <a href={"/ModiferCentre/"+this.state.Centre._id}>
                       <Button className="btn btn-warning" >
-                        <span className="fa fa-edit"/>Modifer détaille profile 
+                        <b><span className="fa fa-edit"/> Modifier  </b>
                       </Button>
                     </a>
                            
