@@ -37,7 +37,7 @@ class SignupCentre extends Component {
 
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
           this.setState({
             errors: nextProps.errors
@@ -214,10 +214,10 @@ class SignupCentre extends Component {
                     </Col>              
                 </FormGroup> 
                 <FormGroup row>    
-                    <Label htmlFor="password" md={5}>Mot de passe</Label>
+                    <Label htmlFor="passwordCentre" md={5}>Mot de passe</Label>
                         <Col md={7}>
                             <span className="red-text">{errors.passwordCentre}</span>
-                            <Input  required type="password" id="password" name="passwordCentre"
+                            <Input  required type="password" id="passwordCentre" name="passwordCentre"
                                 placeholder="Mot de passe" error={errors.passwordCentre}
                                 value={this.state.passwordCentre}
                                 className={classnames("form-control", {invalid: errors.passwordCentre})}

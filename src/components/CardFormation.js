@@ -38,7 +38,7 @@ class CardFormation extends Component {
             <div className="container">            
                 {/* showing details  begin*/}
                 <div className="row offset-2 ">
-                <img src= {image} className="process__image offset-2"
+                <img src= {image} alt="image_formation" className="process__image offset-2"
                             width="150" height="150" /> 
                 </div>
                  <div className="row ">

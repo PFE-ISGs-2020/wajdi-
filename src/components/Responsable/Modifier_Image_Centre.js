@@ -31,7 +31,7 @@ export default class ModifierImageCentre extends Component {
             selectedImage: response.data.image
        
         })
-        console.log(this.state.image);   
+
       })
       .catch((error) => {
         console.log(error);

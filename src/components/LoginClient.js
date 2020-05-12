@@ -10,17 +10,17 @@ class LoginClient extends Component {
     constructor() {
         super();
         this.state = {
-            emailClient: "",
-            passwordClient: "",
+            emailClt: "",
+            passwordClt: "",
             errors: {}
         };
       }
 
     
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      window.location="/dashboardResponsable"; // push responsable to dashboard when they login
-    } 
+      UNSAFE_componentWillReceiveProps(nextProps) {
+    /* if (nextProps.authClient.isAuthenticated) {
+      window.location="/profileClient"; // push responsable to dashboard when they login
+    }  */
 if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
@@ -37,8 +37,8 @@ if (nextProps.errors) {
     onSubmit = e => {
         e.preventDefault();
     const Client = {
-        emailClient: this.state.emailClient,
-        passwordClient: this.state.passwordClient
+        emailClient: this.state.emailClt,
+        passwordClient: this.state.passwordClt
         };
     console.log(Client);
     this.props.loginClient(Client, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
@@ -59,7 +59,7 @@ if (nextProps.errors) {
                         <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
                     </InputGroupAddon>
                     <Input type="Email" placeholder="Email" onChange={this.onChange} value={this.state.emailClient}
-                           error={errors.emailClient} id="emailClient"
+                           error={errors.emailClient} id="emailClt"
                            className={classnames("", {invalid: errors.emailClient || errors.emailnotfound})}/>
                 </InputGroup> 
                 <span className="red-text"> {errors.emailClient}{errors.emailnotfound} <br/> </span>           
@@ -69,7 +69,7 @@ if (nextProps.errors) {
                         <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                     </InputGroupAddon>
                     <Input type="password" placeholder="Mot de passe" onChange={this.onChange}
-                    value={this.state.passwordClient}  error={errors.passwordClient} id="passwordClient"
+                    value={this.state.passwordClient}  error={errors.passwordClient} id="passwordClt"
                     className={classnames("", { invalid: errors.passwordClient || errors.passwordincorrect })}/>
                 </InputGroup>
                 <span className="red-text"> {errors.passwordClient} {errors.passwordincorrect} <br/> </span>

@@ -10,13 +10,13 @@ class LoginCentre extends Component {
     constructor() {
     super();
     this.state = {
-        EmailCentre: "",
-        passwordCentre: "",
+        Email: "",
+        password: "",
         errors: {}
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       window.location="/dashboardResponsable"; // push responsable to dashboard when they login
     } 
@@ -33,8 +33,8 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 const Centre = {
-    EmailCentre: this.state.EmailCentre,
-      passwordCentre: this.state.passwordCentre
+    EmailCentre: this.state.Email,
+      passwordCentre: this.state.password
     };
 console.log(Centre);
 this.props.loginCentre(Centre, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
@@ -54,7 +54,7 @@ return (
                     <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
                 </InputGroupAddon>
                 <Input placeholder="Email"  onChange={this.onChange} value={this.state.EmailCentre}
-                error={errors.EmailCentre} id="EmailCentre" type="Email"
+                error={errors.EmailCentre} id="Email" type="Email"
                 className={classnames("", {invalid: errors.EmailCentre || errors.emailnotfound})}/>
                 <span className="red-text">{errors.EmailCentre}{errors.emailnotfound} </span>
               </InputGroup>
@@ -64,7 +64,7 @@ return (
                     <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                 </InputGroupAddon>
                 <Input type="password" placeholder="Mot de passe" onChange={this.onChange} 
-                 value={this.state.passwordCentre}  error={errors.passwordCentre} id="passwordCentre"
+                 value={this.state.passwordCentre}  error={errors.passwordCentre} id="password"
                  className={classnames("", { invalid: errors.passwordCentre || errors.passwordincorrect })}/>
                 <span className="red-text"> {errors.passwordCentre} {errors.passwordincorrect}</span>
             </InputGroup>            

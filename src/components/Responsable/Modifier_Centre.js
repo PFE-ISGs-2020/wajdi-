@@ -168,7 +168,7 @@ export default class ModifierCentre extends Component {
                              </Col>                        
                             </FormGroup>
 
-                            <FormGroup  row controlId="RegionCentre">
+                            <FormGroup  row >
                              <Label htmlFor="RegionCentre" md={5}> <b>Région</b> </Label>
                              <Col md = {7}>
    
