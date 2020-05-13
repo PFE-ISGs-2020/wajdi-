@@ -83,7 +83,7 @@ class DetailCentreComponent extends Component {
                     <div className="row ">
                 <div className="col-4 col-md-4 ">
                  
-                  <img src={imageCentre} alt="photo_de_profile" width="260px" height="290px"/>               
+                  <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>               
                    
                         
                         
