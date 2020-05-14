@@ -53,24 +53,24 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link"  to='/'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
-
+                            
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-list fa-lg"/> Centre de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-list fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>
                                 <NavLink className="nav-link" to='/QuiSommesNous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
                             
-                            {/*webmaster button begin */}
+                            {/* {/*webmaster button begin 
                             <NavItem>
                                 <NavLink className="nav-link" to='/DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
                             </NavItem>
-                            {/*webmaster button end */}
+                            {/*webmaster button end */} 
                     
                             </Nav>
 

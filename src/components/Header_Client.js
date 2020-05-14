@@ -57,19 +57,15 @@ class HeaderClient extends Component {
                             </NavItem>
 
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-list fa-lg"/> Centre de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-list fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>
                                 <NavLink className="nav-link" to='/QuiSommesNous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
-                            </NavItem>
-                            
-                            <NavItem>
-                                <NavLink className="nav-link" to='/MesAchats'><span className="fa fa-shopping-cart fa-lg"/> Mes Achats </NavLink>
                             </NavItem>
                             </Nav>
 
@@ -81,12 +77,18 @@ class HeaderClient extends Component {
                                               <Image src={image} style={{backgroundColor:"white"}} height="43px" width="40px" roundedCircle />                                       
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
+                                        <p className= "text-center"> {this.state.Client.PrenomClient + " " + this.state.Client.NomClient}</p>
+                                        <hr/>
                                         <Dropdown.Item href="/profileClient">
-                                            Profile
+                                        <span className="fa fa-user "/>  Profile
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="/MesAchats" >
+                                        <span className="fa fa-shopping-cart"></span>  Mes Achats
                                         </Dropdown.Item>
                                         <Dropdown.Divider />
+                                        
                                         <Dropdown.Item href="/" onClick={this.onLogoutClick}>
-                                           Logout
+                                        <span className="fa fa-sign-out"></span>  Logout
                                         </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
