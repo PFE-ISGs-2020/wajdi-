@@ -75,9 +75,9 @@ class AjoutFormateur extends Component {
                 <div id="page-wrap">
                     <div className=" container ">
                         <div className="row justify-content-md-center">
-                            <div className="col-10 text-center">
+                            <div className="col-10">
                                  
-                                <h3> Ajouter un  Formateur </h3>
+                                <h3 className="text-center"> Ajouter un  Formateur </h3>
                                 <br/>
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>

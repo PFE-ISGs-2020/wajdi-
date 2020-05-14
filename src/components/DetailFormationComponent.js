@@ -40,20 +40,8 @@ class DetailFormationComponent extends Component {
       
 
       onclick() {
-        const {client} = this.props.authClient;
-        if (client){
-            const inscription = {
-            Id_Client:client.id,
-            NomClient:client.NomClient ,
-            PrenomClient:client.PrenomClient,
-            EtatInscription:false,
-            Id_Formation: this.state.formationn._id
-        }
-        console.log(inscription);
-        axios.post('http://localhost:5000/Details_Inscription/add', inscription)
-        .then(res => console.log(res.data))        
         
-        }    window.location = '/';  
+        
       }
     
 
@@ -96,10 +84,10 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container">    
                         {/* showing details  begin*/}
-                        <div> 
-                            <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
+                        <div className="row"> 
+                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
                         </div>
-                        <div>
+                        <div className="row">
                             <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
                             <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
                         </div> 
@@ -122,12 +110,35 @@ class DetailFormationComponent extends Component {
                         {/* showing details  end*/}
 
                         {/* s'inscrire Button  begin*/}
-                        <div className="form-group row" onClick={this.onclick()}>  
+                        <div className="form-group row" onClick={()=>
+
+                            {
+                                if(client){
+                                    const inscription = {
+                                    Id_Client:client.id,
+                                    NomClient:client.NomClient ,
+                                    PrenomClient:client.PrenomClient,
+                                    EtatInscription:false,
+                                    Id_Formation: this.state.formationn._id
+                                    }
+                                console.log(inscription);
+                                axios.post('http://localhost:5000/Details_Inscription/add', inscription)
+                                .then(res => console.log(res.data))        
+                                    alert("vous etes inscrit avec succee");
+                                }
+                                else{
+                                    alert("Il faut etre inscrit");
+                                }
+                            } 
+
+                        
+                        }>  
                             <Button type="submit" color="primary">
                                 S'inscrire
                             </Button>
                             <br/>
                         </div>   
+
                         {/* s'inscrire Button  end*/}
                         <br/>
                         <br/>

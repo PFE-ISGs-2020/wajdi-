@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
+import {Form,Image} from 'react-bootstrap';
+
+import {FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios';
 import SideBar from "./sidebar";
 
@@ -138,9 +140,9 @@ export default class ModifierCentre extends Component {
             <div id="page-wrap">
                 <div className=" container ">
                     <div className="row justify-content-md-center">
-                        <div className="col-10 text-center">
+                        <div className="col-10">
                             
-                            <h3> Modifier les informations du Centre </h3>
+                            <h3 className="text-center"> Modifier les informations du Centre </h3>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
@@ -155,8 +157,17 @@ export default class ModifierCentre extends Component {
                             onChange={this.onChangeImage} />
                             </Col>
                             </FormGroup>
-                            <img src= {image} alt="" className="process__image offset-2"
-                            width="200" height="200" /> 
+
+                            <FormGroup row>
+                            <Col md={5}>
+                            </Col>
+                            <Col md={7}>
+                            <Image src= {image} alt="im" 
+                            width="300" height="280" />  
+                            
+                            </Col>
+                            <br/>
+                            </FormGroup>
 
                             <FormGroup row>
                              <Label htmlFor="NomCentre" md={5}> <b>Nom du Centre</b></Label>
