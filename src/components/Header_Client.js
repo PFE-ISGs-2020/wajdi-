@@ -43,6 +43,7 @@ class HeaderClient extends Component {
       };
 
     render() {
+      
       let image = DefaultImg;
       image = "http://localhost:5000/"+this.state.Client.imageClient;
   
@@ -69,8 +70,7 @@ class HeaderClient extends Component {
                             </NavItem>
                             </Nav>
 
-                            <Nav  className="ml-auto navbar" >                            
-                               
+                            <Nav  className="ml-auto navbar" >    
                                <NavItem>
                                     <Dropdown size="sm" drop={'left'}>
                                         <Dropdown.Toggle   style={{backgroundColor:"#0A3642",border:"none"}}  > 
@@ -93,7 +93,6 @@ class HeaderClient extends Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                               </NavItem>
-
                             </Nav> 
                             
                         </Collapse> 

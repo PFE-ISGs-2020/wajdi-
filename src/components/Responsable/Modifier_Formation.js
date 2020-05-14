@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form} from 'react-bootstrap';
+import {Form,Image} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios';
 import SideBar from "./sidebar";
@@ -208,9 +208,9 @@ class ModiferFormation extends Component {
             <div id="page-wrap">
                 <div className=" container ">
                     <div className="row justify-content-md-center">
-                        <div className="col-10 text-center">
+                        <div className="col-10 ">
                             
-                            <h3> Modifier Formation </h3>
+                            <h3 className="text-center"> Modifier Formation </h3>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
@@ -224,8 +224,17 @@ class ModiferFormation extends Component {
                             onChange={this.onChangeImage} />
                             </Col>
                             </FormGroup>
-                            <img src= {image} alt="im" className="process__image offset-2"
-                            width="200" height="200" />  
+
+                            <FormGroup row>
+                            <Col md={5}>
+                            </Col>
+                            <Col md={7}>
+                            <Image src= {image} alt="im" 
+                            width="300" height="280" />  
+                            
+                            </Col>
+                            <br/>
+                            </FormGroup>
                             
                             <FormGroup row>
                                 
@@ -294,10 +303,9 @@ class ModiferFormation extends Component {
                                 value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
                                     {
                                         this.state.themes.map(function(theme) {
-                                        return <option 
-                                            key={theme._id}
-                                            value={theme}>{theme}
-                                            </option>;
+                                        return (
+                                        <option  key={theme} value={theme}> {theme} </option>
+                                        );
                                         })
                                     } 
                                 </Input>
@@ -313,10 +321,9 @@ class ModiferFormation extends Component {
                                 value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
                                     {
                                         this.state.formateurs.map(function(formateur) {
-                                        return <option 
-                                            key={formateur._id}
-                                            value={formateur}>{formateur}
-                                            </option>;
+                                        return ( 
+                                        <option key={formateur} value={formateur}>{formateur} </option>
+                                        );
                                         })
                                     } 
                                 </Input>

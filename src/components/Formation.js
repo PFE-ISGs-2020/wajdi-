@@ -114,12 +114,11 @@ const formationList = ( this.state.NomTheme === "") ?
                 value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
                 <option value="" key={""}> Type ... </option>
                   {
-                    themes.map(function(NomTheme) {
-                    return (                          
-                      <option key={NomTheme} value={NomTheme}> 
-                      {NomTheme}
-                      </option>                            
-                        ) ;})
+                    this.state.themes.map((theme) => 
+                    <li key={theme.NomTheme} style={{listStyleType:"none"}}>
+                        <option key={theme._id} value={theme}>{theme} </option>
+                      </li>
+                    )
                   } 
               </Input>                            
               

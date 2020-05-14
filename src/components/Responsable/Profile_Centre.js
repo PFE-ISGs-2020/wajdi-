@@ -35,15 +35,16 @@ return (
     <div>
         <SideBar pageWrapId={"page-wrap"} />
           <div id="page-wrap">
-            <div className=" container ">             
+            <div className=" container ">   
+              <br/><br/>          
               <div className="row ">
-                <div className="col-12 col-md-4 ">
+                <div md={5}>
                   <br/>
-                  <img src={image} alt="photo_de_profile" width="260px" height="290px"/>                     
+                  <img src={image} alt="photo_de_profile" width="400px" height="380px"/>                     
                   <br/>       
                 </div> 
 
-                <div className="col-12  col-md-6">  
+                <div md={6} className="offset-1">  
                   <br/>                              
                   <h2>  {this.state.Centre.NomCentre} </h2>                             
                   <br/>

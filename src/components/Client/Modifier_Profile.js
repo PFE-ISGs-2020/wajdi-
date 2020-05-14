@@ -147,9 +147,12 @@ export default class ModifierProfile extends Component {
   } 
 
   render() {
+
     let image = this.state.selectedImage;
-  if (!this.state.imageClient){
-      image = "http://localhost:5000/"+this.state.selectedImage}
+    if (!this.state.imageClient){
+        image = "http://localhost:5000/"+this.state.selectedImage}
+
+
     return (
         
             <div id="page-wrap">

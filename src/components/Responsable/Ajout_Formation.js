@@ -238,9 +238,9 @@ class AjoutFormation extends Component {
                 <div id="page-wrap">
                     <div className=" container ">
                         <div className="row justify-content-md-center">
-                            <div className="col-10 text-center">
+                            <div className="col-10">
                                  
-                                <h3> Ajouter une  Formation </h3>
+                                <h3 className="text-center"> Ajouter une  Formation </h3>
                                 <br/>
                                 <br/>
                                 <Form onSubmit={this.onSubmit}>
@@ -254,8 +254,8 @@ class AjoutFormation extends Component {
                             onChange={this.onChangeImage} />
                             </Col>
                             </FormGroup>
-                            <img src= {image} alt="" className="process__image offset-2"
-                            width="200" height="200" /> 
+                            <img src= {image} alt="" 
+                            width="300" height="200" /> 
                             
                                 <FormGroup row>
                                     <br/>
@@ -324,10 +324,9 @@ class AjoutFormation extends Component {
                                     value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
                                         {
                                             this.state.themes.map(function(theme) {
-                                            return <option 
-                                                key={theme._id}
-                                                value={theme}>{theme}
-                                                </option>;
+                                            return ( 
+                                            <option key={theme} value={theme}> {theme} </option>
+                                                );
                                             })
                                         } 
                                     </Input>
@@ -343,10 +342,9 @@ class AjoutFormation extends Component {
                                     value={this.state.NomFormateur} onChange={this.onChangeNomFormateur} >
                                         {
                                             this.state.formateurs.map(function(formateur) {
-                                            return <option 
-                                                key={formateur._id}
-                                                value={formateur}>{formateur}
-                                                </option>;
+                                            return ( 
+                                            <option key={formateur}value={formateur}>{formateur} </option>
+                                                );
                                             })
                                         } 
                                     </Input>
