@@ -1,7 +1,8 @@
+  
 import React, { Component } from 'react';
 import {Button, Modal,  ModalBody} from 'reactstrap';
 import axios from 'axios';
-import DetailsClient from './Details_Client'
+import DetailsClient from '../Details_Client'
 import SideBar from "./sidebar";
 import moment from 'moment'
 

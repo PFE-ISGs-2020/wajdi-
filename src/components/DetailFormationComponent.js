@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
+import DefaultImg from '../assets/default-img.jpg';
 
 class DetailFormationComponent extends Component {  
   
@@ -56,7 +57,11 @@ class DetailFormationComponent extends Component {
         let NomFormateur = formationn ? formationn.NomFormateur : "";
         let CapaciteFormation = formationn ? formationn.CapaciteFormation : "";
         let NomCentre = formationn ? formationn.NomCentre : "";
-
+        let image = formationn ? formationn.imageFormation : "";
+        
+        let imageFormation = DefaultImg;
+        if (image){
+            imageFormation = "http://localhost:5000/"+image
 
         const {client} = this.props.authClient;
         const header = (client === null) ?
@@ -84,6 +89,11 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container">    
                         {/* showing details  begin*/}
+                        <div className="row">                 
+                            <img src={imageFormation} alt="photo_de_la_formation" width="480px" height="380px"/>                      
+                        </div>
+                        <br/>
+                        <div>
                         <div className="row"> 
                             <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
                         </div>
@@ -142,7 +152,7 @@ class DetailFormationComponent extends Component {
                         {/* s'inscrire Button  end*/}
                         <br/>
                         <br/>
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,7 +160,7 @@ class DetailFormationComponent extends Component {
 
 }
 }
-
+}
 
 DetailFormationComponent.propTypes = {
     authClient: PropTypes.object.isRequired
