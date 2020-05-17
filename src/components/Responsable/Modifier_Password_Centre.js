@@ -16,13 +16,6 @@ class ModifierPasswordCentre extends Component {
         OldPassword:'',
         NewPassword:'',
         ConfirmNewPassword:'',
-        NomCentre:'',
-        AdresseCentre:'',
-        TelCentre:'',
-        RegionCentre:'',
-        DescriptionCentre:'',
-        EmailCentre:'',
-        Acces:'',
         password: '',
         formErrors: {NewPassword: '', ConfirmNewPassword: ''},
         passwordValid: false,
@@ -45,14 +38,9 @@ class ModifierPasswordCentre extends Component {
     axios.get('http://localhost:5000/Centre/'+centre.id)
       .then(response => {
         this.setState({
-            NomCentre: response.data.NomCentre,
-            AdresseCentre: response.data.AdresseCentre,
-            TelCentre: response.data.TelCentre,
-            RegionCentre: response.data.RegionCentre,
-            DescriptionCentre: response.data.DescriptionCentre,
-            EmailCentre: response.data.EmailCentre,
+           
             password: response.data.passwordCentre,
-            Acces: response.data.Acces,
+            
             
         })
           
@@ -98,14 +86,9 @@ class ModifierPasswordCentre extends Component {
          .then(isMatch => {
             if (isMatch) {
                 const centr = {
-                    NomCentre: this.state.NomCentre,
-                    AdresseCentre: this.state.AdresseCentre,
-                    TelCentre: this.state.TelCentre,
-                    RegionCentre:this.state.RegionCentre,
-                    DescriptionCentre: this.state.DescriptionCentre,
-                    EmailCentre:this.state.EmailCentre,
+                   
                     passwordCentre: this.state.NewPassword,
-                    Acces: this.state.Acces,
+                    
                 }
                 
                 console.log(centr);
