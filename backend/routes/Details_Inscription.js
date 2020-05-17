@@ -19,6 +19,13 @@ router.route('/List/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/InscriptionExist').get((req, res) => {
+Details_Inscription.find({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation })
+    .then( Details => res.json(Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+
+});
+
 router.route('/add').post((req, res) => {
     const PrenomClient = req.body.PrenomClient;
     const EtatInscription = 0;

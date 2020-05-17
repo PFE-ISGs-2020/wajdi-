@@ -45,7 +45,8 @@ class HeaderClient extends Component {
     render() {
       
       let image = DefaultImg;
-      image = "http://localhost:5000/"+this.state.Client.imageClient;
+      if (this.state.Client.imageClient){
+      image = "http://localhost:5000/"+this.state.Client.imageClient;}
   
         return(
             <div className="nav-head ">
@@ -58,11 +59,11 @@ class HeaderClient extends Component {
                             </NavItem>
 
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formations'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>
@@ -82,9 +83,16 @@ class HeaderClient extends Component {
                                         <Dropdown.Item href="/profileClient">
                                         <span className="fa fa-user "/>  Profile
                                         </Dropdown.Item>
+
                                         <Dropdown.Item href="/MesAchats" >
                                         <span className="fa fa-shopping-cart"></span>  Mes Achats
                                         </Dropdown.Item>
+
+                                        <Dropdown.Item href={"/ModifierPasswordClient/" + this.state.Client._id } >
+                                        <span className="fa fa-cog"></span>  Changer Mot de passe
+                                        
+                                        </Dropdown.Item>
+                                        
                                         <Dropdown.Divider />
                                         
                                         <Dropdown.Item href="/" onClick={this.onLogoutClick}>

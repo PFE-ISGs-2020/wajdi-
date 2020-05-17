@@ -6,8 +6,8 @@ import DetailCentreComponent from './DetailsCentreComponent';
 import Home from './HomeComponent';
 import Formation from "./Formation";
 import CentreFormation from "./CentreFormation";
-import QuiSommesNous from "./Qui_Sommes_Nous"
-
+import QuiSommesNous from "./Qui_Sommes_Nous";
+import ModifierPasswordClient from './Client/Modifier_Password_Client';
 import ModifierImageClient from './Client/Modifier_Image_Client';
 import Profile_Client from './Client/Profile_Client';
 import ModifierProfile from './Client/Modifier_Profile'
@@ -67,12 +67,13 @@ class MainClient extends Component {
         <Route exact path="/"  component={Home} />
         <Route path='/DetailFormation/:formationId' component={FormationWithId} />
         <Route path='/DetailCentre/:centreId' component={CentreWithId} />
-        <Route path="/Formation" exact component={Formation} /> 
-        <Route path="/CentreFormation" exact component={CentreFormation} />       
+        <Route path="/Formations" exact component={Formation} /> 
+        <Route path="/CentresFormation" exact component={CentreFormation} />       
         <Route path="/QuiSommesNous" exact component={QuiSommesNous} />
         <Route path="/MesAchats" exact component={MesAchats} />
         <Route path="/profileClient" component={Profile_Client} />
         <Route path="/ModifierProfile/:id" component={ModifierProfile} />
+        <Route path="/ModifierPasswordClient/:id" component={ModifierPasswordClient} />
         <Route path="/ModifierImageClient/:id" component={ModifierImageClient} />
     </Route>
     

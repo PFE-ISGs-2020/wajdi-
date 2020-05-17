@@ -12,7 +12,9 @@
   min-height: calc(100vh - 70px);
 }
  
-.footer{ 
+.footer{
+   margin:0px auto;
+  padding: 20px 0px 20px 0px;
   background-color:#B2B9BC ; 
   height: 50px;
   border: none;

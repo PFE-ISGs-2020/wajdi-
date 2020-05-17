@@ -15,8 +15,8 @@ class DetailFormationComponent extends Component {
         super(props);
 
         this.state = {
-            formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object'))
-  
+            formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object')),
+            Inscription: ""
         };          
     }
     
@@ -89,36 +89,37 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container">    
                         {/* showing details  begin*/}
-                        <div className="row">                 
-                            <img src={imageFormation} alt="photo_de_la_formation" width="480px" height="380px"/>                      
-                        </div>
-                        <br/>
-                        <div>
-                        <div className="row"> 
-                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
-                        </div>
-                        <div className="row">
-                            <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
-                            <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
-                        </div> 
-                        <div className="row">                        
-                            <p><b><span className="fa fa-calendar"></span> Date fin:</b>  
-                            <Moment format="DD/MM/YYYY">{DateFinFormation}</Moment> </p>                        
-                        </div>             
-                        <div className="row ">
-                            <p><b><span className="fa fa-tag"></span> Theme:</b> {NomTheme}</p>
-                        </div>
-                        <div className="row ">
-                            <p><b> <span className="fa fa-user"></span> Formateur:</b> {NomFormateur}</p>
-                        </div> 
-                        <div className="row ">
-                            <p><span className="fa fa-users"></span><b> Capacité:</b> {CapaciteFormation}</p>
-                        </div> 
-                        <div className="row">
-                            <p><span className="fa fa-align-justify"></span><b> Description:</b> {DescriptionFormation}</p>
-                        </div> 
-                        {/* showing details  end*/}
-
+                        <div className="row">  
+                            <div className="col-4 col-md-4 ">              
+                                <img src={imageFormation} alt="photo_de_la_formation" width="260px" height="290px"/>                      
+                            </div>
+                            
+                            <div>
+                                <br/>
+                                
+                                    <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
+                                
+                               
+                                    <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
+                                    <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
+                                
+                                                       
+                                    <p><b><span className="fa fa-calendar"></span> Date fin:</b>  
+                                    <Moment format="DD/MM/YYYY">{DateFinFormation}</Moment> </p>                        
+                                           
+                                
+                                    <p><b><span className="fa fa-tag"></span> Theme:</b> {NomTheme}</p>
+                               
+                               
+                                    <p><b> <span className="fa fa-user"></span> Formateur:</b> {NomFormateur}</p>
+                                
+                            
+                                    <p><span className="fa fa-users"></span><b> Capacité:</b> {CapaciteFormation}</p>
+                               
+                                    <p className= "col-4"><span className="fa fa-align-justify"></span><b> Description:</b> {DescriptionFormation}</p>
+                               </div>
+                                    {/* showing details  end*/}
+                                    
                         {/* s'inscrire Button  begin*/}
                         <div className="form-group row" onClick={()=>
 
@@ -132,12 +133,20 @@ class DetailFormationComponent extends Component {
                                     Id_Formation: this.state.formationn._id
                                     }
                                 console.log(inscription);
-                                axios.post('http://localhost:5000/Details_Inscription/add', inscription)
-                                .then(res => console.log(res.data))        
-                                    alert("vous etes inscrit avec succee");
+                                axios.get('http://localhost:5000/Details_Inscription/InscriptionExist', inscription)
+                                .then (inscriptionn => {
+                                    this.setState({ Inscription: inscriptionn.data })})
+                                if(this.state.Inscription){
+                                    alert("vous êtes déjà inscrit!");
+                                    
                                 }
                                 else{
-                                    alert("Il faut etre inscrit");
+                                axios.post('http://localhost:5000/Details_Inscription/add', inscription)
+                                .then(res => console.log(res.data))        
+                                    alert("vous etes inscrit avec succee");}
+                                }
+                                else{
+                                    alert("Il faut être authentifié");
                                 }
                             } 
 
@@ -150,10 +159,9 @@ class DetailFormationComponent extends Component {
                         </div>   
 
                         {/* s'inscrire Button  end*/}
-                        <br/>
-                        <br/>
                         </div>
-                    </div>
+                        </div>
+                    
                 </div>
             </div>
     );    

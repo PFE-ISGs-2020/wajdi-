@@ -32,9 +32,9 @@ class QuiSommesNous extends Component {
                             <BreadcrumbItem href="/">Accueil</BreadcrumbItem>
                             <BreadcrumbItem active>Qui Sommes Nous?</BreadcrumbItem>
                         </Breadcrumb>
-                        {/*BreadCrumb end */}
-                        <div className = "jumbotron">
-        <div className = "container">
+            {/*BreadCrumb end */}
+            <div className = "jumbotron">
+            <div className = "container">
             <div className = "row row-header">
                 <div className = "col-12 col-sm-6">
                     <h1>Formation.Tn</h1>

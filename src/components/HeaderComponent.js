@@ -55,11 +55,11 @@ class Header extends Component {
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentreFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formation'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formations'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>
