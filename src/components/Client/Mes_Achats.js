@@ -10,19 +10,23 @@ class MesAchats extends Component {
         super(props);
       
         this.state = {
-            Client: []
+          Details_Inscription: []
          };
     }
 
     componentDidMount(){
-        const {client} = this.props.authClient;
-      axios.get('http://localhost:5000/Client/'+client.id)
+      const {client} = this.props.authClient;
+      axios.get('http://localhost:5000/Details_Inscription/achat/'+client.id)
     .then(clt => {
-      this.setState({ Client: clt.data})
+      this.setState({ Details_Inscription: clt.data})
+      console.log(clt);
     })
     .catch((error) => {
       console.log(error);
     })
+
+      
+
   }
 
 
@@ -36,16 +40,20 @@ render() {
             <Tabs id="controlled-tab" >
                 <Tab  title="Formations en cours" eventKey="FormationsEnCours" > 
                 <div className="col-12">
-                <br/>
-                    <h3>Formations en cours</h3>
-                    <br/>
+                  <br/>
+                  <h3>Formations en cours</h3>
+                  <br/>
+                  
+
                 </div>
                 
                 </Tab>
                 <Tab  title="Formations atteintes" eventKey="FormationsAtteintes" >
                 <div className="col-12">
-                <br/>
-                <h3>Formations atteintes</h3>
+                  <br/>
+                  <h3>Formations atteintes</h3>
+                  <br/>
+
                 </div>
               
                 </Tab>

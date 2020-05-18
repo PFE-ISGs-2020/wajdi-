@@ -114,11 +114,12 @@ const formationList = ( this.state.NomTheme === "") ?
                 value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
                 <option value="" key={""}> Type ... </option>
                   {
-                    this.state.themes.map((theme) => 
-                    <li key={theme.NomTheme} style={{listStyleType:"none"}}>
-                        <option key={theme._id} value={theme}>{theme} </option>
-                      </li>
-                    )
+                    themes.map(function(NomTheme) {
+                    return (                          
+                      <option key={NomTheme} value={NomTheme}> 
+                      {NomTheme}
+                      </option>                            
+                        ) ;})
                   } 
               </Input>                            
               
@@ -154,6 +155,3 @@ const mapStateToProps = state => ({
 
 export default  connect(mapStateToProps)(Formation) ;
   
- 
-
-

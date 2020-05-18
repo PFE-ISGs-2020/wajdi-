@@ -19,6 +19,16 @@ router.route('/List/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+//mes achats
+//-----------------
+router.route('/achat/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+    .then( Details => res.json( Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+//-----------------
+
 router.route('/add').post((req, res) => {
     const PrenomClient = req.body.PrenomClient;
     const EtatInscription = 0;
