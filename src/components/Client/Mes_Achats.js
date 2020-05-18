@@ -17,13 +17,14 @@ class MesAchats extends Component {
     componentDidMount(){
       const {client} = this.props.authClient;
       axios.get('http://localhost:5000/Details_Inscription/achat/'+client.id)
-    .then(clt => {
-      this.setState({ Details_Inscription: clt.data})
-      console.log(clt);
+    .then(Details_Inscription => {
+      this.setState({ Details_Inscription: Details_Inscription.data})
+      console.log(Details_Inscription);
     })
     .catch((error) => {
       console.log(error);
     })
+
 
       
 

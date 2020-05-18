@@ -38,15 +38,6 @@ class DetailFormationComponent extends Component {
 
       } 
 
-      
-
-      onclick() {
-        
-        
-      }
-    
-
-
     render(){
         const {formationn} = this.state;
         let LibelleFormation = formationn ? formationn.LibelleFormation : "";
@@ -90,7 +81,7 @@ class DetailFormationComponent extends Component {
                     <div className="container">    
                         {/* showing details  begin*/}
                         <div className="row">                 
-                            <img src={imageFormation} alt="photo_de_la_formation" width="480px" height="380px"/>                      
+                            <img src={imageFormation} alt="photo_de_la_formation" width="600px" height="300px"/>                      
                         </div>
                         <br/>
                         <div>
@@ -139,6 +130,7 @@ class DetailFormationComponent extends Component {
                                 else{
                                     alert("Il faut etre inscrit");
                                 }
+
                             } 
 
                         
