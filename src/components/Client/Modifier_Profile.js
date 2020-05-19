@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import HeaderClient from '../Header_Client';
 
 export default class ModifierProfile extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ export default class ModifierProfile extends Component {
             NiveauClient : response.data.NiveauClient,
             emailClient : response.data.emailClient,
             TelClient : response.data.TelClient,
+            imageClient: response.data.imageClient,
             selectedImage: response.data.imageClient,
             AdresseClient : response.data.AdresseClient,  
            
@@ -148,19 +150,26 @@ export default class ModifierProfile extends Component {
 
   render() {
 
-    let image = this.state.selectedImage;
-    if (!this.state.imageClient){
-        image = "http://localhost:5000/"+this.state.selectedImage}
+    let image;
+    if (this.state.imageClient === this.state.selectedImage && this.state.imageClient){
+        
+        image = "http://localhost:5000/"+this.state.imageClient}
+    else {
+        image = this.state.selectedImage
+    }
 
 
     return (
         
             <div id="page-wrap">
+                <HeaderClient /> 
                 <div className=" container ">
                     <div className="row justify-content-md-center">
                         <div className="col-10 text-center">
-                            
+                            <br/>
+                            <br/>
                             <h3> Modifier les informations de votre profile </h3>
+                            <hr/>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {  Form, FormGroup, Input, Label, Col  } from 'reactstrap';
 import axios from 'axios';
-import SideBar from "./sidebar";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import HeaderClient from '../Header_Client';
 
 
-
-class ModifierPasswordCentre extends Component {
+class ModifierPasswordClient extends Component {
   constructor(props) {
     super(props);
 
@@ -34,12 +33,12 @@ class ModifierPasswordCentre extends Component {
   
    //didmount begin
   componentDidMount() {
-    const { centre } = this.props.auth;
-    axios.get('http://localhost:5000/Centre/'+centre.id)
+    const { client } = this.props.authClient;
+    axios.get('http://localhost:5000/Client/'+client.id)
       .then(response => {
         this.setState({
-           
-            password: response.data.passwordCentre,
+            
+            password: response.data.passwordClient,
             
             
         })
@@ -73,7 +72,7 @@ class ModifierPasswordCentre extends Component {
     //récupération des donnees du l'Input
     onSubmit(e) {
     e.preventDefault();
-    const { centre } = this.props.auth;
+    const { client } = this.props.authClient;
     const { NewPassword, ConfirmNewPassword } = this.state;
     const bcrypt = require("bcryptjs");
     // perform all neccassary validations
@@ -85,17 +84,17 @@ class ModifierPasswordCentre extends Component {
      (bcrypt.compare(this.state.OldPassword, this.state.password))
          .then(isMatch => {
             if (isMatch) {
-                const centr = {
-                   
-                    passwordCentre: this.state.NewPassword,
+                const clt = {
+                    
+                    passwordClient: this.state.NewPassword,
                     
                 }
                 
-                console.log(centr);
+                console.log(clt);
                 
-                  axios.post('http://localhost:5000/Centre/updatePassword/' + centre.id, centr)
+                  axios.post('http://localhost:5000/Client/updatePassword/' + client.id, clt)
                   .then(res => console.log(res.data),
-                  window.location = '/DashboardResponsable',
+                  window.location = '/',
                   alert("password updated "));  
               }  
               else {alert("Old Password is incorrect ");}
@@ -108,14 +107,16 @@ class ModifierPasswordCentre extends Component {
   render() {
     
     return (
-        <div>
-            <SideBar pageWrapId={"page-wrap"} />
-            <div id="page-wrap">
-                <div className=" container ">
+      
+                <div >
+                     <HeaderClient /> 
+                     <div className=" container ">
                     <div className="row justify-content-md-center">
-                        <section className="col-10 text-center">
+                        <div className="col-10 text-center">
+                        <br/>
                             <br/>
                             <h3> Changer Mot de Passe </h3>
+                            <hr/>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
@@ -149,11 +150,11 @@ class ModifierPasswordCentre extends Component {
                 </FormGroup>
 
                 <FormGroup row>    
-                    <Label htmlFor="ConfirmNewPassword" md={5}> <b>Confirmer Mot de passe</b></Label>
+                    <Label htmlFor="ConfirmNewPassword" md={5}> <b>Confirmez Mot de passe</b></Label>
                         <Col md={7}>
                             {/* <span className="red-text">{errors.password2}</span> */}
                             <Input  required type="password" id="ConfirmNewPassword" name="ConfirmNewPassword"
-                                placeholder="Confirmer Mot de passe"
+                                placeholder="Confirmez Mot de passe"
                                 value={this.state.ConfirmNewPassword} 
                                 // error={errors.password2}
                                 onChange={this.onChangeConfirmNewPassword}
@@ -174,20 +175,19 @@ class ModifierPasswordCentre extends Component {
                             </FormGroup>  
                                         
                             </Form>  
-                        </section>            
+                        </div>            
                     </div>
                 </div>  
-            </div>
-        </div>
+                </div> 
+            
     );
   }
 }
-ModifierPasswordCentre.propTypes = {
-    // logoutCentre: PropTypes.func.isRequired,
-     auth: PropTypes.object.isRequired
+ModifierPasswordClient.propTypes = {
+    authClient: PropTypes.object.isRequired
    };
    
    const mapStateToProps = state => ({
-     auth: state.auth
-   });
- export default connect(mapStateToProps)(ModifierPasswordCentre);
+    authClient: state.authClient
+  });
+ export default connect(mapStateToProps)(ModifierPasswordClient);  

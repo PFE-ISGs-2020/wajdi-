@@ -91,6 +91,29 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/updatePassword/:id').post((req, res) => {
+  Client.findById(req.params.id)
+  .then(client => {        
+    
+    client.passwordClient= req.body.passwordClient
+    
+
+     // Hash password before saving in database
+     bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(client.passwordClient, salt, (err, hash) => {
+        if (err) throw err;
+        client.passwordClient = hash;
+        client.save()
+          
+          .then(client => res.json('Password Client updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      });
+    }); 
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 router.route('/:id').delete((req, res) => {
     Client.findByIdAndDelete(req.params.id)
     .then(() => res.json('Client deleted.'))

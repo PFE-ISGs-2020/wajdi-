@@ -5,6 +5,7 @@ import axios from 'axios';
 import SideBar from "./sidebar";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 import moment from 'moment'
 
 class ModiferFormation extends Component {
@@ -59,7 +60,8 @@ class ModiferFormation extends Component {
             NomFormateur: response.data.NomFormateur,
             NomCentre: response.data.NomCentre,
             Prix: response.data.Prix,
-            selectedImage: response.data.imageFormation
+            selectedImage: response.data.imageFormation,
+            image : response.data.imageFormation
         })   
       })
       .catch((error) => {
@@ -199,18 +201,24 @@ class ModiferFormation extends Component {
 
   render() {
     let image = this.state.selectedImage;
-    if (!this.state.image){
-        image = "http://localhost:5000/"+this.state.selectedImage
+    if (this.state.image === this.state.selectedImage && this.state.image ){
+        image = "http://localhost:5000/"+this.state.image
     }
     return (
         <div>
             <SideBar pageWrapId={"page-wrap"} />
             <div id="page-wrap">
                 <div className=" container ">
+                
                     <div className="row justify-content-md-center">
+                    <section className="col-10 text-center"> 
+                    <Breadcrumb>
+                            <BreadcrumbItem href="/FormationList">Liste Des Formations</BreadcrumbItem>
+                            <BreadcrumbItem active>Modifier Formation</BreadcrumbItem>
+                </Breadcrumb>
                         <div className="col-10 ">
                             
-                            <h3 className="text-center"> Modifier Formation </h3>
+                            <h3 className="text-center offset-3"> Modifier Formation </h3>
                             <br/>
                             <br/>
                             <Form onSubmit={this.onSubmit}>
@@ -354,7 +362,8 @@ class ModiferFormation extends Component {
                                        
                             </FormGroup>                                          
                             </Form>           
-                        </div>            
+                        </div>  
+                        </section>          
                     </div>
                 </div>  
             </div>

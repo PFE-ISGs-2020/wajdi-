@@ -117,7 +117,6 @@ router.route('/update/:id').post( (req, res) => {
       centre.AdresseCentre = req.body.AdresseCentre;
       centre.TelCentre = req.body.TelCentre;
       centre.EmailCentre= req.body.EmailCentre;
-     // centre.passwordCentre = req.body.passwordCentre;
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
@@ -147,15 +146,9 @@ router.route('/update/:id').post( (req, res) => {
 router.route('/updatePassword/:id').post((req, res) => {
   Centre.findById(req.params.id)
   .then(centre => {        
-    centre.NomCentre = req.body.NomCentre;  
-    centre.AdresseCentre = req.body.AdresseCentre;
-    centre.TelCentre = req.body.TelCentre;
-    centre.EmailCentre= req.body.EmailCentre;
+    
     centre.passwordCentre= req.body.passwordCentre
-    centre.RegionCentre= req.body.RegionCentre;
-    centre.DescriptionCentre= req.body.DescriptionCentre;
-      centre.Acces = Number(req.body.Acces);
-
+    
      // Hash password before saving in database
      bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(centre.passwordCentre, salt, (err, hash) => {

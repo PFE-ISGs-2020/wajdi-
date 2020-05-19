@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import {Button, Modal,  ModalBody} from 'reactstrap';
 import axios from 'axios';
-import DetailsClient from '../Details_Client'
+import DetailsClient from '../Details_Client';
+import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 import SideBar from "./sidebar";
 import moment from 'moment'
 
@@ -136,7 +137,10 @@ export default class DemandeInscriptionList extends Component {
           <div className=" container ">
           <div className="row justify-content-md-center">  
           <section className="col-10 text-center">   
-          
+          <Breadcrumb>
+                            <BreadcrumbItem href="/FormationList">Liste Des Formations</BreadcrumbItem>
+                            <BreadcrumbItem active>Liste Des Demandes d'Inscription</BreadcrumbItem>
+                </Breadcrumb>
               <div className="col-12">
                 <br/>
                 <br/>
@@ -166,7 +170,10 @@ export default class DemandeInscriptionList extends Component {
             <div className=" container ">
               <div className="row justify-content-md-center">  
                 <section className="col-10 text-center">   
-                
+                <Breadcrumb>
+                            <BreadcrumbItem href="/FormationList">Liste Des Formations</BreadcrumbItem>
+                            <BreadcrumbItem active>Liste Des Demandes d'Inscription</BreadcrumbItem>
+                </Breadcrumb>
                     <div className="col-12">
                       <br/>
                       <br/>

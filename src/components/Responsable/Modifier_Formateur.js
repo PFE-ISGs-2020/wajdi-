@@ -3,6 +3,7 @@ import {Form} from 'react-bootstrap';
 import {FormGroup, Label,  Input, Col } from 'reactstrap';
 import axios from 'axios';
 import SideBar from "./sidebar";
+import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
 
 
 export default class ModiferFormateur extends Component {
@@ -98,6 +99,11 @@ export default class ModiferFormateur extends Component {
             <div id="page-wrap">
                 <div className=" container ">
                     <div className="row justify-content-md-center">
+                    <section className="col-10 text-center"> 
+                    <Breadcrumb>
+                            <BreadcrumbItem href="/FormateurList">Liste Des Formateurs</BreadcrumbItem>
+                            <BreadcrumbItem active>Modifier Formateur</BreadcrumbItem>
+                    </Breadcrumb>
                         <div className="col-10">
                             
                             <h3 className="text-center" > Modifier Formateur </h3>
@@ -125,7 +131,7 @@ export default class ModiferFormateur extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label htmlFor="emailFormateur" md={5}> <b>Email:</b></Label>
+                                <Label htmlFor="emailFormateur" md={5}> <b>Email</b></Label>
                                 <Col md={7}>
                         
                                 <Input type="email" id="emailFormateur" name="emailFormateur"
@@ -138,7 +144,7 @@ export default class ModiferFormateur extends Component {
                              </FormGroup>
 
                     <FormGroup row>
-                        <Label htmlFor="TelFormateur" md={5}><b>Téléphone:</b></Label>
+                        <Label htmlFor="TelFormateur" md={5}><b>Téléphone</b></Label>
                             <Col md={7}>
                             
                                 <Input type="tel" id="TelFormateur" name="TelFormateur"
@@ -163,7 +169,7 @@ export default class ModiferFormateur extends Component {
                             <FormGroup row>
                                 <Col> 
                                 <br/>                       
-                                    <input type="submit" value="Modifer " className="btn btn-primary offset-2" />                         
+                                    <input type="submit" value="Modifer " className="btn btn-primary offset-8" />                         
                                     <a className="offset-1 btn btn-secondary" href="/FormateurList">
                                         Annuler
                                     </a>
@@ -171,7 +177,8 @@ export default class ModiferFormateur extends Component {
                             </FormGroup>  
                                         
                             </Form>  
-                        </div>            
+                        </div>   
+                        </section>         
                     </div>
                 </div>  
             </div>

@@ -10,7 +10,11 @@ class MesAchats extends Component {
         super(props);
       
         this.state = {
-          Details_Inscription: []
+          Details_Inscription: [],
+          Formation:[],
+          FormationsInscrit:[],
+          _id_formation:[],
+          detail_ids:[]
          };
     }
 
@@ -25,14 +29,17 @@ class MesAchats extends Component {
       console.log(error);
     })
 
-
-      
+    axios.get('http://localhost:5000/Formation/')
+    .then(Formation => {
+      this.setState({ Formation: Formation.data})
+      console.log(Formation);
+    })
 
   }
 
 
 render() { 
- 
+
     return (
       <div>
        <HeaderClient /> 
@@ -44,8 +51,8 @@ render() {
                   <br/>
                   <h3>Formations en cours</h3>
                   <br/>
-                  
 
+          
                 </div>
                 
                 </Tab>
