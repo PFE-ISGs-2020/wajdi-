@@ -49,9 +49,11 @@ export default class InscriptionList extends Component {
         this.setState({ inscriptions: det.data, })
         
       })
+
       .catch((error) => {
         console.log(error);
       })
+      
       axios.get('http://localhost:5000/Formation/'+this.props.match.params.id)
       .then(det => {
         this.setState({ Formation: det.data.LibelleFormation, })

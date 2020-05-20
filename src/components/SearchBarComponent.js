@@ -4,17 +4,27 @@ import {InputGroup,FormControl,Card,Form} from 'react-bootstrap';
 import axios from 'axios';
 import { Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import DefaultImg from '../assets/default-img.jpg'; 
+import {Image} from 'react-bootstrap';
 
 //fonction qui permet d'afficher une formation dans une "Card"
-function RenderFormations ({formation}) {    
+function RenderFormations ({formation}) {  
+      let image = DefaultImg;
+      image = "http://localhost:5000/"+formation.imageFormation;
+    
     return (   
         <Card  className="card " key={formation._id}>            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
             <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
             <Card.Body className="cardbody">
-                <Card.Title>Description:</Card.Title>                
-                <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                <div className="row">
+                    <div className="col-12 col-lg-5">
+                        <Image src={image} style={{backgroundColor:"white"}} height="200px" width="380px" rounded /></div>
+                    <div className="col-12 col-sm-7">
+                    <Card.Title>Description:</Card.Title>                
+                    <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                    </div>
+                </div>
             </Card.Body>
             </Link>            
         </Card> 
@@ -24,13 +34,22 @@ function RenderFormations ({formation}) {
 
 //fonction qui permet d'afficher un centre dans une "Card"
 function RenderCentres ({centre}) {   
+    let image = DefaultImg;
+      image = "http://localhost:5000/"+centre.image;
+    
     return (        
         <Card className="card" key={centre._id}>            
             <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
                 <Card.Header className="cardhead" as="h5">{centre.NomCentre}</Card.Header>
                 <Card.Body>
+                <div className="row">
+                    <div className="col-12 col-lg-5">
+                        <Image src={image} style={{backgroundColor:"white"}} height="200px" width="380px" rounded /></div>
+                    <div className="col-12 col-sm-7">
                     <Card.Title>Description:</Card.Title>
                     <Card.Text>{centre.DescriptionCentre}</Card.Text>
+                    </div>
+                </div>
                 </Card.Body>
             </Link>
          </Card>        

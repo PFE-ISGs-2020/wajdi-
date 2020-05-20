@@ -13,8 +13,7 @@ class MesAchats extends Component {
           Details_Inscription: [],
           Formation:[],
           FormationsInscrit:[],
-          _id_formation:[],
-          detail_ids:[]
+          detailinscrit:[]
          };
     }
 
@@ -23,24 +22,25 @@ class MesAchats extends Component {
       axios.get('http://localhost:5000/Details_Inscription/achat/'+client.id)
     .then(Details_Inscription => {
       this.setState({ Details_Inscription: Details_Inscription.data})
-      console.log(Details_Inscription);
-    })
-    .catch((error) => {
-      console.log(error);
     })
 
-    axios.get('http://localhost:5000/Formation/')
+    const detailinscrit_FormationID = [...new Set(this.state.Details_Inscription.map(detailinscrit => detailinscrit.Id_Formation  ))]; 
+
+    
+    axios.get('http://localhost:5000/Formation/' )
     .then(Formation => {
-      this.setState({ Formation: Formation.data})
-      console.log(Formation);
+      this.setState({ Formation: Formation.data});
     })
+   
 
   }
 
 
 render() { 
+  
+  
 
-    return (
+  return (
       <div>
        <HeaderClient /> 
         <br/>
@@ -52,7 +52,8 @@ render() {
                   <h3>Formations en cours</h3>
                   <br/>
 
-          
+            
+
                 </div>
                 
                 </Tab>
@@ -63,7 +64,6 @@ render() {
                   <br/>
 
                 </div>
-              
                 </Tab>
                 </Tabs>   
             </div>         

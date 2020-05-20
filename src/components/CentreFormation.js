@@ -48,6 +48,7 @@ class CentreFormation extends Component {
 
 render() { 
   const region = [...new Set(this.state.Centre.map(region => region.RegionCentre    ))];
+
   const  {search} = this.state;
   const centrebyname = this.state.Centre.filter( centre => centre.NomCentre.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
   const centrebyregion = centrebyname.filter(centre => centre.RegionCentre === this.state.Region );
