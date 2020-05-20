@@ -37,7 +37,6 @@ export default class InscriptionList extends Component {
                     isModalClientOpen: false,
                     Id_Client: null,
                     inscriptions: []
-                    
                    };
   }
   

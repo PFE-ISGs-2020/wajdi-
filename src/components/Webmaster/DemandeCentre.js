@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Menu from './sideNavWebmaster'
+import SideNavWebmaster from './sideNavWebmaster'
+import {Button} from 'reactstrap';
 
 const Demande = props => (  
   <tr>
@@ -10,8 +11,18 @@ const Demande = props => (
     <td>{props.centre.TelCentre}</td>
     <td>{props.centre.EmailCentre}</td>       
     <td>
-    <a href="/DemandeList" onClick={() => { props.approveDemande(props.centre) }}>Approve</a> |
-    <a href="/DemandeList" onClick={() => { props.deleteDemande(props.centre._id) }}>delete</a>
+      <a href="/DemandeList" onClick={() => { props.approveDemande(props.centre) }}>
+        <Button className="btn btn-success btn-sm" >
+        <span className="fa fa-user-plus" /> 
+        </Button>
+      </a> 
+    </td>
+    <td>
+      <a href="/DemandeList" onClick={() => { props.deleteDemande(props.centre._id) }}> 
+      <Button className="btn btn-danger btn-sm" >
+        <span className="fa fa-user-times" /> 
+      </Button>  
+      </a>
     </td>
   </tr>
 )
@@ -78,34 +89,37 @@ export default class DemandeList extends Component {
   render() {
     return (
       <div>
-       <div className="row row-content">
-        <nav  className="col-2">
-          <Menu/>
-        </nav>  
-         <section className="col-10 text-center">   
-        <br/>
-        <br/>
-        <h3> Demande d'accés des responsables</h3>
-        <br/>
-        <br/> 
-       
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Nom Centre</th>
-              <th>Adresse</th>
-              <th>Region</th>
-              <th>Tel</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.DemandeList() }
-          </tbody>
-        </table>
-        </section>
-      </div>     
+        <SideNavWebmaster pageWrapId={"page-wrap"}/>
+        <div id="page-wrap" className="container">
+          <div className="container">
+          <div className="row justify-content-md-center"> 
+              <section className="col-10 text-center">   
+              <br/>
+              <br/>
+              <h3> Demande d'accés des responsables</h3>
+              <br/>
+              <br/> 
+            
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    <th>Nom Centre</th>
+                    <th>Adresse</th>
+                    <th>Region</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Approuve</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.DemandeList() }
+                </tbody>
+              </table>
+              </section>
+            </div>
+          </div>
+        </div>     
       </div>
       
     )

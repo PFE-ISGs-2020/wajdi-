@@ -1,11 +1,11 @@
 import React from 'react';
-import Menu from './sideNavWebmaster';
+import SideNavWebmaster from './sideNavWebmaster';
 
 export default function HomeWebmaster() {
     return(
       <div className="row row-content">
         <nav  className="col-2">
-          <Menu/>
+          <SideNavWebmaster />
         </nav>     
         <section className="col-10 text-center">
           <div >

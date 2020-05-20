@@ -10,7 +10,7 @@ import HeaderClient from './Header_Client';
 import DefaultImg from '../assets/default-img.jpg';
 
 class DetailFormationComponent extends Component {  
-  
+    _isMounted = false;
     constructor(props) {
         super(props);
 
@@ -21,6 +21,7 @@ class DetailFormationComponent extends Component {
     }
     
     componentDidMount() {
+        this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
         if(this.props.formation!==undefined)
         localStorage.setItem("object", JSON.stringify(this.props.formation));
@@ -36,6 +37,10 @@ class DetailFormationComponent extends Component {
             }
         })
 
+      }
+
+      componentWillUnmount() {
+        this._isMounted = false;
       } 
 
     render(){
@@ -53,7 +58,7 @@ class DetailFormationComponent extends Component {
         let imageFormation = DefaultImg;
         if (image){
             imageFormation = "http://localhost:5000/"+image
-
+        }
         const {client} = this.props.authClient;
         const header = (client === null) ?
           <Header /> 
@@ -159,7 +164,7 @@ class DetailFormationComponent extends Component {
 
 }
 }
-}
+
 
 DetailFormationComponent.propTypes = {
     authClient: PropTypes.object.isRequired

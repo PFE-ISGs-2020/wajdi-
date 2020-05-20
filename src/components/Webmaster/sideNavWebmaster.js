@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import {Nav, NavItem} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { push  as Menu } from "react-burger-menu";
 
-class Menu extends Component {
+class SideNavWebmaster extends Component {
     render(){
         return(
-            <Nav  className="flex-column  " >
-            <NavItem>
-                <NavLink className="nav-link" to=''> Vérifier Etat centre </NavLink>
-            </NavItem>
+            <Menu  className="justify-content-center" pageWrapId={ "page-wrap" }>
+                <span className="menu-item"  style={{fontSize:"20px",fontFamily:"Verdana",textAlign:"center"}}>
+                  Webmaster <hr style={{backgroundColor:"#fff"}} />
+                </span>
 
-            <NavItem>
-                <NavLink className="nav-link" to='/DemandeList'> Demandes des responsables </NavLink>
-            </NavItem>
-            <NavItem>
-            <NavLink className="nav-link" to=''>Consulter les avis </NavLink>
-                </NavItem>
-
-            <NavItem>
-                <NavLink className="nav-link" to=''> Donner les droits de publication </NavLink>
-            </NavItem>
-          </Nav>
+                <NavLink activeClassName="myactive" to='/verif'
+                style={{ textDecoration: 'none' }}> Vérifier Etat centre </NavLink>
+                
+                <NavLink activeClassName="myactive" to='/DemandeList' 
+                style={{ textDecoration: 'none' }}> Demandes des responsables </NavLink>
+                
+                <NavLink activeClassName="myactive" to='/consulte'
+                style={{ textDecoration: 'none' }}>Consulter les avis </NavLink>
+               
+                <NavLink activeClassName="myactive" to='/droit'
+                style={{ textDecoration: 'none' }}> Donner les droits de publication </NavLink>
+                
+            </Menu>
   );
-  }}
-  export default Menu
+  }
+}
+  export default SideNavWebmaster;

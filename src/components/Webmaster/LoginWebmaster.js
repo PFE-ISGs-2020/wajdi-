@@ -15,12 +15,9 @@ class loginwebmaster extends Component {
             password: '', 
             error: '',
             //isLoggedIn: false
-            
         };
         
-        
     } 
-    
    
     onSubmit(e) {
         e.preventDefault();

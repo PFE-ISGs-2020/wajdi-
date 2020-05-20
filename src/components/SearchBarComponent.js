@@ -10,8 +10,9 @@ import {Image} from 'react-bootstrap';
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {  
       let image = DefaultImg;
+      if (formation.imageFormation){
       image = "http://localhost:5000/"+formation.imageFormation;
-    
+      }
     return (   
         <Card  className="card " key={formation._id}>            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
@@ -19,7 +20,7 @@ function RenderFormations ({formation}) {
             <Card.Body className="cardbody">
                 <div className="row">
                     <div className="col-12 col-lg-5">
-                        <Image src={image} style={{backgroundColor:"white"}} height="200px" width="380px" rounded /></div>
+                        <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
                     <div className="col-12 col-sm-7">
                     <Card.Title>Description:</Card.Title>                
                     <Card.Text>{formation.DescriptionFormation}</Card.Text>
@@ -35,8 +36,9 @@ function RenderFormations ({formation}) {
 //fonction qui permet d'afficher un centre dans une "Card"
 function RenderCentres ({centre}) {   
     let image = DefaultImg;
+    if (centre.image){
       image = "http://localhost:5000/"+centre.image;
-    
+    }
     return (        
         <Card className="card" key={centre._id}>            
             <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
@@ -65,9 +67,9 @@ class SearchBar extends Component {
 
         this.state = {Formation: [],
                       Centre:[],
-                        selectedFormation : null,
-                        Critere:"Formation",
-                        search: ''}    
+                      selectedFormation : null,
+                      Critere:"Formation",
+                      search: ''}    
       }      
 
       //on change for the search bar

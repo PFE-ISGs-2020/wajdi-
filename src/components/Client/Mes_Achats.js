@@ -52,8 +52,6 @@ render() {
                   <h3>Formations en cours</h3>
                   <br/>
 
-            
-
                 </div>
                 
                 </Tab>

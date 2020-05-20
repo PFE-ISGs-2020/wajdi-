@@ -64,7 +64,6 @@ class FormateurList extends Component {
     this.setState({
         formateur: this.state.formateur.filter(el => el._id !== id)
     })
-
     
   }
  
