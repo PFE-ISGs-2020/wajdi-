@@ -19,14 +19,20 @@ router.route('/List/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-
+router.route('/Achats/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+    .populate("Id_Formation")
+    .then( Details => res.json( Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
+    
 //mes achats
 //-----------------
-router.route('/achat/:id').get((req, res) => {
+/* router.route('/achat/:id').get((req, res) => {
     Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
-});
+}); */
 //-----------------
 router.route('/InscriptionExist').get((req, res) => {
 Details_Inscription.find({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation })

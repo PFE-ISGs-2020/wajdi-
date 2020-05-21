@@ -5,6 +5,16 @@ import { connect } from "react-redux";
 import axios from 'axios';
 import HeaderClient from '../Header_Client';
 
+
+const Details = props => (  
+  <tr>
+    <td>{props.Details_Inscription.Id_Formation.CodeFormation}</td>
+    <td>{props.Details_Inscription.Id_Formation.LibelleFormation}</td>
+    <td>{props.Details_Inscription.Id_Formation.DateDebutFormation}</td>
+    <td>{props.Details_Inscription.Id_Formation.DateFinFormation}</td>
+    <td>{props.Details_Inscription.Id_Formation.NomTheme}</td>
+  </tr>)
+
 class MesAchats extends Component {
     constructor(props) {
         super(props);
@@ -19,22 +29,23 @@ class MesAchats extends Component {
 
     componentDidMount(){
       const {client} = this.props.authClient;
-      axios.get('http://localhost:5000/Details_Inscription/achat/'+client.id)
-    .then(Details_Inscription => {
-      this.setState({ Details_Inscription: Details_Inscription.data})
+      axios.get('http://localhost:5000/Details_Inscription/Achats/'+client.id)
+    .then(Details => {
+      this.setState({ Details_Inscription: Details.data})
     })
 
-    const detailinscrit_FormationID = [...new Set(this.state.Details_Inscription.map(detailinscrit => detailinscrit.Id_Formation  ))]; 
-
-    
-    axios.get('http://localhost:5000/Formation/' )
-    .then(Formation => {
-      this.setState({ Formation: Formation.data});
-    })
-   
+   // const detailinscrit_FormationID = [...new Set(this.state.Details_Inscription.map(detailinscrit => detailinscrit.Id_Formation  ))]; 
 
   }
 
+  MesAchats() {
+    return this.state.Details_Inscription.map(currentDétails => {
+    return <Details   Details_Inscription={currentDétails} 
+    
+    key={currentDétails._id} />;
+
+    });
+  }
 
 render() { 
   
@@ -51,7 +62,22 @@ render() {
                   <br/>
                   <h3>Formations en cours</h3>
                   <br/>
+                  <table className="table">
+              <thead className="thead-light">
+                <tr>
 
+                  <th>CodeFormation </th>
+                  <th>LibelleFormation </th>
+                  <th>DateDebutFormation </th>
+                  <th>DateFinFormation </th>
+                  <th>NomTheme </th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.MesAchats() }
+              </tbody>
+            </table>
+            
                 </div>
                 
                 </Tab>

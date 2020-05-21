@@ -14,7 +14,6 @@ class Formation extends Component {
     constructor() {
         super();
         this.state = {
-            formation:[],
             Formation:[],
             themes:[],
             NomTheme:"",
