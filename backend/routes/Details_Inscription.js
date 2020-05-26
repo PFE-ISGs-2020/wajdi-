@@ -33,6 +33,20 @@ router.route('/FormationsAtteintes/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 })
 
+router.route('/Formations_A_Venir/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id   , DateDebutFormation :  { $gt :new Date(Date.now())}  })
+    .populate("Id_Formation")
+    .then( Details => res.json( Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
+// For the client
+router.route('/MesDemandes/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 0, Id_Client: req.params.id  })
+    .populate("Id_Formation")
+    .then( Details => res.json( Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
+
 //mes achats
 //-----------------
 /* router.route('/achat/:id').get((req, res) => {

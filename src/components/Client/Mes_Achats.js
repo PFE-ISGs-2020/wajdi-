@@ -30,6 +30,7 @@ class MesAchats extends Component {
         this.state = {
           Details_Inscription_EnCours: [],
           Details_Inscription_Atteintes: [],
+          Details_Inscription_A_venir: [],
           //For Modal Formation
           Formation :  null,
           isModalFormationOpen: false, 
@@ -48,6 +49,12 @@ class MesAchats extends Component {
     .then(Details => {
       this.setState({ Details_Inscription_Atteintes: Details.data})
     })
+
+    axios.get('http://localhost:5000/Details_Inscription/Formations_A_Venir/'+client.id)
+    .then(Details => {
+      this.setState({ Details_Inscription_A_venir: Details.data})
+    })
+
   }
 
   FormationsEnCours() {
@@ -66,6 +73,15 @@ class MesAchats extends Component {
     key={currentDétails._id} />;
 
     });
+  }
+
+  Formations_A_venir(){
+    return this.state.Details_Inscription_A_venir.map(currentDétails => {
+      return <Details   Details_Inscription={currentDétails} 
+      toggleModalFormation={this.toggleModalFormation}
+      key={currentDétails._id} />;
+  
+      });
   }
 
   toggleModalFormation(id, Formation) {
@@ -111,6 +127,29 @@ render() {
                 </div>
                 
                 </Tab>
+                <Tab  title="Formations à venir" eventKey="Formations_A_Venir" >
+                <div className="col-12">
+                  <br/>
+                  <h3>Formations à venir</h3>
+                  <br/>
+                  <table className="table">
+              <thead className="thead-light">
+                <tr>
+
+                  <th>Libéllé </th>
+                  <th>Date Debut </th>
+                  <th>Date Fin </th>
+                  <th>Thème </th>
+                  <th>Voir Plus </th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.Formations_A_venir() }
+                
+              </tbody>
+            </table>
+                </div>
+                </Tab>
                 <Tab  title="Formations atteintes" eventKey="FormationsAtteintes" >
                 <div className="col-12">
                   <br/>
@@ -129,7 +168,13 @@ render() {
               </thead>
               <tbody>
                 { this.FormationsAtteintes() }
-                {/*modal formation begin */}
+                
+              </tbody>
+            </table>
+                </div>
+                </Tab>
+                </Tabs> 
+                  {/*modal formation begin */}
             <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
               <ModalHeader>
                 {this.state.Formation}
@@ -138,13 +183,7 @@ render() {
               <CardFormation  Id_Formation={this.state.Id_Formation} />
               </ModalBody>
             </Modal>
-            {/*modal formation end */} 
-              </tbody>
-            </table>
-                </div>
-                </Tab>
-                </Tabs> 
-                   
+            {/*modal formation end */}  
             </div>         
              
         </div>              

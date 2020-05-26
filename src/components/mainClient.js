@@ -12,6 +12,7 @@ import ModifierImageClient from './Client/Modifier_Image_Client';
 import Profile_Client from './Client/Profile_Client';
 import ModifierProfile from './Client/Modifier_Profile'
 import MesAchats from './Client/Mes_Achats'
+import MesDemandes from './Client/Mes_Demandes'
 
 import axios from 'axios';
 
@@ -75,6 +76,7 @@ class MainClient extends Component {
         <Route path="/ModifierProfile/:id" component={ModifierProfile} />
         <Route path="/ModifierPasswordClient/:id" component={ModifierPasswordClient} />
         <Route path="/ModifierImageClient/:id" component={ModifierImageClient} />
+        <Route path="/MesDemandes/:id" component={MesDemandes} />
     </Route>
     
     </BrowserRouter>
