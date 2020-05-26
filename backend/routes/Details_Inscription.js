@@ -20,7 +20,7 @@ router.route('/List/:id').get((req, res) => {
 });
 
 router.route('/FormationsEnCours/:id').get((req, res) => {
-    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id /* ,  DateFinFormation :  { $gte :new Date(Date.now())} */ })
     .populate("Id_Formation")
    //.find({ "DateFinFormation" :  { $gte :new Date(Date.now())}})
     .then( Details => res.json( Details))
@@ -28,7 +28,7 @@ router.route('/FormationsEnCours/:id').get((req, res) => {
 })
     
 router.route('/FormationsAtteintes/:id').get((req, res) => {
-    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id   , DateFinFormation :  { $lte :new Date(Date.now())}  })
     .populate("Id_Formation")
     //.find({ "DateFinFormation" :  { $lte :new Date(Date.now())}})
     .then( Details => res.json( Details))
