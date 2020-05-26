@@ -19,13 +19,22 @@ router.route('/List/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/Achats/:id').get((req, res) => {
+router.route('/FormationsEnCours/:id').get((req, res) => {
     Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
     .populate("Id_Formation")
+   //.find({ "DateFinFormation" :  { $gte :new Date(Date.now())}})
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
 })
     
+router.route('/FormationsAtteintes/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+    .populate("Id_Formation")
+    //.find({ "DateFinFormation" :  { $lte :new Date(Date.now())}})
+    .then( Details => res.json( Details))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
+
 //mes achats
 //-----------------
 /* router.route('/achat/:id').get((req, res) => {

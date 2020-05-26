@@ -19,7 +19,7 @@ class CardFormation extends Component {
         axios.get('http://localhost:5000/Formation/'+this.props.Id_Formation)
           .then(frm => {
             this.setState({ formation: frm.data })
-            console.log(this.props.frm);
+            console.log(this.props.Id_Formation);
           })
           .catch((error) => {
             console.log(error);
@@ -63,7 +63,7 @@ class CardFormation extends Component {
                     <p><b>Capacité:</b> {this.state.formation.CapaciteFormation}</p>
                 </div>
                 <div className="row ">
-                    <p><b>Prix:</b> {this.state.formation.Prix}</p>
+                    <p><b>Prix en Dinar Tunisien:</b> {this.state.formation.Prix}</p>
                 </div>
                 <div className="row">
                     <p><b>Description:</b> {this.state.formation.DescriptionFormation}</p>
