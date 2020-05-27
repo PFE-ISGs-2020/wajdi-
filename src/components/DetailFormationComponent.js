@@ -16,7 +16,8 @@ class DetailFormationComponent extends Component {
 
         this.state = {
             formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object')),
-            Inscription: ""
+            Inscription: "",
+            message: ""
         };          
     }
     
@@ -128,18 +129,11 @@ class DetailFormationComponent extends Component {
                                     Id_Formation: this.state.formationn._id
                                     }
                                 console.log(inscription);
-                                axios.get('http://localhost:5000/Details_Inscription/InscriptionExist', inscription)
-                                .then (inscriptionn => {
-                                    this.setState({ Inscription: inscriptionn.data })})
-                                if(this.state.Inscription){
-                                    alert("vous êtes déjà inscrit!");
-                                    
-                                }
-                                else{
+
                                 axios.post('http://localhost:5000/Details_Inscription/add', inscription)
-                                .then(res => console.log(res.data))        
-                                    alert("vous etes inscrit avec succee");}
-                                }
+                                .then(res => {
+                                    alert(res.data );})}
+                              
                                 else{
                                     alert("Il faut être authentifié");
                                 }

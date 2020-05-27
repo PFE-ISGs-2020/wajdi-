@@ -89,6 +89,24 @@ class MesDemandes extends Component {
 
 render() { 
   
+    if(!this.state.MesDemandes[0]){
+        return(
+            <div>
+                <HeaderClient /> 
+                <br/>
+                 <div className="container">
+                 
+                     <div className="col-12">
+                       <br/>
+                       <h3>Demandes d'inscription</h3>
+                       <hr/>
+                       <br/>
+                       <h5>Vous n'avez aucune demandes d'inscription qui n'est pas encore traitée.</h5>
+                    </div>
+                </div>
+            </div>     
+        )
+    }
   
 
   return (
