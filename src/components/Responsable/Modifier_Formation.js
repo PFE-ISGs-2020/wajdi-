@@ -6,7 +6,7 @@ import SideBar from "./sidebar";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {Breadcrumb, BreadcrumbItem} from 'react-bootstrap';
-import moment from 'moment'
+import moment from 'moment';
 
 class ModiferFormation extends Component {
   constructor(props) {

@@ -4,14 +4,13 @@ import { Tabs, Tab} from 'react-bootstrap';
 import { connect } from "react-redux";
 import axios from 'axios';
 import HeaderClient from '../Header_Client';
-
+import moment from 'moment';
 
 const Details = props => (  
   <tr>
-    <td>{props.Details_Inscription.Id_Formation.CodeFormation}</td>
     <td>{props.Details_Inscription.Id_Formation.LibelleFormation}</td>
-    <td>{props.Details_Inscription.Id_Formation.DateDebutFormation}</td>
-    <td>{props.Details_Inscription.Id_Formation.DateFinFormation}</td>
+    <td>{moment(props.Details_Inscription.Id_Formation.DateDebutFormation).format('DD/MM/YYYY')}</td>
+    <td>{moment(props.Details_Inscription.Id_Formation.DateFinFormation).format('DD/MM/YYYY')} </td>
     <td>{props.Details_Inscription.Id_Formation.NomTheme}</td>
   </tr>)
 
@@ -65,12 +64,10 @@ render() {
                   <table className="table">
               <thead className="thead-light">
                 <tr>
-
-                  <th>CodeFormation </th>
-                  <th>LibelleFormation </th>
-                  <th>DateDebutFormation </th>
-                  <th>DateFinFormation </th>
-                  <th>NomTheme </th>
+                  <th>Libelle Formation </th>
+                  <th>Date Debut Formation </th>
+                  <th>Date Fin Formation </th>
+                  <th>Theme </th>
                 </tr>
               </thead>
               <tbody>
