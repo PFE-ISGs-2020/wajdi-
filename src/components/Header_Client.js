@@ -85,14 +85,19 @@ class HeaderClient extends Component {
                                         </Dropdown.Item>
 
                                         <Dropdown.Item href="/MesAchats" >
-                                        <span className="fa fa-shopping-cart"></span>  Mes Achats
+                                        <span className="fa fa-shopping-cart"></span>  Mes Cours
                                         </Dropdown.Item>
-
+                                        
+                                        <Dropdown.Item href={"/MesDemandes/" + this.state.Client._id } >
+                                        <span className="fa fa-share"></span>  Mes Demandes d'inscription
+                                        
+                                        </Dropdown.Item>
+                                        
                                         <Dropdown.Item href={"/ModifierPasswordClient/" + this.state.Client._id } >
                                         <span className="fa fa-cog"></span>  Changer Mot de passe
                                         
                                         </Dropdown.Item>
-                                        
+
                                         <Dropdown.Divider />
                                         
                                         <Dropdown.Item href="/" onClick={this.onLogoutClick}>

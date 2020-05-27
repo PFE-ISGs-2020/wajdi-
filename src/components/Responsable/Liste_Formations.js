@@ -64,7 +64,8 @@ class FormationList extends Component {
     this.toggleModalFormation = this.toggleModalFormation.bind(this)
 
     this.state = {formation: [],
-                  Formation :  null,
+                  //For Modal Formation
+                  Formation :  null, 
                   isModalFormationOpen: false, 
                   Id_Formation: null, };
     

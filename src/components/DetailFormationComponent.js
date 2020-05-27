@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem,Button} from 'react-bootstrap';
 import axios from 'axios';
-import Moment from 'react-moment';
-
+import moment from 'moment';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Header from './HeaderComponent';
@@ -16,7 +15,8 @@ class DetailFormationComponent extends Component {
 
         this.state = {
             formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object')),
-            Inscription: ""
+            Inscription: "",
+            message: ""
         };          
     }
     
@@ -94,12 +94,12 @@ class DetailFormationComponent extends Component {
                             <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
                         </div>
                         <div className="row">
-                            <p><b><span className="fa fa-calendar"></span> Date debut: </b>    
-                            <Moment format="DD/MM/YYYY">{DateDebutFormation}</Moment></p> 
+                            <p><b><span className="fa fa-calendar"></span> Date debut: </b>  
+                            {moment(DateDebutFormation).format('DD/MM/YYYY')}</p> 
                         </div> 
                         <div className="row">                        
                             <p><b><span className="fa fa-calendar"></span> Date fin:</b>  
-                            <Moment format="DD/MM/YYYY">{DateFinFormation}</Moment> </p>                        
+                            {moment(DateFinFormation).format('DD/MM/YYYY')}</p>                        
                         </div>             
                         <div className="row ">
                             <p><b><span className="fa fa-tag"></span> Theme:</b> {NomTheme}</p>
@@ -127,20 +127,17 @@ class DetailFormationComponent extends Component {
                                     EtatInscription:false,
                                     Id_Formation: this.state.formationn._id
                                     }
-                                console.log(inscription);
-                                axios.get('http://localhost:5000/Details_Inscription/InscriptionExist', inscription)
-                                .then (inscriptionn => {
-                                    this.setState({ Inscription: inscriptionn.data })})
-                                if(this.state.Inscription){
-                                    alert("vous êtes déjà inscrit!");
+                                    if(moment().isAfter(inscription.Id_Formation.DateDebutFormation ) ){
+                                        console.log(inscription);
+                                        axios.post('http://localhost:5000/Details_Inscription/add', inscription)
+                                        .then(res => {
+                                        alert(res.data );})  
+                                    }else{
+                                        alert("Vous ne pouvez pas etre inscrit a cette formation car elle a commancer ");
+                                    }
                                     
-                                }
-                                else{
-                                axios.post('http://localhost:5000/Details_Inscription/add', inscription)
-                                .then(res => console.log(res.data))        
-                                    alert("vous etes inscrit avec succee");}
-                                }
-                                else{
+
+                                }else{
                                     alert("Il faut être authentifié");
                                 }
 

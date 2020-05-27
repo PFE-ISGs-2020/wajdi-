@@ -9,6 +9,7 @@ const Details_Inscription_Schema = new Schema({
   PrenomClient: {type: String, required: true, trim: true},
   EtatInscription: {type: Boolean, required: true},
   Id_Formation:{  type: Schema.Types.ObjectId, required: true, ref: "Formation"}
+  
 }, {
   timestamps: true,
 });

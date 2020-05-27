@@ -19,48 +19,66 @@ router.route('/List/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/Achats/:id').get((req, res) => {
+
+//mes achats
+//-----------------
+router.route('/cours/:id').get((req, res) => {
     Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
     .populate("Id_Formation")
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
-})
-    
-//mes achats
-//-----------------
-/* router.route('/achat/:id').get((req, res) => {
-    Details_Inscription.find({ EtatInscription: 1, Id_Client: req.params.id })
+}); 
+//----------------
+
+// For the client
+router.route('/MesDemandes/:id').get((req, res) => {
+    Details_Inscription.find({ EtatInscription: 0, Id_Client: req.params.id  })
+    .populate("Id_Formation")
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
-}); */
-//-----------------
+})
+
+
+/* 
 //--join--
 router.route('/InscriptionExist').get((req, res) => {
 Details_Inscription.find({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation })
     .then( Details => res.json(Details))
     .catch(err => res.status(400).json('Error: ' + err));
-});
-//-----------------
+
+});*/
 
 router.route('/add').post((req, res) => {
-    const PrenomClient = req.body.PrenomClient;
-    const EtatInscription = 0;
-    const NomClient = req.body.NomClient ;
-    const Id_Formation = req.body.Id_Formation;
-    const Id_Client = req.body.Id_Client;
-  
-    const newDetails = new Details_Inscription({
-        Id_Client,
-        PrenomClient,
-        EtatInscription,
-        NomClient,
-        Id_Formation
+    
+    Details_Inscription.findOne({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation ,DateFinFormation: req.body.Id_Formation.DateFinFormation})
+    .then(Details => {
+        if (Details) {
+            if(Details.EtatInscription){
+             res.json("Vous êtes déjà inscrit à cette formation!")   
+            } else{
+                res.json("Vous avez déjà envoyé une demande d'inscription à cette formation!")
+            }
+            
+        } else {
+                const PrenomClient = req.body.PrenomClient;
+                const EtatInscription = 0;
+                const NomClient = req.body.NomClient ;
+                const Id_Formation = req.body.Id_Formation;
+                const Id_Client = req.body.Id_Client;
+            
+                const newDetails = new Details_Inscription({
+                    Id_Client,
+                    PrenomClient,
+                    EtatInscription,
+                    NomClient,
+                    Id_Formation
     });
   
     newDetails.save()
-    .then(() => res.json('Détails inscription ajoutée!'))
+    .then(() => res.json('Vous êtes inscrit avec succée'))
     .catch(err => res.status(400).json('Error: ' + err));
-  });
+  }})
+  .catch(err => res.status(400).json('Error: ' + err));})
 
   router.route('/:id').get((req, res) => {
     Details_Inscription.findById(req.params.id)
