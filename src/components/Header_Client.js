@@ -21,14 +21,14 @@ class HeaderClient extends Component {
 
       componentDidMount(){
         const {client} = this.props.authClient;
-      axios.get('http://localhost:5000/Client/'+client.id)
-    .then(clt => {
-      this.setState({ Client: clt.data })
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
+        axios.get('http://localhost:5000/Client/'+client.id)
+        .then(clt => {
+          this.setState({ Client: clt.data })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }
 
       toggleNav() {
         this.setState({

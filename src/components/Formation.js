@@ -9,6 +9,9 @@ import { connect } from "react-redux";
 import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
 
+import DefaultImg from '../assets/default-img.jpg'; 
+import {Image} from 'react-bootstrap';
+
 class Formation extends Component {
   
     constructor() {
@@ -47,27 +50,38 @@ class Formation extends Component {
       };
 
 render() { 
-  const themes = [...new Set(this.state.Formation.map(themes => themes.NomTheme    ))];
-
-  const  {search} = this.state;
-  const formabyname = this.state.Formation.filter( formation => formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
-  const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
-  
-  //fonction qui permet d'afficher une formation dans une "Card"
-function RenderFormations ({formation}) {    
-  return (     
-      <Card  className="card ">            
+ 
+  function RenderFormations ({formation}) {  
+    let image = DefaultImg;
+    if (formation.imageFormation){
+    image = "http://localhost:5000/"+formation.imageFormation;
+    }
+  return (   
+      <Card  className="card " key={formation._id}>            
           <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
           <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
           <Card.Body className="cardbody">
-              <Card.Title>Description:</Card.Title>                
-              <Card.Text>{formation.DescriptionFormation}</Card.Text>
+              <div className="row">
+                  <div className="col-12 col-lg-5">
+                      <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
+                  <div className="col-12 col-sm-7">
+                  <Card.Title>Description:</Card.Title>                
+                  <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                  </div>
+              </div>
           </Card.Body>
           </Link>            
       </Card> 
    
   );
-}
+} 
+  
+const themes = [...new Set(this.state.Formation.map(themes => themes.NomTheme    ))];
+
+const  {search} = this.state;
+const formabyname = this.state.Formation.filter( formation => formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
+const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
+
 const formationList = ( this.state.NomTheme === "") ?
 
    formabyname.map((formation) =>
@@ -87,12 +101,8 @@ const formationList = ( this.state.NomTheme === "") ?
 
 
     const {client} = this.props.authClient;
-    
-        const header = (client === null) ?
-          <Header /> 
-        :       
-          <HeaderClient />
-
+    const header = (client === null)  ?  <Header />  :   <HeaderClient />;
+     
     return (
         <div>
             {header}

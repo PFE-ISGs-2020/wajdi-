@@ -23,11 +23,12 @@ class DetailFormationComponent extends Component {
     componentDidMount() {
         this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
-        if(this.props.formation!==undefined)
+        if(this.props.formation!==undefined){
         localStorage.setItem("object", JSON.stringify(this.props.formation));
 
         const {formationn} = this.state;
         let ID_Formation = formationn ? formationn._id : "";
+        
         //Request to get "formation" details by its ID
         axios.get('http://localhost:5000/Formation/'+ID_Formation)
           .then( formation => {
@@ -36,6 +37,7 @@ class DetailFormationComponent extends Component {
             console.log(this.props.formation);
             }
         })
+        }
 
       }
 
@@ -57,13 +59,10 @@ class DetailFormationComponent extends Component {
         
         let imageFormation = DefaultImg;
         if (image){
-            imageFormation = "http://localhost:5000/"+image
+            imageFormation = "http://localhost:5000/"+image ;
         }
         const {client} = this.props.authClient;
-        const header = (client === null) ?
-          <Header /> 
-        :       
-          <HeaderClient />
+        const header = (client === null) ? <Header /> :  <HeaderClient /> ;
 
         return(
             <div>

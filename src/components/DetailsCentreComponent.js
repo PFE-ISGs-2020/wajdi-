@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
-import DefaultImg from '../assets/default-img.jpg';
-
+import DefaultImg from '../assets/default-img.jpg'; 
+import {Image} from 'react-bootstrap';
 class DetailCentreComponent extends Component {
     _isMounted = false;
     constructor(props) {
@@ -16,8 +16,7 @@ class DetailCentreComponent extends Component {
 
         this.state = {
             centree:this.props.centre ? this.props.centre:JSON.parse(localStorage.getItem('object')),
-
-            formation:[],
+ 
             Formation:[],
             themes:[],
             NomTheme:"",
@@ -52,12 +51,11 @@ class DetailCentreComponent extends Component {
           .catch((error) => {
             console.log(error);
           })
-
-          //Récupérer les formtaions du centre de la base de données
-          axios.get('http://localhost:5000/Formation/listbynamecentre/:NomCentre'+ this.state.centree.NomCentre )
+ 
+          //Récupérer les formtaions de la base de données
+          axios.get('http://localhost:5000/Formation/')
           .then(Formation => {
-            this.setState({ Formation: Formation.data });
-            console.log(this.state.Formation)
+            this.setState({ Formation: Formation.data })
           })
           .catch((error) => {
             console.log(error);
@@ -89,49 +87,60 @@ class DetailCentreComponent extends Component {
         if (image){
         imageCentre = "http://localhost:5000/"+image
         }  
-    const {client} = this.props.authClient;
-    const header = (client === null) ?
-      <Header /> 
-    :       
-      <HeaderClient />
-
+    
       const themes = [...new Set(this.state.Formation.map(themes => themes.NomTheme    ))];
 
       const  {search} = this.state;
       const formabyname = this.state.Formation.filter( formation => formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
-      const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
+      const formabycentre_withouttheme = formabyname.filter(formation => formation.NomCentre === NomCentre);
       
+      const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
+      const formabycentre_withtheme = formabythem.filter(formation => formation.NomCentre === NomCentre);
+
       //fonction qui permet d'afficher une formation dans une "Card"
-    function RenderFormations ({formation}) {    
-      return (     
-          <Card  className="card ">            
+      function RenderFormations ({formation}) {  
+        let image = DefaultImg;
+        if (formation.imageFormation){
+        image = "http://localhost:5000/"+formation.imageFormation;
+        }
+      return (   
+          <Card  className="card " key={formation._id}>            
               <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
               <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
               <Card.Body className="cardbody">
-                  <Card.Title>Description:</Card.Title>                
-                  <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                  <div className="row">
+                      <div className="col-12 col-lg-5">
+                          <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
+                      <div className="col-12 col-sm-7">
+                      <Card.Title>Description:</Card.Title>                
+                      <Card.Text>{formation.DescriptionFormation}</Card.Text>
+                      </div>
+                  </div>
               </Card.Body>
               </Link>            
           </Card> 
        
       );
-    }
+    } 
+
     const formationList = ( this.state.NomTheme === "") ?
-    
-       formabyname.map((formation) =>
-          <li key={formation._id} style={{listStyleType:"none"}}>
-          <RenderFormations formation={formation}  key={formation._id}/>
-          <br/>
-          </li>
-          
-        )
-        :
-        formabythem.map((formation) =>
+        formabycentre_withouttheme.map((formation) =>
           <li key={formation._id} style={{listStyleType:"none"}}>
             <RenderFormations formation={formation}  key={formation._id}/>
             <br/>
           </li>
-        );
+        )
+        :
+        formabycentre_withtheme.map((formation) =>
+      <li key={formation._id} style={{listStyleType:"none"}}>
+        <RenderFormations formation={formation}  key={formation._id}/>
+        <br/>
+      </li>
+    );
+
+        const {client} = this.props.authClient;
+        const header = (client === null)  ?  <Header />  :   <HeaderClient />;
+            
         return(
             <div>
                 {header}
