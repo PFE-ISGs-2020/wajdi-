@@ -8,6 +8,8 @@ import CardFormation from '../CardFormation'
 import HeaderClient from '../Header_Client';
 import moment from 'moment';
 
+import StarRatingComponent from 'react-star-rating-component';
+
 const Details = props => (  
   <tr>
     <td>{props.Details_Inscription.Id_Formation.LibelleFormation}</td>
@@ -21,6 +23,7 @@ const Details = props => (
     </td> 
   </tr>)
 
+ 
 class MesAchats extends Component {
     constructor(props) {
         super(props);
@@ -32,9 +35,14 @@ class MesAchats extends Component {
           Formation :  null,
           isModalFormationOpen: false, 
           Id_Formation: null,
+          rating: 1
          };
     }
 
+    onStarClick(nextValue, prevValue, name) {
+      this.setState({rating: nextValue});
+    }
+    
     componentDidMount(){
       const {client} = this.props.authClient;
       axios.get('http://localhost:5000/Details_Inscription/cours/'+client.id)
@@ -45,33 +53,46 @@ class MesAchats extends Component {
   }
 
   FormationsEnCours() {
-    var now = moment();
     return this.state.Cours.map(currentDetails => {
-      if ( now.isBetween(currentDetails.Id_Formation.DateDebutFormation , currentDetails.Id_Formation.DateFinFormation) )  {
-        return <Details   Details_Inscription={currentDetails} 
+      if (  moment().isBetween(currentDetails.Id_Formation.DateDebutFormation , currentDetails.Id_Formation.DateFinFormation) )  {
+        return( <Details   Details_Inscription={currentDetails} 
         toggleModalFormation={this.toggleModalFormation}
-        key={currentDetails._id} />;
+        key={currentDetails._id} /> );
       }
       else {return null;} 
     });
   }
+
 
   FormationsAtteintes() {
-    var now = moment();
+    const { rating } = this.state;
     return this.state.Cours.map(currentDetails => {
-      if (now.isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
-        return <Details   Details_Inscription={currentDetails} 
-        toggleModalFormation={this.toggleModalFormation}
-        key={currentDetails._id} />;
+      if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
+        return (
+            <tr key={currentDetails._id}>
+              <td>{currentDetails.Id_Formation.LibelleFormation}</td>
+              <td>{moment(currentDetails.Id_Formation.DateDebutFormation).format('DD/MM/YYYY')}</td>
+              <td>{moment(currentDetails.Id_Formation.DateFinFormation).format('DD/MM/YYYY')} </td>
+              <td>{currentDetails.Id_Formation.NomTheme}</td>
+              <td>
+              <Button className="btn btn-secondary btn-sm" onClick={ () => {this.toggleModalFormation(currentDetails.Id_Formation._id, currentDetails.Id_Formation.LibelleFormation)}}>
+                <span className="fa fa-info "></span>
+              </Button>
+              </td> 
+              <td><StarRatingComponent name="rateFormation" starCount={5} value={rating} onStarClick={this.onStarClick.bind(this)}/>
+              {rating}
+              </td>
+            </tr>
+          );
       }
       else {return null;} 
     });
   }
 
+
   Formations_A_venir(){
-    var now = moment();
     return this.state.Cours.map(currentDetails => {
-      if (now.isBefore(currentDetails.Id_Formation.DateDebutFormation) )  {
+      if ( moment().isBefore(currentDetails.Id_Formation.DateDebutFormation) )  {
         return <Details   Details_Inscription={currentDetails} 
         toggleModalFormation={this.toggleModalFormation}
         key={currentDetails._id} />;
@@ -80,6 +101,7 @@ class MesAchats extends Component {
       });
   }
 
+  
   toggleModalFormation(id, Formation) {
     this.setState({
       isModalFormationOpen: !this.state.isModalFormationOpen,
@@ -90,87 +112,88 @@ class MesAchats extends Component {
   }
 
 render() { 
-  
-  
 
   return (
       <div>
        <HeaderClient /> 
         <br/>
             <div className="container">
-            <Tabs id="controlled-tab" >
+              <Tabs id="controlled-tab" >
                 <Tab  title="Formations en cours" eventKey="FormationsEnCours" > 
-                <div className="col-12">
-                  <br/>
-                  <h3>Formations en cours</h3>
-                  <br/>
-                  <table className="table">
-              <thead className="thead-light">
-                <tr>
+                  <div className="col-12">
+                    <br/>
+                    <h3>Formations en cours</h3>
+                    <br/>
+                    <table className="table">
+                      <thead className="thead-light">
+                        <tr>
 
-                  <th>Libéllé </th>
-                  <th>Date Debut </th>
-                  <th>Date Fin </th>
-                  <th>Thème </th>
-                  <th>Voir Plus </th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.FormationsEnCours() }
-              </tbody>
-            </table>
-            
-                </div>
-                
+                          <th>Libéllé </th>
+                          <th>Date Debut </th>
+                          <th>Date Fin </th>
+                          <th>Thème </th>
+                          <th>Voir Plus </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        { this.FormationsEnCours() }
+                      </tbody>
+                    </table>              
+                  </div>                
                 </Tab>
+
                 <Tab  title="Formations à venir" eventKey="Formations_A_Venir" >
-                <div className="col-12">
-                  <br/>
-                  <h3>Formations à venir</h3>
-                  <br/>
-                  <table className="table">
-              <thead className="thead-light">
-                <tr>
+                  <div className="col-12">
+                    <br/>
+                    <h3>Formations à venir</h3>
+                    <br/>
+                    <table className="table">
+                    <thead className="thead-light">
+                      <tr>
 
-                  <th>Libéllé </th>
-                  <th>Date Debut </th>
-                  <th>Date Fin </th>
-                  <th>Thème </th>
-                  <th>Voir Plus </th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.Formations_A_venir() }
-                
-              </tbody>
-            </table>
-                </div>
+                        <th>Libéllé </th>
+                        <th>Date Debut </th>
+                        <th>Date Fin </th>
+                        <th>Thème </th>
+                        <th>Voir Plus </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      { this.Formations_A_venir() }
+                      
+                    </tbody>
+                    </table>
+                  </div>
                 </Tab>
+
                 <Tab  title="Formations atteintes" eventKey="FormationsAtteintes" >
-                <div className="col-12">
-                  <br/>
-                  <h3>Formations atteintes</h3>
-                  <br/>
-                  <table className="table">
-              <thead className="thead-light">
-                <tr>
+                  <div className="col-12">
+                    <br/>
+                    <h3>Formations atteintes</h3>
+                    <br/>
+                    <table className="table">
+                      <thead className="thead-light">
+                        <tr>
 
-                  <th>Libéllé </th>
-                  <th>Date Debut </th>
-                  <th>Date Fin </th>
-                  <th>Thème </th>
-                  <th>Voir Plus </th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.FormationsAtteintes() }
-                
-              </tbody>
-            </table>
-                </div>
+                          <th>Libéllé </th>
+                          <th>Date Debut </th>
+                          <th>Date Fin </th>
+                          <th>Thème </th>
+                          <th>Voir Plus </th>
+                          <th>évaluation</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        { this.FormationsAtteintes() }
+                        
+                      </tbody>
+                    </table>
+                  </div>
                 </Tab>
-                </Tabs> 
-                  {/*modal formation begin */}
+
+              </Tabs> 
+
+            {/*modal formation begin */}
             <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
               <ModalHeader>
                 {this.state.Formation}

@@ -46,7 +46,7 @@ function RenderCentres ({centre}) {
                 <Card.Body>
                 <div className="row">
                     <div className="col-12 col-lg-5">
-                        <Image src={image} style={{backgroundColor:"white"}} height="200px" width="380px" rounded /></div>
+                        <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
                     <div className="col-12 col-sm-7">
                     <Card.Title>Description:</Card.Title>
                     <Card.Text>{centre.DescriptionCentre}</Card.Text>
@@ -119,7 +119,7 @@ class SearchBar extends Component {
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
                     return (
-                    <li key={formation._id} style={{listStyleType:"none"}}>
+                    <li key={formation._id}  style={{listStyleType:"none"}}>
                     <RenderFormations formation={formation}  key={formation._id}/>
                     <br/>
                     </li>                    
@@ -165,6 +165,7 @@ class SearchBar extends Component {
                 </Form> 
 
             </div>
+
             {list}                               
            
         </div>
