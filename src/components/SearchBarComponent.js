@@ -119,7 +119,7 @@ class SearchBar extends Component {
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
                     return (
-                    <li key={formation._id} style={{listStyleType:"none"}}>
+                    <li key={formation._id}  style={{listStyleType:"none"}}>
                     <RenderFormations formation={formation}  key={formation._id}/>
                     <br/>
                     </li>                    
@@ -165,6 +165,7 @@ class SearchBar extends Component {
                 </Form> 
 
             </div>
+
             {list}                               
            
         </div>

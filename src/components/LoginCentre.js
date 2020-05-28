@@ -36,7 +36,6 @@ const Centre = {
     EmailCentre: this.state.Email,
       passwordCentre: this.state.password
     };
-console.log(Centre);
 this.props.loginCentre(Centre, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   
   };

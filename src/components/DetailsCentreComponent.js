@@ -92,10 +92,9 @@ class DetailCentreComponent extends Component {
 
       const  {search} = this.state;
       const formabyname = this.state.Formation.filter( formation => formation.LibelleFormation.toLowerCase().indexOf(search.toLowerCase()) !== -1 ); 
-      const formabycentre_withouttheme = formabyname.filter(formation => formation.NomCentre === NomCentre);
-      
-      const formabythem = formabyname.filter(formation => formation.NomTheme === this.state.NomTheme );
-      const formabycentre_withtheme = formabythem.filter(formation => formation.NomCentre === NomCentre);
+      const formabycentre = formabyname.filter(formation => formation.NomCentre === NomCentre);
+      const formabythem = formabycentre.filter(formation => formation.NomTheme === this.state.NomTheme );
+
 
       //fonction qui permet d'afficher une formation dans une "Card"
       function RenderFormations ({formation}) {  
@@ -124,14 +123,14 @@ class DetailCentreComponent extends Component {
     } 
 
     const formationList = ( this.state.NomTheme === "") ?
-        formabycentre_withouttheme.map((formation) =>
+        formabycentre.map((formation) =>
           <li key={formation._id} style={{listStyleType:"none"}}>
             <RenderFormations formation={formation}  key={formation._id}/>
             <br/>
           </li>
         )
         :
-        formabycentre_withtheme.map((formation) =>
+        formabythem.map((formation) =>
       <li key={formation._id} style={{listStyleType:"none"}}>
         <RenderFormations formation={formation}  key={formation._id}/>
         <br/>
@@ -158,71 +157,66 @@ class DetailCentreComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                     <div className="row ">
-                <div className="col-4 col-md-4 ">
-                 
-                  <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>               
-                   
-                        
-                        
-                </div> 
-                <div >
-                  <br/>
-                    {/* showing details  begin*/}                    
-                    <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
-                    <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
-                    <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>
-                    <p><b> <span className="fa fa-phone"></span> Tel Centre:</b>   {TelCentre}</p>
-                    <p><b> <span className="fa fa-envelope"></span> Email Centre:</b>   {EmailCentre}</p>
-                    <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
-                    {/* showing details  end*/}               
-                   </div>
-                   </div>
-                   <br/>
-                   <br/>
-                   <h5>Formations proposées par ce centre: </h5>
-                   <hr/>
+                      <div className="col-4 col-md-4 " >
+                        <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>      
+                      </div> 
+                      
+                      <div  >
+                        <br/>
+                          {/* showing details  begin*/}                    
+                          <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
+                          <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
+                          <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>
+                          <p><b> <span className="fa fa-phone"></span> Tel Centre:</b>   {TelCentre}</p>
+                          <p><b> <span className="fa fa-envelope"></span> Email Centre:</b>   {EmailCentre}</p>
+                          <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
+                          {/* showing details  end*/}               
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <h5>Formations proposées par ce centre: </h5>
+                    <hr/>
                    <div className="container">
-            <Form>
+                      <Form>
+                      
+                        <InputGroup  className="mb-3 searchbar">
+                        <Input className=" col-2 form-control"  required type="select"  
+                        id="NomTheme" name="NomTheme"
+                        style={{
+                          backgroundColor: "#FCCA92",
+                          borderRightStyle: "solid",
+                          borderRightWidth: "1px",
+                          borderRightColor:"#0A3642",
+                          color:"#0A3642"}}
+                          value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
+                          <option value="" key={""}> Type ... </option>
+                            {
+                              themes.map(function(NomTheme) {
+                              return (                          
+                                <option key={NomTheme} value={NomTheme}> 
+                                {NomTheme}
+                                </option>                            
+                                  ) ;})
+                            } 
+                        </Input>                            
+                        
+                        <FormControl aria-describedby="basic-addon1"
+                            style={{borderLeftStyleStyle: "solid",
+                            borderLeftWidthWidth: "1px",
+                            borderLeftColor:"#0A3642" }} 
+                            value={this.state.search}
+                            onChange={this.onchange} placeholder="Search.." />                         
+                        </InputGroup>                   
+                      </Form>
+                    
+                     
+                     {formationList}
             
-              <InputGroup  className="mb-3 searchbar">
-              <Input className=" col-2 form-control"  required type="select"  
-              id="NomTheme" name="NomTheme"
-              style={{
-                backgroundColor: "#FCCA92",
-                borderRightStyle: "solid",
-                borderRightWidth: "1px",
-                borderRightColor:"#0A3642",
-                color:"#0A3642"}}
-                value={this.state.NomTheme} onChange={this.onChangeNomTheme} >
-                <option value="" key={""}> Type ... </option>
-                  {
-                    themes.map(function(NomTheme) {
-                    return (                          
-                      <option key={NomTheme} value={NomTheme}> 
-                      {NomTheme}
-                      </option>                            
-                        ) ;})
-                  } 
-              </Input>                            
-              
-              <FormControl aria-describedby="basic-addon1"
-                  style={{borderLeftStyleStyle: "solid",
-                  borderLeftWidthWidth: "1px",
-                  borderLeftColor:"#0A3642" }} 
-                  value={this.state.search}
-                  onChange={this.onchange} placeholder="Search.." />                         
-               </InputGroup>                   
-            </Form>
-              
-                {formationList}
-                  
-              
-            
-            
-            </div>
+                  </div>
           
 
-                </div>
+            </div>
             </div>
     );    
 

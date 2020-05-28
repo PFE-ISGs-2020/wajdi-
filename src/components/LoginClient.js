@@ -40,7 +40,6 @@ if (nextProps.errors) {
         emailClient: this.state.emailClt,
         passwordClient: this.state.passwordClt
         };
-    console.log(Client);
     this.props.loginClient(Client, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
       
       };
