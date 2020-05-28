@@ -174,7 +174,6 @@ render() {
                     <table className="table">
                       <thead className="thead-light">
                         <tr>
-
                           <th>Libéllé </th>
                           <th>Date Debut </th>
                           <th>Date Fin </th>
@@ -185,7 +184,6 @@ render() {
                       </thead>
                       <tbody>
                         { this.FormationsAtteintes() }
-                        
                       </tbody>
                     </table>
                   </div>
