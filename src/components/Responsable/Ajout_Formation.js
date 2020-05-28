@@ -182,13 +182,13 @@ class AjoutFormation extends Component {
         formation.append("imageFormation", this.state.image);}
         
         axios.post('http://localhost:5000/Formation/add', formation)
-        .then(
-        console.log(formation))
+        .then( window.location = '/FormationList')
+       
         .catch((error) => {
             console.log(error);
           });
           
-        window.location = '/FormationList';
+       
         
     }
 
@@ -252,11 +252,11 @@ class AjoutFormation extends Component {
                             
                             className="process__upload-btn"
                             onChange={this.onChangeImage} />
+                            <br/>
+                            <img src= {image} alt="" 
+                            width="300" height="200" />
                             </Col>
                             </FormGroup>
-                            <img src= {image} alt="" 
-                            width="300" height="200" /> 
-                            
                                 <FormGroup row>
                                     <br/>
                                     <Label htmlFor="CodeFormation" md={5}><b>Code Formation</b></Label>
@@ -364,9 +364,10 @@ class AjoutFormation extends Component {
                                 </FormGroup> 
 
                                 <FormGroup row>
+                                    <Label md={5}>  </Label>
                                     <Col> 
                                     <br/>                       
-                                        <input type="submit" value="Creation Formation" className="btn btn-primary offset-3" /> 
+                                        <input type="submit" value="Ajouter" className="btn btn-primary " /> 
                                         <a className="offset-1 btn btn-secondary" href="/FormationList">
                                         Annuler
                                     </a>                        

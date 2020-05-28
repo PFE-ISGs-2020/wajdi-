@@ -127,13 +127,13 @@ class DetailFormationComponent extends Component {
                                     EtatInscription:false,
                                     Id_Formation: this.state.formationn._id
                                     }
-                                    if(moment().isAfter(inscription.Id_Formation.DateDebutFormation ) ){
+                                    if(moment().isBefore(DateDebutFormation ) ){
                                         console.log(inscription);
                                         axios.post('http://localhost:5000/Details_Inscription/add', inscription)
                                         .then(res => {
                                         alert(res.data );})  
                                     }else{
-                                        alert("Vous ne pouvez pas etre inscrit a cette formation car elle a commancer ");
+                                        alert("Vous ne pouvez pas s'inscrire à cette formation car elle s'est passée ");
                                     }
                                     
 
