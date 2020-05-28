@@ -59,7 +59,7 @@ class MesAchats extends Component {
         toggleModalFormation={this.toggleModalFormation}
         key={currentDetails._id} /> );
       }
-      return (null);
+      else {return null;} 
     });
   }
 
@@ -85,7 +85,7 @@ class MesAchats extends Component {
             </tr>
           );
       }
-      return (null);
+      else {return null;} 
     });
   }
 
@@ -97,7 +97,7 @@ class MesAchats extends Component {
         toggleModalFormation={this.toggleModalFormation}
         key={currentDetails._id} />;
       }
-      return (null);
+      else {return null;} 
       });
   }
 
