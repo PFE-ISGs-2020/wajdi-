@@ -65,18 +65,12 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to='/QuiSommesNous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
-                            
-                            {/* {/*webmaster button begin 
-                            <NavItem>
-                                <NavLink className="nav-link" to='/DemandeList'><span className="fa fa-info fa-lg"/> webmaster </NavLink>
-                            </NavItem>
-                            {/*webmaster button end */} 
                     
                             </Nav>
 
                             <Nav  className="ml-auto navbar" >
                                 <NavItem >
-                                    <Button style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}}  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Etudiant</Button>
+                                    <Button style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}}  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Client</Button>
                                 </NavItem>
 
                                 <NavItem className="m-2">
