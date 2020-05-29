@@ -124,13 +124,13 @@ class MesAchats extends Component {
                           <StarRatingComponent 
                             name={currentDetails.Id_Formation._id} 
                             starCount={5} 
-                            value={0} 
+                            value={1} 
                             onStarClick={this.onStarClick.bind(this)} />) ;
                           }  
 
                   })
 
-                  //-----------------------------
+                //-----------------------------
                 }
 
 
