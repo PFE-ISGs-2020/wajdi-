@@ -31,6 +31,7 @@ class MesAchats extends Component {
         this.toggleModalFormation = this.toggleModalFormation.bind(this);
         this.state = {
           Cours: [],
+          Evaluation:[],
           //For Modal Formation
           Formation :  null,
           isModalFormationOpen: false, 
@@ -38,7 +39,6 @@ class MesAchats extends Component {
           rating: 0
          };
     }
-
     
     
     componentDidMount(){
@@ -48,7 +48,14 @@ class MesAchats extends Component {
       this.setState({ Cours: Details.data})
     })
 
-  }
+    axios.get('http://localhost:5000/Evaluation_Formation/client/'+client.id)
+    .then(Avis => {
+      this.setState({ Evaluation : Avis.data})
+      console.log(Avis);
+    })
+
+
+    }
 
   FormationsEnCours() {
     return this.state.Cours.map(currentDetails => {
@@ -72,7 +79,9 @@ class MesAchats extends Component {
     }      
     console.log(avis);        
     axios.post('http://localhost:5000/Evaluation_Formation/add', avis)
-    .then(res => console.log(res.data))
+    .then(
+      res => console.log(res.data) 
+      )
     .catch((error) => {
         console.log(error);
       });  
@@ -80,7 +89,6 @@ class MesAchats extends Component {
  
 
   FormationsAtteintes() {
-    const { rating } = this.state;
   
     return this.state.Cours.map(currentDetails => {
       if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
@@ -96,12 +104,36 @@ class MesAchats extends Component {
                 <span className="fa fa-info "></span>
               </Button>
               </td> 
+               
               <td>
-                <StarRatingComponent 
-                name={currentDetails.Id_Formation._id} 
-                starCount={5} 
-                value={rating} 
-                onStarClick={this.onStarClick.bind(this)}/>               
+                {
+                //--------------problem here !!!!!!!!!!!!!------------------------------
+                  this.state.Evaluation.map(avis =>{
+                    if(avis){
+                        if(avis.Id_Formation === currentDetails.Id_Formation._id){
+                          return (
+                            <StarRatingComponent 
+                              name={avis.Id_Formation} 
+                              starCount={5} 
+                              value={avis.StartFormation} 
+                              onStarClick={this.onStarClick.bind(this)} 
+                              key={avis._id}  /> );
+                        } 
+                    } else { 
+                        return (
+                          <StarRatingComponent 
+                            name={currentDetails.Id_Formation._id} 
+                            starCount={5} 
+                            value={0} 
+                            onStarClick={this.onStarClick.bind(this)} />) ;
+                          }  
+
+                  })
+
+                  //-----------------------------
+                }
+
+
               </td>
             </tr>
           );
