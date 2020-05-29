@@ -32,6 +32,7 @@ class MesAchats extends Component {
         this.state = {
           Cours: [],
           Evaluation:[],
+          StillAvis: true,
           //For Modal Formation
           Formation :  null,
           isModalFormationOpen: false, 
@@ -80,7 +81,8 @@ class MesAchats extends Component {
     console.log(avis);        
     axios.post('http://localhost:5000/Evaluation_Formation/add', avis)
     .then(
-      res => console.log(res.data) 
+      res => console.log(res.data) ,
+      window.location='/MesAchats'
       )
     .catch((error) => {
         console.log(error);
@@ -92,6 +94,18 @@ class MesAchats extends Component {
   
     return this.state.Cours.map(currentDetails => {
       if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
+        let nbStars = 0;
+       
+          this.state.Evaluation.map(avis =>{
+
+                if(avis.Id_Formation === currentDetails.Id_Formation._id){
+                  
+                      nbStars=avis.StartFormation
+                } 
+              
+          } )
+
+         
         return (
             <tr key={currentDetails._id}>
               <td>{currentDetails.Id_Formation.LibelleFormation}</td>
@@ -107,30 +121,13 @@ class MesAchats extends Component {
                
               <td>
                 {
-                //--------------problem here !!!!!!!!!!!!!------------------------------
-                  this.state.Evaluation.map(avis =>{
-                    if(avis){
-                        if(avis.Id_Formation === currentDetails.Id_Formation._id){
-                          return (
-                            <StarRatingComponent 
-                              name={avis.Id_Formation} 
-                              starCount={5} 
-                              value={avis.StartFormation} 
-                              onStarClick={this.onStarClick.bind(this)} 
-                              key={avis._id}  /> );
-                        } 
-                    } else { 
-                        return (
-                          <StarRatingComponent 
-                            name={currentDetails.Id_Formation._id} 
-                            starCount={5} 
-                            value={0} 
-                            onStarClick={this.onStarClick.bind(this)} />) ;
-                          }  
-
-                  })
-
-                  //-----------------------------
+                  <StarRatingComponent 
+                  name={currentDetails.Id_Formation._id} 
+                  starCount={5} 
+                  value={nbStars} 
+                  onStarClick={this.onStarClick.bind(this)} 
+                   />
+          
                 }
 
 
