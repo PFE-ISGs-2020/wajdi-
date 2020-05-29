@@ -17,7 +17,8 @@ const Details = props => (
     <td>{moment(props.Details_Inscription.Id_Formation.DateFinFormation).format('DD/MM/YYYY')} </td>
     <td>{props.Details_Inscription.Id_Formation.NomTheme}</td>
     <td>
-    <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalFormation(props.Details_Inscription.Id_Formation._id, props.Details_Inscription.Id_Formation.LibelleFormation)}}>
+    <Button className="btn btn-secondary btn-sm" onClick={ () => 
+      { props.toggleModalFormation(props.Details_Inscription.Id_Formation._id, props.Details_Inscription.Id_Formation.LibelleFormation)}}>
       <span className="fa fa-info "></span>
     </Button>
     </td> 
@@ -27,21 +28,18 @@ const Details = props => (
 class MesAchats extends Component {
     constructor(props) {
         super(props);
-        this.toggleModalFormation = this.toggleModalFormation.bind(this)
-
+        this.toggleModalFormation = this.toggleModalFormation.bind(this);
         this.state = {
           Cours: [],
+          Evaluation:[],
           //For Modal Formation
           Formation :  null,
           isModalFormationOpen: false, 
           Id_Formation: null,
-          rating: 1
+          rating: 0
          };
     }
-
-    onStarClick(nextValue, prevValue, name) {
-      this.setState({rating: nextValue});
-    }
+    
     
     componentDidMount(){
       const {client} = this.props.authClient;
@@ -50,7 +48,14 @@ class MesAchats extends Component {
       this.setState({ Cours: Details.data})
     })
 
-  }
+    axios.get('http://localhost:5000/Evaluation_Formation/client/'+client.id)
+    .then(Avis => {
+      this.setState({ Evaluation : Avis.data})
+      console.log(Avis);
+    })
+
+
+    }
 
   FormationsEnCours() {
     return this.state.Cours.map(currentDetails => {
@@ -62,10 +67,29 @@ class MesAchats extends Component {
       else {return null;} 
     });
   }
-
+  
+  onStarClick(rating,prevValue,ID_F ) {
+    const {client} = this.props.authClient;
+    this.setState({rating:rating});
+  
+     const avis = {
+      Id_Client:client.id,
+      Id_Formation:ID_F,
+      StartFormation: rating  
+    }      
+    console.log(avis);        
+    axios.post('http://localhost:5000/Evaluation_Formation/add', avis)
+    .then(
+      res => console.log(res.data) 
+      )
+    .catch((error) => {
+        console.log(error);
+      });  
+  }
+ 
 
   FormationsAtteintes() {
-    const { rating } = this.state;
+  
     return this.state.Cours.map(currentDetails => {
       if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
         return (
@@ -75,12 +99,41 @@ class MesAchats extends Component {
               <td>{moment(currentDetails.Id_Formation.DateFinFormation).format('DD/MM/YYYY')} </td>
               <td>{currentDetails.Id_Formation.NomTheme}</td>
               <td>
-              <Button className="btn btn-secondary btn-sm" onClick={ () => {this.toggleModalFormation(currentDetails.Id_Formation._id, currentDetails.Id_Formation.LibelleFormation)}}>
+              <Button className="btn btn-secondary btn-sm" onClick={ () => 
+                {this.toggleModalFormation(currentDetails.Id_Formation._id, currentDetails.Id_Formation.LibelleFormation)}}>
                 <span className="fa fa-info "></span>
               </Button>
               </td> 
-              <td><StarRatingComponent name="rateFormation" starCount={5} value={rating} onStarClick={this.onStarClick.bind(this)}/>
-              {rating}
+               
+              <td>
+                {
+                //--------------problem here !!!!!!!!!!!!!------------------------------
+                  this.state.Evaluation.map(avis =>{
+                    if(avis){
+                        if(avis.Id_Formation === currentDetails.Id_Formation._id){
+                          return (
+                            <StarRatingComponent 
+                              name={avis.Id_Formation} 
+                              starCount={5} 
+                              value={avis.StartFormation} 
+                              onStarClick={this.onStarClick.bind(this)} 
+                              key={avis._id}  /> );
+                        } 
+                    } else { 
+                        return (
+                          <StarRatingComponent 
+                            name={currentDetails.Id_Formation._id} 
+                            starCount={5} 
+                            value={0} 
+                            onStarClick={this.onStarClick.bind(this)} />) ;
+                          }  
+
+                  })
+
+                  //-----------------------------
+                }
+
+
               </td>
             </tr>
           );
@@ -174,7 +227,6 @@ render() {
                     <table className="table">
                       <thead className="thead-light">
                         <tr>
-
                           <th>Libéllé </th>
                           <th>Date Debut </th>
                           <th>Date Fin </th>
@@ -185,7 +237,6 @@ render() {
                       </thead>
                       <tbody>
                         { this.FormationsAtteintes() }
-                        
                       </tbody>
                     </table>
                   </div>
