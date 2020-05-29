@@ -153,20 +153,7 @@ class AjoutFormation extends Component {
     onSubmit(e) {
         e.preventDefault();
         const {centre} = this.props.auth;
-         /*const formation = {
-            CodeFormation: this.state.CodeFormation,
-            LibelleFormation: this.state.LibelleFormation,
-            DateDebutFormation: this.state.DateDebutFormation,
-            DateFinFormation: this.state.DateFinFormation,
-            DescriptionFormation: this.state.DescriptionFormation,
-            CapaciteFormation:  this.state.CapaciteFormation,
-            NomTheme: this.state.NomTheme,
-            NomFormateur: this.state.NomFormateur,
-            NomCentre:centre.NomCentre  ,
-            Prix: this.state.Prix
-        }
-      
-        console.log(formation); */
+
         let formation = new FormData();
         formation.append(    "CodeFormation", this.state.CodeFormation);
         formation.append(    "LibelleFormation", this.state.LibelleFormation);
@@ -186,9 +173,7 @@ class AjoutFormation extends Component {
        
         .catch((error) => {
             console.log(error);
-          });
-          
-       
+          });      
         
     }
 

@@ -51,6 +51,8 @@ const FormationRouter = require('./routes/Formation');
 const FormateurRouter = require('./routes/Formateur');
 const ThemeRouter = require('./routes/Theme');
 const Details_Inscription_Router =  require('./routes/Details_Inscription');
+const Evaluation_Formation_Router =  require('./routes/Evaluation_Formation');
+
 //to save an image
 const ImageRouter = require('./routes/image');
 //use the files
@@ -60,6 +62,8 @@ app.use('/Formation', FormationRouter);
 app.use('/Formateur', FormateurRouter);
 app.use('/Theme', ThemeRouter);
 app.use('/Details_Inscription', Details_Inscription_Router);
+app.use('/Evaluation_Formation', Evaluation_Formation_Router);
+
 //to save an image
 app.use('/uploads', express.static('uploads'));
 app.use('/image', ImageRouter);
