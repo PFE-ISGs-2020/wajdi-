@@ -119,19 +119,19 @@ class SearchBar extends Component {
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
                     return (
-                    <li key={formation._id}  style={{listStyleType:"none"}}>
+                    <div key={formation._id}  style={{listStyleType:"none"}} className="col-4">
                     <RenderFormations formation={formation}  key={formation._id}/>
-                    <br/>
-                    </li>                    
+                    
+                    </div>                    
                     )
                     })
                 :
                 filteredCentres.map(centre => { 
                     return  (
-                    <li key={centre._id} style={{listStyleType:"none"}}>
+                    <div key={centre._id} style={{listStyleType:"none"}}>
                     <RenderCentres centre={centre}  key={centre._id}/> 
-                    <br/>
-                    </li>                   
+                    
+                    </div>                   
                     )
                     })
 
