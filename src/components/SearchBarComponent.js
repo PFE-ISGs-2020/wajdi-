@@ -1,8 +1,9 @@
   
 import React, { Component } from 'react';
-import {InputGroup,FormControl,Card,Form} from 'react-bootstrap';
+import {InputGroup,FormControl,Form} from 'react-bootstrap';
 import axios from 'axios';
-import { Input } from 'reactstrap';
+import { Input, Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import DefaultImg from '../assets/default-img.jpg'; 
 import {Image} from 'react-bootstrap';
@@ -14,7 +15,7 @@ function RenderFormations ({formation}) {
       image = "http://localhost:5000/"+formation.imageFormation;
       }
     return (   
-        <Card  className="card " key={formation._id}>            
+       /*  <Card  className="card " key={formation._id}>            
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
             <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
             <Card.Body className="cardbody">
@@ -28,7 +29,17 @@ function RenderFormations ({formation}) {
                 </div>
             </Card.Body>
             </Link>            
-        </Card> 
+        </Card>  */
+        <Card key={formation._id} height="300px" width="300px">
+            <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
+        <CardImg src={image} alt="" height="100px" width="100%" />
+        <CardBody>
+        <CardTitle>{formation.LibelleFormation}</CardTitle>
+        <CardSubtitle>Description</CardSubtitle> 
+        <CardText>{formation.DescriptionFormation}</CardText>
+        </CardBody>
+        </Link>
+    </Card>
      
     );
 }   
@@ -119,10 +130,13 @@ class SearchBar extends Component {
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
                     return (
-                    <li key={formation._id}  style={{listStyleType:"none"}}>
+                        <div className="col-12 col-md m-1">
+                   {/*  <li key={formation._id}  style={{listStyleType:"none"}}> */}
                     <RenderFormations formation={formation}  key={formation._id}/>
-                    <br/>
-                    </li>                    
+                   {/* <br/>
+                   
+                    // </li>  */}
+                      </div>            
                     )
                     })
                 :
@@ -165,8 +179,11 @@ class SearchBar extends Component {
                 </Form> 
 
             </div>
-
-            {list}                               
+            <div className= "container">
+                <div className= "row align-items-start"> 
+                    {list} 
+                </div>
+            </div>                              
            
         </div>
 );
