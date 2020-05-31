@@ -80,7 +80,9 @@ class Home extends Component {
             </div>
             <br/>
             <div className="row row-content">
-            <SearchBar/>
+              <div className="col-12">
+                <SearchBar/>
+              </div>
             </div>
             <br/>                      
           </div>  

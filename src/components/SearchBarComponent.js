@@ -1,35 +1,58 @@
   
 import React, { Component } from 'react';
-import {InputGroup,FormControl,Card,Form} from 'react-bootstrap';
+import {InputGroup,FormControl,Form, Card,CardDeck} from 'react-bootstrap';
 import axios from 'axios';
-import { Input } from 'reactstrap';
+import { Input, CardSubtitle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import DefaultImg from '../assets/default-img.jpg'; 
-import {Image} from 'react-bootstrap';
-
+import moment from 'moment';
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {  
       let image = DefaultImg;
       if (formation.imageFormation){
       image = "http://localhost:5000/"+formation.imageFormation;
       }
-    return (   
-        <Card  className="card " key={formation._id}>            
+    return (    
+    <CardDeck  >
+        <Card key={formation._id} style={{width:"160px",height:"500px" }}>
             <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
-            <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
-            <Card.Body className="cardbody">
-                <div className="row">
-                    <div className="col-12 col-lg-5">
-                        <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
-                    <div className="col-12 col-sm-7">
-                    <Card.Title>Description:</Card.Title>                
-                    <Card.Text>{formation.DescriptionFormation}</Card.Text>
-                    </div>
-                </div>
+            <Card.Img variant="top" src={image} alt=""   style={{width:"100%",height:"222px" }}/>
+            <Card.Body>
+            <Card.Title>{formation.LibelleFormation}</Card.Title>
+                    <Card.Subtitle >
+                    Date Debut Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {moment(formation.DateDebutFormation).format('DD/MM/YYYY')}                     
+                    </Card.Text>
+
+                    <Card.Subtitle >
+                    Date Fin Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {moment(formation.DateFinFormation).format('DD/MM/YYYY')}
+                    </Card.Text>
+
+                    <Card.Subtitle >
+                    Theme:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {formation.NomTheme}
+                    </Card.Text> 
+ 
+                    <Card.Subtitle >
+                    Prix Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {formation.Prix}
+                    </Card.Text>
+                    
+                    
             </Card.Body>
-            </Link>            
-        </Card> 
-     
+
+            </Link>
+        </Card>
+    </CardDeck>
     );
 }   
 
@@ -39,22 +62,39 @@ function RenderCentres ({centre}) {
     if (centre.image){
       image = "http://localhost:5000/"+centre.image;
     }
-    return (        
-        <Card className="card" key={centre._id}>            
-            <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
-                <Card.Header className="cardhead" as="h5">{centre.NomCentre}</Card.Header>
+    return (
+        <CardDeck> 
+            <Card key={centre._id} style={{width:"160px",height:"500px" }}>
+                <Link to= {"/DetailCentre/"+ centre._id} style={{color:"black",textDecorationLine:"none" }} > 
+                <Card.Img variant="top" src={image} alt=""   style={{width:"100%",height:"222px" }}/>
                 <Card.Body>
-                <div className="row">
-                    <div className="col-12 col-lg-5">
-                        <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
-                    <div className="col-12 col-sm-7">
-                    <Card.Title>Description:</Card.Title>
-                    <Card.Text>{centre.DescriptionCentre}</Card.Text>
-                    </div>
-                </div>
+                <Card.Title>{centre.NomCentre}</Card.Title>
+
+                    <Card.Subtitle >
+                    Region Centre:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {centre.RegionCentre}
+                    </Card.Text>
+                    <Card.Subtitle >
+                    Tel Centre:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {centre.TelCentre}
+                    </Card.Text>
+                    <Card.Subtitle >
+                    Email Centre:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {centre.EmailCentre}
+                    </Card.Text>                
+
                 </Card.Body>
-            </Link>
-         </Card>        
+
+                </Link>
+            </Card> 
+        </CardDeck>        
+         
     );
 } 
 
@@ -118,29 +158,28 @@ class SearchBar extends Component {
 
         let list=(this.state.Critere === "Formation") ?
                 filteredFormations.map(formation => { 
-                    return (
-                    <div key={formation._id}  style={{listStyleType:"none"}} className="col-4">
-                    <RenderFormations formation={formation}  key={formation._id}/>
-                    
-                    </div>                    
+                    return ( 
+                    <div className="col-md-4 col-5 col-sm-6 " key={formation._id}>                    
+                        <RenderFormations formation={formation}  key={formation._id}/> 
+                    </div>    
                     )
                     })
                 :
                 filteredCentres.map(centre => { 
                     return  (
-                    <div key={centre._id} style={{listStyleType:"none"}}>
-                    <RenderCentres centre={centre}  key={centre._id}/> 
-                    
+                    <div  className="col-md-4 col-5 col-sm-6 "  key={centre._id} >
+                        <RenderCentres centre={centre}  key={centre._id}/>                    
                     </div>                   
                     )
                     })
 
-        return(        
-        <div className="container">
-            <div className="row-12 justify-content-center">
+        return( 
+        <div className="container">   
+            <div className=" ">
+                <div className="row-12  justify-content-center">
                 <Form>
                     <InputGroup  className="mb-3 searchbar">            
-                        <Input className=" col-2 form-control critere"  
+                        <Input className=" col-2  form-control critere"  
                         required type="select"    
                         style={{
                         backgroundColor: "#FCCA92",
@@ -162,13 +201,16 @@ class SearchBar extends Component {
                         onChange={this.onchange} />
 
                     </InputGroup>
-                </Form> 
-
+                </Form>
+                </div>
             </div>
 
-            {list}                               
-           
-        </div>
+            <div className= "row">                     
+                {list} 
+            </div>
+                            
+        </div>       
+        
 );
 }
 
