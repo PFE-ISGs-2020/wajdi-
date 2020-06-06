@@ -7,13 +7,13 @@ module.exports = function validateLoginClientInput(data) {
   data.passwordClient = !isEmpty(data.passwordClient) ? data.passwordClient : "";
 // Email checks
   if (Validator.isEmpty(data.emailClient)) {
-    errors.emailClient = "Email field is required";
+    errors.emailClient = "Ce champ est obligatoir";
   } else if (!Validator.isEmail(data.emailClient)) {
-    errors.emailClient = "Email is invalid";
+    errors.emailClient = "Email est invalide";
   }
 // Password checks
   if (Validator.isEmpty(data.passwordClient)) {
-    errors.passwordClient = "Password field is required";
+    errors.passwordClient = "Ce champ est obligatoir";
   }
 return {
     errors,

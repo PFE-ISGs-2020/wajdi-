@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
 import DefaultImg from '../assets/default-img.jpg';
+import Footer from './FooterComponent';
 
 class DetailFormationComponent extends Component {  
     _isMounted = false;
@@ -16,7 +17,8 @@ class DetailFormationComponent extends Component {
         this.state = {
             formationn:this.props.formation ? this.props.formation:JSON.parse(localStorage.getItem('object')),
             Inscription: "",
-            message: ""
+            message: "",
+            centre:""
         };          
     }
     
@@ -35,6 +37,14 @@ class DetailFormationComponent extends Component {
             if (this._isMounted) {
             this.setState({ formationn: formation.data })
             console.log(this.props.formation);
+            }
+        })
+
+        axios.get('http://localhost:5000/Centre/'+this.state.formationn.NomCentre)
+          .then( centre => {
+            if (this._isMounted) {
+            this.setState({ centre: centre.data })
+            console.log(this.props.centre);
             }
         })
         }
@@ -82,15 +92,16 @@ class DetailFormationComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                 
-                    <div className="container">    
+                    <div className="container ">    
                         {/* showing details  begin*/}
+                        <div className="row justify-content-center">
                         <div className="row">                 
                             <img src={imageFormation} alt="photo_de_la_formation" width="600px" height="300px"/>                      
                         </div>
                         <br/>
                         <div>
                         <div className="row"> 
-                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> {NomCentre}</p>
+                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> <a href= { "/DetailCentre/" + this.state.centre} > {NomCentre} </a> </p>
                         </div>
                         <div className="row">
                             <p><b><span className="fa fa-calendar"></span> Date debut: </b>  
@@ -112,6 +123,7 @@ class DetailFormationComponent extends Component {
                         <div className="row">
                             <p><span className="fa fa-align-justify"></span><b> Description:</b> {DescriptionFormation}</p>
                         </div> 
+                        </div>
                         {/* showing details  end*/}
 
                         {/* s'inscrire Button  begin*/}
@@ -119,20 +131,21 @@ class DetailFormationComponent extends Component {
 
                             {
                                 if(client){
-                                    const inscription = {
-                                    Id_Client:client.id,
-                                    NomClient:client.NomClient ,
-                                    PrenomClient:client.PrenomClient,
-                                    EtatInscription:false,
-                                    Id_Formation: this.state.formationn._id
-                                    }
+                                    
                                     if(moment().isBefore(DateDebutFormation ) ){
+                                        const inscription = {
+                                            Id_Client:client.id,
+                                            NomClient:client.NomClient ,
+                                            PrenomClient:client.PrenomClient,
+                                            EtatInscription:false,
+                                            Id_Formation: this.state.formationn._id
+                                            }
                                         console.log(inscription);
                                         axios.post('http://localhost:5000/Details_Inscription/add', inscription)
                                         .then(res => {
                                         alert(res.data );})  
                                     }else{
-                                        alert("Vous ne pouvez pas s'inscrire à cette formation car elle s'est passée ");
+                                        alert("Vous ne pouvez pas s'inscrire à cette formation car elle est dépassée ");
                                     }
                                     
 
@@ -155,6 +168,8 @@ class DetailFormationComponent extends Component {
                         </div>
                     
                 </div>
+                <br/>
+                <Footer/>
             </div>
     );    
 

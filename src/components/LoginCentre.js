@@ -65,8 +65,11 @@ return (
                 <Input type="password" placeholder="Mot de passe" onChange={this.onChange} 
                  value={this.state.passwordCentre}  error={errors.passwordCentre} id="password"
                  className={classnames("", { invalid: errors.passwordCentre || errors.passwordincorrect })}/>
-                <span className="red-text"> {errors.passwordCentre} {errors.passwordincorrect}</span>
-            </InputGroup>            
+                
+            </InputGroup>  
+            <br/>
+                <span className="red-text"> 
+                {errors.passwordCentre} {errors.passwordincorrect}</span>          
             <br/>
             <Col md={{size: 10, offset: 9}}>
                     <Button type="submit" value="submit" color="primary">Login</Button>

@@ -26,6 +26,7 @@ import ModifierCentre from './components/Responsable/Modifier_Centre';
 
 import HomeWebmaster from './components/Webmaster/HomeWebmaster';
 import DemandeList from './components/Webmaster/DemandeCentre';
+import ThemeList from './components/Webmaster/Liste_Themes';
 
 import loginwebmaster from './components/Webmaster/LoginWebmaster';
 import MainClient from './components/mainClient';
@@ -123,6 +124,7 @@ if (localStorage.jwtToken) {
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
         <Route path="/DemandeList" exact component={DemandeList} />
         <Route path="/img" exact component={img} />
+        <Route path="/ThemeList" exact component={ThemeList} />
 
         </Switch>
       </div>
