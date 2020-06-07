@@ -15,7 +15,7 @@ const Details = props => (
     <td>{moment(props.Details_Inscription.Id_Formation.DateFinFormation).format('DD/MM/YYYY')}</td>
     <td>{props.Details_Inscription.Id_Formation.NomTheme}</td>
     <td>
-    <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalFormation(props.Details_Inscription.Id_Formation._id, props.Details_Inscription.Id_Formation.LibelleFormation, props.Details_Inscription.Id_Formation.NomCentre)}}>
+    <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalFormation(props.Details_Inscription.Id_Formation._id, props.Details_Inscription.Id_Formation.LibelleFormation, props.Details_Inscription.Id_Formation.NomCentre, props.Details_Inscription.createdAt)}}>
       <span className="fa fa-info "></span>
     </Button>
     </td> 
@@ -46,6 +46,7 @@ class MesDemandes extends Component {
           NomCentre: null,
           isModalFormationOpen: false, 
           Id_Formation: null,
+          createdAt: ""
          };
     }
 
@@ -75,12 +76,13 @@ class MesDemandes extends Component {
     });
   }
 
-  toggleModalFormation(id, Formation, NomCentre) {
+  toggleModalFormation(id, Formation, NomCentre, createdAt) {
     this.setState({
       isModalFormationOpen: !this.state.isModalFormationOpen,
      Id_Formation: id,
      Formation: Formation,
-     NomCentre: NomCentre
+     NomCentre: NomCentre, 
+     createdAt: createdAt
      
     });  
   }
@@ -146,6 +148,7 @@ render() {
               <ModalBody> 
               <CardFormation  Id_Formation={this.state.Id_Formation} />
                 <p> <b>Centre:</b> { this.state.NomCentre }</p>
+                <p>Cette demande a été envoyée le {moment(this.state.createdAt).format('DD/MM/YYYY')} </p>
               </ModalBody>
             </Modal>
             {/*modal formation end */}  

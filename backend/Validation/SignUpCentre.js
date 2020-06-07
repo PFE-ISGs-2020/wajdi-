@@ -18,13 +18,13 @@ module.exports = function validateRegisterInput(data) {
   }
 // Email checks
   if (Validator.isEmpty(data.EmailCentre)) {
-    errors.EmailCentre = "Email Centre field is required";
+    errors.EmailCentre = "Email Centre obligatoir";
   } else if (!Validator.isEmail(data.EmailCentre)) {
-    errors.EmailCentre = "Email Centre is invalid";
+    errors.EmailCentre = "Email Centre est invalide";
   }
   // Adresse checks
   if (Validator.isEmpty(data.AdresseCentre)) {
-    errors.AdresseCentre = "AdresseCentre est obligatoire";
+    errors.AdresseCentre = "Adresse Centre est obligatoire";
   }
   // Tel checks
   if (Validator.isEmpty(data.TelCentre)) {
@@ -40,13 +40,13 @@ module.exports = function validateRegisterInput(data) {
   }
 // Password checks
   if (Validator.isEmpty(data.passwordCentre)) {
-    errors.passwordCentre = "password Centre field is required";
+    errors.passwordCentre = "mot de passe est obligatoir";
   }
 if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "Confirm password field is required";
+    errors.password2 = "Vous devez confirmer mot de passe";
   }
 if (!Validator.isLength(data.passwordCentre, { min: 8 })) {
-    errors.passwordCentre = "Password must be at least 8 characters";
+    errors.passwordCentre = "Le mot de passe doit être de longueur minimum égale à 8";
   }
 if (!Validator.equals(data.passwordCentre, data.password2)) {
     errors.password2 = "Passwords must match";

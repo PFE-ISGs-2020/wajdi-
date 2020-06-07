@@ -169,7 +169,7 @@ export default class ModiferFormateur extends Component {
                             <FormGroup row>
                                 <Col> 
                                 <br/>                       
-                                    <input type="submit" value="Modifer " className="btn btn-primary offset-8" />                         
+                                    <input type="submit" value="Modifier " className="btn btn-primary offset-8" />                         
                                     <a className="offset-1 btn btn-secondary" href="/FormateurList">
                                         Annuler
                                     </a>

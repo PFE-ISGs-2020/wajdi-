@@ -85,7 +85,7 @@ class HeaderClient extends Component {
                                         </Dropdown.Item>
 
                                         <Dropdown.Item href="/MesAchats" >
-                                        <span className="fa fa-shopping-cart"></span>  Mes Cours
+                                        <span className="fa fa-shopping-cart"></span>  Mes Formations
                                         </Dropdown.Item>
                                         
                                         <Dropdown.Item href={"/MesDemandes/" + this.state.Client._id } >

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import {Breadcrumb, BreadcrumbItem, InputGroup,FormControl,Form,Card} from 'react-bootstrap';
+import {Breadcrumb, BreadcrumbItem, InputGroup,FormControl,Form,Card, CardDeck} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {Input} from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import HeaderClient from './Header_Client';
 import DefaultImg from '../assets/default-img.jpg'; 
-import {Image} from 'react-bootstrap';
+import moment from 'moment';
+
 class DetailCentreComponent extends Component {
     _isMounted = false;
     constructor(props) {
@@ -103,38 +105,61 @@ class DetailCentreComponent extends Component {
         image = "http://localhost:5000/"+formation.imageFormation;
         }
       return (   
-          <Card  className="card " key={formation._id}>            
-              <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
-              <Card.Header className="cardhead" as="h5"  >{formation.LibelleFormation}</Card.Header>
-              <Card.Body className="cardbody">
-                  <div className="row">
-                      <div className="col-12 col-lg-5">
-                          <Image src={image} style={{backgroundColor:"white"}} height="250px" width="380px" rounded /></div>
-                      <div className="col-12 col-sm-7">
-                      <Card.Title>Description:</Card.Title>                
-                      <Card.Text>{formation.DescriptionFormation}</Card.Text>
-                      </div>
-                  </div>
-              </Card.Body>
-              </Link>            
-          </Card> 
+        <CardDeck  >
+        <Card key={formation._id} style={{width:"160px",height:"500px" }}>
+            <Link to= {"/DetailFormation/"+ formation._id}  style={{color:"black",textDecorationLine:"none" }} > 
+            <Card.Img variant="top" src={image} alt=""   style={{width:"100%",height:"222px" }}/>
+            <Card.Body>
+            <Card.Title>{formation.LibelleFormation}</Card.Title>
+                    <Card.Subtitle >
+                    Date Debut Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {moment(formation.DateDebutFormation).format('DD/MM/YYYY')}                     
+                    </Card.Text>
+
+                    <Card.Subtitle >
+                    Date Fin Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {moment(formation.DateFinFormation).format('DD/MM/YYYY')}
+                    </Card.Text>
+
+                    <Card.Subtitle >
+                    Theme:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {formation.NomTheme}
+                    </Card.Text> 
+ 
+                    <Card.Subtitle >
+                    Prix Formation:                     
+                    </Card.Subtitle>
+                    <Card.Text>
+                    {formation.Prix}
+                    </Card.Text>
+                    
+                    
+            </Card.Body>
+
+            </Link>
+        </Card>
+    </CardDeck>
        
       );
     } 
 
     const formationList = ( this.state.NomTheme === "") ?
         formabycentre.map((formation) =>
-          <li key={formation._id} style={{listStyleType:"none"}}>
-            <RenderFormations formation={formation}  key={formation._id}/>
-            <br/>
-          </li>
+        <div className="col-md-4 col-5 col-sm-6 " key={formation._id}>                    
+          <RenderFormations formation={formation}  key={formation._id}/> 
+        </div>
         )
         :
         formabythem.map((formation) =>
-      <li key={formation._id} style={{listStyleType:"none"}}>
-        <RenderFormations formation={formation}  key={formation._id}/>
-        <br/>
-      </li>
+        <div className="col-md-4 col-5 col-sm-6 " key={formation._id}>                    
+        <RenderFormations formation={formation}  key={formation._id}/> 
+    </div>
     );
 
         const {client} = this.props.authClient;
@@ -210,13 +235,16 @@ class DetailCentreComponent extends Component {
                         </InputGroup>                   
                       </Form>
                     
-                     
+                    <div className= "row"> 
                      {formationList}
+                    </div>
             
                   </div>
           
 
             </div>
+            <br/>
+              <Footer/>
             </div>
     );    
 

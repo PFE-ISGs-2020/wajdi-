@@ -52,6 +52,12 @@ router.route('/Acces').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:NomCentre').get((req, res) => {
+  Centre.findOne({ NomCentre: req.params.NomCentre })
+  .then(centre => res.json(centre._id))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/List').get((req, res) => {
     Centre.find({ Acces: 1 })
     .then(centres => res.json(centres))
@@ -68,7 +74,7 @@ router.route('/add').post(  (req, res)=> {
     }
   Centre.findOne({ EmailCentre: req.body.EmailCentre }).then(centre => {
       if (centre) {
-        return res.status(400).json({ EmailCentre: "Email Centre already exists" });
+        return res.status(400).json({ EmailCentre: "Il existe un autre compte avec cet email!" });
       } else {
          
         const newCentre = new Centre({
@@ -182,7 +188,7 @@ router.route('/loginCentre').post((req, res)=> {
       return res.status(404).json({ emailnotfound: "Email introuvable" });
     }
     if (!centre.Acces ){
-      return res.status(404).json({ passwordCentre: "Demande en cours de consultation" });
+      return res.status(404).json({ passwordCentre: "Votre demande d'activation de compte est en cours de consultation" });
     }
   // Check password
       bcrypt.compare(passwordCentre, centre.passwordCentre).then(isMatch => {

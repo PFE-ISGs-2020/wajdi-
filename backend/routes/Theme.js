@@ -15,7 +15,7 @@ router.route('/add').post((req, res) => {
   });
 
   newTheme.save()
-  .then(() => res.json('Theme ajouter!'))
+  .then(() => res.json('Thème ajouté!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -27,7 +27,7 @@ router.route('/:id').get((req, res) => {
 
 router.route('/:id').delete((req, res) => {
     Theme.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Theme deleted.'))
+    .then(() => res.json('Thème supprimé.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -38,7 +38,7 @@ router.route('/update/:id').post((req, res) => {
         theme.NomTheme = req.body.NomTheme;
 
         theme.save()
-        .then(() => res.json('Theme Modifer!'))
+        .then(() => res.json('Thème Modifié!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
