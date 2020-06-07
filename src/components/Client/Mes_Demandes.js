@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
 import axios from 'axios';
-import CardFormation from '../CardFormation'
+import CardFormation from '../CardFormation';
 import HeaderClient from '../Header_Client';
 import moment from 'moment';
 

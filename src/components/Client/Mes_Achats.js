@@ -88,24 +88,18 @@ class MesAchats extends Component {
         console.log(error);
       });  
   }
- 
 
-  FormationsAtteintes() {
-  
+
+  FormationsAtteintes() {  
     return this.state.Cours.map(currentDetails => {
       if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
         let nbStars = 0;
        
           this.state.Evaluation.map(avis =>{
-
-                if(avis.Id_Formation === currentDetails.Id_Formation._id){
-                  
-                      nbStars=avis.StartFormation
-                } 
-              
-          } )
-
-         
+              if(avis.Id_Formation === currentDetails.Id_Formation._id){                  
+                       nbStars=avis.StartFormation
+                }               
+          } )         
         return (
             <tr key={currentDetails._id}>
               <td>{currentDetails.Id_Formation.LibelleFormation}</td>
@@ -117,20 +111,16 @@ class MesAchats extends Component {
                 {this.toggleModalFormation(currentDetails.Id_Formation._id, currentDetails.Id_Formation.LibelleFormation)}}>
                 <span className="fa fa-info "></span>
               </Button>
-              </td> 
-               
+              </td>                
               <td>
                 {
                   <StarRatingComponent 
                   name={currentDetails.Id_Formation._id} 
                   starCount={5} 
                   value={nbStars} 
-                  onStarClick={this.onStarClick.bind(this)} 
-                   />
-          
+                  onStarClick={this.onStarClick.bind(this) } 
+                   />          
                 }
-
-
               </td>
             </tr>
           );
