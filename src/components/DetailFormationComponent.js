@@ -40,7 +40,7 @@ class DetailFormationComponent extends Component {
             }
         })
 
-        axios.get('http://localhost:5000/Centre/'+this.state.formationn.NomCentre)
+        axios.get('http://localhost:5000/Centre/FindByName/'+formationn.NomCentre)
           .then( centre => {
             if (this._isMounted) {
             this.setState({ centre: centre.data })
@@ -48,6 +48,7 @@ class DetailFormationComponent extends Component {
             }
         })
         }
+
 
       }
 
@@ -94,7 +95,7 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container ">    
                         {/* showing details  begin*/}
-                        <div className="row justify-content-center">
+                        
                         <div className="row">                 
                             <img src={imageFormation} alt="photo_de_la_formation" width="600px" height="300px"/>                      
                         </div>
@@ -165,7 +166,7 @@ class DetailFormationComponent extends Component {
 
                         {/* s'inscrire Button  end*/}
                         </div>
-                        </div>
+                    
                     
                 </div>
                 <br/>

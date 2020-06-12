@@ -110,8 +110,7 @@ class SignupCentre extends Component {
         } 
             
         this.props.signUpCentre(Centre, this.props.history);
-         
-        console.log(Centre);
+    
     }
 
     
@@ -124,47 +123,46 @@ class SignupCentre extends Component {
             <Form noValidate  onSubmit={this.onSubmit}>
                 <FormGroup row>
                     <Label htmlFor="NomCentre" md={5}>Nom du Centre</Label>
-                        <Col md={7}>
-                       
-                            <span className="red-text">{errors.NomCentre}</span>
+                        <Col md={7}>   
                             <Input  type="text" id="NomCentre" name="NomCentre" required
                              placeholder="Nom du centre" value={this.state.NomCentre}
                              error={errors.NomCentre}
                              className={classnames("form-control", {invalid: errors.NomCentre})}
                              onChange={this.onChangeNomCentre} />
+                             <span style={ {color:'red'} }>{errors.NomCentre}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="AdresseCentre" md={5}>Adresse</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.AdresseCentre}</span>
+                        <Col md={7}>                            
                             <Input type="text" id="AdresseCentre" name="AdresseCentre"
                                 placeholder="Adresse" required value={this.state.AdresseCentre}
                                 error={errors.AdresseCentre}
                                 className={classnames("form-control", {invalid: errors.AdresseCentre})}
                                 onChange={this.onChangeAdresseCentre} />
+                                <span style={ {color:'red'} }>{errors.AdresseCentre}</span>
                         </Col>                        
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="TelCentre" md={5}>Téléphone</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.TelCentre}</span>
+                        <Col md={7}>                            
                             <Input type="tel" id="TelCentre" name="TelCentre"
                                 placeholder="Téléphone" required value={this.state.TelCentre}
                                 error={errors.TelCentre}
                                 className={classnames("form-control", {invalid: errors.TelCentre})}
                                 onChange={this.onChangeTelCentre} />
+                                <span style={ {color:'red'} }>{errors.TelCentre}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="EmailCentre" md={5}>Email</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.EmailCentre}</span>
+                        <Col md={7}>                            
                             <Input  required type="email" id="EmailCentre" name="EmailCentre" 
                                 placeholder="Email" value={this.state.EmailCentre}
                                 error={errors.EmailCentre}
                                 className={classnames("form-control", {invalid: errors.EmailCentre})}
                                 onChange={this.onChangeEmailCentre} />
+                                <span style={ {color:'red'} }>{errors.EmailCentre}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup  row >
@@ -205,34 +203,35 @@ class SignupCentre extends Component {
                 <FormGroup row>
                     <Label htmlFor="DescriptionCentre" md={5}>Déscription</Label>
                     <Col md={7}>
-                        <span className="red-text">{errors.DescriptionCentre}</span>
+                       
                         <Input   required type="textarea" id="DescriptionCentre" name="DescriptionCentre"
                             rows="6" placeholder="Déscription"
                             value={this.state.DescriptionCentre} onChange={this.onChangeDescriptionCentre}
                             error={errors.DescriptionCentre}
-                            className={classnames("form-control", {invalid: errors.DescriptionCentre})}></Input>
+                            className={classnames("form-control", {invalid: errors.DescriptionCentre})}></Input> 
+                            <span style={ {color:'red'} }>{errors.DescriptionCentre}</span>
                     </Col>              
                 </FormGroup> 
                 <FormGroup row>    
                     <Label htmlFor="passwordCentre" md={5}>Mot de passe</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.passwordCentre}</span>
+                        <Col md={7}>                            
                             <Input  required type="password" id="passwordCentre" name="passwordCentre"
                                 placeholder="Mot de passe" error={errors.passwordCentre}
                                 value={this.state.passwordCentre}
                                 className={classnames("form-control", {invalid: errors.passwordCentre})}
                                 onChange={this.onChangepasswordCentre} />
+                                <span style={ {color:'red'} }>{errors.passwordCentre}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup row>    
                     <Label htmlFor="password2" md={5}> Confirmez Mot de passe</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.password2}</span>
+                        <Col md={7}>                            
                             <Input  required type="password" id="password2" name="password2"
                                 placeholder="Confirmez Mot de passe"
                                 value={this.state.password2} error={errors.password2}
                                 onChange={this.onChangepassword2}
                                 className={classnames("form-control", {invalid: errors.password2})} />
+                                <span style={ {color:'red'} }>{errors.password2}</span>
                         </Col>
                 </FormGroup>
 

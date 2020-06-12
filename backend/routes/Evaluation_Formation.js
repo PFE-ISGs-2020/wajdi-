@@ -7,6 +7,23 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//-------- get list by nomcentre----------
+router.route('/Rating_Centre/:NomCentre').get((req, res) => { 
+
+    Evaluation_Formation.find().populate({
+        path: 'Id_Formation',
+        match: {
+          NomCentre: req.params.NomCentre
+        }
+      }).exec(function(err, ratinglist) {
+        ratinglist = ratinglist.filter(function(list) {
+          return list.Id_Formation;  
+        });
+      });
+})
+
+//------------------
+
 
   router.route('/add').post((req, res) => {    
     Evaluation_Formation.findOne({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation})

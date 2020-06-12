@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tabs, Tab} from 'react-bootstrap';
+import { Tabs, Tab,Button} from 'react-bootstrap';
 import { connect } from "react-redux";
-import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
+import { Modal,  ModalBody, ModalHeader} from 'reactstrap';
 import axios from 'axios';
 import CardFormation from '../CardFormation'
 import HeaderClient from '../Header_Client';

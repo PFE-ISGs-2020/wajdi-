@@ -19,9 +19,6 @@ class SideNavWebmaster extends Component {
                 <NavLink activeClassName="myactive" to='/consulte'
                 style={{ textDecoration: 'none' }}>Consulter les avis </NavLink>
                
-                <NavLink activeClassName="myactive" to='/droit'
-                style={{ textDecoration: 'none' }}> Donner les droits de publication </NavLink>
-
                 <NavLink activeClassName="myactive" to='/ThemeList'
                 style={{ textDecoration: 'none' }}> Consulter la liste des thèmes </NavLink>
                 

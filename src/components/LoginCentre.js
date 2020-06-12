@@ -47,28 +47,25 @@ return (
         <div  className="col-12">
             
             <Form noValidate onSubmit={this.onSubmit}>
-            <InputGroup>
-
+              <InputGroup>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText ><span className="fa fa-user fa-lg"></span></InputGroupText>
                 </InputGroupAddon>
                 <Input placeholder="Email"  onChange={this.onChange} value={this.state.EmailCentre}
                 error={errors.EmailCentre} id="Email" type="Email"
-                className={classnames("", {invalid: errors.EmailCentre || errors.emailnotfound})}/>
-                <span className="red-text">{errors.EmailCentre}{errors.emailnotfound} </span>
-              </InputGroup>
-            <br/>
+                className={classnames("", {invalid: errors.EmailCentre || errors.emailnotfound})}/>                
+              </InputGroup>              
+              <span style={ {color:'red'} }>{errors.EmailCentre}{errors.emailnotfound} </span>
+              <br/>
             <InputGroup>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                 </InputGroupAddon>
                 <Input type="password" placeholder="Mot de passe" onChange={this.onChange} 
                  value={this.state.passwordCentre}  error={errors.passwordCentre} id="password"
-                 className={classnames("", { invalid: errors.passwordCentre || errors.passwordincorrect })}/>
-                
-            </InputGroup>  
-            <br/>
-                <span className="red-text"> 
+                 className={classnames("", { invalid: errors.passwordCentre || errors.passwordincorrect })}/>                
+            </InputGroup>              
+                <span style={ {color:'red'} }> 
                 {errors.passwordCentre} {errors.passwordincorrect}</span>          
             <br/>
             <Col md={{size: 10, offset: 9}}>

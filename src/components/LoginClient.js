@@ -61,7 +61,7 @@ if (nextProps.errors) {
                            error={errors.emailClient} id="emailClt"
                            className={classnames("", {invalid: errors.emailClient || errors.emailnotfound})}/>
                 </InputGroup> 
-                <span className="red-text"> {errors.emailClient}{errors.emailnotfound} <br/> </span>           
+                <span style={ {color:'red'} }> {errors.emailClient}{errors.emailnotfound} <br/> </span>           
                
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
@@ -71,7 +71,7 @@ if (nextProps.errors) {
                     value={this.state.passwordClient}  error={errors.passwordClient} id="passwordClt"
                     className={classnames("", { invalid: errors.passwordClient || errors.passwordincorrect })}/>
                 </InputGroup>
-                <span className="red-text"> {errors.passwordClient} {errors.passwordincorrect} <br/> </span>
+                <span style={ {color:'red'} }> {errors.passwordClient} {errors.passwordincorrect} <br/> </span>
                 
                 <Col md={{size: 10, offset: 9}}>
                     <Button type="submit" value="submit" color="primary">Login</Button>

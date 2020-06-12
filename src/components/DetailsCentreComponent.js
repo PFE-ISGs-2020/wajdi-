@@ -37,7 +37,7 @@ class DetailCentreComponent extends Component {
     componentDidMount() {
         this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
-        if(this.props.centre!==undefined)
+        if(this.props.centre!==undefined){
         localStorage.setItem("object", JSON.stringify(this.props.centre));
 
         const {centree} = this.state;
@@ -49,7 +49,8 @@ class DetailCentreComponent extends Component {
             if (this._isMounted) {
             this.setState({ centree: centre.data })
             console.log(this.props.centre);
-          }})
+          }
+        })
           .catch((error) => {
             console.log(error);
           })
@@ -62,6 +63,8 @@ class DetailCentreComponent extends Component {
           .catch((error) => {
             console.log(error);
           })
+
+        }
       }  
       
       //on change for the search bar
@@ -182,12 +185,12 @@ class DetailCentreComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                     <div className="row ">
-                      <div className="col-4 col-md-4 " >
-                        <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>      
+                      <div className="col-12 col-sm-12 col-md-5 " >
+                        <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>     
+                         <br/>
                       </div> 
                       
-                      <div  >
-                        <br/>
+                      <div className="col-12 col-sm-12 col-md-7 ">
                           {/* showing details  begin*/}                    
                           <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                           <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
@@ -197,6 +200,7 @@ class DetailCentreComponent extends Component {
                           <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
                           {/* showing details  end*/}               
                         </div>
+                    </div>
                     </div>
                     <br/>
                     <br/>
@@ -242,7 +246,7 @@ class DetailCentreComponent extends Component {
                   </div>
           
 
-            </div>
+            
             <br/>
               <Footer/>
             </div>

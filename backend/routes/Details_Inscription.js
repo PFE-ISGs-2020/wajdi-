@@ -38,14 +38,6 @@ router.route('/MesDemandes/:id').get((req, res) => {
 })
 
 
-/* 
-//--join--
-router.route('/InscriptionExist').get((req, res) => {
-Details_Inscription.find({ Id_Client: req.body.Id_Client, Id_Formation: req.body.Id_Formation })
-    .then( Details => res.json(Details))
-    .catch(err => res.status(400).json('Error: ' + err));
-
-});*/
 
 router.route('/add').post((req, res) => {
     

@@ -70,8 +70,8 @@ render() {
                         <b><span className="fa fa-edit"/> Modifier  </b>
                         </Button>
                         </a>
-                    </div>
-                    
+
+                    </div>                    
                       
                 </div>              
             </div>         
