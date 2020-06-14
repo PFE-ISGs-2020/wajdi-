@@ -52,7 +52,7 @@ router.route('/Acces').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:NomCentre').get((req, res) => {
+router.route('/FindByName/:NomCentre').get((req, res) => {
   Centre.findOne({ NomCentre: req.params.NomCentre })
   .then(centre => res.json(centre._id))
   .catch(err => res.status(400).json('Error: ' + err));

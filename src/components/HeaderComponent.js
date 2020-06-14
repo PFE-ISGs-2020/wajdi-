@@ -7,6 +7,7 @@ import Login from './LoginCentre';
 import LoginClient from './LoginClient';
 import SignupCentre from './SignUpCentre';
 import SignUpClient from './SignUpClient';
+import ModalHeader from 'react-bootstrap/ModalHeader';
 
 class Header extends Component {
     constructor(props) {
@@ -85,8 +86,16 @@ class Header extends Component {
                 
             {/*modal centre begin */}
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                <ModalBody>
+                <ModalHeader>
+
                     <h3>Espace Centre </h3>
+                    <Button className="close" onClick={ () => { this.toggleModal()}}>
+                          &times;
+                    </Button>
+
+                </ModalHeader>
+                <ModalBody>
+                    
                     
                 <Tabs id="controlled-tab" >
                 <Tab  title="Log In" eventKey="Login"> 
@@ -111,7 +120,12 @@ class Header extends Component {
 
          {/*modal client begin */}
          <Modal isOpen={this.state.isModalClientOpen} toggle={this.toggleModalClient}>
-   
+            <ModalHeader>
+                <h3>Espace Client</h3>
+                <Button className="close" onClick={ () => { this.toggleModalClient()}}>
+                          &times;
+                </Button> 
+            </ModalHeader>
             <ModalBody> 
                 <Tabs id="controlled-tab" >
                 <Tab  title="Log In Client" eventKey="LoginClient"> 

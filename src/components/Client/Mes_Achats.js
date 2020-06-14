@@ -102,7 +102,7 @@ class MesAchats extends Component {
                   
                       nbStars=avis.StartFormation
                 } 
-              
+                return nbStars
           } )
 
          

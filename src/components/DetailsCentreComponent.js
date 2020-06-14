@@ -10,6 +10,7 @@ import Footer from './FooterComponent';
 import HeaderClient from './Header_Client';
 import DefaultImg from '../assets/default-img.jpg'; 
 import moment from 'moment';
+import StarRatingComponent from 'react-star-rating-component';
 
 class DetailCentreComponent extends Component {
     _isMounted = false;
@@ -22,7 +23,9 @@ class DetailCentreComponent extends Component {
             Formation:[],
             themes:[],
             NomTheme:"",
-            search: ''
+            search: '',
+            rating: 0,
+            Eval: []
           };     
           this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
         this.onchange = this.onchange.bind(this);           
@@ -37,12 +40,13 @@ class DetailCentreComponent extends Component {
     componentDidMount() {
         this._isMounted = true;
         //if we refresh and id get lost from the state we store it locally
-        if(this.props.centre!==undefined)
+        if(this.props.centre!==undefined){
         localStorage.setItem("object", JSON.stringify(this.props.centre));
 
         const {centree} = this.state;
         let ID_Centre = centree ? centree._id : "";
-
+        let i = 1;
+        let Rating = 0;
         //Request to get "centre" details by its ID
         axios.get('http://localhost:5000/Centre/'+ID_Centre)
           .then(centre => {
@@ -62,6 +66,17 @@ class DetailCentreComponent extends Component {
           .catch((error) => {
             console.log(error);
           })
+          //recuperer ratings
+          /* axios.get('http://localhost:5000/Evaluation_Formation/Rating_Centre/'+ this.state.centree.NomCentre)
+          .then(Eval => {
+            this.setState({ Eval: Eval.data.filter(eval=> eval.Id_Formation != null) })  
+            }
+          )
+          .catch((error) => {
+            console.log(error);
+          })*/
+         // console.log(this.state.Eval)
+        }   
       }  
       
       //on change for the search bar
@@ -188,7 +203,13 @@ class DetailCentreComponent extends Component {
                       
                       <div  >
                         <br/>
-                          {/* showing details  begin*/}                    
+                          {/* showing details  begin*/} 
+                          <StarRatingComponent 
+                            name={NomCentre} 
+                            starCount={5} 
+                            value={this.state.rating} 
+                            editing={false}
+                   />    
                           <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                           <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
                           <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>

@@ -62,6 +62,9 @@ app.use('/Theme', ThemeRouter);
 app.use('/Details_Inscription', Details_Inscription_Router);
 app.use('/Evaluation_Formation', Evaluation_Formation_Router);
 
+//to save an image and show an image ...
+app.use('/uploads', express.static('uploads'));
+
 //starts the server
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

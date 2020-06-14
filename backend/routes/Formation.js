@@ -130,20 +130,6 @@ router.route('/updateImageFormation/:id').post(  upload.single('imageFormation')
     })
     .catch(err => res.status(400).json('Error: ' + err));
   });
-
-  /* router.route('/addImageFormation/:id').post(  upload.single('imageFormation'), (req, res) => {
-    Formation.findById(req.params.id)
-    .then(formation => {        
-       
-        formation.imageFormation = req.file.path
-  
-        formation.save()
-        .then(() => res.json('Image Formation added!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-        
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-  }); */
   
 
 module.exports = router;

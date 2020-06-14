@@ -18,8 +18,7 @@ import PIC04 from '../img/PIC04.png';
 class Home extends Component {
     constructor(props) {
         super(props);      
-        this.state = {Formation: [],
-                      client:this.props.auth }
+        this.state = {Formation: [], }
    
       }    
 

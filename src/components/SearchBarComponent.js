@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import {InputGroup,FormControl,Form, Card,CardDeck} from 'react-bootstrap';
 import axios from 'axios';
-import { Input, CardSubtitle} from 'reactstrap';
+import { Input} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import DefaultImg from '../assets/default-img.jpg'; 
 import moment from 'moment';
