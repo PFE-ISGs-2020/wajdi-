@@ -44,7 +44,7 @@ class DetailFormationComponent extends Component {
           .then( centre => {
             if (this._isMounted) {
             this.setState({ centre: centre.data })
-            console.log(this.props.centre);
+            console.log(this.state.centre);
             }
         })
         }
@@ -58,6 +58,7 @@ class DetailFormationComponent extends Component {
 
     render(){
         const {formationn} = this.state;
+        const centre = this.state.centre;
         let LibelleFormation = formationn ? formationn.LibelleFormation : "";
         let DateDebutFormation = formationn ? formationn.DateDebutFormation : "";
         let DateFinFormation = formationn ? formationn.DateFinFormation : "";
@@ -95,14 +96,13 @@ class DetailFormationComponent extends Component {
                 
                     <div className="container ">    
                         {/* showing details  begin*/}
-                        
                         <div className="row">                 
                             <img src={imageFormation} alt="photo_de_la_formation" width="600px" height="300px"/>                      
                         </div>
                         <br/>
                         <div>
                         <div className="row"> 
-                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> <a href= { "/DetailCentre/" + this.state.centre} > {NomCentre} </a> </p>
+                            <p><b><span className="fa fa-university"></span> Nom du centre:</b> <a href= { "/DetailCentre/" + centre} > {NomCentre} </a> </p>
                         </div>
                         <div className="row">
                             <p><b><span className="fa fa-calendar"></span> Date debut: </b>  
@@ -131,13 +131,10 @@ class DetailFormationComponent extends Component {
                         <div className="form-group row" onClick={()=>
 
                             {
-                                if(client){
-                                    
+                                if(client){                                    
                                     if(moment().isBefore(DateDebutFormation ) ){
                                         const inscription = {
                                             Id_Client:client.id,
-                                            NomClient:client.NomClient ,
-                                            PrenomClient:client.PrenomClient,
                                             EtatInscription:false,
                                             Id_Formation: this.state.formationn._id
                                             }
@@ -147,8 +144,7 @@ class DetailFormationComponent extends Component {
                                         alert(res.data );})  
                                     }else{
                                         alert("Vous ne pouvez pas s'inscrire à cette formation car elle est dépassée ");
-                                    }
-                                    
+                                    }                                    
 
                                 }else{
                                     alert("Il faut être authentifié");
@@ -168,10 +164,11 @@ class DetailFormationComponent extends Component {
                         </div>
                     
                     
-                </div>
+               
                 <br/>
                 <Footer/>
             </div>
+            </div> 
     );    
 
 }

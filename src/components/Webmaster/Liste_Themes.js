@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SideNavWebmaster from './sideNavWebmaster'
-import {Form} from 'react-bootstrap';
-import {FormGroup, Label,  Input, Col } from 'reactstrap';
-import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
+import { ModalTitle} from 'react-bootstrap';
+import {Button,  Modal,  ModalBody, ModalHeader } from 'reactstrap';
+import ModifierTheme from './Modifier_Theme'
+import AjouterTheme from './Ajouter_Theme'
 
 const Theme = props => (  
-  <tr>
+  <tr> 
       <td></td>
     <td>{props.theme.NomTheme}</td>    
     <td>
@@ -19,7 +20,7 @@ const Theme = props => (
       <Button className="btn btn-danger btn-sm" 
        onClick={() => { if (window.confirm('Voulez-vous vraiment supprimer ce thème?'))
          props.deleteTheme(props.theme._id) }}  >
-        <span className="fa fa-user-times" /> 
+        <span className="fa fa-trash" /> 
       </Button>  
       </a>
     </td>
@@ -31,13 +32,14 @@ export default class ThemeList extends Component {
     super(props);
  
     this.deleteTheme = this.deleteTheme.bind(this)
-    this.onChangeNomTheme = this.onChangeNomTheme.bind(this)
     this.toggleModalModifierTheme = this.toggleModalModifierTheme.bind(this)
+    this.toggleModalAjouterTheme = this.toggleModalAjouterTheme.bind(this)
+    
 
     this.state = {theme: [],
                   Theme :  [],
-                  NomTheme: "",
-                  isModalModifierThemeOpen: false};
+                  isModalModifierThemeOpen: false,
+                  isModalAjouterThemeOpen: false};
   }
 
   componentDidMount() {
@@ -60,18 +62,7 @@ export default class ThemeList extends Component {
     })
   }
 
- /*  modifierTheme(Theme) {
 
-    const ThemeUpdated = {
-      NomTheme: Theme.NomTheme}
-       
-    axios.post('http://localhost:5000/Theme/update/'+ Theme._id , ThemeUpdated )
-      .then(demand => { console.log(demand.data)});
-      
-     this.setState({
-      theme : this.state.theme.filter(el => el._id !== Theme._id)
-    })
-  } */
 
   toggleModalModifierTheme(Theme) {
     this.setState({
@@ -80,33 +71,26 @@ export default class ThemeList extends Component {
     });  
   }
 
-  onChangeNomTheme(e) {
+  toggleModalAjouterTheme() {
     this.setState({
-        NomTheme: e.target.value
-    });
-}
+        isModalAjouterThemeOpen: !this.state.isModalAjouterThemeOpen,
+        
+    });  
+  }
+
+  
 
   ThemeList() {
     return this.state.theme.map(currentTheme => {
       return <Theme  theme={currentTheme} deleteTheme={this.deleteTheme}  
       modifierTheme={this.modifierTheme} key={currentTheme._id} 
-      toggleModalModifierTheme={this.toggleModalModifierTheme}/>;
+      toggleModalModifierTheme={this.toggleModalModifierTheme}
+      toggleModalAjouterTheme={this.toggleModalAjouterTheme}/>;
 
     });
   }
 
-  onSubmitModifier(e) {
-    e.preventDefault();
-    const theme = {
-        NomTheme: e.target.value,
-    }
-
-    console.log(theme);
-
-    axios.post('http://localhost:5000/Theme/update/' + this.state.Theme._id, theme)
-      .then(res => console.log(res.data));
-      window.location = '/ThemeList';
-  }
+  
 
   render() {
    
@@ -127,11 +111,9 @@ export default class ThemeList extends Component {
                 <thead className="thead-light">
                   <tr>
                   <th>
-                      <a href="#">
-                      <Button className="btn btn-success btn-sm" >
+                      <Button className="btn btn-success btn-sm" onClick={ () => { this.toggleModalAjouterTheme()}}>
                         <span className="fa fa-plus"></span>
-                        </Button>
-                        </a> 
+                      </Button>
                     </th>
                     <th>Thème</th>
                     <th>Modifier</th>
@@ -147,34 +129,28 @@ export default class ThemeList extends Component {
             {/*modal modifier theme begin */}
              <Modal isOpen={this.state.isModalModifierThemeOpen} toggle={this.toggleModalModifierTheme}>   
               <ModalHeader className="justify-content-center">
-                <h3 >{this.state.Theme.NomTheme}</h3>
+              <ModalTitle >
+                <h3 >Modifier thème : {this.state.Theme.NomTheme}</h3>
+              </ModalTitle>
               </ModalHeader>
               <ModalBody> 
-              <Form  onSubmit={this.onSubmitModifier}>
-                <FormGroup row>
-                    <Label htmlFor="NomTheme" md={5}>Nom Thème:</Label>
-                        <Col md={7}>
-
-                            <Input  type="text" id="NomTheme" name="NomTheme" required
-                             placeholder="Nom Thème" value={this.state.NomTheme}
-                             onChange={this.onChangeNomTheme} />
-
-                        </Col>
-                </FormGroup>
-                <FormGroup row>
-                                <Label md={5}></Label>
-                                <Col md={7}> 
-                                <br/>                       
-                                    <input type="submit" value="Modifier " className="btn btn-primary " />                         
-                                    <a className="offset-1 btn btn-secondary" href="/ThemeList">
-                                        Annuler
-                                    </a>
-                                </Col>        
-                            </FormGroup> 
-                </Form>
+                  <ModifierTheme Theme= {this.state.Theme} />
               </ModalBody>
             </Modal> 
-            {/*modal Theme end */} 
+            {/*modal Modifier Theme end */} 
+
+             {/*modal Ajouter theme begin */}
+             <Modal isOpen={this.state.isModalAjouterThemeOpen} toggle={this.toggleModalAjouterTheme}>   
+              <ModalHeader className="justify-content-center">
+                <ModalTitle>
+                <h3 >Ajouter un nouveau thème</h3>
+                </ModalTitle>
+              </ModalHeader>
+              <ModalBody> 
+                <AjouterTheme/>
+              </ModalBody>
+            </Modal> 
+            {/*modal Ajouter Theme end */} 
           </div>
         </div>     
       </div>

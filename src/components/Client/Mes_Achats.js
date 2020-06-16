@@ -98,7 +98,8 @@ class MesAchats extends Component {
           this.state.Evaluation.map(avis =>{
               if(avis.Id_Formation === currentDetails.Id_Formation._id){                  
                        nbStars=avis.StartFormation
-                }               
+                }   
+                return nbStars            
           } )         
         return (
             <tr key={currentDetails._id}>

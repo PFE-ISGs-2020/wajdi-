@@ -7,21 +7,23 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
 //-------- get list by nomcentre----------
 router.route('/Rating_Centre/:NomCentre').get((req, res) => { 
-
-    Evaluation_Formation.find().populate({
-        path: 'Id_Formation',
-        match: {
-          NomCentre: req.params.NomCentre
-        }
-      }).exec(function(err, ratinglist) {
-        ratinglist = ratinglist.filter(function(list) {
-          return list.Id_Formation;  
-        });
-      });
+  Evaluation_Formation.find().populate({
+      path: 'Id_Formation',
+      match: {
+        NomCentre: req.params.NomCentre
+      }
+    })
+    .then(list => res.json(list))
+    //.exec(function(err, ratinglist) {
+     // ratinglist = ratinglist.filter(function(list) {
+     //   return list;  
+     // });
+      //ratinglist.map(list => res.json(list.Id_Formation))
+   // });
 })
-
 //------------------
 
 
@@ -59,6 +61,8 @@ router.route('/Rating_Centre/:NomCentre').get((req, res) => {
         .then( Evaluation => res.json( Evaluation))
         .catch(err => res.status(400).json('Error: ' + err));
     });
+
+    
 
 
   router.route('/:id').get((req, res) => {

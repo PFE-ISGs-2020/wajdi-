@@ -2,7 +2,7 @@ const router = require('express').Router();
 let Theme = require('../models/Theme_model');
 
 router.route('/').get((req, res) => {
-    Theme.find()
+    Theme.find().sort({NomTheme : 1})
     .then(theme => res.json(theme))
     .catch(err => res.status(400).json('Error: ' + err));
 });

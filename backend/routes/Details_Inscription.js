@@ -51,17 +51,13 @@ router.route('/add').post((req, res) => {
             }
             
         } else {
-                const PrenomClient = req.body.PrenomClient;
-                const EtatInscription = 0;
-                const NomClient = req.body.NomClient ;
+                const EtatInscription = false;
                 const Id_Formation = req.body.Id_Formation;
                 const Id_Client = req.body.Id_Client;
             
                 const newDetails = new Details_Inscription({
                     Id_Client,
-                    PrenomClient,
                     EtatInscription,
-                    NomClient,
                     Id_Formation
     });
   
@@ -88,9 +84,7 @@ router.route('/update/:id').post((req, res) => {
     .then(Details => {
         
         Details.Id_Client = req.body.Id_Client;
-        Details.NomClient = req.body.NomClient;
         Details.EtatInscription =  Number(req.body.EtatInscription);
-        Details.PrenomClient = req.body.PrenomClient;
         Details.Id_Formation = req.body.Id_Formation;
 
         Details.save()
