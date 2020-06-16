@@ -38,9 +38,7 @@ class ModifierPasswordCentre extends Component {
     axios.get('http://localhost:5000/Centre/'+centre.id)
       .then(response => {
         this.setState({
-           
-            password: response.data.passwordCentre,
-            
+            password: response.data.passwordCentre,            
             
         })
           
