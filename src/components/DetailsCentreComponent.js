@@ -52,7 +52,8 @@ class DetailCentreComponent extends Component {
             if (this._isMounted) {
             this.setState({ centree: centre.data })
             console.log(this.props.centre);
-          }})
+          }
+        })
           .catch((error) => {
             console.log(error);
           })
@@ -207,8 +208,9 @@ class DetailCentreComponent extends Component {
                     </div>
                     {/*BreadCrumb end */}
                     <div className="row ">
-                      <div className="col-4 col-md-4 " >
-                        <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>      
+                      <div className="col-12 col-sm-12 col-md-5 " >
+                        <img src={imageCentre} alt="photo_du_centre" width="260px" height="290px"/>     
+                         <br/>
                       </div> 
                       
                       <div  >
@@ -223,6 +225,7 @@ class DetailCentreComponent extends Component {
                           <p><b> <span className="fa fa-align-justify"></span> Description Centre:</b>  {DescriptionCentre}</p>                
                           {/* showing details  end*/}               
                         </div>
+                    </div>
                     </div>
                     <br/>
                     <br/>
@@ -268,7 +271,7 @@ class DetailCentreComponent extends Component {
                   </div>
           
 
-            </div>
+            
             <br/>
               <Footer/>
             </div>

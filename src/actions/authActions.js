@@ -7,7 +7,7 @@ import { GET_ERRORS, SET_CURRENT_CENTRE, CENTRE_LOADING } from "./types";
 export const signUpCentre = (centreData, history) => dispatch => {
   axios
     .post("http://localhost:5000/Centre/add", centreData)
-    .then(res => window.location = '/') // re-direct to home on successful register
+    .then(res => alert("Demande envoier avec succèes")) // re-direct to home on successful register
     .catch(err =>
       dispatch({ 
         type: GET_ERRORS,
@@ -40,6 +40,7 @@ export const loginCentre = centreData => dispatch => {
       })
     );
 };
+
 // Set logged in center
 export const setCurrentCentre = decoded => {
   return {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tabs, Tab} from 'react-bootstrap';
+import { Tabs, Tab,Button} from 'react-bootstrap';
 import { connect } from "react-redux";
-import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
+import { Modal,  ModalBody, ModalHeader} from 'reactstrap';
 import axios from 'axios';
 import CardFormation from '../CardFormation'
 import HeaderClient from '../Header_Client';
@@ -88,24 +88,19 @@ class MesAchats extends Component {
         console.log(error);
       });  
   }
- 
 
-  FormationsAtteintes() {
-  
+
+  FormationsAtteintes() {  
     return this.state.Cours.map(currentDetails => {
       if ( moment().isAfter(currentDetails.Id_Formation.DateFinFormation) )  {
         let nbStars = 0;
        
           this.state.Evaluation.map(avis =>{
-
-                if(avis.Id_Formation === currentDetails.Id_Formation._id){
-                  
-                      nbStars=avis.StartFormation
-                } 
-                return nbStars
-          } )
-
-         
+              if(avis.Id_Formation === currentDetails.Id_Formation._id){                  
+                       nbStars=avis.StartFormation
+                }   
+                return nbStars            
+          } )         
         return (
             <tr key={currentDetails._id}>
               <td>{currentDetails.Id_Formation.LibelleFormation}</td>
@@ -117,20 +112,16 @@ class MesAchats extends Component {
                 {this.toggleModalFormation(currentDetails.Id_Formation._id, currentDetails.Id_Formation.LibelleFormation)}}>
                 <span className="fa fa-info "></span>
               </Button>
-              </td> 
-               
+              </td>                
               <td>
                 {
                   <StarRatingComponent 
                   name={currentDetails.Id_Formation._id} 
                   starCount={5} 
                   value={nbStars} 
-                  onStarClick={this.onStarClick.bind(this)} 
-                   />
-          
+                  onStarClick={this.onStarClick.bind(this) } 
+                   />          
                 }
-
-
               </td>
             </tr>
           );

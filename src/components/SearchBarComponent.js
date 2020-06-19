@@ -6,6 +6,7 @@ import { Input} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import DefaultImg from '../assets/default-img.jpg'; 
 import moment from 'moment';
+ 
 //fonction qui permet d'afficher une formation dans une "Card"
 function RenderFormations ({formation}) {  
       let image = DefaultImg;
@@ -57,7 +58,8 @@ function RenderFormations ({formation}) {
 }   
 
 //fonction qui permet d'afficher un centre dans une "Card"
-function RenderCentres ({centre}) {   
+function RenderCentres ({centre},nbrStar) {   
+
     let image = DefaultImg;
     if (centre.image){
       image = "http://localhost:5000/"+centre.image;
@@ -109,7 +111,8 @@ class SearchBar extends Component {
                       Centre:[],
                       selectedFormation : null,
                       Critere:"Formation",
-                      search: ''}    
+                      search: '',
+                      nbrStar:3}    
       }      
 
       //on change for the search bar
@@ -141,6 +144,8 @@ class SearchBar extends Component {
           .catch((error) => {
             console.log(error);
         })
+       
+        
 
       }   
   
@@ -168,9 +173,12 @@ class SearchBar extends Component {
                 filteredCentres.map(centre => { 
                     return  (
                     <div  className="col-md-4 col-5 col-sm-6 "  key={centre._id} >
-                        <RenderCentres centre={centre}  key={centre._id}/>                    
+                        
+                            <RenderCentres centre={centre}  nbrStar={this.state.nbrStar} key={centre._id} />                    
+                    
                     </div>                   
                     )
+
                     })
 
         return( 

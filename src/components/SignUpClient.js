@@ -41,7 +41,8 @@ class SignUpClient extends Component {
 
              
     }
-      
+    
+    //show to filed errors to user 
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
           this.setState({
@@ -127,12 +128,7 @@ class SignUpClient extends Component {
            password2: this.state.password2,
         }
         this.props.signUpClient(client, this.props.history);
-         
-        
-        console.log(client);
-        
-    
-        
+ 
     }
 
     render(){
@@ -145,65 +141,58 @@ class SignUpClient extends Component {
             <Form noValidate onSubmit={this.onSubmit} >
                 <FormGroup row >
                     <Label htmlFor="NomClient" md={5}>Nom</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.NomClient}</span>
+                        <Col md={7}>                        
                             <Input type="text" id="NomClient" name="NomClient" required
                             placeholder="Nom" 
                             value={this.state.NomClient}
-                            error={errors.NomClient}
-                            
+                            error={errors.NomClient}                            
                             className={classnames("form-control", {invalid: errors.NomClient})}
                             onChange={this.onChangeNomClient} />
+                            <span style={ {color:'red'} }>{errors.NomClient}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label htmlFor="PrenomClient" md={5}>Prenom</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.PrenomClient}</span>
+                        <Col md={7}>                        
                             <Input type="text" id="PrenomClient" name="PrenomClient"
                             error={errors.PrenomClient} required
                             className={classnames("form-control", {invalid: errors.PrenomClient})}
                                 placeholder="Prenom"
                                 value={this.state.PrenomClient}
                                 onChange={this.onChangePrenomClient} />
+                                <span style={ {color:'red'} }>{errors.PrenomClient}</span>
                         </Col>                        
                 </FormGroup>
                 
                 <FormGroup row>
                     <Label htmlFor="DatenaissClient" md={5}>Date de Naissance</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.DatenaissClient}</span>
+                        <Col md={7}>                        
                             <Input type="Date" id="DatenaissClient" name="DatenaissClient"
                                  error={errors.DatenaissClient} required
-                                 className={classnames("form-control", {invalid: errors.DatenaissClient})}
-                                 
+                                 className={classnames("form-control", {invalid: errors.DatenaissClient})}                                 
                                 value={this.state.DatenaissClient}
                                 onChange={this.onChangeDatenaissClient} />
+                                <span style={ {color:'red'} }>{errors.DatenaissClient}</span>
                         </Col>
                 </FormGroup>
 
                 <FormGroup row>
                         <Label htmlFor="ProfessionClient" md={5}>Profession</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.ProfessionClient}</span>
+                        <Col md={7}>                        
                         <Input type="text" id="ProfessionClient" name="ProfessionClient"
                             value={this.state.ProfessionClient} required
                             error={errors.ProfessionClient}
-                            className={classnames("form-control", {invalid: errors.ProfessionClient})}
-                            
+                            className={classnames("form-control", {invalid: errors.ProfessionClient})}                            
                             onChange={this.onChangeProfessionClient}></Input>
+                            <span style={ {color:'red'} }>{errors.ProfessionClient}</span>
                         </Col>          
                     </FormGroup> 
 
                     <FormGroup row >
                         <Label htmlFor="NiveauClient" md={5}>Niveau </Label>
-                        <Col md = {7}>
-
-                            
-                            <Input type="select"   value={this.state.NiveauClient} onChange={this.onChangeNiveauClient} name="NiveauClient">
-                                
-                         
-                            
+                        <Col md = {7}>                            
+                            <Input type="select"   value={this.state.NiveauClient} onChange={this.onChangeNiveauClient} name="NiveauClient">                   
+                                                     
                             <option>Bac</option>
                             <option>Moin</option>
                             <option>Bac +1</option>
@@ -217,65 +206,64 @@ class SignUpClient extends Component {
 
                     <FormGroup row>
                     <Label htmlFor="emailClient" md={5}>Email</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.emailClient}</span>
+                        <Col md={7}>                        
                             <Input type="email" id="emailClient" name="emailClient"
                                 placeholder="Email"
                                 value={this.state.emailClient}
                                 error={errors.emailClient} required
-                            className={classnames("form-control", {invalid: errors.emailClient})}
+                                className={classnames("form-control", {invalid: errors.emailClient})}
                                 onChange={this.onChangeemailClient} />
+                                <span style={ {color:'red'} }>{errors.emailClient}</span>
                         </Col>
                 </FormGroup>
 
                     <FormGroup row>
                         <Label htmlFor="TelClient" md={5}>Téléphone</Label>
-                            <Col md={7}>
-                            <span className="red-text">{errors.TelClient}</span>
+                            <Col md={7}>                            
                                 <Input type="tel" id="TelClient" name="TelClient"
                                     placeholder="Téléphne" required
                                     value={this.state.TelClient}
                                     error={errors.TelClient}
-                            className={classnames("form-control", {invalid: errors.TelClient})}
+                                    className={classnames("form-control", {invalid: errors.TelClient})}
                                     onChange={this.onChangeTelClient} />
+                                    <span style={ {color:'red'} }>{errors.TelClient}</span>
                             </Col>
                     </FormGroup>
 
                     <FormGroup row>
                         <Label htmlFor="AdresseClient" md={5}>Adresse Client</Label>
-                            <Col md={7}>
-                            <span className="red-text">{errors.AdresseClient}</span>
+                            <Col md={7}>                            
                                 <Input type="text" id="AdresseClient" name="AdresseClient"
                                     placeholder="Adresse Client"
                                     value={this.state.AdresseClient} required
                                     className={classnames("form-control", {invalid: errors.AdresseClient})}
                                     error={errors.AdresseClient}
                                     onChange={this.onChangeAdresseClient} />
+                                    <span style={ {color:'red'} }>{errors.AdresseClient}</span>
                             </Col>
                     </FormGroup>       
                     
                     <FormGroup row>
                     <Label htmlFor="passwordClient" md={5}>Mot de passe</Label>
-                        <Col md={7}>
-                        <span className="red-text">{errors.passwordClient}</span>
+                        <Col md={7}>                        
                             <Input type="password" id="passwordClient" name="passwordClient"
                                 placeholder="Mot de passe"
                                 value={this.state.passwordClient} required
                                 error={errors.passwordClient}
-                                    className={classnames("form-control", {invalid: errors.AdresseClient})}
-                                    
+                                className={classnames("form-control", {invalid: errors.AdresseClient})}                                    
                                 onChange={this.onChangepasswordClient} />
+                                <span style={ {color:'red'} }>{errors.passwordClient}</span>
                         </Col>
                 </FormGroup>
                 <FormGroup row>    
                     <Label htmlFor="password2" md={5}> Confirmez Mot de passe</Label>
-                        <Col md={7}>
-                            <span className="red-text">{errors.password2}</span>
+                        <Col md={7}>                            
                             <Input  required type="password" id="password2" name="password2"
                                 placeholder="Confirmez Mot de passe"
                                 value={this.state.password2} error={errors.password2}
                                 onChange={this.onChangepassword2}
                                 className={classnames("form-control", {invalid: errors.password2})} />
+                                <span style={ {color:'red'} }>{errors.password2}</span>
                         </Col>
                 </FormGroup>
 

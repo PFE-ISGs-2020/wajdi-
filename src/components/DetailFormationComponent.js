@@ -49,6 +49,7 @@ class DetailFormationComponent extends Component {
         })
         }
 
+
       }
 
       componentWillUnmount() {
@@ -130,13 +131,10 @@ class DetailFormationComponent extends Component {
                         <div className="form-group row" onClick={()=>
 
                             {
-                                if(client){
-                                    
+                                if(client){                                    
                                     if(moment().isBefore(DateDebutFormation ) ){
                                         const inscription = {
                                             Id_Client:client.id,
-                                            NomClient:client.NomClient ,
-                                            PrenomClient:client.PrenomClient,
                                             EtatInscription:false,
                                             Id_Formation: this.state.formationn._id
                                             }
@@ -146,8 +144,7 @@ class DetailFormationComponent extends Component {
                                         alert(res.data );})  
                                     }else{
                                         alert("Vous ne pouvez pas s'inscrire à cette formation car elle est dépassée ");
-                                    }
-                                    
+                                    }                                    
 
                                 }else{
                                     alert("Il faut être authentifié");
@@ -165,12 +162,13 @@ class DetailFormationComponent extends Component {
 
                         {/* s'inscrire Button  end*/}
                         </div>
-                        </div>
+                    
                     
                
                 <br/>
                 <Footer/>
             </div>
+            </div> 
     );    
 
 }

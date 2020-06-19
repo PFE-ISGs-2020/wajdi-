@@ -162,7 +162,7 @@ router.route('/updatePassword/:id').post((req, res) => {
         centre.passwordCentre = hash;
         centre.save()
           
-          .then(centre => res.json('Password Centre updated!'))
+          .then(centre => alert('Password Centre updated!'))
           .catch(err => res.status(400).json('Error: ' + err));
       });
     }); 
