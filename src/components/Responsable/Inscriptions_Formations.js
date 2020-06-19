@@ -10,12 +10,13 @@ import moment from 'moment'
 const Inscription = props => (  
   <tr>
     
-    <td>{props.inscriptions.NomClient}</td>
-    <td>{props.inscriptions.PrenomClient}</td>
+    <td>{props.inscriptions.Id_Client.NomClient}</td>
+    <td>{props.inscriptions.Id_Client.PrenomClient}</td>
     <td>{moment(props.inscriptions.createdAt).format('DD/MM/YYYY')}</td>
+    <td>{moment(props.inscriptions.updatedAt).format('DD/MM/YYYY')}</td>
    <td>
     
-      <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalClient(props.inscriptions.Id_Client)}}>
+      <Button className="btn btn-secondary btn-sm" onClick={ () => { props.toggleModalClient(props.inscriptions.Id_Client._id)}}>
                           
         <span className="fa fa-info "></span>
        
@@ -139,7 +140,8 @@ export default class InscriptionList extends Component {
                       
                       <th>Nom Client</th>
                       <th>Prenom Client</th>
-                      <th>Date Inscription</th>
+                      <th>Date Demande Inscription</th>
+                      <th>Date Validation Inscription</th>
                       <th>Plus de détails</th>
                     </tr>
                   </thead>

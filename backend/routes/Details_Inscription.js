@@ -9,12 +9,14 @@ router.route('/').get((req, res) => {
 
 router.route('/Demande/:id').get((req, res) => {
     Details_Inscription.find({ EtatInscription: 0 , Id_Formation: req.params.id })
+    .populate("Id_Client")
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/List/:id').get((req, res) => {
     Details_Inscription.find({ EtatInscription: 1, Id_Formation: req.params.id })
+    .populate("Id_Client")
     .then( Details => res.json( Details))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -51,7 +53,7 @@ router.route('/add').post((req, res) => {
             }
             
         } else {
-                const EtatInscription = false;
+                const EtatInscription = 0;
                 const Id_Formation = req.body.Id_Formation;
                 const Id_Client = req.body.Id_Client;
             
@@ -79,31 +81,13 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
-    Details_Inscription.findById(req.params.id)
-    .then(Details => {
-        
-        Details.Id_Client = req.body.Id_Client;
-        Details.EtatInscription =  Number(req.body.EtatInscription);
-        Details.Id_Formation = req.body.Id_Formation;
-
-        Details.save()
-        .then(() => res.json('Details Inscription updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 router.route('/Approve/:id').post((req, res) => {
     Details_Inscription.findById(req.params.id)
     .then(Details => {
                 
-        Details.Id_Client = req.body.Id_Client;
         Details.EtatInscription = 1;
-        Details.DateInscription = req.body.DateInscription;
-        Details.Id_Formation = req.body.Id_Formation;
-
-        formation.save()
+        Details.save()
         .then(() => res.json('Details Inscription updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
