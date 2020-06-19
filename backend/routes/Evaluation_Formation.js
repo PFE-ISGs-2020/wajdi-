@@ -1,8 +1,30 @@
 const router = require('express').Router();
 let Evaluation_Formation = require('../models/Evaluation_Formation_model');
 
+
 router.route('/').get((req, res) => {
     Evaluation_Formation.find()
+    .populate("Id_Formation")
+    .then( Evaluation => res.json( Evaluation ))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+ router.route('/Rates').get((req, res) => {
+    Evaluation_Formation
+    .aggregate(
+        [  
+          {
+            $group:
+              {
+                _id: "$Id_Formation",
+                avgRating: { $avg: "$StartFormation" },
+
+              }
+          },
+        
+        ],
+        
+     )
+     
     .then( Evaluation => res.json( Evaluation ))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -38,7 +60,8 @@ router.route('/').get((req, res) => {
     })
 
     router.route('/client/:id').get((req, res) => {
-        Evaluation_Formation.find({Id_Client: req.params.id })
+        Evaluation_Formation
+        .find({Id_Client: req.params.id })
         .then( Evaluation => res.json( Evaluation))
         .catch(err => res.status(400).json('Error: ' + err));
     });
@@ -46,19 +69,44 @@ router.route('/').get((req, res) => {
     
 //-------- get list by nomcentre----------
 router.route('/Rating_Centre/:NomCentre').get((req, res) => { 
-    let val =  Evaluation_Formation.find().populate({
-        path: 'Id_Formation',
-        match: {
-          NomCentre: req.params.NomCentre
-        }
-      })
+    Evaluation_Formation.aggregate(
+        [ 
+            {
+                $lookup: {
+                            from: "formations",
+                            localField: "Id_Formation",
+                            foreignField: "_id",
+                            as: "eval"
+                        }
+            } ,
+             {
+                $match: {
+                  "eval.NomCentre": req.params.NomCentre
+                }
+            } ,
+         {
+            $group:
+              {
+                _id: "$Id_Formation",
+                avgRating: { $avg: "$StartFormation" },
+
+              }
+          },        
+           
+          {
+            $group:
+            {
+                _id:  req.params.NomCentre ,
+              RatingCentre: { $avg: "$avgRating" },
+            }
+        },  
+    
+        
+        ],
+        
+     )
       .then(list => res.json(list))
-      //.exec(function(err, ratinglist) {
-       // ratinglist = ratinglist.filter(function(list) {
-       //   return list;  
-       // });
-        //ratinglist.map(list => res.json(list.Id_Formation))
-     // });
+      .catch(err => res.status(400).json('Error: ' + err));
 })
 //------------------
 

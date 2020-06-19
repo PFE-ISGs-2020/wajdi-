@@ -9,31 +9,31 @@ import moment from 'moment'
 
 const Demande = props => (  
   <tr>
-    <td>{props.details.NomClient}</td>
-    <td>{props.details.PrenomClient}</td>
+    <td>{props.details.Id_Client.NomClient}</td>
+    <td>{props.details.Id_Client.PrenomClient}</td>
     <td>{moment(props.details.createdAt).format('DD/MM/YYYY')}</td>
 
     <td>
-       <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}>
+        <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}> 
              <Button className="btn btn-success btn-sm"   
-              onClick={() => { props.accepterDetails(props.details) }}>  
+              onClick={() => { props.accepterDetails(props.details._id) }}>  
               <span className="fa fa-check"></span>
             </Button>      
-        </a>          
+         </a>          
     </td>                 
     <td>
     
-      <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}>
+      <a href={"/DemandeInscriptionList/"+props.details.Id_Formation}> 
         <Button className="btn btn-danger btn-sm"
            onClick={() => { if (window.confirm('Voulez-vous vraiment supprimer cette demande?'))
            props.supprimerDetails(props.details._id) } }   >
             <span className="fa fa-times"></span>
         </Button>
-      </a>
+       </a> 
     </td> 
    <td>
-    
-      <Button className="btn btn-secondary  btn-sm" onClick={ () => { props.toggleModalClient(props.details.Id_Client)}}>
+     
+      <Button className="btn btn-secondary  btn-sm" onClick={ () => { props.toggleModalClient(props.details.Id_Client._id)}}>
                           
         <span className="fa fa-info "> </span>
        
@@ -99,23 +99,18 @@ export default class DemandeInscriptionList extends Component {
       })
     }
   
-    accepterDetails(Details) {
+    accepterDetails(id) {
   
       const DetailsUpdated = {
   
-          Id_Client: Details.Id_Client,  
-          NomClient : Details.NomClient,
+          
           EtatInscription : 1,
-          PrenomClient : Details.PrenomClient,
-          Id_Formation : Details.Id_Formation,
+          
          }
           
-       axios.post('http://localhost:5000/Details_Inscription/update/'+ Details._id , DetailsUpdated )
+       axios.post('http://localhost:5000/Details_Inscription/Approve/'+ id , DetailsUpdated )
          .then(det => { console.log(det.data)});
          
-        this.setState({
-         details : this.state.details.filter(el => el._id !== Details._id  && el.EtatInscription === 0)
-       })
      }
    
     DetailsList() {
@@ -187,7 +182,7 @@ export default class DemandeInscriptionList extends Component {
                           
                           <th>Nom Client</th>
                           <th>Prenom Client</th>
-                          <th>Date Inscription</th>
+                          <th>Date Demande Inscription</th>
                           <th>Accepter</th>
                           <th>Supprimer</th>
                           <th>Voir plus</th>

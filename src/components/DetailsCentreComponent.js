@@ -24,7 +24,6 @@ class DetailCentreComponent extends Component {
             themes:[],
             NomTheme:"",
             search: '',
-            rating: 0,
             Eval: []
           };     
           this.onChangeNomTheme = this.onChangeNomTheme.bind(this);
@@ -45,8 +44,8 @@ class DetailCentreComponent extends Component {
 
         const {centree} = this.state;
         let ID_Centre = centree ? centree._id : "";
-        let i = 1;
-        let Rating = 0;
+        let NomCentre = centree ? centree.NomCentre : "";
+
         //Request to get "centre" details by its ID
         axios.get('http://localhost:5000/Centre/'+ID_Centre)
           .then(centre => {
@@ -67,15 +66,16 @@ class DetailCentreComponent extends Component {
             console.log(error);
           })
           //recuperer ratings
-          /* axios.get('http://localhost:5000/Evaluation_Formation/Rating_Centre/'+ this.state.centree.NomCentre)
-          .then(Eval => {
-            this.setState({ Eval: Eval.data.filter(eval=> eval.Id_Formation != null) })  
+           axios.get('http://localhost:5000/Evaluation_Formation/Rating_Centre/'+ NomCentre)
+          .then(rate => {
+            this.setState({ Eval: rate.data }) ;
             }
+            
           )
           .catch((error) => {
             console.log(error);
-          })*/
-         // console.log(this.state.Eval)
+          })
+          console.log(this.state.Eval)
         }   
       }  
       
@@ -99,8 +99,18 @@ class DetailCentreComponent extends Component {
         let EmailCentre = centree ? centree.EmailCentre : "";
         let DescriptionCentre = centree ? centree.DescriptionCentre : "";
         let image = centree ? centree.image : "";
-        
+        const Rating = this.state.Eval[0];
         let imageCentre = DefaultImg;
+        console.log(Rating)
+        let Stars = null
+        if(Rating){
+          Stars = <StarRatingComponent 
+                            name={NomCentre} 
+                            starCount={5} 
+                            value={Rating.RatingCentre} 
+                            editing={false}
+                          />
+        }
         if (image){
         imageCentre = "http://localhost:5000/"+image
         }  
@@ -204,12 +214,7 @@ class DetailCentreComponent extends Component {
                       <div  >
                         <br/>
                           {/* showing details  begin*/} 
-                          <StarRatingComponent 
-                            name={NomCentre} 
-                            starCount={5} 
-                            value={this.state.rating} 
-                            editing={false}
-                   />    
+                          {Stars}
                           <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                           <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
                           <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>

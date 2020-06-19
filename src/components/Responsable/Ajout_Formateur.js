@@ -138,8 +138,9 @@ class AjoutFormateur extends Component {
                                 </FormGroup>
     
                                 <FormGroup row>
-                                    <Col>                        
-                                        <input type="submit" value="Ajouter Formateur" className="btn btn-primary offset-3" />                         
+                                    <Label md={5}></Label>
+                                    <Col md={7}>                        
+                                        <input type="submit" value="Ajouter " className="btn btn-primary offset-3" />                         
                                         <a className="offset-1 btn btn-secondary" href="/FormateurList">
                                         Annuler
                                         </a> 

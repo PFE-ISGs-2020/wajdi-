@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SideBar from "./sidebar";
 import moment from 'moment';
+import StarRatingComponent from 'react-star-rating-component';
 
 const Formation = props => (  
   <tr> 
@@ -67,7 +68,9 @@ class FormationList extends Component {
                   //For Modal Formation
                   Formation :  null, 
                   isModalFormationOpen: false, 
-                  Id_Formation: null, };
+                  Id_Formation: null, 
+                  rating: [],
+                Ratings:[]};
     
 
   }
@@ -81,6 +84,15 @@ class FormationList extends Component {
     .catch((error) => {
       console.log(error);
     })
+    console.log(this.state.formation)
+    axios.get('http://localhost:5000/Evaluation_Formation/Rates')
+    .then(rate => {
+      this.setState({ Ratings: rate.data })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    console.log(this.state.Ratings)
   }
  
   supprimerFormation(id) {    
@@ -96,9 +108,11 @@ class FormationList extends Component {
     this.setState({
       isModalFormationOpen: !this.state.isModalFormationOpen,
      Id_Formation: id,
-     Formation: Formation
-     
+     Formation: Formation,
+     rating: this.state.Ratings.filter(rate => rate._id === id)[0]
     });  
+    console.log(this.state.rating)
+    console.log(this.state.Ratings)
   }
  
   FormationList() {
@@ -111,6 +125,7 @@ class FormationList extends Component {
   }
 
   render() {
+
     if (!this.state.formation[0]){
       return(
         <div>
@@ -147,6 +162,16 @@ class FormationList extends Component {
       )
     }
     else{
+      let rate;
+      if(this.state.rating){
+        rate= <StarRatingComponent 
+          name= "rate"
+          starCount={5} 
+          value={this.state.rating.avgRating} 
+          editing={false}
+        />  
+      }
+      else(rate= null)
     return (
       <div>
         <SideBar pageWrapId={"page-wrap"} />
@@ -189,10 +214,12 @@ class FormationList extends Component {
             {/*modal formation begin */}
             <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
               <ModalHeader>
-                {this.state.Formation}
+                {this.state.Formation} 
+                <div className="float-right">{rate}</div>
               </ModalHeader>
               <ModalBody> 
               <CardFormation  Id_Formation={this.state.Id_Formation} />
+              
               </ModalBody>
             </Modal>
             {/*modal formation end */}     
