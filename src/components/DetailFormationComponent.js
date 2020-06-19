@@ -166,8 +166,9 @@ class DetailFormationComponent extends Component {
                     
                
                 <br/>
-                <Footer/>
+                
             </div>
+            <Footer/>
             </div> 
     );    
 

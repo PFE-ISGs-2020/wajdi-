@@ -39,7 +39,7 @@ const Formation = props => (
       
     <td>
     <a href={"/DemandeInscriptionList/"+props.formation._id}>
-    <button type="button" className="btn btn-outline-danger btn-sm">
+    <button type="button" className="btn btn-success btn-sm">
       <span className="fa fa-user-plus "></span>
     </button>  
     </a>
