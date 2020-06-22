@@ -51,7 +51,6 @@ class DetailCentreComponent extends Component {
           .then(centre => {
             if (this._isMounted) {
             this.setState({ centree: centre.data })
-            console.log(this.props.centre);
           }
         })
           .catch((error) => {
@@ -61,7 +60,9 @@ class DetailCentreComponent extends Component {
           //Récupérer les formtaions de la base de données
           axios.get('http://localhost:5000/Formation/')
           .then(Formation => {
+            if (this._isMounted) {
             this.setState({ Formation: Formation.data })
+          }
           })
           .catch((error) => {
             console.log(error);
@@ -69,14 +70,15 @@ class DetailCentreComponent extends Component {
           //recuperer ratings
            axios.get('http://localhost:5000/Evaluation_Formation/Rating_Centre/'+ NomCentre)
           .then(rate => {
+            if (this._isMounted) {
             this.setState({ Eval: rate.data }) ;
             }
+          }
             
           )
           .catch((error) => {
             console.log(error);
           })
-          console.log(this.state.Eval)
         }   
       }  
       
@@ -102,7 +104,6 @@ class DetailCentreComponent extends Component {
         let image = centree ? centree.image : "";
         const Rating = this.state.Eval[0];
         let imageCentre = DefaultImg;
-        console.log(Rating)
         let Stars = null
         if(Rating){
           Stars = <StarRatingComponent 
@@ -213,10 +214,10 @@ class DetailCentreComponent extends Component {
                          <br/>
                       </div> 
                       
-                      <div  >
-                        <br/>
+                      <div className="col-12 col-sm-12 col-md-7 ">
+                        
                           {/* showing details  begin*/} 
-                          {Stars}
+                          <h2>{Stars} </h2>
                           <p><b> <span className="fa fa-university"></span> Nom du centre:</b>   {NomCentre}</p>
                           <p><b> <span className="fa fa-map"></span> Region Centre:</b>   {RegionCentre}</p>
                           <p><b> <span className="fa fa-map-marker"></span> Adresse Centre:</b>   {AdresseCentre}</p>
@@ -227,11 +228,11 @@ class DetailCentreComponent extends Component {
                         </div>
                     </div>
                     </div>
-                    <br/>
-                    <br/>
+     
+                   <div className="container">
+                   <br/>
                     <h5>Formations proposées par ce centre: </h5>
                     <hr/>
-                   <div className="container">
                       <Form>
                       
                         <InputGroup  className="mb-3 searchbar">

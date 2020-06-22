@@ -49,7 +49,7 @@ export default class DemandeList extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/Centre/Acces')
       .then(centr => {
-        this.setState({ centre: centr.data })
+        this.setState({ centre : centr.data })
       })
       .catch((error) => {
         console.log(error);
@@ -167,7 +167,7 @@ export default class DemandeList extends Component {
             {/*modal centre begin */}
             <Modal isOpen={this.state.isModalCentreOpen} toggle={this.toggleModalCentre}>   
               <ModalHeader className="justify-content-center">
-                <h3 >{this.state.Centre.NomCentre}</h3>
+                {this.state.Centre.NomCentre} 
               </ModalHeader>
               <ModalBody> 
               <p> <b> <span className="fa fa-university"> </span> Nom: </b> {this.state.Centre.NomCentre}</p>

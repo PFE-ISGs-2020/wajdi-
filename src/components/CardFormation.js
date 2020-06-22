@@ -19,14 +19,12 @@ class CardFormation extends Component {
         axios.get('http://localhost:5000/Formation/'+this.props.Id_Formation)
           .then(frm => {
             this.setState({ formation: frm.data })
-            console.log(this.props.Id_Formation);
           })
           .catch((error) => {
             console.log(error);
           })
       }
       
-
     render(){
        // const dateToFormat = this.state.formation.DateDebutFormation;var datedeb = moment(this.state.formation.DateDebutFormation, 'DD-MM-YYYY');
        let image = DefaultImg;
@@ -37,11 +35,13 @@ class CardFormation extends Component {
         <div>
             <div className="container">            
                 {/* showing details  begin*/}
-                <div className="row offset-1 ">
-                <img src= {image} alt="image_formation" className="process__image offset-2"
+                <div className="row">
+                <img src= {image} alt="image_formation"  
                             width="220" height="150" /> 
                 </div>
+                <br/>
                  <div className="row ">
+                     
                     <p><b>Date debut: </b>    
                     <Moment format="DD/MM/YYYY">{this.state.formation.DateDebutFormation}</Moment></p> 
                 </div> 

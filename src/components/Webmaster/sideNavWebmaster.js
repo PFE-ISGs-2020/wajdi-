@@ -10,15 +10,15 @@ class SideNavWebmaster extends Component {
                   Webmaster <hr style={{backgroundColor:"#fff"}} />
                 </span>
 
-                <NavLink activeClassName="myactive" to='/verif'
+                <NavLink activeClassName="myactive" to='/DashboardWebmaster'
+                style={{ textDecoration: 'none' }}>Dashboard Webmaster </NavLink>
+               
+                <NavLink activeClassName="myactive" to='/VerifierEtatCentre'
                 style={{ textDecoration: 'none' }}> Vérifier Etat centre </NavLink>
                 
                 <NavLink activeClassName="myactive" to='/DemandeList' 
                 style={{ textDecoration: 'none' }}> Demandes des responsables </NavLink>
                 
-                <NavLink activeClassName="myactive" to='/consulte'
-                style={{ textDecoration: 'none' }}>Consulter les avis </NavLink>
-               
                 <NavLink activeClassName="myactive" to='/ThemeList'
                 style={{ textDecoration: 'none' }}> Consulter la liste des thèmes </NavLink>
                 

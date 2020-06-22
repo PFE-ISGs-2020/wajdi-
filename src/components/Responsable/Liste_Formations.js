@@ -84,7 +84,7 @@ class FormationList extends Component {
     .catch((error) => {
       console.log(error);
     })
-    console.log(this.state.formation)
+
     axios.get('http://localhost:5000/Evaluation_Formation/Rates')
     .then(rate => {
       this.setState({ Ratings: rate.data })
@@ -92,7 +92,6 @@ class FormationList extends Component {
     .catch((error) => {
       console.log(error);
     })
-    console.log(this.state.Ratings)
   }
  
   supprimerFormation(id) {    
@@ -111,8 +110,6 @@ class FormationList extends Component {
      Formation: Formation,
      rating: this.state.Ratings.filter(rate => rate._id === id)[0]
     });  
-    console.log(this.state.rating)
-    console.log(this.state.Ratings)
   }
  
   FormationList() {
@@ -214,8 +211,8 @@ class FormationList extends Component {
             {/*modal formation begin */}
             <Modal isOpen={this.state.isModalFormationOpen} toggle={this.toggleModalFormation}>   
               <ModalHeader>
-                {this.state.Formation} 
-                <div className="float-right">{rate}</div>
+                <div>
+                {this.state.Formation} <br/><h4>{rate}</h4></div>         
               </ModalHeader>
               <ModalBody> 
               <CardFormation  Id_Formation={this.state.Id_Formation} />

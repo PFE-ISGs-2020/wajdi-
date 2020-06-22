@@ -6,10 +6,6 @@ import 'font-awesome/css/font-awesome.css';
 import 'font-awesome/css/font-awesome.min.css'; 
 import 'bootstrap-social/bootstrap-social.css'; 
 
-//import Header from './components/HeaderComponent';
-//import Footer from './components/FooterComponent';
-//import Home from './components/HomeComponent';
- 
 //Responsable imports begin
 import ProfileCentre  from './components/Responsable/Profile_Centre';
 import DashboardResponsable from './components/Responsable/DashboardResponsable';
@@ -22,31 +18,30 @@ import ModiferFormateur from'./components/Responsable/Modifier_Formateur';
 import ModifierPasswordCentre from './components/Responsable/Modifier_Password_Centre';
 import DemandeInscriptionList from './components/Responsable/Demandes_Inscription';
 import ModifierCentre from './components/Responsable/Modifier_Centre';
+import Inscriptions_Formations from './components/Responsable/Inscriptions_Formations';
 //Responsable imports end
 
+//Webmaster imports begin
 import HomeWebmaster from './components/Webmaster/HomeWebmaster';
 import DemandeList from './components/Webmaster/DemandeCentre';
 import ThemeList from './components/Webmaster/Liste_Themes';
+import DashboardWebmaster from './components/Webmaster/DashboardWebmaster';
+import VerifierEtatCentre from './components/Webmaster/VerifierEtatCentre';
 
 import loginwebmaster from './components/Webmaster/LoginWebmaster';
+//Webmaster imports end
+
 import MainClient from './components/mainClient';
 
 
-import Inscriptions_Formations from './components/Responsable/Inscriptions_Formations';
 import { Provider } from "react-redux";
 import store from "./store";
-
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import setAuthClientToken from "./utils/setAuthClientToken";
-
 import {setCurrentCentre, logoutCentre } from "./actions/authActions";
-
-
 import img from './components/image';
 import {setCurrentClient, logoutClient } from "./actions/authActionsClient";
-
-//import  from "./components/private-route/PrivateRoute";
 
 // Check for token to keep centre logged in
 if (localStorage.jwtToken) {
@@ -125,7 +120,9 @@ if (localStorage.jwtToken) {
         <Route path="/DemandeList" exact component={DemandeList} />
         <Route path="/img" exact component={img} />
         <Route path="/ThemeList" exact component={ThemeList} />
-
+        <Route path="/DashboardWebmaster" exact component={DashboardWebmaster} />
+        <Route path="/VerifierEtatCentre" exact component={VerifierEtatCentre} />
+        
         </Switch>
       </div>
     

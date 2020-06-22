@@ -180,11 +180,9 @@ class ModiferFormation extends Component {
         CapaciteFormation:  this.state.CapaciteFormation,
         NomTheme: this.state.NomTheme,
         NomFormateur:  this.state.NomFormateur,
-        NomCentre:  this.state.NomCentre   ,
+        NomCentre:  this.state.NomCentre ,
         Prix: this.state.Prix    
     }
-
-    console.log(formation);
 
     axios.post('http://localhost:5000/Formation/update/' + this.props.match.params.id, formation)
       .then(res => console.log(res.data));
@@ -192,7 +190,6 @@ class ModiferFormation extends Component {
     if (this.state.selectedImage ){
         let ImageFormation = new FormData();
       ImageFormation.append("imageFormation", this.state.image)
-      console.log(this.state.image) 
      axios.post('http://localhost:5000/Formation/updateImageFormation/' + this.props.match.params.id, ImageFormation)
       .then(res => console.log(res.data) );}
       window.location = '/FormationList';

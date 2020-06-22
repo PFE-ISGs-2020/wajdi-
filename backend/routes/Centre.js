@@ -52,17 +52,18 @@ router.route('/Acces').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/List').get((req, res) => {
+    Centre.find({ Acces: 1 })
+    .then(centres => res.json(centres))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/FindByName/:NomCentre').get((req, res) => {
   Centre.findOne({ NomCentre: req.params.NomCentre })
   .then(centre => res.json(centre._id))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/List').get((req, res) => {
-    Centre.find({ Acces: 1 })
-    .then(centres => res.json(centres))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 //Sign Up centre 
 router.route('/add').post(  (req, res)=> {
@@ -126,35 +127,39 @@ router.route('/update/:id').post( (req, res) => {
       centre.RegionCentre= req.body.RegionCentre;
       centre.DescriptionCentre= req.body.DescriptionCentre;
         centre.Acces = Number(req.body.Acces);
-
         centre.save()
         .then(() => res.json('Centre updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
-        
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
- router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res) => {
+router.route('/desactivate/:id').post( (req, res) => {
   Centre.findById(req.params.id)
   .then(centre => {        
-     
-    centre.image = req.file.path
+      centre.Acces = 0 ;
+      centre.save()
+      .then(() => res.json('Centre Desactivated !'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
+});
 
+ router.route('/updateImageCentre/:id').post(  upload.single('image'), (req, res) => {
+  Centre.findById(req.params.id)
+  .then(centre => {
+    centre.image = req.file.path
       centre.save()
       .then(() => res.json('Image Centre updated!'))
-      .catch(err => res.status(400).json('Error: ' + err));
-      
+      .catch(err => res.status(400).json('Error: ' + err));      
   })
   .catch(err => res.status(400).json('Error: ' + err));
 }); 
 
 router.route('/updatePassword/:id').post((req, res) => {
   Centre.findById(req.params.id)
-  .then(centre => {        
-    
+  .then(centre => {  
     centre.passwordCentre= req.body.passwordCentre
-    
      // Hash password before saving in database
      bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(centre.passwordCentre, salt, (err, hash) => {

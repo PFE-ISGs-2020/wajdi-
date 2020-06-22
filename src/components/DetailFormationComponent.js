@@ -36,7 +36,6 @@ class DetailFormationComponent extends Component {
           .then( formation => {
             if (this._isMounted) {
             this.setState({ formationn: formation.data })
-            console.log(this.props.formation);
             }
         })
 
@@ -44,7 +43,6 @@ class DetailFormationComponent extends Component {
           .then( centre => {
             if (this._isMounted) {
             this.setState({ centre: centre.data })
-            console.log(this.state.centre);
             }
         })
         }
