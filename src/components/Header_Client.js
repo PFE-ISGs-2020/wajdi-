@@ -101,7 +101,7 @@ class HeaderClient extends Component {
                                         <Dropdown.Divider />
                                         
                                         <Dropdown.Item href="/" onClick={this.onLogoutClick}>
-                                        <span className="fa fa-sign-out"></span>  Logout
+                                        <span className="fas fa-sign-out-alt"></span>  Logout
                                         </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>

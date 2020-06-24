@@ -47,7 +47,6 @@ return (
                     <th>Logo</th> 
                     <th>Nom Centre</th> 
                     <th>Region Centre</th> 
-                    <th> Etat Centre</th>
                     <th> Désactivation compte</th>
                   </tr>
                 </thead>
@@ -59,10 +58,9 @@ return (
                     }
                     return (
                         <tr key={currentCentre._id}>
-                            <td> <img src={image} style={{width:"50px",height:"50px" }} /></td>
+                            <td> <img src={image} alt="centre" style={{width:"50px",height:"50px" }} /></td>
                             <td>{currentCentre.NomCentre}</td>
                             <td>{currentCentre.RegionCentre}</td>
-                            <td>{currentCentre.Acces}</td>
                             <td>
                                 <a href="/VerifierEtatCentre">
                                     <Button className="btn btn-danger btn-sm"

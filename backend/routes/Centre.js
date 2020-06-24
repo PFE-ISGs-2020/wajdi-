@@ -52,9 +52,21 @@ router.route('/Acces').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/Acces/count').get((req, res) => {
+  Centre.find({ Acces: 0 }).count()
+  .then(centres => res.json(centres))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/List').get((req, res) => {
     Centre.find({ Acces: 1 })
     .then(centres => res.json(centres))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/List/count').get((req, res) => {
+  Centre.find({ Acces: 1 }).count()
+  .then(centres => res.json(centres))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

@@ -40,6 +40,19 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/count').get((req, res) => {    
+    Formation
+    .aggregate([{
+        $group: {
+          _id: "$NomTheme",
+          count: { $sum : 1 }
+        }
+      }]).exec()
+    .then(formation => res.json(formation))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 router.route('/listbynamecentre/:NomCentre').get((req, res) => {
     Formation.find({NomCentre:req.params.NomCentre})
     .then(centre => res.json(centre))

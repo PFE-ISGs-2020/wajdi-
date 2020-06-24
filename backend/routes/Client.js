@@ -44,6 +44,12 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/count').get((req, res) => {
+  Client.count()
+  .then(clients => res.json(clients))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
 //Sign Up Client
 router.route('/add').post((req, res)=> {
     // Form validation

@@ -5,7 +5,7 @@ import Header from './HeaderComponent';
 import HeaderClient from './Header_Client';
 
 import Footer from './FooterComponent';
-import SearchBar from '../components/SearchBarComponent';
+import SearchBar from './SearchBarComponent';
  
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

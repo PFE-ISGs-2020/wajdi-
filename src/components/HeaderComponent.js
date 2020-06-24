@@ -52,30 +52,30 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav className="navbar">
                             <NavItem>
-                                <NavLink className="nav-link"  to='/'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
+                                <NavLink className="nav-link"  to='/'><span className="fas fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fas fa-university fa-lg"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink className="nav-link"  to='/Formations'><span className="fa fa-graduation-cap fa-lg"/> Formations  </NavLink>
+                                <NavLink className="nav-link"  to='/Formations'><span className="fas fa-graduation-cap fa-lg"/> Formations  </NavLink>
                             </NavItem>
 
                             <NavItem>
-                                <NavLink className="nav-link" to='/QuiSommesNous'><span className="fa fa-info fa-lg"/> Qui sommes nous? </NavLink>
+                                <NavLink className="nav-link" to='/QuiSommesNous'><span className="fas fa-info fa-lg"/> Qui sommes nous? </NavLink>
                             </NavItem>
                     
                             </Nav>
 
                             <Nav  className="ml-auto navbar" >
                                 <NavItem >
-                                    <Button style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}}  onClick={this.toggleModalClient}><span className="fa fa-sign-in fa-lg "/> Espace Client</Button>
+                                    <Button style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}}  onClick={this.toggleModalClient}><span className="fas fa-sign-in-alt fa-lg "/> Espace Client</Button>
                                 </NavItem>
 
                                 <NavItem className="m-2">
-                                    <Button  style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}} onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"/> Espace Centre</Button>
+                                    <Button  style={{backgroundColor: '#FCCA92',color:"#0A3642",fontWeight:"bold",border:"none"}} onClick={this.toggleModal}><span className="fas fa-sign-in-alt fa-lg"/> Espace Centre</Button>
                                 </NavItem>
                             </Nav> 
                            

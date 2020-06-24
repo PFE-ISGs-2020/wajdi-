@@ -2,10 +2,6 @@ import React,{Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import 'font-awesome/css/font-awesome.css'; 
-import 'font-awesome/css/font-awesome.min.css'; 
-import 'bootstrap-social/bootstrap-social.css'; 
-
 //Responsable imports begin
 import ProfileCentre  from './components/Responsable/Profile_Centre';
 import DashboardResponsable from './components/Responsable/DashboardResponsable';

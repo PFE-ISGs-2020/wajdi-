@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {Route, BrowserRouter} from 'react-router-dom';
 import DetailFormationComponent from './DetailFormationComponent';
 import DetailCentreComponent from './DetailsCentreComponent';
-import Home from './HomeComponent';
+import Home from './HomeComponent.jsx';
 import Formation from "./Formation";
 import CentreFormation from "./CentreFormation";
 import QuiSommesNous from "./Qui_Sommes_Nous";

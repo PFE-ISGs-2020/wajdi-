@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.css';
 import 'font-awesome/css/font-awesome.css.map';
 import 'font-awesome/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-social/bootstrap-social.css';
