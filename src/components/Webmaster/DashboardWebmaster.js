@@ -3,6 +3,7 @@ import SideNavWebmaster from './sideNavWebmaster';
 import {Card,CardColumns } from "react-bootstrap";
 import axios from 'axios';
 import Chart from './Chart';
+import randomColor from 'randomcolor';
 
 class DashboardWebmaster extends Component {
  
@@ -10,7 +11,7 @@ class DashboardWebmaster extends Component {
     super(props);
     this.state = {nbrClient:0,nbrAcces:0,nbrList:0,      
                   ThemeFormation:[], 
-                  ThemeLables:[],ThemeData:[]  , 
+                  ThemeLables:[],ThemeData:[] , ColorTab:[],
                   chartData:{}
                 };
   }
@@ -57,6 +58,7 @@ class DashboardWebmaster extends Component {
           (res,i) => {          
                this.state.ThemeLables[i]=res._id;
                this.state.ThemeData[i]=res.count;
+               this.state.ColorTab[i]= randomColor( {luminosity:'light',format:'rgb',hue:'yellow,green,blue,red,gray'} );
                i++;
               }); 
               
@@ -67,10 +69,14 @@ class DashboardWebmaster extends Component {
         this.state.chartData = {
           labels:this.state.ThemeLables,
           datasets:[{data:this.state.ThemeData,
-              backgroundColor:['rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)']
+              backgroundColor:this.state.ColorTab
+              /* ['rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)'] */
                   }]
         }      
     }
@@ -78,12 +84,10 @@ class DashboardWebmaster extends Component {
 render() {
   this.getdata()            
   this.getchartdata()
-  
 
 let chart = null  ; 
 if(this.state.chartData.labels[0] ){
   chart = <Chart chartData={this.state.chartData} />
-  console.log(this.state.chartData)
 }
 
   return (
@@ -151,7 +155,7 @@ if(this.state.chartData.labels[0] ){
 
           </Card.Body>   
           <Card.Footer>
-              <p> <i class="fas fa-chart-pie"></i> Nombre de formations par theme </p> 
+              <p> <i className="fas fa-chart-pie" /> Nombre de formations par theme </p> 
           </Card.Footer>     
         </Card><br/>
          
