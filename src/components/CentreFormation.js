@@ -35,8 +35,8 @@ class CentreFormation extends Component {
 
     componentDidMount() {
 
-            //Récupérer les centres de la base de données
-            axios.get('http://localhost:5000/Centre/')
+            //Récupérer les centres ayant un compte activé de la base de données
+            axios.get('http://localhost:5000/Centre/List')
             .then(centre => {
             this.setState({ Centre: centre.data })
             })

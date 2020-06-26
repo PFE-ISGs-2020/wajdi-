@@ -137,7 +137,7 @@ class SearchBar extends Component {
             console.log(error);
         })
         //Récupérer les centres de la base de données
-        axios.get('http://localhost:5000/Centre/')
+        axios.get('http://localhost:5000/Centre/List')
           .then(centre => {
             this.setState({ Centre: centre.data })
           })

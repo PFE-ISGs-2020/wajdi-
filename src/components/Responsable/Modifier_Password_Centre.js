@@ -121,43 +121,39 @@ class ModifierPasswordCentre extends Component {
                             <FormGroup row>    
                     <Label htmlFor="OldPassword" md={5}> <b>Ancien Mot de Passe </b></Label>
                         <Col md={7}>
-                           {/* // <span className="red-text">{errors.passwordCentre}</span> */}
-                            <Input  required type="password" id="OldPassword" name="OldPassword"
+                           <Input  required type="password" id="OldPassword" name="OldPassword"
                                 placeholder="Ancien Mot de Passe" 
-                                //error={errors.passwordCentre}
+                               
                                 value={this.state.OldPassword}
                                 className="form-control"
-                                // className={classnames("form-control", {invalid: errors.passwordCentre})}
                                 onChange={this.onChangeOldPassword} />
                         </Col>
                 </FormGroup>
                 <FormGroup row>    
                     <Label htmlFor="NewPassword" md={5}> <b> Nouveau Mot de Passe </b></Label>
                         <Col md={7}>
-                            {/* <span className="red-text">{errors.password2}</span> */}
+                           
                             <Input  required type="password" id="NewPassword" name="NewPassword"
                                 placeholder="Nouveau Mot de Passe"
                                 value={this.state.NewPassword} 
-                                //error={errors.NewPassword}
+                                
                                 onChange={this.onChangeNewPassword}
                                 className = "form-control"
-                                //className={classnames("form-control", {invalid: errors.password2})} 
-                                />
+                                 />
                         </Col>
                 </FormGroup>
 
                 <FormGroup row>    
                     <Label htmlFor="ConfirmNewPassword" md={5}> <b>Confirmer Mot de passe</b></Label>
                         <Col md={7}>
-                            {/* <span className="red-text">{errors.password2}</span> */}
+                            
                             <Input  required type="password" id="ConfirmNewPassword" name="ConfirmNewPassword"
                                 placeholder="Confirmer Mot de passe"
                                 value={this.state.ConfirmNewPassword} 
-                                // error={errors.password2}
+
                                 onChange={this.onChangeConfirmNewPassword}
                                 className= "form-control"
-                               // className={classnames("form-control", {invalid: errors.ConfirmNewPassword})} 
-                               />
+                                />
                         </Col>
                 </FormGroup>
 

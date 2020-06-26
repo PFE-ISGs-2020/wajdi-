@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import SideNavWebmaster from './sideNavWebmaster'
 import DefaultImg from '../../assets/default-img.jpg';
 import axios from 'axios';
-import {Button} from 'reactstrap';
+import {Button,  Modal,  ModalBody, ModalHeader} from 'reactstrap';
 
 class VerifierEtatCentre extends Component {
     constructor(props) {
         super(props);
+        this.toggleModalCentre = this.toggleModalCentre.bind(this)
         this.state = {
             Centre:[],
-            centre:""
+            centre:"",
+            isModalCentreOpen: false,
+            CentreInModal: []
         };          
     }
     
@@ -24,8 +27,17 @@ class VerifierEtatCentre extends Component {
     desactivate(id){
         //Récupérer les centres de la base de données
         axios.post('http://localhost:5000/Centre/desactivate/' + id)
-        .then(alert("compte desactivée"));       
+        .then(alert("compte desactivé"));       
     } 
+
+    toggleModalCentre(centre) {
+      this.setState({
+        isModalCentreOpen: !this.state.isModalCentreOpen ,
+      
+       CentreInModal: centre
+      }); 
+     
+    }
 
 render() {
   
@@ -38,7 +50,7 @@ return (
               <section className="col-10 text-center">   
               <br/>
               <br/>
-              <h3> Verifier Etat Centre </h3>
+              <h3> Vérifier Etat Centre </h3>
               <br/>
               <br/>             
               <table className="table">
@@ -47,7 +59,8 @@ return (
                     <th>Logo</th> 
                     <th>Nom Centre</th> 
                     <th>Region Centre</th> 
-                    <th> Désactivation compte</th>
+                    <th> Désactiver compte</th>
+                    <th>Voir Plus</th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -71,6 +84,11 @@ return (
                                     </Button>
                                 </a>
                             </td>
+                            <td>
+                              <Button className="btn btn-secondary btn-sm" onClick={ () => { this.toggleModalCentre( currentCentre)}}>
+                                <span className="fa fa-info "></span>
+                              </Button>
+                            </td>
                         </tr>
                     );                
                   })
@@ -78,6 +96,19 @@ return (
                 </tbody>
               </table>
               </section>
+              <Modal isOpen={this.state.isModalCentreOpen} toggle={this.toggleModalCentre}>   
+                <ModalHeader className="justify-content-center">
+                  {this.state.CentreInModal.NomCentre} 
+                </ModalHeader>
+                <ModalBody> 
+                  <p> <b> <span className="fa fa-university"> </span> Nom: </b> {this.state.CentreInModal.NomCentre}</p>
+                  <p> <b> <span className="fa fa-map"> </span> Région: </b> {this.state.CentreInModal.RegionCentre}</p>
+                  <p> <b> <span className="fa fa-map-marker"> </span> Adresse: </b> {this.state.CentreInModal.AdresseCentre}</p>
+                  <p> <b> <span className="fa fa-envelope"> </span> Email: </b> {this.state.CentreInModal.EmailCentre}</p>
+                  <p> <b> <span className="fa fa-phone"> </span> Tel: </b> {this.state.CentreInModal.TelCentre}</p>
+                  <p> <b> <span className="fa fa-align-justify"> </span> Déscription: </b> {this.state.CentreInModal.DescriptionCentre}</p>
+                </ModalBody>
+              </Modal> 
             </div>
   
           </div>
