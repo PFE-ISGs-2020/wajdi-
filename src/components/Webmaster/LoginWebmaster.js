@@ -28,9 +28,10 @@ class loginwebmaster extends Component {
         return(console.log(this.state.error));}
         
         else { 
-            window.location = '/homewebmaster'
+            window.location = '/DashboardWebmaster'
            
     }}
+
     onChangePassword(e) {
         this.setState({
             password: e.target.value
@@ -42,13 +43,6 @@ class loginwebmaster extends Component {
         })
     }
 
-    /*  Greeting(props) {
-        const isLoggedIn = props.isLoggedIn;
-        if (isLoggedIn) {
-          return <HomeWebmaster />;
-        }
-        /* return this.props.error;
-      }  */
     render() {
 
         return(

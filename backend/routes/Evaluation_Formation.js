@@ -9,7 +9,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
- router.route('/Rates').get((req, res) => {
+router.route('/Rates').get((req, res) => {
     Evaluation_Formation
     .aggregate([{$group:{_id: "$Id_Formation",
     avgRating: { $avg: "$StartFormation" },} },],)     

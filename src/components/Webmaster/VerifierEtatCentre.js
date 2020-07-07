@@ -46,7 +46,8 @@ return (
                   <tr>
                     <th>Logo</th> 
                     <th>Nom Centre</th> 
-                    <th>Region Centre</th> 
+                    <th>Tel Centre</th> 
+                    <th>Region Centre</th>                     
                     <th> Désactivation compte</th>
                   </tr>
                 </thead>
@@ -60,6 +61,7 @@ return (
                         <tr key={currentCentre._id}>
                             <td> <img src={image} alt="centre" style={{width:"50px",height:"50px" }} /></td>
                             <td>{currentCentre.NomCentre}</td>
+                            <td>{currentCentre.TelCentre}</td>
                             <td>{currentCentre.RegionCentre}</td>
                             <td>
                                 <a href="/VerifierEtatCentre">

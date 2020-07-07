@@ -59,7 +59,7 @@ class HeaderClient extends Component {
                             </NavItem>
 
                             <NavItem>
-                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fa fa-university fa-m"/> Centres de formation </NavLink>
+                                <NavLink className="nav-link"  to='/CentresFormation'><span className="fas fa-university fa-lg"/> Centres de formation </NavLink>
                             </NavItem>
                             
                             <NavItem>

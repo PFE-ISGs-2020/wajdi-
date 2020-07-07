@@ -18,7 +18,6 @@ import Inscriptions_Formations from './components/Responsable/Inscriptions_Forma
 //Responsable imports end
 
 //Webmaster imports begin
-import HomeWebmaster from './components/Webmaster/HomeWebmaster';
 import DemandeList from './components/Webmaster/DemandeCentre';
 import ThemeList from './components/Webmaster/Liste_Themes';
 import DashboardWebmaster from './components/Webmaster/DashboardWebmaster';
@@ -111,7 +110,6 @@ if (localStorage.jwtToken) {
       
         
         {/* Webmaster */}
-        <Route path="/homewebmaster" exact component={HomeWebmaster} />
         <Route path="/loginwebmaster" exact component={loginwebmaster} />
         <Route path="/DemandeList" exact component={DemandeList} />
         <Route path="/img" exact component={img} />
