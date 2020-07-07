@@ -21,7 +21,12 @@ class SideNavWebmaster extends Component {
                 
                 <NavLink activeClassName="myactive" to='/ThemeList'
                 style={{ textDecoration: 'none' }}> Consulter la liste des thèmes </NavLink>
-                
+                <hr style={{backgroundColor:"#fff"}} />
+                  <a href="/loginwebmaster" className="menu-item" onClick={this.onLogoutClick}>
+        
+                    <p >   <span className="fa fa-sign-out fa-lg"/>  Logout</p>
+          
+                  </a>
             </Menu>
   );
   }

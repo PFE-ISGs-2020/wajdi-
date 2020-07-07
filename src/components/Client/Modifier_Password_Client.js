@@ -150,11 +150,11 @@ class ModifierPasswordClient extends Component {
                 </FormGroup>
 
                 <FormGroup row>    
-                    <Label htmlFor="ConfirmNewPassword" md={5}> <b>Confirmez Mot de passe</b></Label>
+                    <Label htmlFor="ConfirmNewPassword" md={5}> <b>Confirmer Mot de passe</b></Label>
                         <Col md={7}>
                             {/* <span className="red-text">{errors.password2}</span> */}
                             <Input  required type="password" id="ConfirmNewPassword" name="ConfirmNewPassword"
-                                placeholder="Confirmez Mot de passe"
+                                placeholder="Confirmer Mot de passe"
                                 value={this.state.ConfirmNewPassword} 
                                 // error={errors.password2}
                                 onChange={this.onChangeConfirmNewPassword}

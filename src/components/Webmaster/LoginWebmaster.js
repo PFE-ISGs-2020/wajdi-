@@ -21,7 +21,7 @@ class loginwebmaster extends Component {
    
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.login !== "admin" && this.state.password !== "admin"){
+        if (this.state.login !== "admin" || this.state.password !== "admin"){
             this.setState({
                 error: 'login ou mot de passe incorrect'
             })
