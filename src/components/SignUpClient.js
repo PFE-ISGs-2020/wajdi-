@@ -270,7 +270,7 @@ class SignUpClient extends Component {
                     <FormGroup row>
                         <Col md={{size: 10, offset: 5}}>
                         <div className="form-group">
-                            <input type="submit" value="Créer un Compte" className="btn btn-primary" />
+                            <input type="submit" value="Sign Up" className="btn btn-primary" />
                         </div>
                         </Col>        
                     </FormGroup>        

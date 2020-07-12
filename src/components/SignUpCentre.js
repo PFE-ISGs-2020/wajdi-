@@ -238,7 +238,7 @@ class SignupCentre extends Component {
                 <FormGroup row>
                     <Col md={{size: 10, offset: 8}}>
                         <div className="form-group">
-                            <input type="submit" value="Creation Demande" className="btn btn-primary" />
+                            <input type="submit" value="Sign Up" className="btn btn-primary" />
                         </div>
                     </Col>        
                 </FormGroup>        

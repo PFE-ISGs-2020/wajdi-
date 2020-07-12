@@ -7,7 +7,10 @@ import { GET_ERRORS_CLIENT, SET_CURRENT_CLIENT, CLIENT_LOADING } from "./types";
 export const signUpClient = (ClientData, history) => dispatch => {
   axios
     .post("http://localhost:5000/Client/add", ClientData)
-    .then(res => alert("inscrit avec succèes")) 
+    .then(res => {
+      window.location="/" ;
+      alert("inscrit avec succèes")
+          }) 
     .catch(err =>
       dispatch({ 
         type: GET_ERRORS_CLIENT,

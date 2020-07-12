@@ -64,7 +64,7 @@ router.route('/add').post((req, res) => {
     });
   
     newDetails.save()
-    .then(() => alert('Vous êtes inscrit avec succée'))
+    .then(() => res.json("Votre demande d'inscription est envoyée avec succès"))
     .catch(err => res.status(400).json('Error: ' + err));
   }})
   .catch(err => res.status(400).json('Error: ' + err));})
