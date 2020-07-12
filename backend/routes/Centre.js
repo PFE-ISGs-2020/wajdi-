@@ -124,10 +124,11 @@ router.route('/:id').get((req, res) => {
 });
 
 router.route('/:id').delete((req, res) => {
-    Centre.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Centre deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
+  Centre.findByIdAndDelete(req.params.id)
+  .then(() => res.json('Centre deleted.'))
+  .catch(err => res.status(400).json('Error: ' + err));
 });
+
 
 router.route('/update/:id').post( (req, res) => {
     Centre.findById(req.params.id)

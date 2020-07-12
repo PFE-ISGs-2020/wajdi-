@@ -120,12 +120,6 @@ router.route('/updatePassword/:id').post((req, res) => {
 });
 
 
-router.route('/:id').delete((req, res) => {
-    Client.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Client deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
 router.route('/update/:id').post( upload.single('imageClient'), (req, res) => {
     Client.findById(req.params.id)
     .then(client => {

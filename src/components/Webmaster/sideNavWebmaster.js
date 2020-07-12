@@ -11,10 +11,10 @@ class SideNavWebmaster extends Component {
                 </span>
 
                 <NavLink activeClassName="myactive" to='/DashboardWebmaster'
-                style={{ textDecoration: 'none' }}>Dashboard Webmaster </NavLink>
+                style={{ textDecoration: 'none' }}> Dashboard </NavLink>
                
                 <NavLink activeClassName="myactive" to='/VerifierEtatCentre'
-                style={{ textDecoration: 'none' }}> Vérifier Etat centre </NavLink>
+                style={{ textDecoration: 'none' }}> Consulter liste des comptes activée </NavLink>
                 
                 <NavLink activeClassName="myactive" to='/DemandeList' 
                 style={{ textDecoration: 'none' }}> Demandes des responsables </NavLink>

@@ -53,30 +53,28 @@ class DashboardWebmaster extends Component {
     //didmount end
 
     getdata(){
-      let i=0
+      
         this.state.ThemeFormation.forEach(
           (res,i) => {          
                this.state.ThemeLables[i]=res._id;
                this.state.ThemeData[i]=res.count;
                this.state.ColorTab[i]= randomColor( {luminosity:'light',format:'rgb',hue:'yellow,green,blue,red,gray'} );
                i++;
-              }); 
-              
-    
+              });     
     }
 
     getchartdata(){
         this.state.chartData = {
           labels:this.state.ThemeLables,
           datasets:[{data:this.state.ThemeData,
-              backgroundColor:this.state.ColorTab
-              /* ['rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)'] */
+              backgroundColor:/*this.state.ColorTab*/
+               ['rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'] 
                   }]
         }      
     }
@@ -85,10 +83,10 @@ render() {
   this.getdata()            
   this.getchartdata()
 
-let chart = null  ; 
-if(this.state.chartData.labels[0] ){
-  chart = <Chart chartData={this.state.chartData} />
-}
+  let chart = null  ; 
+  if(this.state.chartData.labels[0] ){
+    chart = <Chart chartData={this.state.chartData} />
+  }
 
   return (
       <div>

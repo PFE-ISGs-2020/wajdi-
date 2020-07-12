@@ -21,16 +21,17 @@ class loginwebmaster extends Component {
    
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.login !== "admin" && this.state.password !== "admin"){
+        if (this.state.login !== "admin" || this.state.password !== "admin"){
             this.setState({
                 error: 'login ou mot de passe incorrect'
             })
         return(console.log(this.state.error));}
         
         else { 
-            window.location = '/homewebmaster'
+            window.location = '/DashboardWebmaster'
            
     }}
+
     onChangePassword(e) {
         this.setState({
             password: e.target.value
@@ -42,13 +43,6 @@ class loginwebmaster extends Component {
         })
     }
 
-    /*  Greeting(props) {
-        const isLoggedIn = props.isLoggedIn;
-        if (isLoggedIn) {
-          return <HomeWebmaster />;
-        }
-        /* return this.props.error;
-      }  */
     render() {
 
         return(
