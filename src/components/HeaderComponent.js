@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {  NavbarToggler, Collapse,  Button,  Modal,  ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {Nav,Navbar, NavItem, Tabs, Tab} from 'react-bootstrap';
+import {Nav,Navbar, NavItem, Tabs, Tab, Image} from 'react-bootstrap';
 
 import Login from './LoginCentre';
 import LoginClient from './LoginClient';
 import SignupCentre from './SignUpCentre';
 import SignUpClient from './SignUpClient';
 import ModalHeader from 'react-bootstrap/ModalHeader';
+import TunFormation from "../img/TunFormation.png"
 
 class Header extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav className="navbar">
                             <NavItem>
-                                <NavLink className="nav-link"  to='/'><span className="fas fa-home fa-lg"/> Accueil  </NavLink>
+                                <NavLink className="nav-link"  to='/'> <Image src={TunFormation} style={{backgroundColor:"white"}} height="39px" width="40px" roundedCircle/> <span className="fas fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
                             
                             <NavItem>

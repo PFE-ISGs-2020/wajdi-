@@ -25,21 +25,11 @@ class loginwebmaster extends Component {
         { window.location = '/DashboardWebmaster'}
         else {
             this.setState({
-<<<<<<< HEAD
                 error: 'login ou mot de passe incorrect!'
             });
 
             }
            
-=======
-                error: 'login ou mot de passe incorrect'
-            })
-        return(console.log(this.state.error));}
-        
-        else { 
-            window.location = '/DashboardWebmaster'           
-        }
->>>>>>> 90b5c616532a5dcb2e0f62fade57e6559c84a1de
     }
 
     onChangePassword(e) {
@@ -74,32 +64,19 @@ class loginwebmaster extends Component {
                                <InputGroupAddon addonType="prepend">
                                <InputGroupText  ><span className="fa fa-user fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
-<<<<<<< HEAD
                                <Input placeholder="username" value={this.state.login}
                              onChange={this.onChangeLogin} required />
-=======
-                               <Input required placeholder="username" value={this.state.login}
-                             onChange={this.onChangeLogin} />
->>>>>>> 90b5c616532a5dcb2e0f62fade57e6559c84a1de
                            </InputGroup>
                            <br/>
                            <InputGroup>
                                <InputGroupAddon addonType="prepend">
                                <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
-<<<<<<< HEAD
                                <Input type="password" placeholder="Password" value={this.state.password}
                              onChange={this.onChangePassword} required />
                            </InputGroup>
                            <span style={ {color:'red'} }>{this.state.error}</span>
                            <br/> 
-=======
-                               <Input required type="password" placeholder="Password" value={this.state.password}
-                             onChange={this.onChangePassword} />
-                           </InputGroup>
-                                <span style={{color:'red'}}>{this.state.error}</span>
-                           <br/>
->>>>>>> 90b5c616532a5dcb2e0f62fade57e6559c84a1de
                            <Col md={{size: 10, offset: 8}}>
                                <Button type="submit" value="submit" color="primary">Login</Button>
                            </Col>    

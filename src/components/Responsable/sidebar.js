@@ -52,11 +52,7 @@ class SideBar extends Component {
         <hr style={{backgroundColor:"#fff"}} />
         <a href="/" className="menu-item" onClick={this.onLogoutClick}>
         
-<<<<<<< HEAD
         <p >   <span className="fas fa-sign-out-alt fa-lg"/>  Logout</p>
-=======
-        <p >   <span className="fas fa-sign-in-alt fa-lg "/>  Logout</p>
->>>>>>> 90b5c616532a5dcb2e0f62fade57e6559c84a1de
           
         </a>
     </Menu>

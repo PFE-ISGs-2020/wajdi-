@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from 'axios';
 import DefaultImg from '../assets/default-img.jpg'; 
+import TunFormation from "../img/TunFormation.png"
 
 class HeaderClient extends Component {
     constructor(props) {
@@ -55,7 +56,7 @@ class HeaderClient extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav className="navbar">
                             <NavItem>
-                                <NavLink className="nav-link"  to='/'><span className="fa fa-home fa-lg"/> Accueil  </NavLink>
+                                <NavLink className="nav-link"  to='/'> <Image src={TunFormation} style={{backgroundColor:"white"}} height="39px" width="40px" roundedCircle/> <span className="fa fa-home fa-lg"/> Accueil  </NavLink>
                             </NavItem>
 
                             <NavItem>

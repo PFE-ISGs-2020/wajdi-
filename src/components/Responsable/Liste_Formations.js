@@ -147,11 +147,7 @@ class FormationList extends Component {
               <br/>
               <a href="/ajoutformation">
                 <Button className="btn btn-success btn-sm" >
-<<<<<<< HEAD
-                  <span className="fa fa-plus" /> Ajouter une  formation
-=======
                   <span className="fas fa-plus"/> Ajouter une formation 
->>>>>>> 90b5c616532a5dcb2e0f62fade57e6559c84a1de
                 </Button>
               </a> 
             </div>   
