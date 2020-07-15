@@ -101,7 +101,7 @@ class FormateurList extends Component {
               <br/>
               <a href="/ajoutformateur">
                 <Button className="btn btn-success btn-sm" >
-                  <span className="fa fa-plus"> Ajouter un formateur</span>
+                  <span className="fa fa-plus"/> Ajouter un formateur 
                 </Button>
               </a> 
             </div>   

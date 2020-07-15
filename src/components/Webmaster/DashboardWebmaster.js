@@ -3,7 +3,7 @@ import SideNavWebmaster from './sideNavWebmaster';
 import {Card,CardColumns } from "react-bootstrap";
 import axios from 'axios';
 import Chart from './Chart';
-import randomColor from 'randomcolor';
+//import randomColor from 'randomcolor';
 
 class DashboardWebmaster extends Component {
  
@@ -53,13 +53,14 @@ class DashboardWebmaster extends Component {
     //didmount end
 
     getdata(){
-      
+      let ThemeLab = this.state.ThemeLables;
+      let ThemeDat =this.state.ThemeData ;
         this.state.ThemeFormation.forEach(
           (res,i) => {          
-               this.state.ThemeLables[i]=res._id;
-               this.state.ThemeData[i]=res.count;
-               this.state.ColorTab[i]= randomColor( {luminosity:'light',format:'rgb',hue:'yellow,green,blue,red,gray'} );
-               i++;
+              ThemeLab[i] = res._id;
+              ThemeDat[i]= res.count;
+               //this.state.ColorTab[i]= randomColor( {luminosity:'light',format:'rgb',hue:'yellow,green,blue,red,gray'} );
+               i++;               
               });     
     }
 

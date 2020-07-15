@@ -136,7 +136,7 @@ class DetailFormationComponent extends Component {
                                             EtatInscription:false,
                                             Id_Formation: this.state.formationn._id
                                             }
-                                        console.log(inscription);
+                                        //console.log(inscription);
                                         axios.post('http://localhost:5000/Details_Inscription/add', inscription)
                                         .then(res => {
                                         alert(res.data );})  

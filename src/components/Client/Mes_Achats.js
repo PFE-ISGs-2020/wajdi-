@@ -52,7 +52,6 @@ class MesAchats extends Component {
     axios.get('http://localhost:5000/Evaluation_Formation/client/'+client.id)
     .then(Avis => {
       this.setState({ Evaluation : Avis.data})
-      console.log(Avis);
     })
 
 
@@ -81,8 +80,7 @@ class MesAchats extends Component {
     console.log(avis);        
     axios.post('http://localhost:5000/Evaluation_Formation/add', avis)
     .then(
-      res => console.log(res.data) ,
-      window.location='/MesAchats' 
+      res => window.location='/MesAchats' 
       )
     .catch((error) => {
         console.log(error);

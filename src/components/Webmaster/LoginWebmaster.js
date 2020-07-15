@@ -28,9 +28,9 @@ class loginwebmaster extends Component {
         return(console.log(this.state.error));}
         
         else { 
-            window.location = '/DashboardWebmaster'
-           
-    }}
+            window.location = '/DashboardWebmaster'           
+        }
+    }
 
     onChangePassword(e) {
         this.setState({
@@ -64,7 +64,7 @@ class loginwebmaster extends Component {
                                <InputGroupAddon addonType="prepend">
                                <InputGroupText  ><span className="fa fa-user fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
-                               <Input placeholder="username" value={this.state.login}
+                               <Input required placeholder="username" value={this.state.login}
                              onChange={this.onChangeLogin} />
                            </InputGroup>
                            <br/>
@@ -72,9 +72,10 @@ class loginwebmaster extends Component {
                                <InputGroupAddon addonType="prepend">
                                <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
-                               <Input type="password" placeholder="Password" value={this.state.password}
+                               <Input required type="password" placeholder="Password" value={this.state.password}
                              onChange={this.onChangePassword} />
                            </InputGroup>
+                                <span style={{color:'red'}}>{this.state.error}</span>
                            <br/>
                            <Col md={{size: 10, offset: 8}}>
                                <Button type="submit" value="submit" color="primary">Login</Button>
@@ -82,8 +83,6 @@ class loginwebmaster extends Component {
                            </Form>
    
                </div>
-
-               
               
             </div>
             
