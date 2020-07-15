@@ -21,16 +21,16 @@ class loginwebmaster extends Component {
    
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.login !== "admin" || this.state.password !== "admin"){
+        if(this.state.login === "admin" && this.state.password === "admin" )
+        { window.location = '/DashboardWebmaster'}
+        else {
             this.setState({
-                error: 'login ou mot de passe incorrect'
-            })
-        return(console.log(this.state.error));}
-        
-        else { 
-            window.location = '/DashboardWebmaster'
+                error: 'login ou mot de passe incorrect!'
+            });
+
+            }
            
-    }}
+    }
 
     onChangePassword(e) {
         this.setState({
@@ -65,7 +65,7 @@ class loginwebmaster extends Component {
                                <InputGroupText  ><span className="fa fa-user fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
                                <Input placeholder="username" value={this.state.login}
-                             onChange={this.onChangeLogin} />
+                             onChange={this.onChangeLogin} required />
                            </InputGroup>
                            <br/>
                            <InputGroup>
@@ -73,9 +73,10 @@ class loginwebmaster extends Component {
                                <InputGroupText ><span className="fa fa-lock fa-lg"></span></InputGroupText>
                                </InputGroupAddon>
                                <Input type="password" placeholder="Password" value={this.state.password}
-                             onChange={this.onChangePassword} />
+                             onChange={this.onChangePassword} required />
                            </InputGroup>
-                           <br/>
+                           <span style={ {color:'red'} }>{this.state.error}</span>
+                           <br/> 
                            <Col md={{size: 10, offset: 8}}>
                                <Button type="submit" value="submit" color="primary">Login</Button>
                            </Col>    

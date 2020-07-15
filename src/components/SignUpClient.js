@@ -171,7 +171,10 @@ class SignUpClient extends Component {
                                  error={errors.DatenaissClient} required
                                  className={classnames("form-control", {invalid: errors.DatenaissClient})}                                 
                                 value={this.state.DatenaissClient}
-                                onChange={this.onChangeDatenaissClient} />
+                                onChange={this.onChangeDatenaissClient} 
+                                min= '1900-01-01'
+                                
+                                />
                                 <span style={ {color:'red'} }>{errors.DatenaissClient}</span>
                         </Col>
                 </FormGroup>
